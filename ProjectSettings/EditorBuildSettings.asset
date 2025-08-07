@@ -11,4 +11,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Escena Principal.unity
     guid: ad7c01cb8eee40a4782fd5fc9ea88a6c
+  - enabled: 1
+    path: Assets/Scenes/Escena de Combate.unity
+    guid: ae2e89448e989c0428a7061154768aee
+  - enabled: 1
+    path: Assets/Scenes/Luchar Escena.unity
+    guid: 13cad12f294bb984d955dbfd12a31109
   m_configObjects: {}
