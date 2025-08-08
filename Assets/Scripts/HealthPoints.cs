@@ -6,34 +6,25 @@ using UnityEngine.SceneManagement;
 
 public class HealthPoints : MonoBehaviour
 {
-    public static HealthPoints instancia;
     public int saludMaxima = 100;
-    public static int saludActual;
+    public int saludActual; // ahora NO es static
     public Slider barraSalud;
     public Text textoSalud;
 
-    void Awake()
-    {
-        instancia = this;
-    }
-
     void Start()
     {
-        if (barraSalud == null)
-        {
-            barraSalud = GameObject.Find("BarraSaludJugador1").GetComponent<Slider>();
-        }
-        if (saludActual <= 0 || saludActual > saludMaxima)
-        {
-            saludActual = saludMaxima;
-        }
-        barraSalud.maxValue = saludMaxima;
-        barraSalud.value = saludActual;
+        // Si no asignaste en el Inspector, busca en hijos
+        if (barraSalud == null) barraSalud = GetComponentInChildren<Slider>();
+        if (textoSalud == null) textoSalud = GetComponentInChildren<Text>();
 
-        if (textoSalud == null)
+        saludActual = saludMaxima;
+
+        if (barraSalud != null)
         {
-            textoSalud = GameObject.Find("TextoSaludJugador1").GetComponent<Text>();
+            barraSalud.maxValue = saludMaxima;
+            barraSalud.value = saludActual;
         }
+
         ActualizarUI();
     }
 
@@ -41,10 +32,13 @@ public class HealthPoints : MonoBehaviour
     {
         saludActual -= danio;
         saludActual = Mathf.Clamp(saludActual, 0, saludMaxima);
-        barraSalud.value = saludActual;
+
+        if (barraSalud != null)
+            barraSalud.value = saludActual;
+
         ActualizarUI();
 
-        if (saludActual == 0)
+        if (saludActual <= 0)
         {
             SceneManager.LoadScene("Escena de muerte");
         }
@@ -53,13 +47,9 @@ public class HealthPoints : MonoBehaviour
     void ActualizarUI()
     {
         if (textoSalud != null)
-        {
             textoSalud.text = "Salud: " + saludActual.ToString();
-        }
-        // Cambia el color del Fill del slider a rojo
+
         if (barraSalud != null && barraSalud.fillRect != null)
-        {
             barraSalud.fillRect.GetComponent<Image>().color = Color.red;
-        }
     }
 }
