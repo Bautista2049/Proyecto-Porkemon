@@ -1,55 +1,54 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class HealthPoints : MonoBehaviour
 {
-    public int saludMaxima = 100;
-    public int saludActual; // ahora NO es static
+    public Stats stats;
+
     public Slider barraSalud;
     public Text textoSalud;
 
-    void Start()
+    private void Start()
     {
-        // Si no asignaste en el Inspector, busca en hijos
-        if (barraSalud == null) barraSalud = GetComponentInChildren<Slider>();
-        if (textoSalud == null) textoSalud = GetComponentInChildren<Text>();
-
-        saludActual = saludMaxima;
-
-        if (barraSalud != null)
+        if (stats == null)
         {
-            barraSalud.maxValue = saludMaxima;
-            barraSalud.value = saludActual;
+            // Valor por defecto, modificar si quieres
+            stats = new Stats(1, 100, 10, 5, 2, 3);
         }
 
         ActualizarUI();
     }
 
-    public void RecibirDanio(int danio)
+    public void RecibirDanio(float danio)
     {
-        saludActual -= danio;
-        saludActual = Mathf.Clamp(saludActual, 0, saludMaxima);
-
-        if (barraSalud != null)
-            barraSalud.value = saludActual;
-
+        stats.health -= danio;
+        stats.health = Mathf.Clamp(stats.health, 0, stats.maxHealth);
         ActualizarUI();
 
-        if (saludActual <= 0)
+        if (stats.health <= 0)
         {
-            SceneManager.LoadScene("Escena de muerte");
+            Morir();
         }
     }
 
-    void ActualizarUI()
+    private void ActualizarUI()
     {
+        if (barraSalud != null)
+        {
+            barraSalud.maxValue = stats.maxHealth;
+            barraSalud.value = stats.health;
+        }
+
         if (textoSalud != null)
-            textoSalud.text = "Salud: " + saludActual.ToString();
+        {
+            textoSalud.text = $"{stats.health} / {stats.maxHealth}";
+        }
+    }
 
-        if (barraSalud != null && barraSalud.fillRect != null)
-            barraSalud.fillRect.GetComponent<Image>().color = Color.red;
+    private void Morir()
+    {
+        Debug.Log(gameObject.name + " ha muerto.");
+        SceneManager.LoadScene("Escena de muerte"); // Cambia el nombre si querés otra escena
     }
 }

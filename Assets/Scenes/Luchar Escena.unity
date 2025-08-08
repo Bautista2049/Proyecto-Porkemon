@@ -248,6 +248,56 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 24710918}
   m_CullTransparentMesh: 0
+--- !u!1 &49595809
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 49595811}
+  - component: {fileID: 49595810}
+  m_Layer: 0
+  m_Name: FuncTurnos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &49595810
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 49595809}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35133fcf3dc31f54bad34c0278efc977, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jugador1: {fileID: 511241125261031884, guid: ed4749b537d77a8428843769d56ae8a2, type: 3}
+  jugador2: {fileID: 572817824093651669, guid: f80e3d303eb7c6747a1e1b9737c029a2, type: 3}
+  turnoJ1Prefab: {fileID: 4494633308465749388, guid: c633e2f37a526fa4b873117423f5cf25,
+    type: 3}
+  turnoJ2Prefab: {fileID: 1789045722268446077, guid: fac71ba0a0e41804ebce5e916eda214d,
+    type: 3}
+  danioPorAtaque: 20
+--- !u!4 &49595811
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 49595809}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &299743955
 GameObject:
   m_ObjectHideFlags: 0
@@ -1156,7 +1206,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8502e36cd623cbf4abcb1fd9b7455694, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objetivo: {fileID: 0}
 --- !u!1 &1307597774
 GameObject:
   m_ObjectHideFlags: 0
@@ -1260,12 +1309,12 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 1428197772}
         m_MethodName: RecibirDanio
-        m_Mode: 3
+        m_Mode: 4
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 50
-          m_FloatArgument: 0
+          m_IntArgument: 0
+          m_FloatArgument: 20
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
@@ -1402,8 +1451,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e76dadddf71819469a98670d9fc15ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  saludMaxima: 100
-  saludActual: 100
   barraSalud: {fileID: 511241125261031875, guid: ed4749b537d77a8428843769d56ae8a2,
     type: 3}
   textoSalud: {fileID: 4376195981281028822, guid: 90297afef85fac146a4c84c25292ce80,
@@ -1451,8 +1498,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e76dadddf71819469a98670d9fc15ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  saludMaxima: 100
-  saludActual: 100
   barraSalud: {fileID: 572817824093651666, guid: f80e3d303eb7c6747a1e1b9737c029a2,
     type: 3}
   textoSalud: {fileID: 4665479683047475605, guid: 10703236b6f513c41a350f84801aa3c1,
@@ -1471,74 +1516,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1697816573
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1697816575}
-  - component: {fileID: 1697816574}
-  - component: {fileID: 1697816576}
-  m_Layer: 0
-  m_Name: TurnManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1697816574
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1697816573}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e18aac4628b9da846a60b5a39e5efec8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  turnoJ1Prefab: {fileID: 4494633308465749388, guid: c633e2f37a526fa4b873117423f5cf25,
-    type: 3}
-  turnoJ2Prefab: {fileID: 1789045722268446077, guid: fac71ba0a0e41804ebce5e916eda214d,
-    type: 3}
-  isPlayer1Turn: 1
---- !u!4 &1697816575
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1697816573}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1697816576
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1697816573}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60dda675a0b925a4da9c8071b509428d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  jugador1: {fileID: 511241125261031884, guid: ed4749b537d77a8428843769d56ae8a2, type: 3}
-  jugador2: {fileID: 572817824093651669, guid: f80e3d303eb7c6747a1e1b9737c029a2, type: 3}
-  turnoJ1Prefab: {fileID: 4494633308465749388, guid: c633e2f37a526fa4b873117423f5cf25,
-    type: 3}
-  turnoJ2Prefab: {fileID: 1789045722268446077, guid: fac71ba0a0e41804ebce5e916eda214d,
-    type: 3}
-  danioPorAtaque: 20
 --- !u!1 &1841713488
 GameObject:
   m_ObjectHideFlags: 0
