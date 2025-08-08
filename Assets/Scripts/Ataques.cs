@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class Ataques : MonoBehaviour
 {
+    public HealthPoints objetivo;
+
     public void VolverCombate()
     {
         SceneManager.LoadScene("Luchar Escena");
