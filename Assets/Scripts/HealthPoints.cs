@@ -8,7 +8,7 @@ public class HealthPoints : MonoBehaviour
 {
     public static HealthPoints instancia;
     public int saludMaxima = 100;
-    public static int saludActual; // Cambiado a estático
+    public static int saludActual;
     public Slider barraSalud;
     public Text textoSalud;
 
@@ -35,11 +35,6 @@ public class HealthPoints : MonoBehaviour
             textoSalud = GameObject.Find("TextoSaludJugador1").GetComponent<Text>();
         }
         ActualizarUI();
-
-        if (saludActual == 0)
-        {
-            SceneManager.LoadScene("Escena Principal");
-        }
     }
 
     public void RecibirDanio(int danio)
@@ -48,6 +43,11 @@ public class HealthPoints : MonoBehaviour
         saludActual = Mathf.Clamp(saludActual, 0, saludMaxima);
         barraSalud.value = saludActual;
         ActualizarUI();
+
+        if (saludActual == 0)
+        {
+            SceneManager.LoadScene("Escena de muerte");
+        }
     }
 
     void ActualizarUI()

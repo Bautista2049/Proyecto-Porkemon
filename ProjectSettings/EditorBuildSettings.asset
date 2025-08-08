@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Luchar Escena.unity
     guid: 13cad12f294bb984d955dbfd12a31109
+  - enabled: 1
+    path: Assets/Scenes/Escena de muerte.unity
+    guid: 3973d00804c50154baaf137abd21de9a
   m_configObjects: {}
