@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class ControladorPorkemon : MonoBehaviour
 {
     [Header("Data")]
-    public Porkemon porkemon; // La instancia de este porkemon en combate
+    public Porkemon porkemon;
 
     [Header("UI")]
     public Slider barraSalud;
@@ -21,16 +21,12 @@ public class ControladorPorkemon : MonoBehaviour
         if (textoNombre != null)
             textoNombre.text = porkemon.BaseData.nombre;
 
-        // Nos suscribimos al evento. Ahora ActualizarUI se llamará sola.
         porkemon.OnHPChanged += ActualizarUI;
-
-        // Actualizamos la UI una vez al principio.
         ActualizarUI();
     }
 
     private void OnDestroy()
     {
-        // Nos desuscribimos para evitar errores.
         if (porkemon != null)
         {
             porkemon.OnHPChanged -= ActualizarUI;
@@ -55,24 +51,20 @@ public class ControladorPorkemon : MonoBehaviour
 
     public bool RecibirDanio(AtaqueData ataque, Porkemon atacante)
     {
-        
         float chanceDeAcertar = ataque.precision;
-        // La velocidad del defensor reduce la probabilidad de acierto
         if (this.porkemon.Velocidad > atacante.Velocidad)
         {
-            chanceDeAcertar -= (this.porkemon.Velocidad - atacante.Velocidad) / 5f; // Factor de balance
+            chanceDeAcertar -= (this.porkemon.Velocidad - atacante.Velocidad) / 5f;
         }
 
         if (Random.Range(1, 101) > chanceDeAcertar)
         {
             Debug.Log($"¡El ataque {ataque.nombreAtaque} ha fallado!");
-            return false; // El ataque falla, no hay daño
+            return false;
         }
 
-        
         if (ataque.categoria == CategoriaAtaque.Estado)
         {
-            porkemon.VidaActual -= 0; // No hace daño, pero actualiza UI si es necesario
             return false;
         }
 
@@ -84,7 +76,7 @@ public class ControladorPorkemon : MonoBehaviour
             statAtaqueAtacante = atacante.Ataque;
             defensaOponente = this.porkemon.Defensa;
         }
-        else // CategoriaAtaque.Especial
+        else
         {
             statAtaqueAtacante = atacante.Espiritu;
             defensaOponente = this.porkemon.Espiritu;
@@ -94,28 +86,25 @@ public class ControladorPorkemon : MonoBehaviour
         float reduccionPorDefensa = defensaOponente / (defensaOponente + 100f);
         float danioNeto = danioBruto * (1 - reduccionPorDefensa);
 
-        
         float multiplicadorCritico = 1f;
         if (Random.Range(0, 100f) < ataque.chanceCritico)
         {
             Debug.Log("¡Un golpe crítico!");
-            multiplicadorCritico = 3f; // Daño x3 como pediste
+            multiplicadorCritico = 3f;
         }
 
-        
         float danioFinal = danioNeto * multiplicadorCritico;
-        danioFinal *= Random.Range(0.85f, 1.0f); // Pequeña variación final
+        danioFinal *= Random.Range(0.85f, 1.0f);
 
         int danioTotal = Mathf.Max(1, Mathf.FloorToInt(danioFinal));
 
-       
         porkemon.VidaActual -= danioTotal;
         Debug.Log($"{atacante.BaseData.nombre} hace {danioTotal} de daño a {porkemon.BaseData.nombre}.");
 
         if (porkemon.VidaActual <= 0)
         {
             porkemon.VidaActual = 0;
-            return true; // Devuelve true si el Porkemon fue debilitado
+            return true;
         }
         return false;
     }

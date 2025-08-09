@@ -6,18 +6,21 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Interfaz de Menu.unity
+    path: Assets/Porkemons/Scenes/Interfaz de Menu.unity
     guid: 569af23ce32988b489e460771d6e89dc
   - enabled: 1
-    path: Assets/Scenes/Escena de Combate.unity
+    path: Assets/Porkemons/Scenes/Escena de Combate.unity
     guid: ae2e89448e989c0428a7061154768aee
   - enabled: 1
-    path: Assets/Scenes/Luchar Escena.unity
+    path: Assets/Porkemons/Scenes/Luchar Escena.unity
     guid: 13cad12f294bb984d955dbfd12a31109
   - enabled: 1
-    path: Assets/Scenes/Escena Principal.unity
+    path: Assets/Porkemons/Scenes/Escena Principal.unity
     guid: ad7c01cb8eee40a4782fd5fc9ea88a6c
   - enabled: 1
-    path: Assets/Scenes/Escena de muerte.unity
+    path: Assets/Porkemons/Scenes/Escena de muerte.unity
     guid: 3973d00804c50154baaf137abd21de9a
+  - enabled: 1
+    path: Assets/Porkemons/Scenes/Escena de Victoria.unity
+    guid: e24bd3de48870f848804474c6c621400
   m_configObjects: {}

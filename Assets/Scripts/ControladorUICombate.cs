@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class ControladorUICombate : MonoBehaviour
 {
-    [Header("Referencias (Arrastrar desde la Escena)")]
-    public List<Button> botonesDeAtaque; // Arrastra tus 4 botones aquí
+    [Header("Referencias")]
+    public List<Button> botonesDeAtaque;
 
     void Start()
     {
@@ -24,27 +25,35 @@ public class ControladorUICombate : MonoBehaviour
 
         List<AtaqueData> ataques = GestorDeBatalla.instance.porkemonJugador.Ataques;
 
-        // Recorrer los 4 botones
         for (int i = 0; i < botonesDeAtaque.Count; i++)
         {
-            // Si hay un ataque para este botón
             if (i < ataques.Count)
             {
                 AtaqueData ataqueActual = ataques[i];
                 botonesDeAtaque[i].gameObject.SetActive(true);
 
-                // Asignar nombre al texto del botón
-                Text textoBoton = botonesDeAtaque[i].GetComponentInChildren<Text>();
-                if (textoBoton != null)
+                TextMeshProUGUI tmpText = botonesDeAtaque[i].GetComponentInChildren<TextMeshProUGUI>();
+                if (tmpText != null)
                 {
-                    textoBoton.text = ataqueActual.nombreAtaque;
+                    tmpText.text = ataqueActual.nombreAtaque;
+                }
+                else
+                {
+                    Text textoBoton = botonesDeAtaque[i].GetComponentInChildren<Text>();
+                    if (textoBoton != null)
+                    {
+                        textoBoton.text = ataqueActual.nombreAtaque;
+                    }
+                    else
+                    {
+                        Debug.LogWarning($"El botón {i} no tiene un componente Text o TextMeshProUGUI.");
+                    }
                 }
 
-                // Limpiar listeners viejos y añadir el nuevo
                 botonesDeAtaque[i].onClick.RemoveAllListeners();
                 botonesDeAtaque[i].onClick.AddListener(() => SeleccionarAtaque(ataqueActual));
             }
-            else // Si no hay ataque para este botón, desactivarlo
+            else
             {
                 botonesDeAtaque[i].gameObject.SetActive(false);
             }
@@ -53,32 +62,16 @@ public class ControladorUICombate : MonoBehaviour
 
     void SeleccionarAtaque(AtaqueData ataque)
     {
-        Debug.Log($"El jugador usa {ataque.nombreAtaque}");
-
-        Porkemon jugador = GestorDeBatalla.instance.porkemonJugador;
-        Porkemon bot = GestorDeBatalla.instance.porkemonBot;
-
-        if (jugador == null || bot == null)
+        if (GestorDeBatalla.instance.porkemonJugador.puedeAtacar)
         {
-            Debug.LogError("No se encontraron los datos del jugador o del bot en GameState.");
-            return;
+            GameState.ataqueSeleccionado = ataque;
+            GestorDeBatalla.instance.porkemonJugador.puedeAtacar = false;
+            VolverAlCombate();
         }
-
-        int danio = ataque.poder;
-        bot.VidaActual -= danio;
-
-        // Cambiamos el turno para que sea el del bot
-        GameState.player1Turn = false;
-
-        // Ya no necesitamos guardar el ataque, porque ya lo usamos.
-        GameState.ataqueSeleccionado = null;
-
-        VolverAlCombate();
     }
 
     public void VolverAlCombate()
     {
-        
         SceneManager.LoadScene("Escena de combate");
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
@@ -86,12 +79,8 @@ public class ControladorUICombate : MonoBehaviour
     
     public void IrAtaques()
     {
-        
-        
         SceneManager.LoadScene("Luchar Escena");
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
     }
-
-    
 }

@@ -24,19 +24,16 @@ public class Porkemon
     public int Espiritu { get; private set; }
     public int Velocidad { get; private set; }
 
+    public bool puedeAtacar = false;
     public List<AtaqueData> Ataques { get; set; }
-
+ 
     public event System.Action OnHPChanged;
-
+ 
     public Porkemon(PorkemonData pData, int nivel)
     {
         BaseData = pData;
         Nivel = nivel;
-
-        // Aquí iría la fórmula para calcular stats basados en el nivel.
-        // Por ahora, los asignamos directamente.
         VidaMaxima = pData.vidaMaxima;
-        // Asignamos el campo privado para no disparar el evento innecesariamente al crear
         _vidaActual = pData.vidaMaxima;
         Ataque = pData.ataque;
         Defensa = pData.defensa;
@@ -44,7 +41,6 @@ public class Porkemon
         Velocidad = pData.velocidad;
 
         Ataques = new List<AtaqueData>();
-        // Asignar los primeros 4 ataques que puede aprender
         foreach (var ataque in pData.ataquesQuePuedeAprender)
         {
             if (Ataques.Count < 4)
