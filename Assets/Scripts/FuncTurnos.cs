@@ -1,79 +1,74 @@
-﻿using UnityEngine;
-using UnityEngine.UI;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.SceneManagement;
-using System.Collections;
+using UnityEngine.UI;
+
 
 public class FuncTurnos : MonoBehaviour
 {
-    public HealthPoints jugador1; // jugador humano
-    public HealthPoints jugador2; // bot
-    public GameObject turnoJ1Prefab;
-    public GameObject turnoJ2Prefab;
-    public int danioPorAtaque = 20;
-    private bool isPlayer1Turn = true; // El turno inicial
+    [Header("Controladores de Porkemon")]
+    public ControladorPorkemon jugador1;
+    public ControladorPorkemon jugador2;
 
-    private bool botAtacando = false; // para evitar ataques múltiples simultáneos
+
+    [Header("UI de Turnos")]
+    public GameObject turnoJ1Prefab;
+    public GameObject turnoBotPrefab;
+    public GameObject panelDeAccionesDelJugador; // El panel que contiene "Luchar", "Huir", etc.
+    
+    private bool isPlayer1Turn;
+    private bool botAtacando = false;
 
     private void Start()
     {
-        if (jugador1 == null || jugador2 == null)
+        // Asignamos los porkemon persistentes desde el Gestor de Batalla
+        jugador1.Setup(GestorDeBatalla.instance.porkemonJugador);
+        jugador2.Setup(GestorDeBatalla.instance.porkemonBot);
+
+        // Determinar el turno inicial basado en la velocidad
+        if (jugador1.porkemon.Velocidad >= jugador2.porkemon.Velocidad)
         {
-            HealthPoints[] jugadores = FindObjectsOfType<HealthPoints>();
-            if (jugadores.Length >= 2)
-            {
-                jugador1 = jugadores[0];
-                jugador2 = jugadores[1];
-            }
+            isPlayer1Turn = true;
         }
-
-        if (turnoJ1Prefab == null)
-            turnoJ1Prefab = GameObject.Find("Turno(J1)");
-        if (turnoJ2Prefab == null)
-            turnoJ2Prefab = GameObject.Find("Turno(J2)");
-
+        else
+        {
+            isPlayer1Turn = false;
+        }
+        GameState.player1Turn = isPlayer1Turn;
+        
         ActualizarUI();
 
-        // Si empieza el turno del bot, arrancar ataque automático
-        if (!isPlayer1Turn)
-            StartCoroutine(AtacarBotConDelay());
+        if (!isPlayer1Turn && PuedeCombatir())
+        {
+            StartCoroutine(RutinaAtaqueBot());
+        }
     }
 
-    public void Atacar()
+    private IEnumerator RutinaAtaqueBot()
     {
-        if (!PuedeAtacar()) return;
-
-        // Solo el jugador humano puede atacar manualmente
-        if (!isPlayer1Turn) return;
-
-        jugador2?.RecibirDanio(danioPorAtaque);
-
-        CambiarTurno();
-        VerificarFinCombate();
-
-        // Si ahora es turno del bot, arrancar ataque automático
-        if (!isPlayer1Turn)
-            StartCoroutine(AtacarBotConDelay());
-    }
-
-    private IEnumerator AtacarBotConDelay()
-    {
-        if (botAtacando) yield break;
+        if (botAtacando || !PuedeCombatir()) yield break;
         botAtacando = true;
 
-        // Esperar 1.5 segundos antes de atacar (simula "pensar")
         yield return new WaitForSeconds(1.5f);
 
-        if (!PuedeAtacar()) // revisa si el combate sigue
+        // El bot elige un ataque al azar de su lista
+        if (jugador2.porkemon.Ataques.Count > 0)
         {
-            botAtacando = false;
-            yield break;
-        }
-
-        if (!isPlayer1Turn) // confirma que es turno del bot
-        {
-            jugador1?.RecibirDanio(danioPorAtaque);
-            CambiarTurno();
-            VerificarFinCombate();
+            int indiceAtaque = Random.Range(0, jugador2.porkemon.Ataques.Count);
+            AtaqueData ataqueDelBot = jugador2.porkemon.Ataques[indiceAtaque];
+            
+            Debug.Log($"{jugador2.porkemon.BaseData.nombre} usa {ataqueDelBot.nombreAtaque}");
+            
+            bool debilitado = jugador1.RecibirDanio(ataqueDelBot, jugador2.porkemon);
+            if (debilitado)
+            {
+                VerificarFinCombate();
+            }
+            else
+            {
+                CambiarTurno();
+            }
         }
 
         botAtacando = false;
@@ -82,49 +77,35 @@ public class FuncTurnos : MonoBehaviour
     private void CambiarTurno()
     {
         isPlayer1Turn = !isPlayer1Turn;
+        GameState.player1Turn = isPlayer1Turn;
         ActualizarUI();
-        Debug.Log(isPlayer1Turn ? "Turno del Jugador 1" : "Turno del Bot");
     }
 
     private void ActualizarUI()
     {
-        if (turnoJ1Prefab != null)
-        {
-            turnoJ1Prefab.SetActive(isPlayer1Turn);
-            var texto = turnoJ1Prefab.GetComponentInChildren<Text>();
-            if (texto != null) texto.text = "Turno del Jugador 1";
-        }
+        turnoJ1Prefab?.SetActive(isPlayer1Turn);
+        turnoBotPrefab?.SetActive(!isPlayer1Turn);
 
-        if (turnoJ2Prefab != null)
-        {
-            turnoJ2Prefab.SetActive(!isPlayer1Turn);
-            var texto = turnoJ2Prefab.GetComponentInChildren<Text>();
-            if (texto != null) texto.text = "Turno del Bot";
-        }
+        // Activar o desactivar los botones del jugador según el turno
+        panelDeAccionesDelJugador?.SetActive(isPlayer1Turn);
     }
 
     private void VerificarFinCombate()
     {
-        if (jugador1.stats.health <= 0)
+        if (jugador1.porkemon.VidaActual <= 0)
         {
-            Debug.Log("¡El Bot gana!");
-            SceneManager.LoadScene("Escena Principal");
+            Debug.Log("¡El Contrincante gana!");
+            SceneManager.LoadScene("Escena de muerte");
         }
-        else if (jugador2.stats.health <= 0)
+        else if (jugador2.porkemon.VidaActual <= 0)
         {
             Debug.Log("¡El Jugador gana!");
             SceneManager.LoadScene("Escena Principal");
         }
     }
 
-    public bool PuedeAtacar()
+    public bool PuedeCombatir()
     {
-        return jugador1 != null && jugador1.stats.health > 0 &&
-               jugador2 != null && jugador2.stats.health > 0;
-    }
-
-    public bool GetCurrentTurn()
-    {
-        return isPlayer1Turn;
+        return jugador1.porkemon.VidaActual > 0 && jugador2.porkemon.VidaActual > 0;
     }
 }

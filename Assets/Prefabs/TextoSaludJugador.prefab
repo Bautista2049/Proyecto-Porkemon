@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &4376195981281028823
+--- !u!1 &2621776784690979389
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,24 +8,24 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4376195981281028820}
-  - component: {fileID: 4376195981281028821}
-  - component: {fileID: 4376195981281028822}
+  - component: {fileID: 2621776784690979378}
+  - component: {fileID: 2621776784690979376}
+  - component: {fileID: 2621776784690979379}
   m_Layer: 5
-  m_Name: TextoSaludJugador1
+  m_Name: TextoSaludJugador
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!224 &4376195981281028820
+--- !u!224 &2621776784690979378
 RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4376195981281028823}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_GameObject: {fileID: 2621776784690979389}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -34,24 +34,24 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 337, y: 159.56696}
-  m_SizeDelta: {x: 203, y: 56.85}
+  m_AnchoredPosition: {x: -236, y: -638}
+  m_SizeDelta: {x: 656.6, y: 247.5}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!222 &4376195981281028821
+--- !u!222 &2621776784690979376
 CanvasRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4376195981281028823}
+  m_GameObject: {fileID: 2621776784690979389}
   m_CullTransparentMesh: 0
---- !u!114 &4376195981281028822
+--- !u!114 &2621776784690979379
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4376195981281028823}
+  m_GameObject: {fileID: 2621776784690979389}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
@@ -68,14 +68,14 @@ MonoBehaviour:
     m_FontSize: 49
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 2
-    m_MaxSize: 107
+    m_MinSize: 10
+    m_MaxSize: 199
     m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '100
+  m_Text: '100 / 100
 
 '

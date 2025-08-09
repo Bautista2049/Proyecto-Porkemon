@@ -1,27 +1,33 @@
-﻿public class Stats
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Stats
 {
-    public float health;
-    public float maxHealth;
+    public float vida;
+    public float vidaMaxima;
 
-    public int level;
-    public float attack;
-    public float deffense;
-    public float spirit;
-    public float speed;
+    public int nivel;
+    public float ataque;
+    public float defensa;
+    public float espiritu;
+    public float velocidad;
 
-    public Stats(int _level, float _maxHealth, float _attack, float _deffense, float _spirit, float _speed)
+    public Stats(int _nivel, float _vidaMaxima, float _ataque, float _defensa, float _espiritu, float _velocidad)
     {
-        this.level = _level;
-        this.maxHealth = _maxHealth;
-        this.health = _maxHealth;
-        this.attack = _attack;
-        this.deffense = _deffense;
-        this.spirit = _spirit;
-        this.speed = _speed;
+        this.nivel = _nivel;
+        this.vidaMaxima = _vidaMaxima;
+        this.vida = _vidaMaxima;
+        this.ataque = _ataque;
+        this.defensa = _defensa;
+        this.espiritu = _espiritu;
+        this.velocidad = _velocidad;
     }
 
     public Stats Clone()
     {
-        return new Stats(this.level, this.maxHealth, this.attack, this.deffense, this.spirit, this.speed);
+        var newStats = new Stats(this.nivel, this.vidaMaxima, this.ataque, this.defensa, this.espiritu, this.velocidad);
+        newStats.vida = this.vida; // ¡Importante! Copiar la vida actual.
+        return newStats;
     }
 }
