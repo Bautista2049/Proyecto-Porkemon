@@ -205,7 +205,7 @@ GameObject:
   - component: {fileID: 357602342}
   - component: {fileID: 357602343}
   m_Layer: 0
-  m_Name: Aiekamon
+  m_Name: Bot
   m_TagString: Bot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -259,7 +259,7 @@ GameObject:
   - component: {fileID: 403739424}
   - component: {fileID: 403739425}
   m_Layer: 0
-  m_Name: Pokedario
+  m_Name: Jugador
   m_TagString: Player1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

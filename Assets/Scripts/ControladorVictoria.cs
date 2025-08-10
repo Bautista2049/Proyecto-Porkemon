@@ -15,7 +15,7 @@ public class ControladorVictoria : MonoBehaviour
         {
             if (!string.IsNullOrEmpty(GameState.nombreGanador))
             {
-                textoVictoria.text = $"¡{GameState.nombreGanador} ha Ganado!";
+                textoVictoria.text = $"¡Tu {GameState.nombreGanador} ha Ganado!";
             }
             else
             {
