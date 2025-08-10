@@ -222,9 +222,9 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 2002778082}
   - {fileID: 1521858916}
   - {fileID: 1459696249}
+  - {fileID: 2002778082}
   m_Father: {fileID: 640963208}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1937,7 +1937,7 @@ PrefabInstance:
     - target: {fileID: 801385148083633974, guid: 033cdf38570f032459a3bc989726922c,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 801385148083633974, guid: 033cdf38570f032459a3bc989726922c,
         type: 3}
@@ -2623,6 +2623,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 403739424}
     m_Modifications:
+    - target: {fileID: 4662795840016671840, guid: 49a94ae02db01754eafc986495481b0c,
+        type: 3}
+      propertyPath: m_Text
+      value: porkemon
+      objectReference: {fileID: 0}
     - target: {fileID: 4662795840016671841, guid: 49a94ae02db01754eafc986495481b0c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2731,7 +2736,7 @@ PrefabInstance:
     - target: {fileID: 4662795840016671846, guid: 49a94ae02db01754eafc986495481b0c,
         type: 3}
       propertyPath: m_Name
-      value: Pokedario
+      value: PorkemonJ1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 49a94ae02db01754eafc986495481b0c, type: 3}
@@ -2795,7 +2800,7 @@ PrefabInstance:
     - target: {fileID: 6262257747235945197, guid: 13f25fdee66f70043948d021d8a1fc9e,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6262257747235945197, guid: 13f25fdee66f70043948d021d8a1fc9e,
         type: 3}
@@ -2874,7 +2879,7 @@ PrefabInstance:
     - target: {fileID: 7037923140145733269, guid: 2d62d673a357bf940a9eec818e05d426,
         type: 3}
       propertyPath: m_Name
-      value: Aiekamon
+      value: PorkemonBot
       objectReference: {fileID: 0}
     - target: {fileID: 7037923140145733270, guid: 2d62d673a357bf940a9eec818e05d426,
         type: 3}
@@ -2914,7 +2919,7 @@ PrefabInstance:
     - target: {fileID: 7037923140145733270, guid: 2d62d673a357bf940a9eec818e05d426,
         type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7037923140145733270, guid: 2d62d673a357bf940a9eec818e05d426,
         type: 3}
@@ -2980,6 +2985,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7037923140145733271, guid: 2d62d673a357bf940a9eec818e05d426,
+        type: 3}
+      propertyPath: m_Text
+      value: porkemon
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2d62d673a357bf940a9eec818e05d426, type: 3}

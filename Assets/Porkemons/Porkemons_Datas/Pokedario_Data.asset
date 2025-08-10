@@ -22,5 +22,6 @@ MonoBehaviour:
   velocidad: 2
   ataquesQuePuedeAprender:
   - {fileID: 11400000, guid: fc645ae56d94fcb42be00560cba1dc4f, type: 2}
-  evolucionSiguiente: {fileID: 11400000, guid: 510397e874d6ff64ebb882bc5083f7f9, type: 2}
+  - {fileID: 11400000, guid: 6e90b7d7c51dd1843b22d2730ca20f87, type: 2}
+  evolucionSiguiente: {fileID: 0}
   nivelDeEvolucion: 5
