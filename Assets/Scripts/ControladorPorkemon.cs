@@ -99,7 +99,7 @@ public class ControladorPorkemon : MonoBehaviour
         int danioTotal = Mathf.Max(1, Mathf.FloorToInt(danioFinal));
 
         porkemon.VidaActual -= danioTotal;
-        Debug.Log($"{atacante.BaseData.nombre} hace {danioTotal} de daño a {porkemon.BaseData.nombre}.");
+        Debug.Log($"{atacante.BaseData.nombre} hace {danioTotal} de daño con el ataque {ataque.nombreAtaque} a {porkemon.BaseData.nombre}.");
 
         if (porkemon.VidaActual <= 0)
         {

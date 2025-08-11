@@ -16,7 +16,7 @@ MonoBehaviour:
   tipo1: 2
   nivel: 1
   vidaMaxima: 100
-  ataque: 5
+  ataque: 20
   defensa: 2
   espiritu: 5
   velocidad: 20
