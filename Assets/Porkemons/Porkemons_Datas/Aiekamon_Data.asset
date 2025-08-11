@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Aiekamon_Data
   m_EditorClassIdentifier: 
   nombre: Aiekamon
-  tipo1: 0
+  tipo1: 2
   nivel: 1
   vidaMaxima: 100
   ataque: 5
@@ -22,5 +22,6 @@ MonoBehaviour:
   velocidad: 20
   ataquesQuePuedeAprender:
   - {fileID: 11400000, guid: fc645ae56d94fcb42be00560cba1dc4f, type: 2}
+  - {fileID: 11400000, guid: b7f748cd018c3f04fa06c21f226040b7, type: 2}
   evolucionSiguiente: {fileID: 0}
   nivelDeEvolucion: 0

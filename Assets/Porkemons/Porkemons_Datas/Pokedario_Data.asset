@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Pokedario_Data
   m_EditorClassIdentifier: 
   nombre: Pokedario
-  tipo1: 0
+  tipo1: 1
   nivel: 1
   vidaMaxima: 100
-  ataque: 50
+  ataque: 25
   defensa: 5
   espiritu: 5
   velocidad: 2

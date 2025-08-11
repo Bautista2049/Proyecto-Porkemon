@@ -11,7 +11,18 @@ public enum TipoElemental
     Planta,
     Electrico,
     Psiquico,
-    Veneno
+    Veneno,
+    Hielo,
+    Lucha,
+    Tierra,
+    Volador,
+    Fantasma,
+    Dragon,
+    Siniestro,
+    Acero,
+    Hada,
+    Roca,
+    Bicho
 }
 
 public enum CategoriaAtaque
