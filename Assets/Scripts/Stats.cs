@@ -27,7 +27,7 @@ public class Stats
     public Stats Clone()
     {
         var newStats = new Stats(this.nivel, this.vidaMaxima, this.ataque, this.defensa, this.espiritu, this.velocidad);
-        newStats.vida = this.vida; // ¡Importante! Copiar la vida actual.
+        newStats.vida = this.vida;
         return newStats;
     }
 }
