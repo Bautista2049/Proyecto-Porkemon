@@ -80,7 +80,7 @@ public class Porkemon
         {
             int danio = Mathf.Max(1, VidaMaxima / 16);
             VidaActual = Mathf.Max(0, VidaActual - danio);
-            Debug.Log($"{Porkemon.defensor} sufre {danio} de daño por {Estado}.");
+            Debug.Log($"{BaseData.nombre} sufre {danio} de daño por {Estado}.");
         }
     }
 }
