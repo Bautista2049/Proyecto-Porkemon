@@ -59,7 +59,7 @@ public class SalirJuego : MonoBehaviour
             PlayerPrefs.Save();
             
             // Mostrar notificación con fecha actual
-            MostrarNotificacion($"Estado guardado correctamente\n{timestamp}");
+            MostrarNotificacion($"Estado guardado correctamente\n{timestamp} en {Application.persistentDataPath}");
         }
         catch (Exception e)
         {
