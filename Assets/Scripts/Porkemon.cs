@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+public enum EstadoAlterado { Ninguno, Quemado, Paralizado, Envenenado, Congelado, Dormido, Confundido }
+
 public class Porkemon
 {
     public PorkemonData BaseData { get; private set; }
@@ -24,6 +26,7 @@ public class Porkemon
     public int Espiritu { get; private set; }
     public int Velocidad { get; private set; }
 
+    public EstadoAlterado Estado { get; set; } = EstadoAlterado.Ninguno;
     public void ReducirDefensa(int cantidad)
     {
         Defensa = Mathf.Max(1, Defensa - cantidad);
@@ -64,12 +67,20 @@ public class Porkemon
             if (Ataques.Count >= 4)
                 break;
 
-            // Permitir solo ataques del mismo tipo o que no sean inefectivos contra el tipo del Porkemon
             float efectividad = CalculadorDanioElemental.tablaEfectividad[(int)ataque.tipo, (int)pData.tipo1];
             if (ataque.tipo == pData.tipo1 || efectividad > 0f)
             {
                 Ataques.Add(ataque);
             }
+        }
+    }
+    public void AplicarDanioPorEstado()
+    {
+        if (Estado == EstadoAlterado.Quemado || Estado == EstadoAlterado.Envenenado)
+        {
+            int danio = Mathf.Max(1, VidaMaxima / 16);
+            VidaActual = Mathf.Max(0, VidaActual - danio);
+            Debug.Log($"{Porkemon.defensor} sufre {danio} de daño por {Estado}.");
         }
     }
 }
