@@ -83,4 +83,16 @@ public class ControladorUICombate : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
     }
+
+    public void GuardarJuego()
+    {
+        GameState.SaveGame();
+    }
+
+    public void CargarJuego()
+    {
+        GameState.LoadGame();
+        // Opcional: Recargar la escena o actualizar la UI para reflejar el estado cargado.
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
 }

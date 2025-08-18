@@ -87,11 +87,7 @@ public class ControladorPorkemon : MonoBehaviour
         float danioNeto = danioBruto * (1 - reduccionPorDefensa);
 
         float multiplicadorCritico = 1f;
-        if (Random.Range(0, 100f) < ataque.chanceCritico)
-        {
-            Debug.Log("¡Un golpe crítico!");
-            multiplicadorCritico = 3f;
-        }
+        
 
         float danioFinal = danioNeto * multiplicadorCritico;
         danioFinal *= Random.Range(0.85f, 1.0f);
@@ -100,6 +96,12 @@ public class ControladorPorkemon : MonoBehaviour
 
         porkemon.VidaActual -= danioTotal;
         Debug.Log($"{atacante.BaseData.nombre} hace {danioTotal} de daño con el ataque {ataque.nombreAtaque} a {porkemon.BaseData.nombre}.");
+
+        if (Random.Range(0, 100f) < ataque.chanceCritico)
+        {
+            Debug.Log("¡Un golpe crítico!");
+            multiplicadorCritico = 3f;
+        }
 
         if (porkemon.VidaActual <= 0)
         {

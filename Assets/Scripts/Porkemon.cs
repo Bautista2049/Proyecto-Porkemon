@@ -83,4 +83,25 @@ public class Porkemon
             Debug.Log($"{BaseData.nombre} sufre {danio} de daño por {Estado}.");
         }
     }
+
+    public PorkemonSaveData GetDataForSave()
+    {
+        PorkemonSaveData data = new PorkemonSaveData();
+        data.vidaActual = VidaActual;
+        data.estado = Estado;
+        return data;
+    }
+
+    public void LoadDataFromSave(PorkemonSaveData data)
+    {
+        VidaActual = data.vidaActual;
+        Estado = data.estado;
+    }
+}
+
+[System.Serializable]
+public class PorkemonSaveData
+{
+    public int vidaActual;
+    public EstadoAlterado estado;
 }
