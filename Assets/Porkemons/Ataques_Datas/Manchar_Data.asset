@@ -16,7 +16,7 @@ MonoBehaviour:
   descripcion: Suelta un poco de liquido el cual moja tu oponente
   tipo: 2
   categoria: 1
-  poder: 5
+  poder: 10
   precision: 100
   pp: 40
-  chanceCritico: 82
+  chanceCritico: 100

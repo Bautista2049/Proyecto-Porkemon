@@ -16,8 +16,8 @@ MonoBehaviour:
   descripcion: Ataca con un poderoso ataque de fuego, el cual aunque parezca inofensivo
     te quema toda la casa
   tipo: 1
-  categoria: 1
-  poder: 40
+  categoria: 0
+  poder: 20
   precision: 100
   pp: 10
-  chanceCritico: 54.7
+  chanceCritico: 20
