@@ -10,7 +10,7 @@ public class ConsolaEnJuego : MonoBehaviour
     public TextMeshProUGUI tmpText;
 
     private List<string> filteredLogs = new List<string>();
-    private const int maxLogLines = 15;
+    private const int maxLogLines = 1;
 
     void OnEnable()
     {
