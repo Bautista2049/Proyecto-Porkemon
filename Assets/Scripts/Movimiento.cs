@@ -19,5 +19,14 @@ public class Movimiento : MonoBehaviour
       float vertical = Input.GetAxis("Vertical");     
       Vector3 direccion = new Vector3(horizontal, 0f, vertical);
       transform.Translate(direccion * velocidad * Time.deltaTime);
+
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            velocidad = 7.5f;
+        }
+        if (Input.GetKeyUp(KeyCode.LeftShift))
+        {
+            velocidad = 5f;
+        }
     }
 }
