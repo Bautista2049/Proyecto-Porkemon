@@ -94,7 +94,7 @@ public class CalculadorDanioElemental : MonoBehaviour
         tablaEfectividad[(int)TipoElemental.Fuego, (int)TipoElemental.Bicho] = 2f;
         tablaEfectividad[(int)TipoElemental.Fuego, (int)TipoElemental.Acero] = 2f;
         tablaEfectividad[(int)TipoElemental.Fuego, (int)TipoElemental.Fuego] = 0.5f;
-        tablaEfectividad[(int)TipoElemental.Fuego, (int)TipoElemental.Agua] = 0f;
+        tablaEfectividad[(int)TipoElemental.Fuego, (int)TipoElemental.Agua] = 0.5f;
         tablaEfectividad[(int)TipoElemental.Fuego, (int)TipoElemental.Roca] = 0.5f;
         tablaEfectividad[(int)TipoElemental.Fuego, (int)TipoElemental.Dragon] = 0.5f;
 

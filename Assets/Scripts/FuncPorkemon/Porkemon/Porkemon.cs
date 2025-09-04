@@ -25,6 +25,7 @@ public class Porkemon
     public int Defensa { get; private set; }
     public int Espiritu { get; private set; }
     public int Velocidad { get; private set; }
+    public int Experiencia {get; private set; }
 
     public EstadoAlterado Estado { get; set; } = EstadoAlterado.Ninguno;
     public void ReducirDefensa(int cantidad)

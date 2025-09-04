@@ -99,8 +99,8 @@ public class ControladorPorkemon : MonoBehaviour
 
         if (Random.Range(0, 100f) < ataque.chanceCritico)
         {
-            Debug.Log("¡Un golpe crítico!");
             multiplicadorCritico = 3f;
+            Debug.Log("¡Un golpe crítico!");
         }
 
         if (porkemon.VidaActual <= 0)
