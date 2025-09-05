@@ -11,4 +11,11 @@ public class CargarEscena : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
     }
+
+    public void CargaCambio()
+    {
+        SceneManager.LoadScene("Escena CambioPorkemon");
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+    }
 }
