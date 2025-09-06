@@ -7,14 +7,14 @@ public class CargarEscPrincipal : MonoBehaviour
 {
     public void CargarPrincipal()
     {
-        SceneManager.LoadScene("Escena Principal");
+        SceneTransitionManager.Instance.LoadScene("Escena Principal");
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
     }
     
     public void CargaCambio()
     {
-        SceneManager.LoadScene("Escena CambioPorkemon");
+        SceneTransitionManager.Instance.LoadScene("Escena CambioPorkemon");
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
     }

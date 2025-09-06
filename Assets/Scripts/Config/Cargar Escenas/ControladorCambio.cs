@@ -55,6 +55,6 @@ public class ControladorCambio : MonoBehaviour
 
         GameState.player1Turn = false; 
 
-        SceneManager.LoadScene("Escena de combate");
+        SceneTransitionManager.Instance.LoadScene("Escena de combate");
     }
 }

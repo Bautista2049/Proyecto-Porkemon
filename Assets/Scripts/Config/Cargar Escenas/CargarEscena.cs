@@ -7,14 +7,14 @@ public class CargarEscena : MonoBehaviour
 {
     public void CargarMenu()
     {
-        SceneManager.LoadScene("Interfaz de Menu");
+        SceneTransitionManager.Instance.LoadScene("Interfaz de Menu");
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
     }
 
     public void CargaCambio()
     {
-        SceneManager.LoadScene("Escena CambioPorkemon");
+        SceneTransitionManager.Instance.LoadScene("Escena CambioPorkemon");
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
     }

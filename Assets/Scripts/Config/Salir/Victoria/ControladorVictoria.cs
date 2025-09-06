@@ -29,6 +29,6 @@ public class ControladorVictoria : MonoBehaviour
     private IEnumerator RegresarAlMenuPrincipal()
     {
         yield return new WaitForSeconds(5);
-        SceneManager.LoadScene("Escena Principal");
+        SceneTransitionManager.Instance.LoadScene("Escena Principal");
     }
 }

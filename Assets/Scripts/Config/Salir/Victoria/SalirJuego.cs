@@ -16,7 +16,7 @@ public class SalirJuego : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            SceneManager.LoadScene("Interfaz de Menu");
+            SceneTransitionManager.Instance.LoadScene("Interfaz de Menu");
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
         }

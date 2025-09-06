@@ -7,7 +7,7 @@ public class RegresarCombate : MonoBehaviour
 {
    public void CargarCombate()
     {
-        SceneManager.LoadScene("Escena de Combate");
+        SceneTransitionManager.Instance.LoadScene("Escena de Combate");
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
     }

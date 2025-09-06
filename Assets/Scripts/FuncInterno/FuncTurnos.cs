@@ -123,12 +123,12 @@ public class FuncTurnos : MonoBehaviour
     {
         if (jugador1.porkemon.VidaActual <= 0)
         {
-            SceneManager.LoadScene("Escena de muerte");
+            SceneTransitionManager.Instance.LoadScene("Escena de muerte");
         }
         else if (jugador2.porkemon.VidaActual <= 0)
         {
             GameState.nombreGanador = jugador1.porkemon.BaseData.nombre;
-            SceneManager.LoadScene("Escena de Victoria");
+            SceneTransitionManager.Instance.LoadScene("Escena de Victoria");
         }
     }
 

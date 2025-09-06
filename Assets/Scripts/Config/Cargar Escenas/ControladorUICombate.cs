@@ -75,14 +75,14 @@ public class ControladorUICombate : MonoBehaviour
 
     public void VolverAlCombate()
     {
-        SceneManager.LoadScene("Escena de combate");
+        SceneTransitionManager.Instance.LoadScene("Escena de combate");
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
     }
 
     public void IrAtaques()
     {
-        SceneManager.LoadScene("Luchar Escena");
+        SceneTransitionManager.Instance.LoadScene("Luchar Escena");
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
     }
