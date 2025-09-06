@@ -7,11 +7,14 @@ using TMPro;
 
 public class ControladorUICombate : MonoBehaviour
 {
+    private Animator transition;
+
     [Header("Referencias")]
     public List<Button> botonesDeAtaque;
 
     void Start()
     {
+        transition = GetComponentInChildren<Animator>();
         AsignarAtaquesABotones();
     }
 
@@ -76,11 +79,17 @@ public class ControladorUICombate : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
     }
-    
+
     public void IrAtaques()
     {
         SceneManager.LoadScene("Luchar Escena");
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+    }
+
+    public IEnumerator SceneLoad()
+    {
+        transition.SetTrigger("StartTransition");
+        yield return new WaitForSeconds(1f);
     }
 }
