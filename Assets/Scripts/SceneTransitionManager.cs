@@ -13,6 +13,8 @@ public class SceneTransitionManager : MonoBehaviour
     private Animator transitionAnimator;
     private GameObject fadeInstance;
 
+    private string lastSceneName = null;
+
     private void Awake()
     {
         if (Instance == null)
@@ -24,6 +26,16 @@ public class SceneTransitionManager : MonoBehaviour
         else
         {
             Destroy(gameObject);
+        }
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            LoadScene("Interfaz de Menu");
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
         }
     }
 
@@ -39,16 +51,33 @@ public class SceneTransitionManager : MonoBehaviour
 
     public void LoadScene(string sceneName)
     {
+        if (sceneName == "Interfaz de Menu")
+        {
+            lastSceneName = SceneManager.GetActiveScene().name;
+        }
         StartCoroutine(LoadSceneCoroutine(sceneName));
+    }
+
+    public void ReturnToLastScene()
+    {
+        if (!string.IsNullOrEmpty(lastSceneName))
+        {
+            LoadScene(lastSceneName);
+            lastSceneName = null;
+        }
     }
 
     private IEnumerator LoadSceneCoroutine(string sceneName)
     {
-        // Start fade out
-        if (transitionAnimator != null)
+        // Skip fade transition for main scene
+        if (sceneName != "Escena Principal")
         {
-            transitionAnimator.SetTrigger("StartTranstition");
-            yield return new WaitForSeconds(fadeDuration);
+            // Start fade out
+            if (transitionAnimator != null)
+            {
+                transitionAnimator.SetTrigger("StartTranstition");
+                yield return new WaitForSeconds(fadeDuration);
+            }
         }
 
         // Load the scene
@@ -57,6 +86,6 @@ public class SceneTransitionManager : MonoBehaviour
         // Wait for scene to load
         yield return null;
 
-        // The FadeIn animation will play automatically when the scene loads
+        // The FadeIn animation will play automatically when the scene loads (except for main scene)
     }
 }
