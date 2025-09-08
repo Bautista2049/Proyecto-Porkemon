@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641275, b: 0.5748172, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -531,6 +531,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a12bb92e43d7f554b800607632c5dd77, type: 3}
+--- !u!1 &1046167690 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4695068768813509650, guid: a12bb92e43d7f554b800607632c5dd77,
+    type: 3}
+  m_PrefabInstance: {fileID: 1046167689}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1173268048
 GameObject:
   m_ObjectHideFlags: 0
@@ -1455,6 +1461,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: TransitionManager
       objectReference: {fileID: 0}
+    - target: {fileID: 1473773554273495661, guid: d6f5d8327c434ad44a570e03b0cb55b7,
+        type: 3}
+      propertyPath: fadePrefab
+      value: 
+      objectReference: {fileID: 1046167690}
     - target: {fileID: 1473773554273495662, guid: d6f5d8327c434ad44a570e03b0cb55b7,
         type: 3}
       propertyPath: m_LocalPosition.x
