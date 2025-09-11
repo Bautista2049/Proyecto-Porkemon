@@ -7,6 +7,7 @@ public class PorkemonData : ScriptableObject
 {
     [Header("Información General")]
     public string nombre;
+    public GameObject modeloPrefab;
     public TipoElemental tipo1;
 
     [Header("Estadísticas Base")]

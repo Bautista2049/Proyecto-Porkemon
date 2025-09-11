@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Pokedario_Data
   m_EditorClassIdentifier: 
   nombre: Pokedario
-  mesh: {fileID: 0}
+  modeloPrefab: {fileID: 6947994404827079887, guid: cd08b79a11272104d98ffe92d506f057,
+    type: 3}
   tipo1: 1
   nivel: 1
   vidaMaxima: 100

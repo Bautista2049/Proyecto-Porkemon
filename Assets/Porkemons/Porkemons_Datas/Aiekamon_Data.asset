@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: Aiekamon_Data
   m_EditorClassIdentifier: 
   nombre: Aiekamon
+  modeloPrefab: {fileID: 1609772139473785320, guid: 92e9728adea136645b7d7723a1cbd44c,
+    type: 3}
   tipo1: 2
   nivel: 1
   vidaMaxima: 100

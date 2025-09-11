@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -24,11 +24,11 @@ public class FuncTurnos : MonoBehaviour
         jugador1.Setup(GestorDeBatalla.instance.porkemonJugador);
         jugador2.Setup(GestorDeBatalla.instance.porkemonBot);
 
-        // Remove meshFilter usage to fix errors
-        // if (jugador1.meshFilter != null && jugador1.porkemon.BaseData.mesh != null)
-        // {
-        //     jugador1.meshFilter.sharedMesh = jugador1.porkemon.BaseData.mesh;
-        // }
+        // Force update the mesh/model of jugador1's Porkemon
+        if (jugador1.meshFilter != null && jugador1.porkemon.BaseData.mesh != null)
+        {
+            jugador1.meshFilter.sharedMesh = jugador1.porkemon.BaseData.mesh;
+        }
 
         if (!GestorDeBatalla.instance.combateIniciado)
         {
