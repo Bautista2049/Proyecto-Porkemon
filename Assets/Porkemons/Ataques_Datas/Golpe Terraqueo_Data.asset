@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 820638e9bbbd70a41a8c16bdd3f08c84, type: 3}
   m_Name: Golpe Terraqueo_Data
   m_EditorClassIdentifier: 
-  nombreAtaque: 
+  nombreAtaque: Golpe Terraqueo
   descripcion: 'Destroza a tu oponente con un terremoto estilo chileno
 
 '

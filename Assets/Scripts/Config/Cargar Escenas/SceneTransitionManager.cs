@@ -55,7 +55,12 @@ public class SceneTransitionManager : MonoBehaviour
         {
             lastSceneName = SceneManager.GetActiveScene().name;
         }
-        StartCoroutine(LoadSceneCoroutine(sceneName));
+        StartCoroutine(LoadSceneCoroutine(sceneName, LoadSceneMode.Single));
+    }
+
+    public void LoadAdditive(string sceneName)
+    {
+        StartCoroutine(LoadSceneCoroutine(sceneName, LoadSceneMode.Additive));
     }
 
     public void ReturnToLastScene()
@@ -67,7 +72,7 @@ public class SceneTransitionManager : MonoBehaviour
         }
     }
 
-    private IEnumerator LoadSceneCoroutine(string sceneName)
+    private IEnumerator LoadSceneCoroutine(string sceneName, LoadSceneMode mode)
     {
         // Skip fade transition for main scene
         if (sceneName != "Escena Principal")
@@ -81,7 +86,7 @@ public class SceneTransitionManager : MonoBehaviour
         }
 
         // Load the scene
-        SceneManager.LoadScene(sceneName);
+        SceneManager.LoadScene(sceneName, mode);
 
         // Wait for scene to load
         yield return null;

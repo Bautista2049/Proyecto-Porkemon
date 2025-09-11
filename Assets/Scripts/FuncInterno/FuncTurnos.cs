@@ -24,6 +24,12 @@ public class FuncTurnos : MonoBehaviour
         jugador1.Setup(GestorDeBatalla.instance.porkemonJugador);
         jugador2.Setup(GestorDeBatalla.instance.porkemonBot);
 
+        // Remove meshFilter usage to fix errors
+        // if (jugador1.meshFilter != null && jugador1.porkemon.BaseData.mesh != null)
+        // {
+        //     jugador1.meshFilter.sharedMesh = jugador1.porkemon.BaseData.mesh;
+        // }
+
         if (!GestorDeBatalla.instance.combateIniciado)
         {
             isPlayer1Turn = jugador1.porkemon.Velocidad >= jugador2.porkemon.Velocidad;
