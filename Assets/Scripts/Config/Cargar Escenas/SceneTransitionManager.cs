@@ -74,23 +74,25 @@ public class SceneTransitionManager : MonoBehaviour
 
     private IEnumerator LoadSceneCoroutine(string sceneName, LoadSceneMode mode)
     {
-        // Skip fade transition for main scene
+        
         if (sceneName != "Escena Principal")
         {
-            // Start fade out
             if (transitionAnimator != null)
             {
                 transitionAnimator.SetTrigger("StartTranstition");
                 yield return new WaitForSeconds(fadeDuration);
             }
         }
+        else if (sceneName == "Escena Principal" || sceneName == "Interfaz de Menu" || sceneName == "Escena de Victoria" || sceneName == "Escena de Derrota")
+        {
+            yield return new WaitForSeconds(0.5f);
+        }
 
-        // Load the scene
+        
         SceneManager.LoadScene(sceneName, mode);
 
-        // Wait for scene to load
-        yield return null;
+         yield return null;
 
-        // The FadeIn animation will play automatically when the scene loads (except for main scene)
+        
     }
 }

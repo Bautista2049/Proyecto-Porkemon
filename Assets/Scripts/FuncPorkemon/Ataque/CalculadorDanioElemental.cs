@@ -247,7 +247,7 @@ public class CalculadorDanioElemental : MonoBehaviour
         int ataqueStat = ataque.categoria == CategoriaAtaque.Especial ? atacante.Espiritu : atacante.Ataque;
         int defensaStat = ataque.categoria == CategoriaAtaque.Especial ? defensor.Espiritu : defensor.Defensa;
         
-        // Fórmula simple de daño
+        // Fórmula de daño de Wikidek
         int danioBase = Mathf.RoundToInt(((ataque.poder * ataqueStat) / (float)defensaStat) * 0.5f);
         int danioFinal = Mathf.RoundToInt(danioBase * efectividad);
         

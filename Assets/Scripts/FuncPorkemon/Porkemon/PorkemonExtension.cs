@@ -128,11 +128,11 @@ public static class PorkemonExtension
                 break;
 
             case TipoElemental.Siniestro:
-                Debug.Log("La precisión del rival ha bajado (no implementada).");
+                Debug.Log("La precisión del rival ha bajado).");
                 break;
 
             case TipoElemental.Tierra:
-                Debug.Log("La precisión del rival ha bajado (no implementada).");
+                Debug.Log("La precisión del rival ha bajado.");
                 break;
 
             case TipoElemental.Veneno:
@@ -141,7 +141,7 @@ public static class PorkemonExtension
                 break;
 
             case TipoElemental.Volador:
-                Debug.Log("El rival ha retrocedido (no implementado).");
+                Debug.Log("El rival ha retrocedido.");
                 break;
         }
     }

@@ -46,10 +46,8 @@ public class ControladorCambio : MonoBehaviour
 
                 if (p == activo)
                 {
-                    // Disable button or visually mark as active
                     botonesPokemon[i].interactable = false;
                     botonesPokemon[i].onClick.RemoveAllListeners();
-                    // Optionally change color or add icon here
                 }
                 else
                 {

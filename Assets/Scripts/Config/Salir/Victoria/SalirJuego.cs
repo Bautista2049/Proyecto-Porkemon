@@ -26,7 +26,7 @@ public class SalirJuego : MonoBehaviour
     {
         Application.Quit();
 
-        // Para que también funcione al probarlo en el Editor de Unity
+        //Para ver si funciona en el editor
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
 #endif
@@ -36,10 +36,9 @@ public class SalirJuego : MonoBehaviour
     {
         try
         {
-            // Guardar estado actual
+            
             PlayerPrefs.SetInt("Player1Turn", GameState.player1Turn ? 1 : 0);
             
-            // Guardar datos de pokemones si existen
             if (GameState.porkemonDelJugador != null)
             {
                 string porkemonJugadorJson = JsonUtility.ToJson(GameState.porkemonDelJugador);
@@ -52,13 +51,11 @@ public class SalirJuego : MonoBehaviour
                 PlayerPrefs.SetString("PorkemonBot", porkemonBotJson);
             }
             
-            // Guardar timestamp
             string timestamp = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
             PlayerPrefs.SetString("UltimoGuardado", timestamp);
             
             PlayerPrefs.Save();
             
-            // Mostrar notificación con fecha actual
             MostrarNotificacion($"Estado guardado correctamente\n{timestamp} en {Application.persistentDataPath}");
         }
         catch (Exception e)
@@ -73,10 +70,8 @@ public class SalirJuego : MonoBehaviour
         {
             if (PlayerPrefs.HasKey("UltimoGuardado"))
             {
-                // Cargar turno
                 GameState.player1Turn = PlayerPrefs.GetInt("Player1Turn", 1) == 1;
                 
-                // Cargar pokemones
                 if (PlayerPrefs.HasKey("PorkemonJugador"))
                 {
                     string porkemonJugadorJson = PlayerPrefs.GetString("PorkemonJugador");
