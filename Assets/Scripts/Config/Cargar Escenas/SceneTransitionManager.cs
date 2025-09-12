@@ -23,7 +23,7 @@ public class SceneTransitionManager : MonoBehaviour
             DontDestroyOnLoad(gameObject);
             InitializeFade();
         }
-        else
+        else if (Instance == this)
         {
             Destroy(gameObject);
         }
@@ -41,16 +41,32 @@ public class SceneTransitionManager : MonoBehaviour
 
     public void InitializeFade()
     {
-        if (fadePrefab != null && fadeInstance == null)
+        if (fadePrefab != null)
         {
+            if (fadeInstance != null)
+            {
+                Destroy(fadeInstance);
+            }
             fadeInstance = Instantiate(fadePrefab);
             DontDestroyOnLoad(fadeInstance);
             transitionAnimator = fadeInstance.GetComponentInChildren<Animator>();
         }
     }
 
+    public void DestroyFadeInstance()
+    {
+        if (fadeInstance != null)
+        {
+            Destroy(fadeInstance);
+            fadeInstance = null;
+            transitionAnimator = null;
+        }
+    }
+
     public void LoadScene(string sceneName)
     {
+        DestroyFadeInstance();
+
         if (sceneName == "Interfaz de Menu")
         {
             lastSceneName = SceneManager.GetActiveScene().name;
@@ -60,6 +76,8 @@ public class SceneTransitionManager : MonoBehaviour
 
     public void LoadAdditive(string sceneName)
     {
+        DestroyFadeInstance();
+
         StartCoroutine(LoadSceneCoroutine(sceneName, LoadSceneMode.Additive));
     }
 

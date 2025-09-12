@@ -18,4 +18,11 @@ public class CargarEscPrincipal : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
     }
+
+    public void VolverAUltEscena()
+    {
+        SceneTransitionManager.Instance.ReturnToLastScene();
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+    }
 }

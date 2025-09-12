@@ -771,6 +771,21 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4695068768813509662, guid: a12bb92e43d7f554b800607632c5dd77,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4695068768813509662, guid: a12bb92e43d7f554b800607632c5dd77,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4695068768813509662, guid: a12bb92e43d7f554b800607632c5dd77,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a12bb92e43d7f554b800607632c5dd77, type: 3}
 --- !u!1 &769706209 stripped
@@ -1658,7 +1673,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 692819978}
-        m_MethodName: CargarPrincipal
+        m_MethodName: VolverAUltEscena
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
