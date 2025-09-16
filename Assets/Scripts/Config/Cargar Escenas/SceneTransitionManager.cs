@@ -12,12 +12,11 @@ public class SceneTransitionManager : MonoBehaviour
 
     [Header("Camera Orbit")]
     public bool autoRotate = false;
-    public float rotationSpeed = 30f; // degrees per second
+    public float rotationSpeed = 30f;
     public Transform orbitCenter;
 
     private Animator transitionAnimator;
     private GameObject fadeInstance;
-
     private string lastSceneName = null;
 
     private void Awake()
@@ -45,7 +44,6 @@ public class SceneTransitionManager : MonoBehaviour
 
         if (autoRotate && orbitCenter != null)
         {
-            // Rotar la cámara lentamente alrededor del centro de órbita
             float angle = rotationSpeed * Time.deltaTime;
             transform.RotateAround(orbitCenter.position, Vector3.up, angle);
         }
@@ -83,13 +81,13 @@ public class SceneTransitionManager : MonoBehaviour
         {
             lastSceneName = SceneManager.GetActiveScene().name;
         }
+
         StartCoroutine(LoadSceneCoroutine(sceneName, LoadSceneMode.Single));
     }
 
     public void LoadAdditive(string sceneName)
     {
         DestroyFadeInstance();
-
         StartCoroutine(LoadSceneCoroutine(sceneName, LoadSceneMode.Additive));
     }
 
@@ -112,13 +110,15 @@ public class SceneTransitionManager : MonoBehaviour
                 yield return new WaitForSeconds(fadeDuration);
             }
         }
-        else if (sceneName == "Escena Principal" || sceneName == "Interfaz de Menu" || sceneName == "Escena de Victoria" || sceneName == "Escena de Derrota")
+        else if (sceneName == "Escena Principal"
+              || sceneName == "Interfaz de Menu"
+              || sceneName == "Escena de Victoria"
+              || sceneName == "Escena de Derrota")
         {
             yield return new WaitForSeconds(0.5f);
         }
 
         SceneManager.LoadScene(sceneName, mode);
-
         yield return null;
     }
 }
