@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cfe5e20a480e9148859b0f488dadf57, type: 3}
   m_Name: Pokedario_Data
   m_EditorClassIdentifier: 
-  nombre: Porkemon
+  nombre: Pokedario
   modeloPrefab: {fileID: 6947994404827079887, guid: cd08b79a11272104d98ffe92d506f057,
     type: 3}
   tipo1: 1
@@ -21,7 +21,7 @@ MonoBehaviour:
   ataque: 30
   defensa: 5
   espiritu: 5
-  velocidad: 30
+  velocidad: 10
   ataquesQuePuedeAprender:
   - {fileID: 11400000, guid: fc645ae56d94fcb42be00560cba1dc4f, type: 2}
   - {fileID: 11400000, guid: 6e90b7d7c51dd1843b22d2730ca20f87, type: 2}
