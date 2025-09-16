@@ -10,6 +10,11 @@ public class SceneTransitionManager : MonoBehaviour
     public GameObject fadePrefab;
     public float fadeDuration = 1f;
 
+    [Header("Camera Orbit")]
+    public bool autoRotate = false;
+    public float rotationSpeed = 30f; // degrees per second
+    public Transform orbitCenter;
+
     private Animator transitionAnimator;
     private GameObject fadeInstance;
 
@@ -36,6 +41,13 @@ public class SceneTransitionManager : MonoBehaviour
             LoadScene("Interfaz de Menu");
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
+        }
+
+        if (autoRotate && orbitCenter != null)
+        {
+            // Rotar la cámara lentamente alrededor del centro de órbita
+            float angle = rotationSpeed * Time.deltaTime;
+            transform.RotateAround(orbitCenter.position, Vector3.up, angle);
         }
     }
 
@@ -92,12 +104,11 @@ public class SceneTransitionManager : MonoBehaviour
 
     private IEnumerator LoadSceneCoroutine(string sceneName, LoadSceneMode mode)
     {
-        
         if (sceneName != "Escena Principal")
         {
             if (transitionAnimator != null)
             {
-                transitionAnimator.SetTrigger("StartTranstition");
+                transitionAnimator.SetTrigger("StartTransition");
                 yield return new WaitForSeconds(fadeDuration);
             }
         }
@@ -106,11 +117,8 @@ public class SceneTransitionManager : MonoBehaviour
             yield return new WaitForSeconds(0.5f);
         }
 
-        
         SceneManager.LoadScene(sceneName, mode);
 
-         yield return null;
-
-        
+        yield return null;
     }
 }
