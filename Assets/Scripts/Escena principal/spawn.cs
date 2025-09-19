@@ -4,22 +4,18 @@ using UnityEngine;
 
 public class spawn : MonoBehaviour
 {
-    public float radio = 2f;   // radio del cilindro
-    public float altura = 3f;  // altura del cilindro
-    public float tiempoEntreSpawn = 2f;
-
+    public float tiempoEntreSpawn = 30f;
     private float tiempoActual = 0f;
-    private GameObject[] objetos;
+
+    private float radio;
+    private float altura;
 
     void Start()
     {
-        // Carga todos los prefabs que pongas en la carpeta Resources/Objetos
-        objetos = Resources.LoadAll<GameObject>("Objetos");
-
-        if (objetos.Length == 0)
-        {
-            Debug.LogWarning("No hay prefabs en Resources/Objetos");
-        }
+        // El cilindro base de Unity tiene radio = 0.5 y altura = 2
+        // Ajustamos según el scale del objeto
+        radio = 0.5f * transform.localScale.x;
+        altura = 2f * transform.localScale.y;
     }
 
     void Update()
@@ -35,20 +31,18 @@ public class spawn : MonoBehaviour
 
     void Spawn()
     {
-        if (objetos == null || objetos.Length == 0) return;
+        // elegir un objeto primitivo random
+        PrimitiveType tipo = (PrimitiveType)Random.Range(0, 4); // Cube, Sphere, Capsule, Cylinder
+        GameObject nuevo = GameObject.CreatePrimitive(tipo);
 
-        int index = Random.Range(0, objetos.Length);
-
-        // posición random en círculo (XZ)
+        // posición random dentro del cilindro
         Vector2 posCircular = Random.insideUnitCircle * radio;
         float x = transform.position.x + posCircular.x;
         float z = transform.position.z + posCircular.y;
 
-        // posición random en altura
-        float y = transform.position.y + Random.Range(0f, altura);
+        // altura: desde el piso del cilindro hasta el techo
+        float y = transform.position.y - (altura / 2f) + Random.Range(0f, altura);
 
-        Vector3 spawnPos = new Vector3(x, y, z);
-
-        Instantiate(objetos[index], spawnPos, Quaternion.identity);
+        nuevo.transform.position = new Vector3(x, y, z);
     }
 }
