@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class spawn : MonoBehaviour
 {
-    public float tiempoEntreSpawn = 30f;
+    public float tiempoEntreSpawn = 2f;
     private float tiempoActual = 0f;
 
     private float radio;
     private float altura;
+
+    [SerializeField] GameObject[] porkemons;
 
     void Start()
     {
@@ -32,8 +34,10 @@ public class spawn : MonoBehaviour
     void Spawn()
     {
         // elegir un objeto primitivo random
-        PrimitiveType tipo = (PrimitiveType)Random.Range(0, 4); // Cube, Sphere, Capsule, Cylinder
-        GameObject nuevo = GameObject.CreatePrimitive(tipo);
+        int random = Random.Range(0, 0);
+        Debug.Log(random);
+        GameObject nuevo = porkemons[random];
+
 
         // posición random dentro del cilindro
         Vector2 posCircular = Random.insideUnitCircle * radio;
@@ -43,6 +47,7 @@ public class spawn : MonoBehaviour
         // altura: desde el piso del cilindro hasta el techo
         float y = transform.position.y - (altura / 2f) + Random.Range(0f, altura);
 
+        Instantiate(nuevo);
         nuevo.transform.position = new Vector3(x, y, z);
     }
 }
