@@ -3,7 +3,6 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
-using System.Linq;
 
 public class ControladorCambio : MonoBehaviour
 {
@@ -94,6 +93,13 @@ public class ControladorCambio : MonoBehaviour
         Debug.Log($"Cambiaste a {nuevo.BaseData.nombre}. Turno gastado.");
 
         GameState.player1Turn = false;
+
+        // Update the model in the combat UI if present
+        ControladorPorkemon controladorPorkemon = FindObjectOfType<ControladorPorkemon>();
+        if (controladorPorkemon != null)
+        {
+            controladorPorkemon.Setup(nuevo);
+        }
 
         SceneTransitionManager.Instance.LoadScene("Escena de combate");
     }

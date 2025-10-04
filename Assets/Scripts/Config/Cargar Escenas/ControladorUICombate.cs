@@ -11,11 +11,18 @@ public class ControladorUICombate : MonoBehaviour
 
     [Header("Referencias")]
     public List<Button> botonesDeAtaque;
+    public GameObject panelDeAccionesDelJugador;
+    public GameObject panelMovs;
 
     void Start()
     {
         transition = GetComponentInChildren<Animator>();
         AsignarAtaquesABotones();
+
+        if (panelMovs != null)
+        {
+            panelMovs.SetActive(false);
+        }
     }
 
     void AsignarAtaquesABotones()
@@ -69,20 +76,37 @@ public class ControladorUICombate : MonoBehaviour
         {
             GameState.ataqueSeleccionado = ataque;
             GestorDeBatalla.instance.porkemonJugador.puedeAtacar = false;
+
+            if (panelMovs != null)
+            {
+                panelMovs.SetActive(false);
+            }
+            if (panelDeAccionesDelJugador != null)
+            {
+                panelDeAccionesDelJugador.SetActive(true);
+            }
+
             VolverAlCombate();
         }
     }
 
     public void VolverAlCombate()
     {
-        SceneTransitionManager.Instance.LoadScene("Escena de combate");
+        gameObject.SetActive(false);
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
     }
 
     public void IrAtaques()
     {
-        SceneTransitionManager.Instance.LoadScene("Luchar Escena");
+        if (panelDeAccionesDelJugador != null)
+        {
+            panelDeAccionesDelJugador.SetActive(false);
+        }
+        if (panelMovs != null)
+        {
+            panelMovs.SetActive(true);
+        }
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
     }

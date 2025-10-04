@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Porkemon_Data
   m_EditorClassIdentifier: 
   nombre: Porkemon
-  modeloPrefab: {fileID: 6947994404827079887, guid: cd08b79a11272104d98ffe92d506f057,
+  modeloPrefab: {fileID: 406851841567083858, guid: 88b840efda05a2b4995dd48144d3daa8,
     type: 3}
   tipo1: 1
   nivel: 1
