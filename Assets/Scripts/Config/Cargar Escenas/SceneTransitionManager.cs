@@ -35,7 +35,7 @@ public class SceneTransitionManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Q))
         {
             LoadScene("Interfaz de Menu");
             Cursor.lockState = CursorLockMode.None;
