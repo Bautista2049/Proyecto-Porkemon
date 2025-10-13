@@ -2778,7 +2778,7 @@ GameObject:
   - component: {fileID: 305022627}
   - component: {fileID: 880388259}
   m_Layer: 0
-  m_Name: Porkemon
+  m_Name: bellsprout
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4776,6 +4776,7 @@ MonoBehaviour:
   barraSalud: {fileID: 1521858918}
   textoSalud: {fileID: 1459696251}
   textoNombre: {fileID: 2002778083}
+  textoMensaje: {fileID: 0}
 --- !u!114 &357602344
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4964,6 +4965,7 @@ MonoBehaviour:
   barraSalud: {fileID: 1999157870}
   textoSalud: {fileID: 2097322569}
   textoNombre: {fileID: 536318269}
+  textoMensaje: {fileID: 0}
 --- !u!114 &403739426
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7464,6 +7466,92 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2048247292}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1992642858
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 865768610}
+    m_Modifications:
+    - target: {fileID: 5408457006682662613, guid: cb61e4965e78d354b9e82a27b477855b,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.00031367948
+      objectReference: {fileID: 0}
+    - target: {fileID: 5408457006682662613, guid: cb61e4965e78d354b9e82a27b477855b,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.012177285
+      objectReference: {fileID: 0}
+    - target: {fileID: 5408457006682662613, guid: cb61e4965e78d354b9e82a27b477855b,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.0035799008
+      objectReference: {fileID: 0}
+    - target: {fileID: 5408457006682662613, guid: cb61e4965e78d354b9e82a27b477855b,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.000000119209275
+      objectReference: {fileID: 0}
+    - target: {fileID: 5408457006682662613, guid: cb61e4965e78d354b9e82a27b477855b,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.000000029802319
+      objectReference: {fileID: 0}
+    - target: {fileID: 5408457006682662613, guid: cb61e4965e78d354b9e82a27b477855b,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.20320484
+      objectReference: {fileID: 0}
+    - target: {fileID: 5408457006682662613, guid: cb61e4965e78d354b9e82a27b477855b,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9791362
+      objectReference: {fileID: 0}
+    - target: {fileID: 5408457006682662613, guid: cb61e4965e78d354b9e82a27b477855b,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5408457006682662613, guid: cb61e4965e78d354b9e82a27b477855b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90.00001
+      objectReference: {fileID: 0}
+    - target: {fileID: 5408457006682662613, guid: cb61e4965e78d354b9e82a27b477855b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5408457006682662613, guid: cb61e4965e78d354b9e82a27b477855b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -140.94301
+      objectReference: {fileID: 0}
+    - target: {fileID: 5408457006682662613, guid: cb61e4965e78d354b9e82a27b477855b,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.002857144
+      objectReference: {fileID: 0}
+    - target: {fileID: 5408457006682662613, guid: cb61e4965e78d354b9e82a27b477855b,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.0028571433
+      objectReference: {fileID: 0}
+    - target: {fileID: 5408457006682662613, guid: cb61e4965e78d354b9e82a27b477855b,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.0033333336
+      objectReference: {fileID: 0}
+    - target: {fileID: 5408457006682831605, guid: cb61e4965e78d354b9e82a27b477855b,
+        type: 3}
+      propertyPath: m_Name
+      value: charmander
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 4744242266939666362, guid: cb61e4965e78d354b9e82a27b477855b, type: 3}
+    - {fileID: 5408457007933555589, guid: cb61e4965e78d354b9e82a27b477855b, type: 3}
+  m_SourcePrefab: {fileID: 100100000, guid: cb61e4965e78d354b9e82a27b477855b, type: 3}
 --- !u!224 &1999157869 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4024614599598146004, guid: 66ec35674be447c419def835c56146e6,
@@ -7747,7 +7835,7 @@ PrefabInstance:
     - target: {fileID: 406851841567083858, guid: 88b840efda05a2b4995dd48144d3daa8,
         type: 3}
       propertyPath: m_Name
-      value: Porkemon
+      value: bellsprout
       objectReference: {fileID: 0}
     - target: {fileID: 406851841567379890, guid: 88b840efda05a2b4995dd48144d3daa8,
         type: 3}
@@ -8050,7 +8138,7 @@ PrefabInstance:
     - target: {fileID: 1609772139471523624, guid: 92e9728adea136645b7d7723a1cbd44c,
         type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1609772139473292744, guid: 92e9728adea136645b7d7723a1cbd44c,
         type: 3}
@@ -8972,7 +9060,7 @@ PrefabInstance:
     - target: {fileID: 4695068768813509650, guid: a12bb92e43d7f554b800607632c5dd77,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4695068768813509661, guid: a12bb92e43d7f554b800607632c5dd77,
         type: 3}
