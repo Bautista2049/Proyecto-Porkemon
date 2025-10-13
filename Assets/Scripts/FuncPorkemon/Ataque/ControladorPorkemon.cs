@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TMPro;
 
 public class ControladorPorkemon : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class ControladorPorkemon : MonoBehaviour
     public Slider barraSalud;
     public Text textoSalud;
     public Text textoNombre;
+    public TextMeshProUGUI textoMensaje; // Para mostrar mensajes de daño con efecto typewriter
 
     public void Setup(Porkemon pInstance)
     {
@@ -59,7 +61,7 @@ public class ControladorPorkemon : MonoBehaviour
 
         if (Random.Range(1, 101) > chanceDeAcertar)
         {
-            Debug.Log($"¡El ataque {ataque.nombreAtaque} ha fallado!");
+            StartCoroutine(MostrarMensajeTypewriter($"¡El ataque {ataque.nombreAtaque} ha fallado!"));
             return false;
         }
 
@@ -95,12 +97,15 @@ public class ControladorPorkemon : MonoBehaviour
         int danioTotal = Mathf.Max(1, Mathf.FloorToInt(danioFinal));
 
         porkemon.VidaActual -= danioTotal;
-        Debug.Log($"{atacante.BaseData.nombre} hace {danioTotal} de daño con el ataque {ataque.nombreAtaque} a {porkemon.BaseData.nombre}.");
+
+        // Mostrar mensaje con efecto typewriter
+        string mensajeDanio = $"{atacante.BaseData.nombre} hace {danioTotal} de daño con el ataque {ataque.nombreAtaque} a {porkemon.BaseData.nombre}.";
+        StartCoroutine(MostrarMensajeTypewriter(mensajeDanio));
 
         if (Random.Range(0, 100f) < ataque.chanceCritico)
         {
             multiplicadorCritico = 3f;
-            Debug.Log("¡Un golpe crítico!");
+            StartCoroutine(MostrarMensajeTypewriter("¡Un golpe crítico!"));
         }
 
         if (porkemon.VidaActual <= 0)
@@ -109,5 +114,27 @@ public class ControladorPorkemon : MonoBehaviour
             return true;
         }
         return false;
+    }
+
+    private IEnumerator MostrarMensajeTypewriter(string mensaje)
+    {
+        Debug.Log($"{mensaje}");
+        if (textoMensaje != null)
+        {
+            Debug.Log("textoMensaje no es null, mostrando mensaje");
+            textoMensaje.text = "";
+            foreach (char letra in mensaje)
+            {
+                textoMensaje.text += letra;
+                yield return new WaitForSeconds(0.05f); // Ajusta la velocidad del efecto
+            }
+            // Mantener el mensaje visible por un tiempo antes de borrarlo
+            yield return new WaitForSeconds(2f);
+            textoMensaje.text = "";
+        }
+        else
+        {
+            Debug.Log("textoMensaje es null, no se puede mostrar el mensaje");
+        }
     }
 }

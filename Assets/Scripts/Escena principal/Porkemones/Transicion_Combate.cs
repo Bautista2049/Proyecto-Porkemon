@@ -10,22 +10,21 @@ public class Transicion_Combate : MonoBehaviour
     [SerializeField] private GameObject popupPanel; 
     [SerializeField] private TextMeshProUGUI popupText; 
 
-    private void OnTriggerEnter(Collider collision)
+    private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Player")) 
+        if (collision.gameObject.CompareTag("Player"))
         {
-            
+
             if (GameState.porkemonDelBot != null && GameState.porkemonDelBot.VidaActual <= 0)
             {
                 Debug.Log("¡Qué raro! Este Pokémon ya está debilitado.");
                 MostrarPopup("¡Qué raro! Este Pokémon ya está debilitado.");
-                return; 
+                return;
             }
 
             SceneManager.LoadScene(nombreEscena);
             Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
-            Debug.Log("aaaaaaaa");
         }
     }
 

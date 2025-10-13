@@ -1390,8 +1390,8 @@ GameObject:
   - component: {fileID: 5408457006682662613}
   - component: {fileID: 5408457006692174183}
   - component: {fileID: 5408457007933555589}
-  - component: {fileID: 5408457007933555590}
   - component: {fileID: 4744242266939666362}
+  - component: {fileID: 9200235430541770884}
   m_Layer: 0
   m_Name: charmander
   m_TagString: Untagged
@@ -1450,20 +1450,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!136 &5408457007933555590
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5408457006682831605}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  m_Radius: 1.1161597
-  m_Height: 2.4833379
-  m_Direction: 1
-  m_Center: {x: 1.4077771, y: -3.6924224, z: 0.80148625}
 --- !u!114 &4744242266939666362
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1477,6 +1463,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nombreEscena: Escena de Combate
+  popupPanel: {fileID: 1707427049906946418, guid: dc7178283cbd0e54b9f7be9afdcd828a,
+    type: 3}
+  popupText: {fileID: 6926768461429504543, guid: df2366a699af31d4a972eb1d96ed19bb,
+    type: 3}
+--- !u!136 &9200235430541770884
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5408457006682831605}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 1.3547225
+  m_Height: 2.709445
+  m_Direction: 1
+  m_Center: {x: 1.1351547, y: -3.8408072, z: 0.5880915}
 --- !u!1 &5408457006682831607
 GameObject:
   m_ObjectHideFlags: 0
