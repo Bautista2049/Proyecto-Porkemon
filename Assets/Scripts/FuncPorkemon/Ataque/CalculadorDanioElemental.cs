@@ -242,15 +242,23 @@ public class CalculadorDanioElemental : MonoBehaviour
     
     public static int CalcularDanio(Porkemon atacante, Porkemon defensor, AtaqueData ataque)
     {
+        // Considerar ambos tipos si el defensor tiene tipo2
         float efectividad = tablaEfectividad[(int)ataque.tipo, (int)defensor.BaseData.tipo1];
-        
+        if (defensor.BaseData.tipo2 != TipoElemental.Normal) // Asumiendo Normal como ninguno
+        {
+            efectividad *= tablaEfectividad[(int)ataque.tipo, (int)defensor.BaseData.tipo2];
+        }
+
         int ataqueStat = ataque.categoria == CategoriaAtaque.Especial ? atacante.Espiritu : atacante.Ataque;
         int defensaStat = ataque.categoria == CategoriaAtaque.Especial ? defensor.Espiritu : defensor.Defensa;
-        
-        // Fórmula de daño de Wikidek
-        int danioBase = Mathf.RoundToInt(((ataque.poder * ataqueStat) / (float)defensaStat) * 0.5f);
-        int danioFinal = Mathf.RoundToInt(danioBase * efectividad);
-        
+
+        // Fórmula de daño de tercera generación en adelante
+        int danioBase = Mathf.FloorToInt(Mathf.FloorToInt(Mathf.FloorToInt(2 * atacante.Nivel / 5 + 2) * ataque.poder * ataqueStat / defensaStat) / 50 + 2);
+        int danioFinal = Mathf.FloorToInt(danioBase * efectividad);
+
+        // Variación aleatoria (85%-100%)
+        danioFinal = Mathf.FloorToInt(danioFinal * Random.Range(0.85f, 1.0f));
+
         return Mathf.Max(1, danioFinal);
     }
     

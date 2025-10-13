@@ -25,7 +25,21 @@ public class Porkemon
     public int Defensa { get; private set; }
     public int Espiritu { get; private set; }
     public int Velocidad { get; private set; }
-    public int Experiencia {get; private set; }
+    public int Experiencia { get; set; }
+    public int ExperienciaParaSiguienteNivel { get; private set; }
+
+    // IVs y EVs
+    public int IvVida { get; private set; }
+    public int IvAtaque { get; private set; }
+    public int IvDefensa { get; private set; }
+    public int IvEspiritu { get; private set; }
+    public int IvVelocidad { get; private set; }
+
+    public int EvVida { get; private set; }
+    public int EvAtaque { get; private set; }
+    public int EvDefensa { get; private set; }
+    public int EvEspiritu { get; private set; }
+    public int EvVelocidad { get; private set; }
 
     public EstadoAlterado Estado { get; set; } = EstadoAlterado.Ninguno;
     public void ReducirDefensa(int cantidad)
@@ -48,19 +62,40 @@ public class Porkemon
 
     public bool puedeAtacar = false;
     public List<AtaqueData> Ataques { get; set; }
- 
+
     public event System.Action OnHPChanged;
- 
+
     public Porkemon(PorkemonData pData, int nivel)
     {
         BaseData = pData;
         Nivel = nivel;
-        VidaMaxima = pData.vidaMaxima;
-        _vidaActual = pData.vidaMaxima;
-        Ataque = pData.ataque;
-        Defensa = pData.defensa;
-        Espiritu = pData.espiritu;
-        Velocidad = pData.velocidad;
+
+        // Inicializar IVs aleatorios (0-31)
+        IvVida = Random.Range(0, 32);
+        IvAtaque = Random.Range(0, 32);
+        IvDefensa = Random.Range(0, 32);
+        IvEspiritu = Random.Range(0, 32);
+        IvVelocidad = Random.Range(0, 32);
+
+        // Inicializar EVs en 0
+        EvVida = 0;
+        EvAtaque = 0;
+        EvDefensa = 0;
+        EvEspiritu = 0;
+        EvVelocidad = 0;
+
+        // Calcular estadísticas usando fórmula de tercera generación en adelante
+        VidaMaxima = CalcularVidaMaxima();
+        Ataque = CalcularAtaque();
+        Defensa = CalcularDefensa();
+        Espiritu = CalcularEspiritu();
+        Velocidad = CalcularVelocidad();
+
+        // Inicializar experiencia
+        Experiencia = CalcularExperienciaTotal(Nivel);
+        ExperienciaParaSiguienteNivel = CalcularExperienciaTotal(Nivel + 1) - Experiencia;
+
+        _vidaActual = VidaMaxima;
 
         Ataques = new List<AtaqueData>();
         foreach (var ataque in pData.ataquesQuePuedeAprender)
@@ -73,6 +108,116 @@ public class Porkemon
             {
                 Ataques.Add(ataque);
             }
+        }
+    }
+
+    // Fórmulas de cálculo de estadísticas (Tercera generación en adelante)
+    private int CalcularVidaMaxima()
+    {
+        return Mathf.FloorToInt(((2 * BaseData.vidaMaxima + IvVida + (EvVida / 4)) * Nivel) / 100) + Nivel + 10;
+    }
+
+    private int CalcularAtaque()
+    {
+        float naturalezaMod = GetModificadorNaturaleza("Ataque");
+        return Mathf.FloorToInt((Mathf.FloorToInt(((2 * BaseData.ataque + IvAtaque + (EvAtaque / 4)) * Nivel) / 100) + 5) * naturalezaMod);
+    }
+
+    private int CalcularDefensa()
+    {
+        float naturalezaMod = GetModificadorNaturaleza("Defensa");
+        return Mathf.FloorToInt((Mathf.FloorToInt(((2 * BaseData.defensa + IvDefensa + (EvDefensa / 4)) * Nivel) / 100) + 5) * naturalezaMod);
+    }
+
+    private int CalcularEspiritu()
+    {
+        float naturalezaMod = GetModificadorNaturaleza("Espiritu");
+        return Mathf.FloorToInt((Mathf.FloorToInt(((2 * BaseData.espiritu + IvEspiritu + (EvEspiritu / 4)) * Nivel) / 100) + 5) * naturalezaMod);
+    }
+
+    private int CalcularVelocidad()
+    {
+        float naturalezaMod = GetModificadorNaturaleza("Velocidad");
+        return Mathf.FloorToInt((Mathf.FloorToInt(((2 * BaseData.velocidad + IvVelocidad + (EvVelocidad / 4)) * Nivel) / 100) + 5) * naturalezaMod);
+    }
+
+    private float GetModificadorNaturaleza(string stat)
+    {
+        switch (BaseData.naturaleza)
+        {
+            case Naturaleza.Huraña: return stat == "Ataque" ? 1.1f : stat == "Defensa" ? 0.9f : 1f;
+            case Naturaleza.Audaz: return stat == "Ataque" ? 1.1f : stat == "Velocidad" ? 0.9f : 1f;
+            case Naturaleza.Firme: return stat == "Ataque" ? 1.1f : stat == "Espiritu" ? 0.9f : 1f; // Ataque especial
+            case Naturaleza.Pícara: return stat == "Ataque" ? 1.1f : stat == "Espiritu" ? 0.9f : 1f; // Defensa especial
+            case Naturaleza.Osada: return stat == "Defensa" ? 1.1f : stat == "Ataque" ? 0.9f : 1f;
+            case Naturaleza.Plácida: return stat == "Defensa" ? 1.1f : stat == "Velocidad" ? 0.9f : 1f;
+            case Naturaleza.Agitada: return stat == "Defensa" ? 1.1f : stat == "Espiritu" ? 0.9f : 1f; // Ataque especial
+            case Naturaleza.Floja: return stat == "Defensa" ? 1.1f : stat == "Espiritu" ? 0.9f : 1f; // Defensa especial
+            case Naturaleza.Miedosa: return stat == "Velocidad" ? 1.1f : stat == "Ataque" ? 0.9f : 1f;
+            case Naturaleza.Activa: return stat == "Velocidad" ? 1.1f : stat == "Defensa" ? 0.9f : 1f;
+            case Naturaleza.Alegre: return stat == "Velocidad" ? 1.1f : stat == "Espiritu" ? 0.9f : 1f; // Ataque especial
+            case Naturaleza.Ingenua: return stat == "Velocidad" ? 1.1f : stat == "Espiritu" ? 0.9f : 1f; // Defensa especial
+            case Naturaleza.Modesta: return stat == "Espiritu" ? 1.1f : stat == "Ataque" ? 0.9f : 1f; // Ataque especial
+            case Naturaleza.Afable: return stat == "Espiritu" ? 1.1f : stat == "Defensa" ? 0.9f : 1f; // Ataque especial
+            case Naturaleza.Mansa: return stat == "Espiritu" ? 1.1f : stat == "Velocidad" ? 0.9f : 1f; // Ataque especial
+            case Naturaleza.Alocada: return stat == "Espiritu" ? 1.1f : stat == "Espiritu" ? 0.9f : 1f; // Ataque especial y Defensa especial
+            case Naturaleza.Tranquila: return stat == "Espiritu" ? 1.1f : stat == "Ataque" ? 0.9f : 1f; // Defensa especial
+            case Naturaleza.Amable: return stat == "Espiritu" ? 1.1f : stat == "Defensa" ? 0.9f : 1f; // Defensa especial
+            case Naturaleza.Grosera: return stat == "Espiritu" ? 1.1f : stat == "Velocidad" ? 0.9f : 1f; // Defensa especial
+            case Naturaleza.Cauta: return stat == "Espiritu" ? 1.1f : stat == "Espiritu" ? 0.9f : 1f; // Defensa especial y Ataque especial
+            default: return 1f; // Neutral
+        }
+    }
+
+    // Métodos de experiencia
+    public int CalcularExperienciaTotal(int nivel)
+    {
+        switch (BaseData.tasaCrecimiento)
+        {
+            case TasaCrecimiento.Rapido:
+                return Mathf.FloorToInt(4 * Mathf.Pow(nivel, 3) / 5);
+            case TasaCrecimiento.Medio:
+                return Mathf.FloorToInt(Mathf.Pow(nivel, 3));
+            case TasaCrecimiento.Lento:
+                return Mathf.FloorToInt(5 * Mathf.Pow(nivel, 3) / 4);
+            case TasaCrecimiento.Parabolico:
+                return Mathf.FloorToInt(6 * Mathf.Pow(nivel, 3) / 5 - 15 * Mathf.Pow(nivel, 2) + 100 * nivel - 140);
+            case TasaCrecimiento.Erratico:
+                if (nivel <= 50)
+                    return Mathf.FloorToInt(Mathf.Pow(nivel, 3) * (100 - nivel) / 50);
+                else if (nivel <= 68)
+                    return Mathf.FloorToInt(Mathf.Pow(nivel, 3) * (150 - nivel) / 100);
+                else if (nivel <= 98)
+                    return Mathf.FloorToInt(Mathf.Pow(nivel, 3) * Mathf.FloorToInt(637 - 10 * nivel) / 50);
+                else
+                    return Mathf.FloorToInt(Mathf.Pow(nivel, 3) * (160 - nivel) / 100);
+            case TasaCrecimiento.Fluctuante:
+                if (nivel <= 15)
+                    return Mathf.FloorToInt(Mathf.Pow(nivel, 3) * (24 + (nivel + 1) / 3) / 50);
+                else if (nivel <= 35)
+                    return Mathf.FloorToInt(Mathf.Pow(nivel, 3) * (14 + nivel) / 50);
+                else
+                    return Mathf.FloorToInt(Mathf.Pow(nivel, 3) * (32 + nivel / 2) / 50);
+            default:
+                return Mathf.FloorToInt(Mathf.Pow(nivel, 3)); // Medio por defecto
+        }
+    }
+
+    public void GanarExperiencia(int cantidad)
+    {
+        Experiencia += cantidad;
+        while (Experiencia >= CalcularExperienciaTotal(Nivel + 1))
+        {
+            Nivel++;
+            ExperienciaParaSiguienteNivel = CalcularExperienciaTotal(Nivel + 1) - CalcularExperienciaTotal(Nivel);
+            // Recalcular estadísticas al subir de nivel
+            VidaMaxima = CalcularVidaMaxima();
+            Ataque = CalcularAtaque();
+            Defensa = CalcularDefensa();
+            Espiritu = CalcularEspiritu();
+            Velocidad = CalcularVelocidad();
+            VidaActual = VidaMaxima; // Restaurar vida al subir de nivel
+            Debug.Log($"{BaseData.nombre} subió al nivel {Nivel}!");
         }
     }
     public void AplicarDanioPorEstado()

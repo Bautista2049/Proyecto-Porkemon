@@ -32,6 +32,45 @@ public enum CategoriaAtaque
     Estado
 }
 
+public enum Naturaleza
+{
+    
+    Huraña, // +Atk -Def
+    Audaz, // +Atk -Spe
+    Firme, // +Atk -SpA
+    Pícara, // +Atk -SpD
+    Osada, // +Def -Atk
+    Dócil, // neutral
+    Plácida, // +Def -Spe
+    Agitada, // +Def -SpA
+    Floja, // +Def -SpD
+    Miedosa, // +Spe -Atk
+    Activa, // +Spe -Def
+    Seria, // neutral
+    Alegre, // +Spe -SpA
+    Ingenua, // +Spe -SpD
+    Modesta, // +SpA -Atk
+    Afable, // +SpA -Def
+    Mansa, // +SpA -Spe
+    Tímida, // neutral
+    Alocada, // +SpA -SpD
+    Tranquila, // +SpD -Atk
+    Amable, // +SpD -Def
+    Grosera, // +SpD -Spe
+    Cauta, // +SpD -SpA
+    Rara // neutral
+}
+
+public enum TasaCrecimiento
+{
+    Rapido,
+    Medio,
+    Lento,
+    Parabolico,
+    Erratico,
+    Fluctuante
+}
+
 [CreateAssetMenu(fileName = "Nuevo Ataque", menuName = "Porkemon/Ataque")]
 public class AtaqueData : ScriptableObject
 {

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public static class PorkemonExtension
@@ -13,13 +14,16 @@ public static class PorkemonExtension
 
         ataque.pp--;
 
+        // Calcular efectividad considerando ambos tipos
         float efectividad = CalculadorDanioElemental.tablaEfectividad[(int)ataque.tipo, (int)defensor.BaseData.tipo1];
-        if (efectividad >= 2f)
-            Debug.Log("¡Es súper eficaz!");
-        else if (efectividad <= 0.5f && efectividad > 0f)
-            Debug.Log("No es muy eficaz...");
-        else if (efectividad <= 0f)
-            Debug.Log("No tiene efecto...");
+        if (defensor.BaseData.tipo2 != TipoElemental.Normal)
+        {
+            efectividad *= CalculadorDanioElemental.tablaEfectividad[(int)ataque.tipo, (int)defensor.BaseData.tipo2];
+        }
+
+        string mensaje = CalculadorDanioElemental.GetMensajeEfectividad(efectividad);
+        if (!string.IsNullOrEmpty(mensaje))
+            Debug.Log(mensaje);
 
         // aplicar efecto secundario después del daño
         ataque.AplicarEfectoSecundario(defensor);
@@ -143,6 +147,38 @@ public static class PorkemonExtension
             case TipoElemental.Volador:
                 Debug.Log("El rival ha retrocedido.");
                 break;
+        }
+    }
+
+    // Método para calcular experiencia ganada después de un combate
+    public static int CalcularExperienciaGanada(this Porkemon ganador, Porkemon perdedor, bool esEntrenador = false)
+    {
+        // Fórmula base: EXP = (E * L * C) / 7
+        // E = experiencia base del oponente
+        // L = nivel del oponente
+        // C = 1 para salvaje, 1.5 para entrenador
+        float c = esEntrenador ? 1.5f : 1f;
+        int expBase = Mathf.FloorToInt((perdedor.BaseData.experienciaBase * perdedor.Nivel * c) / 7f);
+
+        // Bonos adicionales (pueden implementarse más tarde)
+        // - Huevos suerte: x1.5
+        // - ID diferente: x1.5
+        // - Comercio: x1.5 (para Pokémon intercambiados)
+
+        return expBase;
+    }
+
+    // Método para repartir experiencia entre el equipo
+    public static void RepartirExperiencia(this List<Porkemon> equipo, int expTotal)
+    {
+        int participantes = equipo.Count(p => p.VidaActual > 0); // Solo participantes vivos
+        if (participantes == 0) return;
+
+        int expPorParticipante = expTotal / participantes;
+
+        foreach (var porkemon in equipo.Where(p => p.VidaActual > 0))
+        {
+            porkemon.GanarExperiencia(expPorParticipante);
         }
     }
 }

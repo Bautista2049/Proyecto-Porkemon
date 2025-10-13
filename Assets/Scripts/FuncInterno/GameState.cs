@@ -11,6 +11,8 @@ public static class GameState
     public static Porkemon porkemonDelJugador;
     public static Porkemon porkemonDelBot;
     public static string nombreGanador;
+    public static int experienciaGanada = 0;
+    public static List<Porkemon> equipoGanador = new List<Porkemon>();
 }
 
 [System.Serializable]

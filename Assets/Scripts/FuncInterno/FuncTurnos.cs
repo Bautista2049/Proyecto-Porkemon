@@ -1,6 +1,7 @@
 ﻿﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -128,6 +129,11 @@ public class FuncTurnos : MonoBehaviour
         else if (jugador2.porkemon.VidaActual <= 0)
         {
             GameState.nombreGanador = jugador1.porkemon.BaseData.nombre;
+
+            // Calcular experiencia ganada
+            GameState.experienciaGanada = GestorDeBatalla.instance.equipoJugador[0].CalcularExperienciaGanada(jugador2.porkemon, true);
+            GameState.equipoGanador = new List<Porkemon>(GestorDeBatalla.instance.equipoJugador);
+
             SceneTransitionManager.Instance.LoadScene("Escena de Victoria");
         }
     }

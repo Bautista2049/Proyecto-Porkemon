@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
@@ -23,12 +24,9 @@ public class ControladorVictoria : MonoBehaviour
             }
         }
 
-        StartCoroutine(RegresarAlMenuPrincipal());
+        // No longer auto-return to main menu - experience animation will handle this
+        // StartCoroutine(RegresarAlMenuPrincipal());
     }
 
-    private IEnumerator RegresarAlMenuPrincipal()
-    {
-        yield return new WaitForSeconds(5);
-        SceneTransitionManager.Instance.LoadScene("Escena Principal");
-    }
+    // Removed the auto-return coroutine since experience controller handles scene transition
 }

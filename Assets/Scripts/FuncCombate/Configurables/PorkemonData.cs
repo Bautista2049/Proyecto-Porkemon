@@ -9,6 +9,7 @@ public class PorkemonData : ScriptableObject
     public string nombre;
     public GameObject modeloPrefab;
     public TipoElemental tipo1;
+    public TipoElemental tipo2; // opcional para dual-type
 
     [Header("Estadísticas Base")]
     public int nivel = 5;
@@ -24,4 +25,13 @@ public class PorkemonData : ScriptableObject
     [Header("Evolución")]
     public PorkemonData evolucionSiguiente;
     public int nivelDeEvolucion;
+
+    [Header("Naturaleza")]
+    public Naturaleza naturaleza = Naturaleza.Firme; // neutral por defecto
+
+    [Header("Crecimiento")]
+    public TasaCrecimiento tasaCrecimiento = TasaCrecimiento.Medio; // crecimiento medio por defecto
+
+    [Header("Experiencia Base")]
+    public int experienciaBase = 50; // experiencia base para calcular ganancia
 }

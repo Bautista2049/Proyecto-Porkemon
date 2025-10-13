@@ -13,11 +13,12 @@ MonoBehaviour:
   m_Name: Porkemon_Data
   m_EditorClassIdentifier: 
   nombre: Porkemon
-  modeloPrefab: {fileID: 406851841567083858, guid: 88b840efda05a2b4995dd48144d3daa8,
+  modeloPrefab: {fileID: 1102509840102244652, guid: b97c2fc30b5a7b149ad15ba0ba60d355,
     type: 3}
   tipo1: 1
-  nivel: 1
-  vidaMaxima: 100
+  tipo2: 0
+  nivel: 4
+  vidaMaxima: 1000
   ataque: 30
   defensa: 5
   espiritu: 5
@@ -27,3 +28,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6e90b7d7c51dd1843b22d2730ca20f87, type: 2}
   evolucionSiguiente: {fileID: 0}
   nivelDeEvolucion: 5
+  naturaleza: 2
