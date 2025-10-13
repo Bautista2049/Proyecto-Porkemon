@@ -17,7 +17,7 @@ public class spawn : MonoBehaviour
         // El cilindro base de Unity tiene radio = 0.5 y altura = 2
         // Ajustamos según el scale del objeto
         radio = 0.5f * transform.localScale.x;
-        altura = 2f * transform.localScale.y;
+        altura = 6f * transform.localScale.y;
     }
 
     void Update()
