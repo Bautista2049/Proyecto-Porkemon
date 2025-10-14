@@ -121,20 +121,20 @@ public class ControladorPorkemon : MonoBehaviour
         Debug.Log($"{mensaje}");
         if (textoMensaje != null)
         {
-            Debug.Log("textoMensaje no es null, mostrando mensaje");
+            
             textoMensaje.text = "";
             foreach (char letra in mensaje)
             {
                 textoMensaje.text += letra;
-                yield return new WaitForSeconds(0.05f); // Ajusta la velocidad del efecto
+                yield return new WaitForSeconds(0.05f); 
             }
-            // Mantener el mensaje visible por un tiempo antes de borrarlo
+            
             yield return new WaitForSeconds(2f);
             textoMensaje.text = "";
         }
         else
         {
-            Debug.Log("textoMensaje es null, no se puede mostrar el mensaje");
+            Debug.Log("");
         }
     }
 }

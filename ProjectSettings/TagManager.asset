@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Bot
   - Player1
+  - Porkemon
   layers:
   - Default
   - TransparentFX

@@ -17,37 +17,27 @@ public class Transicion_Combate : MonoBehaviour
 
             if (GameState.porkemonDelBot != null && GameState.porkemonDelBot.VidaActual <= 0)
             {
-                Debug.Log("¡Qué raro! Este Pokémon ya está debilitado.");
-                MostrarPopup("¡Qué raro! Este Pokémon ya está debilitado.");
+                if (popupText != null)
+                {
+                    popupText.gameObject.SetActive(true);
+                    popupText.text = "El Porkemon del bot está debilitado. No puedes iniciar un combate.";
+                    StartCoroutine(DesactivarTexto(3f));
+                }
                 return;
             }
 
             SceneManager.LoadScene(nombreEscena);
             Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
+            Cursor.visible = true;
         }
     }
 
-    private void MostrarPopup(string mensaje)
-    {
-        if (popupPanel != null)
-        {
-            popupPanel.SetActive(true);
-            if (popupText != null)
-            {
-                popupText.text = mensaje;
-            }
-            
-            StartCoroutine(OcultarPopup(3f));
-        }
-    }
-
-    private IEnumerator OcultarPopup(float delay)
+    private IEnumerator DesactivarTexto(float delay)
     {
         yield return new WaitForSeconds(delay);
-        if (popupPanel != null)
+        if (popupText != null)
         {
-            popupPanel.SetActive(false);
+            popupText.gameObject.SetActive(false);
         }
     }
 }

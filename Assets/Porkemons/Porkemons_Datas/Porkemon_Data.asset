@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cfe5e20a480e9148859b0f488dadf57, type: 3}
   m_Name: Porkemon_Data
   m_EditorClassIdentifier: 
-  nombre: Porkemon
+  nombre: Bellsprout
   modeloPrefab: {fileID: 1102509840102244652, guid: b97c2fc30b5a7b149ad15ba0ba60d355,
     type: 3}
   tipo1: 1
@@ -29,3 +29,5 @@ MonoBehaviour:
   evolucionSiguiente: {fileID: 0}
   nivelDeEvolucion: 5
   naturaleza: 2
+  tasaCrecimiento: 1
+  experienciaBase: 50

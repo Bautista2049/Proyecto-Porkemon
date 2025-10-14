@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cfe5e20a480e9148859b0f488dadf57, type: 3}
   m_Name: Aiekamon_Data
   m_EditorClassIdentifier: 
-  nombre: Aiekamon
-  modeloPrefab: {fileID: 1609772139473785320, guid: 92e9728adea136645b7d7723a1cbd44c,
+  nombre: Charmander
+  modeloPrefab: {fileID: 5408457006682831605, guid: cb61e4965e78d354b9e82a27b477855b,
     type: 3}
-  tipo1: 2
+  tipo1: 1
+  tipo2: 0
   nivel: 1
   vidaMaxima: 100
   ataque: 20
@@ -28,3 +29,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8d9ae9c7ded39044381e9da05ced7775, type: 2}
   evolucionSiguiente: {fileID: 0}
   nivelDeEvolucion: 0
+  naturaleza: 2
+  tasaCrecimiento: 1
+  experienciaBase: 50
