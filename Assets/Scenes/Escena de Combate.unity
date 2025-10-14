@@ -5360,7 +5360,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 114, y: -248.79999}
-  m_SizeDelta: {x: 170, y: 161.17}
+  m_SizeDelta: {x: 170, y: 170}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &627207414
 MonoBehaviour:
@@ -5896,7 +5896,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 323.1, y: -247}
-  m_SizeDelta: {x: 170, y: 161.17}
+  m_SizeDelta: {x: 170, y: 170}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &882521802
 MonoBehaviour:
@@ -6010,7 +6010,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -323, y: -251}
-  m_SizeDelta: {x: 170, y: 161.17}
+  m_SizeDelta: {x: 170, y: 170}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &901440618
 MonoBehaviour:
@@ -7224,7 +7224,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -118.94003, y: -251}
-  m_SizeDelta: {x: 170, y: 161.17}
+  m_SizeDelta: {x: 170, y: 170}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1739185823
 MonoBehaviour:
@@ -9569,7 +9569,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 9a17cb9d172609a4f9c10e5341d06e5a,
+      objectReference: {fileID: 21300000, guid: a246d7882a37f23449c0e36d006c911b,
         type: 3}
     - target: {fileID: 7910636175812022974, guid: 47a27f30c9185fd418440d804fb78286,
         type: 3}
@@ -9590,7 +9590,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 13c8333de2d2b8741ad3967d70556b93,
+      objectReference: {fileID: 21300000, guid: b130684ced8f5f34582ac4f55646a1b2,
         type: 3}
     - target: {fileID: 7910636176147430297, guid: 47a27f30c9185fd418440d804fb78286,
         type: 3}
@@ -9858,7 +9858,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: e6694d230ce2cb443973135b1c67825f,
+      objectReference: {fileID: 21300000, guid: d14b337418cfec74aa53459e77c918e7,
         type: 3}
     - target: {fileID: 7910636177510018290, guid: 47a27f30c9185fd418440d804fb78286,
         type: 3}
