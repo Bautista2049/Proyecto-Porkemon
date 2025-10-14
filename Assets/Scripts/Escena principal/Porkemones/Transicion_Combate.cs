@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -10,10 +10,17 @@ public class Transicion_Combate : MonoBehaviour
     [SerializeField] private GameObject popupPanel; 
     [SerializeField] private TextMeshProUGUI popupText; 
 
-    private void OnCollisionEnter(Collision collision)
+    [Header("Porkemon Data")]
+    public PorkemonData botPorkemonData;
+
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (other.CompareTag("Player"))
         {
+            if (botPorkemonData == null)
+            {
+                return;
+            }
 
             if (GameState.porkemonDelBot != null && GameState.porkemonDelBot.VidaActual <= 0)
             {
@@ -25,6 +32,9 @@ public class Transicion_Combate : MonoBehaviour
                 }
                 return;
             }
+
+            // Set the bot's Pokémon based on this spawned one
+            GameState.porkemonDelBot = new Porkemon(botPorkemonData, botPorkemonData.nivel);
 
             SceneManager.LoadScene(nombreEscena);
             Cursor.lockState = CursorLockMode.None;

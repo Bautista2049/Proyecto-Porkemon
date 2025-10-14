@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0cfe5e20a480e9148859b0f488dadf57, type: 3}
-  m_Name: Porkemon_Data
+  m_Name: Bellsprout_Data
   m_EditorClassIdentifier: 
   nombre: Bellsprout
-  modeloPrefab: {fileID: 1102509840102244652, guid: b97c2fc30b5a7b149ad15ba0ba60d355,
+  modeloPrefab: {fileID: 1433957337944174730, guid: bd0d236192418cc4fa0277bab2f7a2d7,
     type: 3}
-  tipo1: 1
-  tipo2: 0
+  tipo1: 3
+  tipo2: 17
   nivel: 4
   vidaMaxima: 1000
   ataque: 30

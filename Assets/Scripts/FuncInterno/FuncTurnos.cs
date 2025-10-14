@@ -45,7 +45,7 @@ public class FuncTurnos : MonoBehaviour
 
     private void Update()
     {
-        if (isPlayer1Turn && GameState.ataqueSeleccionado != null && enCombate)
+        if (isPlayer1Turn && GameState.ataqueSeleccionado != null && enCombate && !ConsolaEnJuego.instance.isTyping)
         {
             StartCoroutine(RutinaAtaqueJugador());
         }
@@ -102,7 +102,7 @@ public class FuncTurnos : MonoBehaviour
         GameState.player1Turn = isPlayer1Turn;
         ActualizarUI();
 
-        if (!isPlayer1Turn && PuedeCombatir())
+        if (!isPlayer1Turn && PuedeCombatir() && !ConsolaEnJuego.instance.isTyping)
         {
             StartCoroutine(RutinaAtaqueBot());
         }
@@ -130,7 +130,7 @@ public class FuncTurnos : MonoBehaviour
         {
             GameState.nombreGanador = jugador1.porkemon.BaseData.nombre;
 
-            // Calcular experiencia ganada
+            
             GameState.experienciaGanada = GestorDeBatalla.instance.equipoJugador[0].CalcularExperienciaGanada(jugador2.porkemon, true);
             GameState.equipoGanador = new List<Porkemon>(GestorDeBatalla.instance.equipoJugador);
 
