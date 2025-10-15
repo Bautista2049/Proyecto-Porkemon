@@ -12,7 +12,7 @@ public class DynamicBotModel : MonoBehaviour
     void Start()
     {
         Porkemon botPork = null;
-        if (GestorDeBatalla.instance != null)
+        if (GestorDeBatalla.instance != null && GestorDeBatalla.instance.porkemonBot != null)
         {
             botPork = GestorDeBatalla.instance.porkemonBot;
         }
