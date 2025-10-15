@@ -4,6 +4,7 @@ using UnityEngine;
 using System.Linq;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TMPro;
 
 
 public class FuncTurnos : MonoBehaviour
@@ -77,7 +78,7 @@ public class FuncTurnos : MonoBehaviour
         enCombate = false;
         yield return new WaitForSeconds(1.5f);
 
-        if (jugador2.porkemon.Ataques.Count > 0)
+        if (jugador2.porkemon.Ataques.Count > 0 && !ConsolaEnJuego.instance.isTyping)
         {
             int indiceAtaque = Random.Range(0, jugador2.porkemon.Ataques.Count);
             AtaqueData ataqueDelBot = jugador2.porkemon.Ataques[indiceAtaque];
@@ -124,17 +125,23 @@ public class FuncTurnos : MonoBehaviour
     {
         if (jugador1.porkemon.VidaActual <= 0)
         {
-            SceneTransitionManager.Instance.LoadScene("Escena de muerte");
+            if (!ConsolaEnJuego.instance.isTyping)
+            {
+                SceneTransitionManager.Instance.LoadScene("Escena de muerte");
+            }
         }
         else if (jugador2.porkemon.VidaActual <= 0)
         {
-            GameState.nombreGanador = jugador1.porkemon.BaseData.nombre;
+            if (!ConsolaEnJuego.instance.isTyping)
+            {
+                GameState.nombreGanador = jugador1.porkemon.BaseData.nombre;
 
-            
-            GameState.experienciaGanada = GestorDeBatalla.instance.equipoJugador[0].CalcularExperienciaGanada(jugador2.porkemon, true);
-            GameState.equipoGanador = new List<Porkemon>(GestorDeBatalla.instance.equipoJugador);
 
-            SceneTransitionManager.Instance.LoadScene("Escena de Victoria");
+                GameState.experienciaGanada = GestorDeBatalla.instance.equipoJugador[0].CalcularExperienciaGanada(jugador2.porkemon, true);
+                GameState.equipoGanador = new List<Porkemon>(GestorDeBatalla.instance.equipoJugador);
+
+                SceneTransitionManager.Instance.LoadScene("Escena de Victoria");
+            }
         }
     }
 

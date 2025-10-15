@@ -10,6 +10,7 @@ public class GestorDeBatalla : MonoBehaviour
 
     public List<Porkemon> equipoJugador = new List<Porkemon>();
     public Porkemon porkemonBot;
+    public Porkemon porkemonDelBot;
 
     [Header("Datos Iniciales del Jugador")]
     public List<PorkemonData> dataEquipoJugador; 
@@ -49,8 +50,15 @@ public class GestorDeBatalla : MonoBehaviour
             GameState.porkemonDelJugador = equipoJugador[0];
         }
 
-        porkemonBot = new Porkemon(dataInicialBot, dataInicialBot.nivel);
-        GameState.porkemonDelBot = porkemonBot;
+        if (GameState.porkemonDelBot == null)
+        {
+            porkemonBot = new Porkemon(dataInicialBot, dataInicialBot.nivel);
+            GameState.porkemonDelBot = porkemonBot;
+        }
+        else
+        {
+            porkemonBot = GameState.porkemonDelBot;
+        }
 
         combateIniciado = false;
     }
