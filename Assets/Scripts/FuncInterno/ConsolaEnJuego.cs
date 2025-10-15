@@ -14,7 +14,7 @@ public class ConsolaEnJuego : MonoBehaviour
     public TextMeshProUGUI tmpText;
 
     [Header("Typewriter Effect")]
-    public float typingSpeed = 0.05f; // Seconds per character
+    public float typingSpeed = 0.03f; // Seconds per character, faster for better UX
 
     public bool isTyping { get; private set; } = false;
 
@@ -100,6 +100,23 @@ public class ConsolaEnJuego : MonoBehaviour
 
         foreach (char letter in fullMessage.ToCharArray())
         {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                // Skip to end if space pressed
+                currentText = fullMessage;
+                string displayText = previousText + currentText;
+
+                if (tmpText != null)
+                {
+                    tmpText.text = displayText;
+                }
+                else if (uiText != null)
+                {
+                    uiText.text = displayText;
+                }
+                break;
+            }
+
             currentText += letter;
             string displayText = previousText + currentText;
 
