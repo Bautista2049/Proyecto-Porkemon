@@ -86,39 +86,25 @@ public class ConsolaEnJuego : MonoBehaviour
     }
 
     private IEnumerator TypeText()
+{
+    isTyping = true;
+    string fullMessage = filteredLogs[filteredLogs.Count - 1];
+    string currentText = "";
+
+    // Get previous messages
+    string previousText = string.Join("\n", filteredLogs.Take(filteredLogs.Count - 1));
+    if (!string.IsNullOrEmpty(previousText))
     {
-        isTyping = true;
-        string fullMessage = filteredLogs[filteredLogs.Count - 1];
-        string currentText = "";
+        previousText += "\n";
+    }
 
-        // Get previous messages
-        string previousText = string.Join("\n", filteredLogs.Take(filteredLogs.Count - 1));
-        if (!string.IsNullOrEmpty(previousText))
+    foreach (char letter in fullMessage.ToCharArray())
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            previousText += "\n";
-        }
-
-        foreach (char letter in fullMessage.ToCharArray())
-        {
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                // Skip to end if space pressed
-                currentText = fullMessage;
-                string displayText = previousText + currentText;
-
-                if (tmpText != null)
-                {
-                    tmpText.text = displayText;
-                }
-                else if (uiText != null)
-                {
-                    uiText.text = displayText;
-                }
-                break;
-            }
-
-            currentText += letter;
-            string displayText = previousText + currentText;
+            // Skip to end if space pressed
+            currentText = fullMessage;
+            string displayText = "<color=#FFD700>[Combate]</color> " + previousText + currentText;  // Agregado prefijo y color para estilo Pokémon
 
             if (tmpText != null)
             {
@@ -128,12 +114,27 @@ public class ConsolaEnJuego : MonoBehaviour
             {
                 uiText.text = displayText;
             }
-            yield return new WaitForSeconds(typingSpeed);
+            break;
         }
 
-        isTyping = false;
-        typingCoroutine = null;
+        currentText += letter;
+        string currentDisplayText = "<color=#FFD700>[Combate]</color> " + previousText + currentText;  // Renombrado y agregado prefijo/color
+
+        if (tmpText != null)
+        {
+            tmpText.text = currentDisplayText;
+        }
+        else if (uiText != null)
+        {
+            uiText.text = currentDisplayText;
+        }
+        yield return new WaitForSeconds(typingSpeed);
     }
+
+    isTyping = false;
+    typingCoroutine = null;
+}
+
 
     private void ActualizarTextoConsola()
     {

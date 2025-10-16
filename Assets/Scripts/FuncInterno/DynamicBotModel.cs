@@ -46,8 +46,6 @@ public class DynamicBotModel : MonoBehaviour
             modelTransform.localPosition = Vector3.zero;
             modelTransform.localRotation = Quaternion.identity;
             modelTransform.localScale = Vector3.one;
-
-            Debug.Log("Loaded dynamic model for bot Pokémon: " + modelName);
         }
         else
         {
