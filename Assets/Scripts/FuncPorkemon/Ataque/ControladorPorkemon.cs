@@ -16,9 +16,6 @@ public class ControladorPorkemon : MonoBehaviour
     public Text textoNombre;
     public TextMeshProUGUI textoMensaje; // Para mostrar mensajes de daño con efecto typewriter
 
-    [Header("Model")]
-    public GameObject modelParentContainer; // The GameObject whose transform will hold the model (e.g., a child object for the model)
-
     public void Setup(Porkemon pInstance)
     {
         porkemon = pInstance;
@@ -28,8 +25,6 @@ public class ControladorPorkemon : MonoBehaviour
 
         porkemon.OnHPChanged += ActualizarUI;
         ActualizarUI();
-
-        LoadModel();
     }
 
     private void OnDestroy()
@@ -121,52 +116,25 @@ public class ControladorPorkemon : MonoBehaviour
         return false;
     }
 
-    private void LoadModel()
-    {
-        if (porkemon == null || porkemon.BaseData.modeloPrefab == null) return;
-
-        Transform modelParent = (modelParentContainer != null ? modelParentContainer.transform : transform);
-
-        if (modelParent.gameObject.scene != null)
-        {
-            foreach (Transform child in modelParent)
-            {
-                DestroyImmediate(child.gameObject, true);
-            }
-        }
-
-        GameObject modelInstance = Instantiate(porkemon.BaseData.modeloPrefab);
-
-        if (modelParent.gameObject.scene != null)
-        {
-            modelInstance.transform.SetParent(modelParent);
-            modelInstance.transform.localPosition = Vector3.zero;
-            modelInstance.transform.localRotation = Quaternion.identity;
-            modelInstance.transform.localScale = Vector3.one;
-        }
-        else
-        {
-            modelInstance.transform.position = modelParent.position;
-            modelInstance.transform.rotation = modelParent.rotation;
-            modelInstance.transform.localScale = modelParent.localScale;
-        }
-    }
-
     private IEnumerator MostrarMensajeTypewriter(string mensaje)
     {
         Debug.Log($"{mensaje}");
         if (textoMensaje != null)
         {
-
+            
             textoMensaje.text = "";
             foreach (char letra in mensaje)
             {
                 textoMensaje.text += letra;
-                yield return new WaitForSeconds(0.05f);
+                yield return new WaitForSeconds(0.05f); 
             }
-
+            
             yield return new WaitForSeconds(2f);
             textoMensaje.text = "";
+        }
+        else
+        {
+            Debug.Log("");
         }
     }
 }
