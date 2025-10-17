@@ -14,7 +14,7 @@ public class ControladorPorkemon : MonoBehaviour
     public Slider barraSalud;
     public Text textoSalud;
     public Text textoNombre;
-    public TextMeshProUGUI textoMensaje; // Para mostrar mensajes de daño con efecto typewriter
+    public TextMeshProUGUI textoMensaje;
 
     public void Setup(Porkemon pInstance)
     {
@@ -98,7 +98,7 @@ public class ControladorPorkemon : MonoBehaviour
 
         porkemon.VidaActual -= danioTotal;
 
-        // Mostrar mensaje con efecto typewriter
+        
         string mensajeDanio = $"{atacante.BaseData.nombre} hace {danioTotal} de daño con el ataque {ataque.nombreAtaque} a {porkemon.BaseData.nombre}.";
         StartCoroutine(MostrarMensajeTypewriter(mensajeDanio));
 
@@ -131,10 +131,6 @@ public class ControladorPorkemon : MonoBehaviour
             
             yield return new WaitForSeconds(2f);
             textoMensaje.text = "";
-        }
-        else
-        {
-            Debug.Log("");
         }
     }
 }

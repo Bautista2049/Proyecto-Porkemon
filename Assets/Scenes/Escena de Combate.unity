@@ -6727,7 +6727,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uiText: {fileID: 1202774897}
   tmpText: {fileID: 1596043279}
-  typingSpeed: 0.05
+  typingSpeed: 0
 --- !u!1 &1402806743 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100000, guid: 0167bb69aa7275e46a2507173174adb7,
