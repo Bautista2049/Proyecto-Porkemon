@@ -1,4 +1,4 @@
-﻿﻿using System.Collections;
+﻿﻿﻿﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
@@ -41,6 +41,8 @@ public class spawn : MonoBehaviour
         GameObject prefab = porkemons[index];
         PorkemonData data = porkemonDatas[index];
 
+        int nivelSpawn = DeterminarNivelSpawn();
+
         Vector2 posCircular = Random.insideUnitCircle * radio;
         float x = transform.position.x + posCircular.x;
         float z = transform.position.z + posCircular.y;
@@ -54,10 +56,37 @@ public class spawn : MonoBehaviour
         if (transicion != null)
         {
             transicion.botPorkemonData = data;
+            transicion.nivelSpawn = nivelSpawn;
         }
         else
         {
             Debug.LogWarning("No Transicion_Combate component found on spawned prefab: " + prefab.name);
+        }
+    }
+
+    private int DeterminarNivelSpawn()
+    {
+        if (gameObject.CompareTag("HierbaAlta"))
+        {
+            return 1;
+        }
+        else if (gameObject.CompareTag("Bosque"))
+        {
+            return 5;
+        }
+        else if (gameObject.CompareTag("Montana"))
+        {
+            return 10;
+        }
+        else if (gameObject.CompareTag("Agua"))
+        {
+            return 3;
+        }
+        else
+        {
+            return GestorDeBatalla.instance != null && GestorDeBatalla.instance.equipoJugador.Count > 0
+                ? GestorDeBatalla.instance.equipoJugador[0].Nivel
+                : 5;
         }
     }
 

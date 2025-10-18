@@ -8,6 +8,7 @@ TagManager:
   - Player1
   - Porkemon
   - Ground
+  - HierbaAlta
   layers:
   - Default
   - TransparentFX

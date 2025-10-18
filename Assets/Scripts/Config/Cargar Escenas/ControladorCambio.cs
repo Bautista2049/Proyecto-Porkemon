@@ -101,6 +101,16 @@ public class ControladorCambio : MonoBehaviour
             controladorPorkemon.Setup(nuevo);
         }
 
+        
+        DynamicBotModel[] dynamicModels = FindObjectsOfType<DynamicBotModel>();
+        foreach (DynamicBotModel dynamicModel in dynamicModels)
+        {
+            if (dynamicModel.isPlayerModel)
+            {
+                dynamicModel.UpdateModel(nuevo.BaseData.nombre);
+            }
+        }
+
         SceneTransitionManager.Instance.LoadScene("Escena de combate");
     }
 }

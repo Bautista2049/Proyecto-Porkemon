@@ -12,6 +12,7 @@ public class Transicion_Combate : MonoBehaviour
 
     [Header("Porkemon Data")]
     public PorkemonData botPorkemonData;
+    public int nivelSpawn = 5;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -34,7 +35,7 @@ public class Transicion_Combate : MonoBehaviour
             }
 
             // Set the bot's Pokémon based on this spawned one
-            GameState.porkemonDelBot = new Porkemon(botPorkemonData, botPorkemonData.nivel);
+            GameState.porkemonDelBot = new Porkemon(botPorkemonData, nivelSpawn);
 
             SceneManager.LoadScene(nombreEscena);
             Cursor.lockState = CursorLockMode.None;
