@@ -7,8 +7,8 @@ using UnityEngine.UI;
 public class DynamicBotModel : MonoBehaviour
 {
     [Header("Model Setup")]
-    public GameObject modelParentContainer; // The GameObject whose transform will hold the model (e.g., a child object for the model)
-    [SerializeField] private bool isPlayerModel = false;
+    public GameObject modelParentContainer;
+    [SerializeField] public bool isPlayerModel = false;
 
     void Start()
     {
@@ -45,15 +45,13 @@ public class DynamicBotModel : MonoBehaviour
 
         if (modelPrefab != null)
         {
-            Transform modelParent = (modelParentContainer != null ? modelParentContainer.transform : transform);
+            Transform modelParent = modelParentContainer != null ? modelParentContainer.transform : transform;
 
-            // Clear any existing model in the parent
             foreach (Transform child in modelParent)
             {
                 Destroy(child.gameObject);
             }
 
-            // Instantiate the correct model
             Transform modelTransform = Instantiate(modelPrefab, modelParent).transform;
             modelTransform.localPosition = Vector3.zero;
             modelTransform.localRotation = Quaternion.identity;
@@ -65,7 +63,7 @@ public class DynamicBotModel : MonoBehaviour
         }
     }
 
-    private void UpdateModelForCurrentPokemon()
+    public void UpdateModelForCurrentPokemon()
     {
         Porkemon currentPork = null;
         if (GestorDeBatalla.instance != null && GestorDeBatalla.instance.porkemonJugador != null)
@@ -85,5 +83,41 @@ public class DynamicBotModel : MonoBehaviour
 
         string modelName = currentPork.BaseData.nombre;
         UpdateModel(modelName);
+    }
+    
+    private Animator GetCurrentAnimator()
+    {
+        if (modelParentContainer != null && modelParentContainer.transform.childCount > 0)
+        {
+            return modelParentContainer.transform.GetChild(0).GetComponent<Animator>();
+        }
+        return null;
+    }
+    
+    public void PlayExitAnimation()
+    {
+        Animator anim = GetCurrentAnimator();
+        if (anim != null)
+        {
+            anim.CrossFade("Exit", 0.1f);
+        }
+    }
+    
+    public void PlayEnterAnimation()
+    {
+        Animator anim = GetCurrentAnimator();
+        if (anim != null)
+        {
+            anim.Play("Enter");
+        }
+    }
+
+    public void ClearCurrentModel()
+    {
+        Transform modelParent = modelParentContainer != null ? modelParentContainer.transform : transform;
+        foreach (Transform child in modelParent)
+        {
+            Destroy(child.gameObject);
+        }
     }
 }

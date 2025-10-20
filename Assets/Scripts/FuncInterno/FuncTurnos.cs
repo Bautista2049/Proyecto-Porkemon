@@ -97,7 +97,7 @@ public class FuncTurnos : MonoBehaviour
         enCombate = true;
     }
 
-    private void CambiarTurno()
+    public void CambiarTurno()
     {
         isPlayer1Turn = !isPlayer1Turn;
         GameState.player1Turn = isPlayer1Turn;
@@ -125,6 +125,8 @@ public class FuncTurnos : MonoBehaviour
     {
         if (jugador1.porkemon.VidaActual <= 0)
         {
+            Debug.LogError("El Pokémon del jugador ha sido derrotado. Intentando cargar Escena de muerte."); 
+            
             if (!ConsolaEnJuego.instance.isTyping)
             {
                 SceneTransitionManager.Instance.LoadScene("Escena de muerte");

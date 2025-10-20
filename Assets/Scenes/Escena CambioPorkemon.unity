@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641275, b: 0.5748172, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2096,6 +2096,10 @@ MonoBehaviour:
   - {fileID: 1754108486}
   - {fileID: 1778134550}
   tituloTexto: {fileID: 1314797914}
+  jugadorDynamicModel: {fileID: 114884114624635788, guid: bd0d236192418cc4fa0277bab2f7a2d7,
+    type: 3}
+  exitWait: 0.5
+  enterWait: 0.8
 --- !u!1 &1927892517
 GameObject:
   m_ObjectHideFlags: 0

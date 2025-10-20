@@ -20,8 +20,8 @@ MonoBehaviour:
   nivel: 1
   vidaMaxima: 100
   ataque: 20
-  defensa: 2
-  espiritu: 5
+  defensa: 20
+  espiritu: 100000
   velocidad: 20
   ataquesQuePuedeAprender:
   - {fileID: 11400000, guid: fc645ae56d94fcb42be00560cba1dc4f, type: 2}

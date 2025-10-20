@@ -2166,8 +2166,8 @@ GameObject:
   - component: {fileID: 1433957337951584892}
   - component: {fileID: 136510473696817524}
   - component: {fileID: 54046790277432370}
-  - component: {fileID: 114558463568710950}
-  - component: {fileID: 114398131569227038}
+  - component: {fileID: 114305995589165948}
+  - component: {fileID: 114884114624635788}
   m_Layer: 0
   m_Name: Bellsprout
   m_TagString: Untagged
@@ -2240,7 +2240,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &114558463568710950
+--- !u!114 &114305995589165948
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2256,7 +2256,8 @@ MonoBehaviour:
   popupPanel: {fileID: 0}
   popupText: {fileID: 0}
   botPorkemonData: {fileID: 11400000, guid: 6c9eb4021237ff14a82c44f71a59ea8a, type: 2}
---- !u!114 &114398131569227038
+  nivelSpawn: 5
+--- !u!114 &114884114624635788
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2269,6 +2270,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   modelParentContainer: {fileID: 1433957337944174730}
+  isPlayerModel: 1
 --- !u!1 &1433957337944174732
 GameObject:
   m_ObjectHideFlags: 0

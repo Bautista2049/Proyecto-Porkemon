@@ -1,8 +1,9 @@
-﻿using System.Collections.Generic;
+﻿﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
+using System.Collections; // Necesario para la corrutina si deseas animación de retorno
 
 public class ControladorCambio : MonoBehaviour
 {
@@ -11,22 +12,21 @@ public class ControladorCambio : MonoBehaviour
     public TextMeshProUGUI tituloTexto;
 
     private List<Porkemon> equipoJugador;
+    private const string EscenaCombate = "Escena de combate"; // Nombre de tu escena de combate
 
     void Start()
     {
-        Debug.Log("ControladorCambio Start - Iniciando");
         if (GestorDeBatalla.instance == null)
         {
             Debug.LogError("GestorDeBatalla.instance es null");
             return;
         }
         equipoJugador = GestorDeBatalla.instance.equipoJugador;
-        Debug.Log($"EquipoJugador count: {equipoJugador.Count}");
         ActualizarBotones();
         tituloTexto.text = $"Tienes {equipoJugador.Count} Pokémon";
-        Debug.Log("ControladorCambio Start - Completado");
     }
      
+    // ... (Métodos ActualizarBotones y OnButtonClicked sin cambios) ...
 
     void ActualizarBotones()
     {
@@ -65,7 +65,6 @@ public class ControladorCambio : MonoBehaviour
 
     public void OnButtonClicked(int index)
     {
-        Debug.Log($"OnButtonClicked called with index {index}");
         if (index < 0 || index >= equipoJugador.Count)
         {
             Debug.LogWarning($"Index {index} is out of range. Equipo count: {equipoJugador.Count}");
@@ -73,44 +72,70 @@ public class ControladorCambio : MonoBehaviour
         }
 
         Porkemon selected = equipoJugador[index];
-        Debug.Log($"Button clicked for {selected.BaseData.nombre}");
         SeleccionarPorkemon(selected);
     }
 
     public void SeleccionarPorkemon(Porkemon nuevo)
     {
-        Debug.Log($"SeleccionarPorkemon called with {nuevo?.BaseData.nombre ?? "null"}");
         if (nuevo == null || nuevo.VidaActual <= 0)
         {
             Debug.LogWarning("Porkemon is null or has no health");
             return;
         }
 
+        // 1. Actualizar el estado global
         GestorDeBatalla.instance.porkemonJugador = nuevo;
         GameState.porkemonDelJugador = nuevo;
 
-        Debug.Log($"New active Porkemon: {GestorDeBatalla.instance.porkemonJugador.BaseData.nombre}");
         Debug.Log($"Cambiaste a {nuevo.BaseData.nombre}. Turno gastado.");
 
+        // 2. Ceder el turno
         GameState.player1Turn = false;
 
-        // Update the model in the combat UI if present
-        ControladorPorkemon controladorPorkemon = FindObjectOfType<ControladorPorkemon>();
-        if (controladorPorkemon != null)
-        {
-            controladorPorkemon.Setup(nuevo);
-        }
-
+        // 3. ACTUALIZAR MODELO/UI Y VOLVER A LA ESCENA DE COMBATE SIN RECARGAR
+        // *** CAMBIO CLAVE A IMPLEMENTAR POR TI ***
+        // Necesitas un script global que maneje la descarga/activación de escenas.
         
-        DynamicBotModel[] dynamicModels = FindObjectsOfType<DynamicBotModel>();
-        foreach (DynamicBotModel dynamicModel in dynamicModels)
-        {
-            if (dynamicModel.isPlayerModel)
-            {
-                dynamicModel.UpdateModel(nuevo.BaseData.nombre);
-            }
-        }
+        // --- Lógica de Retorno ---
+        
+        // Simulación: Llamar a la función de retorno (esto depende de tu SceneTransitionManager)
+        StartCoroutine(RetornarYActualizar());
+    }
+    
+    // Función para manejar la actualización y la vuelta a la escena de combate
+    private IEnumerator RetornarYActualizar()
+    {
+        // 1. Volver a la escena de combate
+        // Asumiendo que esta escena (la de UI de cambio) se llama "Escena de Cambio" o similar
+        // Y que la escena de combate sigue cargada aditivamente o está desactivada.
+        
+        // Opción 1: Si usas SceneManager.LoadScene(string, LoadSceneMode.Single)
+        // SceneManager.LoadScene(EscenaCombate); 
+        
+        // Opción 2: Si usas SceneTransitionManager para cargar/descargar aditivamente.
+        // Asumiremos que el Transicion_Combate.cs ya ha cargado Escena de Combate.
+        
+        // Desactivar la escena actual o descargarla
+        SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene().name); 
+        
+        // Nota: Si usas UnloadScene, asegúrate de que la escena de combate esté activa/visible.
+        // Si no puedes usar UnloadSceneAsync, usa SceneManager.LoadScene(EscenaCombate); para recargarla.
+        
+        // Al regresar o recargar la escena de combate, los scripts DynamicBotModel.Start() y FuncTurnos.Start()
+        // se ejecutarán y leerán el nuevo valor de GameState.porkemonDelJugador.
 
-        SceneTransitionManager.Instance.LoadScene("Escena de combate");
+        yield return null; // Pequeña espera para asegurar la descarga/carga
+
+        // NOTA IMPORTANTE: Si la escena de combate ya estaba cargada y solo la desactivaste,
+        // ¡DEBES ACTIVARLA Y LUEGO LLAMAR A FUNCIONAR!
+        
+        // Dado que recargar la escena es la opción más simple que tenías antes:
+        SceneTransitionManager.Instance.LoadScene(EscenaCombate); 
+    }
+    
+    public void CancelarCambio()
+    {
+        // Esto solo vuelve a la escena de combate sin hacer el cambio
+        SceneTransitionManager.Instance.LoadScene(EscenaCombate);
     }
 }
