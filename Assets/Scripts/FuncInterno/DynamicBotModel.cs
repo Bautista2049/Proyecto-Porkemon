@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class DynamicBotModel : MonoBehaviour
 {
     [Header("Model Setup")]
-    public GameObject modelParentContainer;
+    public GameObject modelParentContainer; 
     [SerializeField] public bool isPlayerModel = false;
 
     void Start()
@@ -21,26 +21,25 @@ public class DynamicBotModel : MonoBehaviour
             Porkemon botPork = null;
             if (GestorDeBatalla.instance != null && GestorDeBatalla.instance.porkemonBot != null)
             {
+                // La fuente de verdad en la escena de combate es GestorDeBatalla.porkemonBot
                 botPork = GestorDeBatalla.instance.porkemonBot;
-            }
-            else if (GameState.porkemonDelBot != null)
-            {
-                botPork = GameState.porkemonDelBot;
             }
 
             if (botPork == null)
             {
-                Debug.LogWarning("No bot Pokémon data available for dynamic model loading.");
+                Debug.LogError("DynamicBotModel ERROR: No se encontró el Pokémon del Bot en GestorDeBatalla. Revisa que Transicion_Combate lo haya guardado en GameState.");
                 return;
             }
 
             string modelName = botPork.BaseData.nombre;
+            Debug.Log($"DynamicBotModel: Intentando cargar modelo del Bot: '{modelName}'"); 
             UpdateModel(modelName);
         }
     }
 
     public void UpdateModel(string modelName)
     {
+        // Ruta de carga: Resources/Porkemons/{NombreDelPokemon}
         GameObject modelPrefab = Resources.Load<GameObject>("Porkemons/" + modelName);
 
         if (modelPrefab != null)
@@ -59,11 +58,12 @@ public class DynamicBotModel : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("Model prefab not found in Resources/Porkemons/ for " + modelName + ". Ensure the prefab is named exactly like the Pokémon and placed in Resources/Porkemons/.");
+            // Mensaje de error mejorado
+            Debug.LogError($"DynamicBotModel ERROR: Prefab no encontrado. Nombre esperado: '{modelName}'. Verifica que el nombre del prefab en Resources/Porkemons/ sea EXACTO.");
         }
     }
 
-    public void UpdateModelForCurrentPokemon()
+    private void UpdateModelForCurrentPokemon()
     {
         Porkemon currentPork = null;
         if (GestorDeBatalla.instance != null && GestorDeBatalla.instance.porkemonJugador != null)
