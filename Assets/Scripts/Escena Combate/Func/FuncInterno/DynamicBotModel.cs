@@ -27,12 +27,11 @@ public class DynamicBotModel : MonoBehaviour
 
             if (botPork == null)
             {
-                Debug.LogError("DynamicBotModel ERROR: No se encontró el Pokémon del Bot en GestorDeBatalla. Revisa que Transicion_Combate lo haya guardado en GameState.");
+                Debug.LogError("ERROR: No se encontró el Pokémon");
                 return;
             }
 
             string modelName = botPork.BaseData.nombre;
-            Debug.Log($"DynamicBotModel: Intentando cargar modelo del Bot: '{modelName}'"); 
             UpdateModel(modelName);
         }
     }
@@ -59,7 +58,7 @@ public class DynamicBotModel : MonoBehaviour
         else
         {
             // Mensaje de error mejorado
-            Debug.LogError($"DynamicBotModel ERROR: Prefab no encontrado. Nombre esperado: '{modelName}'. Verifica que el nombre del prefab en Resources/Porkemons/ sea EXACTO.");
+            Debug.LogError($"ERROR: Prefab no encontrado");
         }
     }
 

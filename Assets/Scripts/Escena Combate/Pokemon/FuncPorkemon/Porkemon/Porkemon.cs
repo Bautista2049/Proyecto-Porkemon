@@ -60,6 +60,30 @@ public class Porkemon
         OnHPChanged?.Invoke();
     }
 
+    public void AumentarAtaque(int cantidad)
+    {
+        Ataque = Mathf.Min(Ataque + cantidad, Ataque * 2); // Limitar a duplicar el stat máximo
+        OnHPChanged?.Invoke();
+    }
+
+    public void AumentarDefensa(int cantidad)
+    {
+        Defensa = Mathf.Min(Defensa + cantidad, Defensa * 2);
+        OnHPChanged?.Invoke();
+    }
+
+    public void AumentarEspiritu(int cantidad)
+    {
+        Espiritu = Mathf.Min(Espiritu + cantidad, Espiritu * 2);
+        OnHPChanged?.Invoke();
+    }
+
+    public void AumentarVelocidad(int cantidad)
+    {
+        Velocidad = Mathf.Min(Velocidad + cantidad, Velocidad * 2);
+        OnHPChanged?.Invoke();
+    }
+
     public bool puedeAtacar = false;
     public List<AtaqueData> Ataques { get; set; }
 

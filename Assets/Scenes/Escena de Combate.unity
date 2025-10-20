@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.6574417, g: 0.5420627, b: 0.3233886, a: 1}
+  m_IndirectSpecularColor: {r: 0.6573798, g: 0.5419396, b: 0.32329232, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -63,7 +63,8 @@ LightmapSettings:
     m_CompAOExponent: 1
     m_CompAOExponentDirect: 0
     m_Padding: 2
-    m_LightmapParameters: {fileID: 0}
+    m_LightmapParameters: {fileID: 15203, guid: 0000000000000000f000000000000000,
+      type: 0}
     m_LightmapsBakeMode: 1
     m_TextureCompression: 1
     m_FinalGather: 0
@@ -1568,6 +1569,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6c9eb4021237ff14a82c44f71a59ea8a, type: 2}
   - {fileID: 11400000, guid: 448fd5351b275e94b8999870f99c542d, type: 2}
   dataInicialBot: {fileID: 11400000, guid: 448fd5351b275e94b8999870f99c542d, type: 2}
+  inventarioBattleItems: []
   combateIniciado: 0
 --- !u!4 &856788139
 Transform:
@@ -2042,7 +2044,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 965146519}
   m_LocalRotation: {x: 0.20127499, y: -0, z: -0, w: 0.97953475}
-  m_LocalPosition: {x: -322.68, y: 12.1, z: 58.8}
+  m_LocalPosition: {x: -322.68, y: 12.76, z: 59.08}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1436755726}
@@ -3577,6 +3579,7 @@ MonoBehaviour:
   - {fileID: 882521802}
   panelDeAccionesDelJugador: {fileID: 172510022}
   panelMovs: {fileID: 1113364972}
+  botonMochila: {fileID: 2131244119}
 --- !u!4 &1841766515 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 0167bb69aa7275e46a2507173174adb7,
@@ -3854,6 +3857,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2131244119 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7910636176147430298, guid: 47a27f30c9185fd418440d804fb78286,
+    type: 3}
+  m_PrefabInstance: {fileID: 7910636177730359623}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &801385146624068943
@@ -5469,6 +5484,36 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Type
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7910636176147430298, guid: 47a27f30c9185fd418440d804fb78286,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7910636176147430298, guid: 47a27f30c9185fd418440d804fb78286,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7910636176147430298, guid: 47a27f30c9185fd418440d804fb78286,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7910636176147430298, guid: 47a27f30c9185fd418440d804fb78286,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1834876706}
+    - target: {fileID: 7910636176147430298, guid: 47a27f30c9185fd418440d804fb78286,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: AbrirMochila
+      objectReference: {fileID: 0}
+    - target: {fileID: 7910636176147430298, guid: 47a27f30c9185fd418440d804fb78286,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 7910636176147430299, guid: 47a27f30c9185fd418440d804fb78286,
         type: 3}
