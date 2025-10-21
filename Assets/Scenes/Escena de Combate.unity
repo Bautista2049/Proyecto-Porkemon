@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.6573798, g: 0.5419396, b: 0.32329232, a: 1}
+  m_IndirectSpecularColor: {r: 0.65742165, g: 0.5420472, b: 0.32342148, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -849,7 +849,7 @@ MonoBehaviour:
   barraSalud: {fileID: 1999157870}
   textoSalud: {fileID: 2097322569}
   textoNombre: {fileID: 536318269}
-  textoMensaje: {fileID: 0}
+  textoMensaje: {fileID: 1596043279}
 --- !u!114 &403739426
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1411,7 +1411,7 @@ Animator:
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 2fec353e1fecffe438c959ce85842223, type: 2}
   m_CullingMode: 0
-  m_UpdateMode: 2
+  m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
@@ -3038,7 +3038,7 @@ MonoBehaviour:
   m_fontSize: 25
   m_fontSizeBase: 25
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0

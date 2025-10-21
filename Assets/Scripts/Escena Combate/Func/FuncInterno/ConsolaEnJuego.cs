@@ -104,7 +104,7 @@ public class ConsolaEnJuego : MonoBehaviour
         {
             // Skip to end if space pressed
             currentText = fullMessage;
-            string displayText = "<color=#FFD700>[Combate]</color> " + previousText + currentText;  // Agregado prefijo y color para estilo Pokémon
+            string displayText = previousText + currentText;  // Agregado prefijo y color para estilo Pokémon
 
             if (tmpText != null)
             {
@@ -118,7 +118,7 @@ public class ConsolaEnJuego : MonoBehaviour
         }
 
         currentText += letter;
-        string currentDisplayText = "<color=#FFD700>[Combate]</color> " + previousText + currentText;  // Renombrado y agregado prefijo/color
+        string currentDisplayText = previousText + currentText;  // Renombrado y agregado prefijo/color
 
         if (tmpText != null)
         {

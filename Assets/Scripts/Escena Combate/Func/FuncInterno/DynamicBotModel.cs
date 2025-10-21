@@ -24,14 +24,15 @@ public class DynamicBotModel : MonoBehaviour
                 // La fuente de verdad en la escena de combate es GestorDeBatalla.porkemonBot
                 botPork = GestorDeBatalla.instance.porkemonBot;
             }
-
+string modelName = botPork.BaseData.nombre;
             if (botPork == null)
             {
-                Debug.LogError("ERROR: No se encontró el Pokémon");
-                return;
+                
+                Debug.Log("Loading bot model: " + modelName);
+                UpdateModel(modelName);
             }
 
-            string modelName = botPork.BaseData.nombre;
+            
             UpdateModel(modelName);
         }
     }
