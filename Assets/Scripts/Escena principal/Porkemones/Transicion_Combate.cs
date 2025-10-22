@@ -12,7 +12,7 @@ public class Transicion_Combate : MonoBehaviour
     public PorkemonData botPorkemonData;
     public int nivelSpawn = 5;
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
