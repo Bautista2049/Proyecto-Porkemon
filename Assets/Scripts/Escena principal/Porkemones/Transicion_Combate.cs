@@ -7,14 +7,16 @@ using TMPro;
 public class Transicion_Combate : MonoBehaviour
 {
     [SerializeField] private string nombreEscena = "Escena de Combate" ;
+    [SerializeField] private GameObject popupPanel; 
+    [SerializeField] private TextMeshProUGUI popupText; 
 
     [Header("Porkemon Data")]
     public PorkemonData botPorkemonData;
-    public int nivelSpawn = 5;
+    public int nivelSpawn;
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision collision)
     {
-        if (other.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player"))
         {
             if (botPorkemonData == null)
             {
@@ -23,11 +25,15 @@ public class Transicion_Combate : MonoBehaviour
 
             if (GameState.porkemonDelBot != null && GameState.porkemonDelBot.VidaActual <= 0)
             {
-                Debug.Log("El Porkemon del bot está debilitado. No puedes iniciar un combate.");
+                if (popupText != null)
+                {
+                    popupText.gameObject.SetActive(true);
+                    popupText.text = "El Porkemon del bot está debilitado. No puedes iniciar un combate.";
+                    StartCoroutine(DesactivarTexto(3f));
+                }
                 return;
             }
 
-            
             GameState.porkemonDelBot = new Porkemon(botPorkemonData, nivelSpawn);
 
             SceneManager.LoadScene(nombreEscena);
@@ -36,5 +42,12 @@ public class Transicion_Combate : MonoBehaviour
         }
     }
 
-    
+    private IEnumerator DesactivarTexto(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        if (popupText != null)
+        {
+            popupText.gameObject.SetActive(false);
+        }
+    }
 }

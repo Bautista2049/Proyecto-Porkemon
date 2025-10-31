@@ -82,10 +82,10 @@ public class ConsolaEnJuego : MonoBehaviour
         }
 
         // Start typing the new message
-        typingCoroutine = StartCoroutine(TypeText());
+        typingCoroutine = StartCoroutine(MostrarMensaje());
     }
 
-    private IEnumerator TypeText()
+    public IEnumerator MostrarMensaje()
 {
     isTyping = true;
     string fullMessage = filteredLogs[filteredLogs.Count - 1];

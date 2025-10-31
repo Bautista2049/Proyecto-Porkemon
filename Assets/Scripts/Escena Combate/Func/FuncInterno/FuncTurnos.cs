@@ -6,14 +6,11 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
 
-
 public class FuncTurnos : MonoBehaviour
 {
-    [Header("Controladores de Porkemon")]
     public ControladorPorkemon jugador1;
     public ControladorPorkemon jugador2;
 
-    [Header("UI de Turnos")]
     public GameObject turnoJ1Prefab;
     public GameObject turnoBotPrefab;
     public GameObject panelDeAccionesDelJugador;
@@ -23,6 +20,11 @@ public class FuncTurnos : MonoBehaviour
 
     private void Start()
     {
+        if (GestorDeBatalla.instance != null)
+        {
+            GestorDeBatalla.instance.IniciarBatalla();
+        }
+
         jugador1.Setup(GestorDeBatalla.instance.porkemonJugador);
         jugador2.Setup(GestorDeBatalla.instance.porkemonBot);
 
@@ -40,73 +42,102 @@ public class FuncTurnos : MonoBehaviour
 
         if (!isPlayer1Turn)
         {
-            StartCoroutine(RutinaAtaqueBot());
+            StartCoroutine(RutinaTurnoBotCompleto());
         }
     }
 
     private void Update()
     {
-        if (isPlayer1Turn && GameState.ataqueSeleccionado != null && enCombate && !ConsolaEnJuego.instance.isTyping)
+        if (!enCombate) return;
+        
+        if (isPlayer1Turn && GameState.ataqueSeleccionado != null)
         {
-            StartCoroutine(RutinaAtaqueJugador());
+            ContinuarTurnoJugador();
+        }
+
+        if (jugador1.porkemon.VidaActual <= 0 || jugador2.porkemon.VidaActual <= 0)
+        {
+            enCombate = false;
+            VerificarFinCombate();
         }
     }
 
-    private IEnumerator RutinaAtaqueJugador()
+    private void ContinuarTurnoJugador()
     {
-        enCombate = false;
-        AtaqueData ataque = GameState.ataqueSeleccionado;
-        GameState.ataqueSeleccionado = null;
-
-        bool debilitado = jugador2.RecibirDanio(ataque, jugador1.porkemon);
-
-        yield return new WaitForSeconds(1.5f);
-
-        if (debilitado)
+        if (jugador1.porkemon.UsarAtaqueElemental(jugador2.porkemon, GameState.ataqueSeleccionado))
         {
-            VerificarFinCombate();
+            StartCoroutine(RutinaFinTurno());
         }
         else
         {
-            CambiarTurno();
+            StartCoroutine(RutinaFinTurno()); 
         }
-        enCombate = true;
+
+        GameState.ataqueSeleccionado = null;
     }
 
-    private IEnumerator RutinaAtaqueBot()
+    private IEnumerator RutinaTurnoBotCompleto()
     {
-        enCombate = false;
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitUntil(() => !ConsolaEnJuego.instance.isTyping);
+        yield return new WaitForSeconds(0.5f); 
 
-        if (jugador2.porkemon.Ataques.Count > 0 && !ConsolaEnJuego.instance.isTyping)
+        AtaqueData ataqueBot = SeleccionarAtaqueBot(jugador2.porkemon, jugador1.porkemon);
+        
+        string mensaje = $"Turno del Bot. {jugador2.porkemon.BaseData.nombre} usa {ataqueBot.nombreAtaque}.";
+        Debug.Log(mensaje); 
+
+        yield return new WaitUntil(() => !ConsolaEnJuego.instance.isTyping);
+        yield return new WaitForSeconds(0.5f); 
+
+        if (jugador2.porkemon.UsarAtaqueElemental(jugador1.porkemon, ataqueBot))
         {
-            int indiceAtaque = Random.Range(0, jugador2.porkemon.Ataques.Count);
-            AtaqueData ataqueDelBot = jugador2.porkemon.Ataques[indiceAtaque];
-            
-            bool debilitado = jugador1.RecibirDanio(ataqueDelBot, jugador2.porkemon);
-
-            if (debilitado)
-            {
-                VerificarFinCombate();
-            }
-            else
-            {
-                CambiarTurno();
-            }
         }
-        enCombate = true;
+        else
+        {
+        }
+
+        StartCoroutine(RutinaFinTurno());
     }
 
-    public void CambiarTurno()
+    private IEnumerator RutinaFinTurno()
     {
+        yield return new WaitUntil(() => !ConsolaEnJuego.instance.isTyping); 
+
+        jugador1.porkemon.AplicarDanioPorEstado();
+        jugador2.porkemon.AplicarDanioPorEstado();
+
+        yield return new WaitUntil(() => !ConsolaEnJuego.instance.isTyping); 
+
+        jugador1.ActualizarUI();
+        jugador2.ActualizarUI();
+
+        if (jugador1.porkemon.VidaActual <= 0 || jugador2.porkemon.VidaActual <= 0)
+        {
+            enCombate = false;
+            VerificarFinCombate();
+            yield break;
+        }
+
         isPlayer1Turn = !isPlayer1Turn;
         GameState.player1Turn = isPlayer1Turn;
         ActualizarUI();
 
-        if (!isPlayer1Turn && PuedeCombatir() && !ConsolaEnJuego.instance.isTyping)
+        if (!isPlayer1Turn)
         {
-            StartCoroutine(RutinaAtaqueBot());
+            StartCoroutine(RutinaTurnoBotCompleto());
         }
+    }
+    
+    private AtaqueData SeleccionarAtaqueBot(Porkemon atacante, Porkemon defensor)
+    {
+        AtaqueData mejorAtaque = atacante.Ataques.FirstOrDefault(a => CalculadorDanioElemental.CalcularEfectividad(a.tipo, defensor.BaseData.tipo1, defensor.BaseData.tipo2) > 1f && a.pp > 0);
+        
+        if (mejorAtaque == null)
+        {
+            mejorAtaque = atacante.Ataques.FirstOrDefault(a => a.pp > 0);
+        }
+
+        return mejorAtaque;
     }
 
     private void ActualizarUI()
@@ -124,9 +155,7 @@ public class FuncTurnos : MonoBehaviour
     private void VerificarFinCombate()
     {
         if (jugador1.porkemon.VidaActual <= 0)
-        {
-            Debug.LogError("El Pokémon del jugador ha sido derrotado. Intentando cargar Escena de muerte."); 
-            
+        { 
             if (!ConsolaEnJuego.instance.isTyping)
             {
                 SceneTransitionManager.Instance.LoadScene("Escena de muerte");
@@ -138,17 +167,11 @@ public class FuncTurnos : MonoBehaviour
             {
                 GameState.nombreGanador = jugador1.porkemon.BaseData.nombre;
 
-
                 GameState.experienciaGanada = GestorDeBatalla.instance.equipoJugador[0].CalcularExperienciaGanada(jugador2.porkemon, true);
                 GameState.equipoGanador = new List<Porkemon>(GestorDeBatalla.instance.equipoJugador);
 
-                SceneTransitionManager.Instance.LoadScene("Escena de Victoria");
+                SceneTransitionManager.Instance.LoadScene("Escena de victoria");
             }
         }
-    }
-
-    public bool PuedeCombatir()
-    {
-        return jugador1.porkemon.VidaActual > 0 && jugador2.porkemon.VidaActual > 0;
     }
 }

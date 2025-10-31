@@ -12,13 +12,12 @@ public class GestorDeBatalla : MonoBehaviour
     public Porkemon porkemonBot;
     public Porkemon porkemonDelBot;
 
-    [Header("Datos Iniciales del Jugador")]
     public List<PorkemonData> dataEquipoJugador;
 
-    [Header("Datos del Bot")]
     public PorkemonData dataInicialBot;
+    
+    public Transform puntoSpawnBot; 
 
-    [Header("Inventario de Objetos de Batalla")]
     public List<BattleItem> inventarioBattleItems = new List<BattleItem>();
 
     public bool combateIniciado = false;
@@ -63,13 +62,33 @@ public class GestorDeBatalla : MonoBehaviour
             porkemonBot = GameState.porkemonDelBot;
         }
 
-        // Inicializar inventario de objetos de batalla si está vacío
         if (inventarioBattleItems.Count == 0)
         {
             InicializarInventarioBattleItems();
         }
 
         combateIniciado = false;
+    }
+
+    public void IniciarBatalla()
+    {
+        if (combateIniciado) return;
+
+        Porkemon botActivo = GameState.porkemonDelBot;
+        
+        if (botActivo != null)
+        {
+            GameObject modeloPrefabBot = botActivo.BaseData.modeloPrefab; 
+            
+            if (modeloPrefabBot != null && puntoSpawnBot != null)
+            {
+                Instantiate(modeloPrefabBot, puntoSpawnBot.position, puntoSpawnBot.rotation);
+            }
+
+            Porkemon jugadorActivo = GameState.porkemonDelJugador;
+        }
+        
+        combateIniciado = true;
     }
 
     private void InicializarInventarioBattleItems()
@@ -94,7 +113,6 @@ public class GestorDeBatalla : MonoBehaviour
         if (nuevo == null || nuevo.VidaActual <= 0) return;
 
         GameState.porkemonDelJugador = nuevo;
-        Debug.Log($"Ahora el Pokémon activo del jugador es {nuevo.BaseData.nombre}");
     }
 
     public Porkemon porkemonJugador
@@ -102,5 +120,4 @@ public class GestorDeBatalla : MonoBehaviour
         get { return GameState.porkemonDelJugador; }
         set { GameState.porkemonDelJugador = value; }
     }
-
 }

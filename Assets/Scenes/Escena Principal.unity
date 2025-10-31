@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 170076734}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641275, b: 0.5748172, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1262,7 +1262,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1032549572}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 4.5049877, z: 1.2332726}
@@ -1610,6 +1610,41 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 54046790277432370, guid: bd0d236192418cc4fa0277bab2f7a2d7,
+        type: 3}
+      propertyPath: m_UseGravity
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 136510473696817524, guid: bd0d236192418cc4fa0277bab2f7a2d7,
+        type: 3}
+      propertyPath: m_Radius
+      value: 1.5295217
+      objectReference: {fileID: 0}
+    - target: {fileID: 136510473696817524, guid: bd0d236192418cc4fa0277bab2f7a2d7,
+        type: 3}
+      propertyPath: m_Height
+      value: 3.9119854
+      objectReference: {fileID: 0}
+    - target: {fileID: 136510473696817524, guid: bd0d236192418cc4fa0277bab2f7a2d7,
+        type: 3}
+      propertyPath: m_Center.z
+      value: -0.8311188
+      objectReference: {fileID: 0}
+    - target: {fileID: 136510473696817524, guid: bd0d236192418cc4fa0277bab2f7a2d7,
+        type: 3}
+      propertyPath: m_Center.x
+      value: -0.60643387
+      objectReference: {fileID: 0}
+    - target: {fileID: 136510473696817524, guid: bd0d236192418cc4fa0277bab2f7a2d7,
+        type: 3}
+      propertyPath: m_Center.y
+      value: 0.41733646
+      objectReference: {fileID: 0}
+    - target: {fileID: 136510473696817524, guid: bd0d236192418cc4fa0277bab2f7a2d7,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1433957337944174730, guid: bd0d236192418cc4fa0277bab2f7a2d7,
         type: 3}
       propertyPath: m_Name
@@ -2139,7 +2174,7 @@ MonoBehaviour:
   popupPanel: {fileID: 986664610}
   popupText: {fileID: 412141738}
   botPorkemonData: {fileID: 11400000, guid: 448fd5351b275e94b8999870f99c542d, type: 2}
-  nivelSpawn: 5
+  nivelSpawn: 0
 --- !u!4 &1941011789
 Transform:
   m_ObjectHideFlags: 0
