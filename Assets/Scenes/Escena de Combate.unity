@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.6574417, g: 0.5420627, b: 0.3233886, a: 1}
+  m_IndirectSpecularColor: {r: 0.65742165, g: 0.5420472, b: 0.32342148, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -627,7 +627,7 @@ GameObject:
   - component: {fileID: 357602342}
   - component: {fileID: 357602343}
   - component: {fileID: 357602344}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Bot
   m_TagString: Bot
   m_Icon: {fileID: 0}
@@ -642,7 +642,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 357602341}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -504.9, y: -376.2, z: 2.2}
+  m_LocalPosition: {x: -586.4, y: -376.2, z: 2.2}
   m_LocalScale: {x: 0.02, y: 0.02, z: 0.02}
   m_Children:
   - {fileID: 1521858916}
@@ -816,7 +816,7 @@ GameObject:
   - component: {fileID: 403739424}
   - component: {fileID: 403739425}
   - component: {fileID: 403739426}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Jugador
   m_TagString: Player1
   m_Icon: {fileID: 0}
@@ -831,7 +831,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 403739423}
   m_LocalRotation: {x: 0, y: 0, z: 0.008726558, w: 0.999962}
-  m_LocalPosition: {x: -518.5, y: -367.9, z: -4.5}
+  m_LocalPosition: {x: -600, y: -367.9, z: -4.5}
   m_LocalScale: {x: 0.02, y: 0.02, z: 0.02}
   m_Children:
   - {fileID: 1999157869}
@@ -1402,7 +1402,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 189.32, y: 384}
+  m_AnchoredPosition: {x: 271, y: 384}
   m_SizeDelta: {x: 1024, y: 768}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!95 &640963209
@@ -1576,8 +1576,16 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 448fd5351b275e94b8999870f99c542d, type: 2}
   dataInicialBot: {fileID: 11400000, guid: 448fd5351b275e94b8999870f99c542d, type: 2}
   puntoSpawnBot: {fileID: 335757306}
-  escalaModeloBot: {x: 1, y: 1, z: 1}
-  inventarioBattleItems: []
+  escalaModeloBot: {x: 3, y: 3, z: 3}
+  inventarioBattleItems:
+  - type: 8
+    nombre: Pokeball
+    descripcion: 
+    cantidad: 10
+  - type: 5
+    nombre: Precision X
+    descripcion: 
+    cantidad: 2
   combateIniciado: 0
 --- !u!4 &856788139
 Transform:
@@ -1586,7 +1594,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 856788137}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 455.27005, y: 63, z: 1.0800018}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -3948,6 +3956,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: TextoSaludBot
       objectReference: {fileID: 0}
+    - target: {fileID: 5141152881256840874, guid: 033cdf38570f032459a3bc989726922c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 033cdf38570f032459a3bc989726922c, type: 3}
 --- !u!1001 &1473773554110662400
@@ -4327,6 +4340,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: TextoSaludJugador
       objectReference: {fileID: 0}
+    - target: {fileID: 2621776784690979389, guid: f4fe388abf0833447adb423ae2d5da39,
+        type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f4fe388abf0833447adb423ae2d5da39, type: 3}
 --- !u!1001 &3188078611998645862
@@ -4605,6 +4623,11 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4024614599175457543, guid: 66ec35674be447c419def835c56146e6,
+        type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 4024614599598146004, guid: 66ec35674be447c419def835c56146e6,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4714,6 +4737,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: BarraSaludJugador
+      objectReference: {fileID: 0}
+    - target: {fileID: 4024614599598146005, guid: 66ec35674be447c419def835c56146e6,
+        type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4024614600185217767, guid: 66ec35674be447c419def835c56146e6,
+        type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4024614600446408818, guid: 66ec35674be447c419def835c56146e6,
+        type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4024614600754139149, guid: 66ec35674be447c419def835c56146e6,
+        type: 3}
+      propertyPath: m_Layer
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 66ec35674be447c419def835c56146e6, type: 3}
@@ -4869,6 +4912,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PorkemonJ1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4662795840016671846, guid: 49a94ae02db01754eafc986495481b0c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 49a94ae02db01754eafc986495481b0c, type: 3}
@@ -5043,10 +5091,30 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2218677697507484270, guid: 13f25fdee66f70043948d021d8a1fc9e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3677757762620678304, guid: 13f25fdee66f70043948d021d8a1fc9e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 4304492225783344916, guid: 13f25fdee66f70043948d021d8a1fc9e,
         type: 3}
       propertyPath: m_Name
       value: BarraSaludBot
+      objectReference: {fileID: 0}
+    - target: {fileID: 4304492225783344916, guid: 13f25fdee66f70043948d021d8a1fc9e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4690292458766647094, guid: 13f25fdee66f70043948d021d8a1fc9e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6262257747235945197, guid: 13f25fdee66f70043948d021d8a1fc9e,
         type: 3}
@@ -5168,6 +5236,11 @@ PrefabInstance:
       propertyPath: m_Colors.m_NormalColor.b
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6515455572255705894, guid: 13f25fdee66f70043948d021d8a1fc9e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 13f25fdee66f70043948d021d8a1fc9e, type: 3}
 --- !u!1001 &6718303528615101116
@@ -5200,17 +5273,17 @@ PrefabInstance:
     - target: {fileID: 6718303528279375174, guid: d27181d38c02d864cad532c9f26ad33d,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: 0.8191521
       objectReference: {fileID: 0}
     - target: {fileID: 6718303528279375174, guid: d27181d38c02d864cad532c9f26ad33d,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 6718303528279375174, guid: d27181d38c02d864cad532c9f26ad33d,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: -0.5735764
       objectReference: {fileID: 0}
     - target: {fileID: 6718303528279375174, guid: d27181d38c02d864cad532c9f26ad33d,
         type: 3}
@@ -5225,7 +5298,7 @@ PrefabInstance:
     - target: {fileID: 6718303528279375174, guid: d27181d38c02d864cad532c9f26ad33d,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: 250
       objectReference: {fileID: 0}
     - target: {fileID: 6718303528279375174, guid: d27181d38c02d864cad532c9f26ad33d,
         type: 3}
@@ -5250,6 +5323,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PorkemonBot
+      objectReference: {fileID: 0}
+    - target: {fileID: 7037923140145733269, guid: 2d62d673a357bf940a9eec818e05d426,
+        type: 3}
+      propertyPath: m_Layer
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7037923140145733270, guid: 2d62d673a357bf940a9eec818e05d426,
         type: 3}

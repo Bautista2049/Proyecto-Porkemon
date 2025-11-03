@@ -145,8 +145,8 @@ public class FuncTurnos : MonoBehaviour
     {
         if (jugador1.porkemon.VidaActual <= 0)
         {
-            Debug.LogError("El Pokémon del jugador ha sido derrotado. Intentando cargar Escena de muerte."); 
-            
+            Debug.Log("El Pokémon del jugador ha sido derrotado. Intentando cargar Escena de muerte.");
+
             if (!ConsolaEnJuego.instance.isTyping)
             {
                 SceneTransitionManager.Instance.LoadScene("Escena de muerte");
