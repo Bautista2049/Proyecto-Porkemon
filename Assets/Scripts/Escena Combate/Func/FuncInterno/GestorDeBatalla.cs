@@ -13,13 +13,12 @@ public class GestorDeBatalla : MonoBehaviour
     public Porkemon porkemonDelBot;
 
     public List<PorkemonData> dataEquipoJugador;
-
     public PorkemonData dataInicialBot;
     
     public Transform puntoSpawnBot; 
+    public Vector3 escalaModeloBot = new Vector3(1.0f, 1.0f, 1.0f);
 
     public List<BattleItem> inventarioBattleItems = new List<BattleItem>();
-
     public bool combateIniciado = false;
     
     private void Awake()
@@ -74,7 +73,17 @@ public class GestorDeBatalla : MonoBehaviour
     {
         if (combateIniciado) return;
 
-        Porkemon botActivo = GameState.porkemonDelBot;
+        if (GameState.porkemonDelBot != null)
+        {
+            porkemonBot = GameState.porkemonDelBot;
+        }
+        else
+        {
+            porkemonBot = new Porkemon(dataInicialBot, dataInicialBot.nivel);
+            GameState.porkemonDelBot = porkemonBot;
+        }
+        
+        Porkemon botActivo = porkemonBot; 
         
         if (botActivo != null)
         {
@@ -82,10 +91,13 @@ public class GestorDeBatalla : MonoBehaviour
             
             if (modeloPrefabBot != null && puntoSpawnBot != null)
             {
-                Instantiate(modeloPrefabBot, puntoSpawnBot.position, puntoSpawnBot.rotation);
+                GameObject nuevoBot = Instantiate(modeloPrefabBot, puntoSpawnBot.position, puntoSpawnBot.rotation);
+                nuevoBot.transform.localScale = escalaModeloBot;
             }
-
-            Porkemon jugadorActivo = GameState.porkemonDelJugador;
+            else
+            {
+                Debug.LogError($"Error al cargar modelo de {botActivo.BaseData.nombre}: 'modeloPrefab' o 'puntoSpawnBot' están NULOS.");
+            }
         }
         
         combateIniciado = true;

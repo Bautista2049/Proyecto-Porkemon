@@ -10,7 +10,6 @@ public class Transicion_Combate : MonoBehaviour
     [SerializeField] private GameObject popupPanel; 
     [SerializeField] private TextMeshProUGUI popupText; 
 
-    [Header("Porkemon Data")]
     public PorkemonData botPorkemonData;
     public int nivelSpawn;
 
@@ -23,17 +22,19 @@ public class Transicion_Combate : MonoBehaviour
                 return;
             }
 
-            if (GameState.porkemonDelBot != null && GameState.porkemonDelBot.VidaActual <= 0)
+            if (GameState.porkemonDelBot != null && 
+                GameState.porkemonDelBot.BaseData == this.botPorkemonData && 
+                GameState.porkemonDelBot.VidaActual <= 0)
             {
                 if (popupText != null)
                 {
                     popupText.gameObject.SetActive(true);
-                    popupText.text = "El Porkemon del bot está debilitado. No puedes iniciar un combate.";
+                    popupText.text = "Este Porkemon está debilitado. No puedes iniciar un combate.";
                     StartCoroutine(DesactivarTexto(3f));
                 }
                 return;
             }
-
+            
             GameState.porkemonDelBot = new Porkemon(botPorkemonData, nivelSpawn);
 
             SceneManager.LoadScene(nombreEscena);

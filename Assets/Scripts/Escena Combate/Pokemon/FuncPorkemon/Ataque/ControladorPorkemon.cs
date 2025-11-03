@@ -7,10 +7,8 @@ using TMPro;
 
 public class ControladorPorkemon : MonoBehaviour
 {
-    [Header("Data")]
     public Porkemon porkemon;
 
-    [Header("UI")]
     public Slider barraSalud;
     public Text textoSalud;
     public Text textoNombre;
@@ -61,7 +59,7 @@ public class ControladorPorkemon : MonoBehaviour
 
         if (Random.Range(1, 101) > chanceDeAcertar)
         {
-            StartCoroutine(MostrarMensajeTypewriter($"¡El ataque {ataque.nombreAtaque} ha fallado!"));
+            Debug.Log($"¡El ataque {ataque.nombreAtaque} ha fallado!");
             return false;
         }
 
@@ -90,6 +88,11 @@ public class ControladorPorkemon : MonoBehaviour
 
         float multiplicadorCritico = 1f;
         
+        if (Random.Range(0, 100f) < ataque.chanceCritico)
+        {
+            multiplicadorCritico = 3f;
+            Debug.Log("¡Un golpe crítico!");
+        }
 
         float danioFinal = danioNeto * multiplicadorCritico;
         danioFinal *= Random.Range(0.85f, 1.0f);
@@ -98,15 +101,8 @@ public class ControladorPorkemon : MonoBehaviour
 
         porkemon.VidaActual -= danioTotal;
 
-        
         string mensajeDanio = $"{atacante.BaseData.nombre} hace {danioTotal} de daño con el ataque {ataque.nombreAtaque} a {porkemon.BaseData.nombre}.";
-        StartCoroutine(MostrarMensajeTypewriter(mensajeDanio));
-
-        if (Random.Range(0, 100f) < ataque.chanceCritico)
-        {
-            multiplicadorCritico = 3f;
-            StartCoroutine(MostrarMensajeTypewriter("¡Un golpe crítico!"));
-        }
+        Debug.Log(mensajeDanio);
 
         if (porkemon.VidaActual <= 0)
         {
@@ -114,23 +110,5 @@ public class ControladorPorkemon : MonoBehaviour
             return true;
         }
         return false;
-    }
-
-    private IEnumerator MostrarMensajeTypewriter(string mensaje)
-    {
-        Debug.Log($"{mensaje}");
-        if (textoMensaje != null)
-        {
-            
-            textoMensaje.text = "";
-            foreach (char letra in mensaje)
-            {
-                textoMensaje.text += letra;
-                yield return new WaitForSeconds(0.05f); 
-            }
-            
-            yield return new WaitForSeconds(2f);
-            textoMensaje.text = "";
-        }
     }
 }
