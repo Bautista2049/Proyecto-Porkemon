@@ -26,4 +26,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Escena CambioPorkemon.unity
     guid: 3f25177cd64f3eb4ca4eab5c4d8d6af8
+  - enabled: 1
+    path: Assets/Scenes/Escena CasaJ1.unity
+    guid: d4c04bd44d0f8d34b987b56be18a8482
   m_configObjects: {}

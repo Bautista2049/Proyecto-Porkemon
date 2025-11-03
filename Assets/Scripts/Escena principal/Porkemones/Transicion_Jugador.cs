@@ -10,7 +10,7 @@ public class Transicion_Jugador : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            SceneManager.LoadScene(nombreEscena);
+            SceneManager.LoadScene("Escena CasaJ1");
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
         }
