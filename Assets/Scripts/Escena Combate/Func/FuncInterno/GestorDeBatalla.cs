@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
+using System.Collections; // Añade esta línea si no está
 
 public class GestorDeBatalla : MonoBehaviour
 {
@@ -20,6 +21,8 @@ public class GestorDeBatalla : MonoBehaviour
 
     public List<BattleItem> inventarioBattleItems = new List<BattleItem>();
     public bool combateIniciado = false;
+    
+    public Transform posicionJugador; // Punto desde donde se lanza la pokebola
     
     private void Awake()
     {
@@ -133,5 +136,32 @@ public class GestorDeBatalla : MonoBehaviour
     {
         get { return GameState.porkemonDelJugador; }
         set { GameState.porkemonDelJugador = value; }
+    }
+
+    public void PokemonCapturado(Porkemon pokemon)
+    {
+        // Añadir el pokemon capturado al equipo/PC del jugador
+        if (equipoJugador.Count < 6)
+        {
+            equipoJugador.Add(pokemon);
+            Debug.Log($"{pokemon.BaseData.nombre} ha sido añadido a tu equipo!");
+        }
+        else
+        {
+            // Guardar en PC o sistema alternativo
+            Debug.Log($"{pokemon.BaseData.nombre} ha sido enviado al PC!");
+        }
+        
+        // Terminar el combate
+        StartCoroutine(FinalizarCombate(true));
+    }
+    
+    private IEnumerator FinalizarCombate(bool victoria)
+    {
+        yield return new WaitForSeconds(1f);
+        if (victoria)
+        {
+            SceneManager.LoadScene("Escena de Victoria");
+        }
     }
 }
