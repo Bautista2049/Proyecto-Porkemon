@@ -11,7 +11,11 @@ public enum BattleItemType
     VelocidadX,
     PrecisionX,
     CriticoX,
-    ProteccionX
+    ProteccionX,
+    Porkebola,
+    Superbola,
+    Ultrabola,
+    Masterbola
 }
 
 [System.Serializable]

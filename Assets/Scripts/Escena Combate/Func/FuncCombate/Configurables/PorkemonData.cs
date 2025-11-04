@@ -5,33 +5,21 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Nuevo Porkemon", menuName = "Porkemon/Porkemon")]
 public class PorkemonData : ScriptableObject
 {
-    [Header("Información General")]
     public string nombre;
     public GameObject modeloPrefab;
     public TipoElemental tipo1;
-    public TipoElemental tipo2; // opcional para dual-type
-
-    [Header("Estadísticas Base")]
+    public TipoElemental tipo2;
+    public int baseRate = 120;
     public int nivel = 5;
     public int vidaMaxima = 20;
     public int ataque = 5;
     public int defensa = 5;
     public int espiritu = 5;
     public int velocidad = 5;
-
-    [Header("Ataques")]
     public List<AtaqueData> ataquesQuePuedeAprender;
-
-    [Header("Evolución")]
     public PorkemonData evolucionSiguiente;
     public int nivelDeEvolucion;
-
-    [Header("Naturaleza")]
-    public Naturaleza naturaleza = Naturaleza.Firme; // neutral por defecto
-
-    [Header("Crecimiento")]
-    public TasaCrecimiento tasaCrecimiento = TasaCrecimiento.Medio; // crecimiento medio por defecto
-
-    [Header("Experiencia Base")]
-    public int experienciaBase = 50; // experiencia base para calcular ganancia
+    public Naturaleza naturaleza = Naturaleza.Firme; 
+    public TasaCrecimiento tasaCrecimiento = TasaCrecimiento.Medio; 
+    public int experienciaBase = 50;
 }

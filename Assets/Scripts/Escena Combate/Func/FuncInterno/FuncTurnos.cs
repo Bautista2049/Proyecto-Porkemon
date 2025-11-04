@@ -63,7 +63,8 @@ public class FuncTurnos : MonoBehaviour
         Debug.Log($"{jugador1.porkemon.BaseData.nombre} usa {ataque.nombreAtaque}.");
         yield return new WaitUntil(() => !ConsolaEnJuego.instance.isTyping);
 
-        bool debilitado = jugador2.RecibirDanio(ataque, jugador1.porkemon);
+        jugador1.porkemon.UsarAtaqueElemental(jugador2.porkemon, ataque);
+        bool debilitado = jugador2.porkemon.VidaActual <= 0;
         
         yield return new WaitUntil(() => !ConsolaEnJuego.instance.isTyping);
         
@@ -97,7 +98,8 @@ public class FuncTurnos : MonoBehaviour
             Debug.Log($"Turno del Bot. {jugador2.porkemon.BaseData.nombre} usa {ataqueDelBot.nombreAtaque}.");
             yield return new WaitUntil(() => !ConsolaEnJuego.instance.isTyping);
 
-            bool debilitado = jugador1.RecibirDanio(ataqueDelBot, jugador2.porkemon);
+            jugador2.porkemon.UsarAtaqueElemental(jugador1.porkemon, ataqueDelBot);
+            bool debilitado = jugador1.porkemon.VidaActual <= 0;
 
             yield return new WaitUntil(() => !ConsolaEnJuego.instance.isTyping);
             

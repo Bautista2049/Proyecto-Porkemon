@@ -6,12 +6,11 @@ using TMPro;
 
 public class ControladorCambio : MonoBehaviour
 {
-    [Header("UI")]
     public List<Button> botonesPokemon;
     public TextMeshProUGUI tituloTexto;
 
     private List<Porkemon> equipoJugador;
-    private bool esMochila = false; // Flag para determinar si es escena de mochila
+    private bool esMochila = false;
 
     void Start()
     {
@@ -19,20 +18,15 @@ public class ControladorCambio : MonoBehaviour
         {
             return;
         }
-
-        // Verificar si estamos en modo mochila (por ahora usando la escena de cambio)
-        // En el futuro, esto se haría con una escena dedicada
         esMochila = SceneManager.GetActiveScene().name == "Escena CambioPorkemon" &&
-                   GameState.player1Turn == false; // Placeholder para detectar modo mochila
+                   GameState.player1Turn == false;
 
         if (esMochila)
         {
-            // Modo Mochila
             InicializarMochila();
         }
         else
         {
-            // Modo Cambio de Pokémon
             equipoJugador = GestorDeBatalla.instance.equipoJugador;
             ActualizarBotones();
             tituloTexto.text = $"Tienes {equipoJugador.Count} Pokémon";
@@ -41,10 +35,7 @@ public class ControladorCambio : MonoBehaviour
 
     private void InicializarMochila()
     {
-        // Cambiar título
         tituloTexto.text = "Objetos de Batalla";
-
-        // Usar los botones para mostrar items
         List<BattleItem> inventario = GestorDeBatalla.instance.inventarioBattleItems;
 
         for (int i = 0; i < botonesPokemon.Count; i++)
@@ -69,6 +60,14 @@ public class ControladorCambio : MonoBehaviour
         }
     }
 
+    private bool EsPorkebola(BattleItemType type)
+    {
+        return type == BattleItemType.Porkebola ||
+               type == BattleItemType.Superbola ||
+               type == BattleItemType.Ultrabola ||
+               type == BattleItemType.Masterbola;
+    }
+
     private void UsarItem(int index)
     {
         List<BattleItem> inventario = GestorDeBatalla.instance.inventarioBattleItems;
@@ -81,28 +80,29 @@ public class ControladorCambio : MonoBehaviour
         if (selectedItem.cantidad <= 0)
         {
             return;
-        }
-
-        Porkemon porkemonActivo = GestorDeBatalla.instance.porkemonJugador;
-        if (porkemonActivo == null)
+        }if (EsPorkebola(selectedItem.type))
         {
-            return;
+            GameState.itemSeleccionado = selectedItem;
+            GameState.player1Turn = true; 
+            SceneTransitionManager.Instance.LoadScene("Escena de combate");
         }
 
-        // Aplicar efecto del item
-        AplicarEfectoItem(selectedItem, porkemonActivo);
-
-        // Reducir cantidad
-        selectedItem.cantidad--;
-
-        // Si se agota, remover del inventario
-        if (selectedItem.cantidad <= 0)
+        else
         {
-            GestorDeBatalla.instance.inventarioBattleItems.Remove(selectedItem);
+            Porkemon porkemonActivo = GestorDeBatalla.instance.porkemonJugador;
+            if (porkemonActivo == null)
+            {
+                return;
+            }
+            
+            AplicarEfectoItem(selectedItem, porkemonActivo);
+            selectedItem.cantidad--;
+            if (selectedItem.cantidad <= 0)
+            {
+                GestorDeBatalla.instance.inventarioBattleItems.Remove(selectedItem);
+            }
+            SceneTransitionManager.Instance.LoadScene("Escena de combate");
         }
-
-        // Volver al combate
-        SceneTransitionManager.Instance.LoadScene("Escena de combate");
     }
 
     private void AplicarEfectoItem(BattleItem item, Porkemon porkemon)
@@ -199,8 +199,6 @@ public class ControladorCambio : MonoBehaviour
         GameState.porkemonDelJugador = nuevo; 
 
         GameState.player1Turn = false; 
-
-        // Eliminamos el código de actualización manual del modelo/Setup.
 
         SceneTransitionManager.Instance.LoadScene("Escena de combate");
     }
