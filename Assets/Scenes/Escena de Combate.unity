@@ -1579,13 +1579,13 @@ MonoBehaviour:
   escalaModeloBot: {x: 3, y: 3, z: 3}
   inventarioBattleItems:
   - type: 8
-    nombre: Pokeball
-    descripcion: 
-    cantidad: 10
-  - type: 5
-    nombre: Precision X
+    nombre: Porkebola
     descripcion: 
     cantidad: 2
+  - type: 4
+    nombre: velocity
+    descripcion: 
+    cantidad: 1
   combateIniciado: 0
 --- !u!4 &856788139
 Transform:
