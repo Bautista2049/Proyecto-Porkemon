@@ -11,20 +11,15 @@ public class GestorDeBatalla : MonoBehaviour
 
     public List<Porkemon> equipoJugador = new List<Porkemon>();
     public Porkemon porkemonBot;
-    public Porkemon porkemonDelBot; // Esta es la instancia que se pasa entre escenas
+    public Porkemon porkemonDelBot;
 
     public List<PorkemonData> dataEquipoJugador;
     public PorkemonData dataInicialBot;
-    
-    // Estas variables ya no son usadas por GestorDeBatalla, pero las dejamos por si otro script las necesita.
-    // FuncTurnos ahora usa sus propias referencias.
     public Transform puntoSpawnBot; 
     public Vector3 escalaModeloBot = new Vector3(1.0f, 1.0f, 1.0f);
-
     public List<BattleItem> inventarioBattleItems = new List<BattleItem>();
     public bool combateIniciado = false;
-    
-    public Transform posicionJugador; // Punto desde donde se lanza la pokebola
+    public Transform posicionJugador;
     
     private void Awake()
     {
@@ -78,7 +73,6 @@ public class GestorDeBatalla : MonoBehaviour
     {
         if (combateIniciado) return;
 
-        // Asegurarse de que la instancia del bot sea la correcta
         if (GameState.porkemonDelBot != null)
         {
             porkemonBot = GameState.porkemonDelBot;
@@ -88,9 +82,6 @@ public class GestorDeBatalla : MonoBehaviour
             porkemonBot = new Porkemon(dataInicialBot, dataInicialBot.nivel);
             GameState.porkemonDelBot = porkemonBot;
         }
-        
-        // --- LÓGICA DE INSTANCIACIÓN DE MODELO ELIMINADA ---
-        // FuncTurnos.cs se encarga de esto ahora para arreglar el bug de recarga.
         
         combateIniciado = true;
     }
@@ -129,7 +120,6 @@ public class GestorDeBatalla : MonoBehaviour
 
     public void PokemonCapturado(Porkemon pokemon)
     {
-        // Añadir el pokemon capturado al equipo/PC del jugador
         if (equipoJugador.Count < 6)
         {
             equipoJugador.Add(pokemon);
@@ -137,17 +127,13 @@ public class GestorDeBatalla : MonoBehaviour
         }
         else
         {
-            // Guardar en PC o sistema alternativo
             Debug.Log($"{pokemon.BaseData.nombre} ha sido enviado al PC!");
         }
-        
-        // Terminar el combate
         StartCoroutine(FinalizarCombate(true));
     }
     
     private IEnumerator FinalizarCombate(bool victoria)
     {
-        // Espera a que la consola termine de escribir el último mensaje
         yield return new WaitUntil(() => !ConsolaEnJuego.instance.isTyping);
         yield return new WaitForSeconds(1.5f);
         

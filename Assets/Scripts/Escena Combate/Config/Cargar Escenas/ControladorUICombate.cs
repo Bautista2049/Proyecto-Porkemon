@@ -8,8 +8,6 @@ using TMPro;
 public class ControladorUICombate : MonoBehaviour
 {
     private Animator transition;
-
-    [Header("Referencias")]
     public List<Button> botonesDeAtaque;
     public GameObject panelDeAccionesDelJugador;
     public GameObject panelMovs;
@@ -25,7 +23,6 @@ public class ControladorUICombate : MonoBehaviour
             panelMovs.SetActive(false);
         }
 
-        // Asignar función al botón de mochila
         if (botonMochila != null)
         {
             botonMochila.onClick.AddListener(AbrirMochila);
@@ -120,11 +117,7 @@ public class ControladorUICombate : MonoBehaviour
 
     public void AbrirMochila()
     {
-        // Establecer flag para indicar que vamos a modo mochila
-        GameState.player1Turn = false; // Usar como flag temporal
-
-        // Cargar escena de mochila (usando la escena de cambio como base por ahora)
-        // En el futuro, crear una escena dedicada "Escena Mochila"
+        GameState.player1Turn = false;
         SceneTransitionManager.Instance.LoadScene("Escena CambioPorkemon");
     }
 

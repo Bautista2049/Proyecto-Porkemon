@@ -9,12 +9,9 @@ public class ConsolaEnJuego : MonoBehaviour
 {
     public static ConsolaEnJuego instance;
 
-    [Header("UI")]
     public Text uiText;
     public TextMeshProUGUI tmpText;
-
-    [Header("Typewriter Effect")]
-    public float typingSpeed = 0.03f; // Seconds per character, faster for better UX
+    public float typingSpeed = 0.03f;
 
     public bool isTyping { get; private set; } = false;
 
@@ -27,7 +24,7 @@ public class ConsolaEnJuego : MonoBehaviour
         if (instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(gameObject); // <-- ARREGLO PARA PERSISTENCIA
+            DontDestroyOnLoad(gameObject);
         }
         else
         {
@@ -47,7 +44,6 @@ public class ConsolaEnJuego : MonoBehaviour
 
     private void HandleLog(string logString, string stackTrace, LogType type)
     {
-        // Filtros expandidos para incluir objetos y captura
         string lowerLogString = logString.ToLower();
         if (lowerLogString.Contains("ataque") ||
             lowerLogString.Contains("daño") ||
@@ -65,11 +61,11 @@ public class ConsolaEnJuego : MonoBehaviour
             lowerLogString.Contains("critico") ||
             lowerLogString.Contains("inmune") ||
             lowerLogString.Contains("usó") || // Para objetos
-            lowerLogString.Contains("aumentado") || // Para objetos
-            lowerLogString.Contains("lanzaste") || // Para Pokebola
-            lowerLogString.Contains("...") || // Para Pokebola
-            lowerLogString.Contains("gotcha") || // Para Pokebola
-            lowerLogString.Contains("escapado")) // Para Pokebola
+            lowerLogString.Contains("aumentado") ||
+            lowerLogString.Contains("lanzaste") ||
+            lowerLogString.Contains("...") ||
+            lowerLogString.Contains("gotcha") ||
+            lowerLogString.Contains("escapado"))
         {
             AddLogMessage(logString);
         }
@@ -105,7 +101,7 @@ public class ConsolaEnJuego : MonoBehaviour
 
         foreach (char letter in fullMessage.ToCharArray())
         {
-            if (Input.GetKeyDown(KeyCode.Space)) // O cualquier tecla de 'Aceptar'
+            if (Input.GetKeyDown(KeyCode.Space))
             {
                 currentText = fullMessage;
                 string displayText = previousText + currentText; 
@@ -113,7 +109,7 @@ public class ConsolaEnJuego : MonoBehaviour
                 if (tmpText != null) tmpText.text = displayText;
                 else if (uiText != null) uiText.text = displayText;
                 
-                break; // Salir del bucle
+                break;
             }
 
             currentText += letter;

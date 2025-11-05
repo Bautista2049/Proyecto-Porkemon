@@ -7,11 +7,8 @@ using TMPro;
 
 public class ControladorMochila : MonoBehaviour
 {
-    [Header("UI de Mochila")]
     public List<Button> botonesItems;
     public TextMeshProUGUI tituloTexto;
-
-    [Header("Efectos de Captura")]
     public AudioClip sonidoSacudida;
     public AudioClip sonidoCaptura;
     public ParticleSystem efectoCaptura;
@@ -86,33 +83,25 @@ public class ControladorMochila : MonoBehaviour
             return;
         }
 
-        // Aplicar efecto del item
         AplicarEfectoItem(item, porkemonActivo);
-
-        // Reducir cantidad
         item.cantidad--;
 
-        // Si se agota, remover del inventario
         if (item.cantidad <= 0)
         {
             GestorDeBatalla.instance.inventarioBattleItems.Remove(item);
         }
 
-        // Actualizar UI
         ActualizarBotonesItems();
         tituloTexto.text = $"Objetos de Batalla ({GestorDeBatalla.instance.inventarioBattleItems.Count})";
 
         Debug.Log($"Usado {item.nombre} sobre {porkemonActivo.BaseData?.nombre ?? "sin-nombre"}. Cantidad restante: {item.cantidad}");
 
-        // Espera un frame para asegurar que UI/logs se actualicen antes de cambiar de escena
         StartCoroutine(VolverCombateConDelay());
     }
 
     private IEnumerator VolverCombateConDelay()
     {
-        // esperar un frame. Si quieres más seguridad puedes usar WaitForSeconds(0.1f)
         yield return null;
-        //Debug.Log("Volviendo a Escena de combate (después de usar item).");
         SceneTransitionManager.Instance.LoadScene("Escena de combate");
     }
 
@@ -166,16 +155,12 @@ public class ControladorMochila : MonoBehaviour
 
     private bool CalcularCaptura(Porkemon pokemon, BattleItemType tipoPorkebola)
     {
-        float vidaActual = pokemon.BaseData.vidaMaxima; // Asumiendo que tienes una propiedad para vida actual
+        float vidaActual = pokemon.BaseData.vidaMaxima;
         float vidaMaxima = pokemon.BaseData.vidaMaxima;
-        
-        // Cálculo base usando baseRate del pokémon
         float probabilidadBase = (pokemon.BaseData.baseRate * (1 - (vidaActual / vidaMaxima))) / 1.5f;
-        
         switch (tipoPorkebola)
         {
             case BattleItemType.Porkebola:
-                // La Porkebola normal usa la probabilidad base
                 break;
         }
         
@@ -184,23 +169,17 @@ public class ControladorMochila : MonoBehaviour
 
     private IEnumerator IniciarCaptura()
     {
-        // Obtener referencias
         Porkemon pokemonSalvaje = GestorDeBatalla.instance.porkemonBot;
         if (pokemonSalvaje == null)
         {
             Debug.LogError("No hay pokemon salvaje para capturar");
             yield break;
         }
-
-        // Instanciar pokebola en la posición inicial
         GameObject pokebola = Instantiate(Resources.Load<GameObject>("Objects/Pokebola"));
         Vector3 posicionInicial = GestorDeBatalla.instance.posicionJugador.position;
         pokebola.transform.position = posicionInicial;
-
-        // Animación de lanzamiento
         float duracion = 1f;
         float tiempoPasado = 0;
-        // Usar la posición del modelo del pokémon salvaje
         Vector3 posicionFinal = GestorDeBatalla.instance.puntoSpawnBot.position;
 
         while (tiempoPasado < duracion)
@@ -215,12 +194,10 @@ public class ControladorMochila : MonoBehaviour
             yield return null;
         }
 
-        // Verificar captura
         bool capturaExitosa = CalcularCaptura(pokemonSalvaje, BattleItemType.Porkebola);
         
         if (capturaExitosa)
         {
-            // Ocultar el modelo del pokémon
             GestorDeBatalla.instance.porkemonBot = null;
             yield return StartCoroutine(AnimacionCapturaExitosa(pokebola));
             GestorDeBatalla.instance.PokemonCapturado(pokemonSalvaje);
@@ -265,7 +242,6 @@ public class ControladorMochila : MonoBehaviour
 
     private IEnumerator AnimacionCapturaFallida(GameObject pokebola)
     {
-        // Animación de captura fallida
         pokebola.transform.localScale = Vector3.one * 1.2f;
         yield return new WaitForSeconds(0.5f);
         Destroy(pokebola);

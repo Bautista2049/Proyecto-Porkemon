@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.6574417, g: 0.5420627, b: 0.3233886, a: 1}
+  m_IndirectSpecularColor: {r: 0.65742165, g: 0.5420472, b: 0.32342148, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -6390,11 +6390,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbe6a4d88eaa0ef4cac914079a47560c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  botonesItems: []
-  tituloTexto: {fileID: 306016146}
-  sonidoSacudida: {fileID: 8300000, guid: 4caf604f4e0f3354ea260c2893c79a92, type: 3}
-  sonidoCaptura: {fileID: 8300000, guid: 04ef05f4793ad2a4287e7ffec36a21cb, type: 3}
-  efectoCaptura: {fileID: 741004694}
 --- !u!1 &856788137
 GameObject:
   m_ObjectHideFlags: 0
@@ -6427,7 +6422,7 @@ MonoBehaviour:
   dataEquipoJugador:
   - {fileID: 11400000, guid: 6c9eb4021237ff14a82c44f71a59ea8a, type: 2}
   - {fileID: 11400000, guid: 448fd5351b275e94b8999870f99c542d, type: 2}
-  dataInicialBot: {fileID: 11400000, guid: 448fd5351b275e94b8999870f99c542d, type: 2}
+  dataInicialBot: {fileID: 11400000, guid: 6c9eb4021237ff14a82c44f71a59ea8a, type: 2}
   puntoSpawnBot: {fileID: 335757306}
   escalaModeloBot: {x: 3, y: 3, z: 3}
   inventarioBattleItems:
