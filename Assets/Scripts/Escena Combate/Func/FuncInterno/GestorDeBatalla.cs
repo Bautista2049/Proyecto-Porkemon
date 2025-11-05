@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
-using System.Collections; // Añade esta línea si no está
+using System.Collections;
 
 public class GestorDeBatalla : MonoBehaviour
 {
@@ -11,11 +11,13 @@ public class GestorDeBatalla : MonoBehaviour
 
     public List<Porkemon> equipoJugador = new List<Porkemon>();
     public Porkemon porkemonBot;
-    public Porkemon porkemonDelBot;
+    public Porkemon porkemonDelBot; // Esta es la instancia que se pasa entre escenas
 
     public List<PorkemonData> dataEquipoJugador;
     public PorkemonData dataInicialBot;
     
+    // Estas variables ya no son usadas por GestorDeBatalla, pero las dejamos por si otro script las necesita.
+    // FuncTurnos ahora usa sus propias referencias.
     public Transform puntoSpawnBot; 
     public Vector3 escalaModeloBot = new Vector3(1.0f, 1.0f, 1.0f);
 
@@ -76,6 +78,7 @@ public class GestorDeBatalla : MonoBehaviour
     {
         if (combateIniciado) return;
 
+        // Asegurarse de que la instancia del bot sea la correcta
         if (GameState.porkemonDelBot != null)
         {
             porkemonBot = GameState.porkemonDelBot;
@@ -86,22 +89,8 @@ public class GestorDeBatalla : MonoBehaviour
             GameState.porkemonDelBot = porkemonBot;
         }
         
-        Porkemon botActivo = porkemonBot; 
-        
-        if (botActivo != null)
-        {
-            GameObject modeloPrefabBot = botActivo.BaseData.modeloPrefab; 
-            
-            if (modeloPrefabBot != null && puntoSpawnBot != null)
-            {
-                GameObject nuevoBot = Instantiate(modeloPrefabBot, puntoSpawnBot.position, puntoSpawnBot.rotation);
-                nuevoBot.transform.localScale = escalaModeloBot;
-            }
-            else
-            {
-                Debug.LogError($"Error al cargar modelo de {botActivo.BaseData.nombre}: 'modeloPrefab' o 'puntoSpawnBot' están NULOS.");
-            }
-        }
+        // --- LÓGICA DE INSTANCIACIÓN DE MODELO ELIMINADA ---
+        // FuncTurnos.cs se encarga de esto ahora para arreglar el bug de recarga.
         
         combateIniciado = true;
     }
@@ -158,10 +147,15 @@ public class GestorDeBatalla : MonoBehaviour
     
     private IEnumerator FinalizarCombate(bool victoria)
     {
-        yield return new WaitForSeconds(1f);
+        // Espera a que la consola termine de escribir el último mensaje
+        yield return new WaitUntil(() => !ConsolaEnJuego.instance.isTyping);
+        yield return new WaitForSeconds(1.5f);
+        
         if (victoria)
         {
-            SceneManager.LoadScene("Escena de Victoria");
+            // No cargamos la escena de victoria, volvemos al mundo principal
+            // O si quieres la pantalla de exp, carga "Escena de Victoria"
+            SceneTransitionManager.Instance.LoadScene("Escena Principal");
         }
     }
 }

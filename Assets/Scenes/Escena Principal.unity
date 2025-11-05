@@ -1345,6 +1345,7 @@ MonoBehaviour:
   escalaModeloBot: {x: 2, y: 2, z: 2}
   inventarioBattleItems: []
   combateIniciado: 0
+  posicionJugador: {fileID: 0}
 --- !u!4 &1208131122
 Transform:
   m_ObjectHideFlags: 0
@@ -1566,7 +1567,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400024, guid: 64eacf9f5426afe45a93436e11228e36, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.1722927
+      value: 7.3
       objectReference: {fileID: 0}
     - target: {fileID: 400024, guid: 64eacf9f5426afe45a93436e11228e36, type: 3}
       propertyPath: m_LocalPosition.z

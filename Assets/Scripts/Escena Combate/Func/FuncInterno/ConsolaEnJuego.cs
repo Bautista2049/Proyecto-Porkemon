@@ -27,6 +27,7 @@ public class ConsolaEnJuego : MonoBehaviour
         if (instance == null)
         {
             instance = this;
+            DontDestroyOnLoad(gameObject); // <-- ARREGLO PARA PERSISTENCIA
         }
         else
         {
@@ -46,6 +47,7 @@ public class ConsolaEnJuego : MonoBehaviour
 
     private void HandleLog(string logString, string stackTrace, LogType type)
     {
+        // Filtros expandidos para incluir objetos y captura
         string lowerLogString = logString.ToLower();
         if (lowerLogString.Contains("ataque") ||
             lowerLogString.Contains("daño") ||
@@ -61,7 +63,13 @@ public class ConsolaEnJuego : MonoBehaviour
             lowerLogString.Contains("retrocedido") ||
             lowerLogString.Contains("efect") ||
             lowerLogString.Contains("critico") ||
-            lowerLogString.Contains("inmune"))
+            lowerLogString.Contains("inmune") ||
+            lowerLogString.Contains("usó") || // Para objetos
+            lowerLogString.Contains("aumentado") || // Para objetos
+            lowerLogString.Contains("lanzaste") || // Para Pokebola
+            lowerLogString.Contains("...") || // Para Pokebola
+            lowerLogString.Contains("gotcha") || // Para Pokebola
+            lowerLogString.Contains("escapado")) // Para Pokebola
         {
             AddLogMessage(logString);
         }
@@ -75,82 +83,60 @@ public class ConsolaEnJuego : MonoBehaviour
         }
         filteredLogs.Add(message);
 
-        // Stop any ongoing typing
         if (typingCoroutine != null)
         {
             StopCoroutine(typingCoroutine);
         }
-
-        // Start typing the new message
+        
         typingCoroutine = StartCoroutine(MostrarMensaje());
     }
 
     public IEnumerator MostrarMensaje()
-{
-    isTyping = true;
-    string fullMessage = filteredLogs[filteredLogs.Count - 1];
-    string currentText = "";
-
-    // Get previous messages
-    string previousText = string.Join("\n", filteredLogs.Take(filteredLogs.Count - 1));
-    if (!string.IsNullOrEmpty(previousText))
     {
-        previousText += "\n";
-    }
+        isTyping = true;
+        string fullMessage = filteredLogs[filteredLogs.Count - 1];
+        string currentText = "";
 
-    foreach (char letter in fullMessage.ToCharArray())
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
+        string previousText = string.Join("\n", filteredLogs.Take(filteredLogs.Count - 1));
+        if (!string.IsNullOrEmpty(previousText))
         {
-            // Skip to end if space pressed
-            currentText = fullMessage;
-            string displayText = previousText + currentText;  // Agregado prefijo y color para estilo Pokémon
+            previousText += "\n";
+        }
 
-            if (tmpText != null)
+        foreach (char letter in fullMessage.ToCharArray())
+        {
+            if (Input.GetKeyDown(KeyCode.Space)) // O cualquier tecla de 'Aceptar'
             {
-                tmpText.text = displayText;
+                currentText = fullMessage;
+                string displayText = previousText + currentText; 
+
+                if (tmpText != null) tmpText.text = displayText;
+                else if (uiText != null) uiText.text = displayText;
+                
+                break; // Salir del bucle
             }
-            else if (uiText != null)
-            {
-                uiText.text = displayText;
-            }
-            break;
+
+            currentText += letter;
+            string currentDisplayText = previousText + currentText; 
+
+            if (tmpText != null) tmpText.text = currentDisplayText;
+            else if (uiText != null) uiText.text = currentDisplayText;
+            
+            yield return new WaitForSeconds(typingSpeed);
         }
 
-        currentText += letter;
-        string currentDisplayText = previousText + currentText;  // Renombrado y agregado prefijo/color
-
-        if (tmpText != null)
-        {
-            tmpText.text = currentDisplayText;
-        }
-        else if (uiText != null)
-        {
-            uiText.text = currentDisplayText;
-        }
-        yield return new WaitForSeconds(typingSpeed);
+        isTyping = false;
+        typingCoroutine = null;
     }
-
-    isTyping = false;
-    typingCoroutine = null;
-}
-
 
     private void ActualizarTextoConsola()
     {
-        // This is now handled by the typing coroutine, but keep for fallback
         if (typingCoroutine == null && filteredLogs.Count > 0)
         {
             string consoleText = string.Join("\n", filteredLogs);
 
-            if (tmpText != null)
-            {
-                tmpText.text = consoleText;
-            }
-            else if (uiText != null)
-            {
-                uiText.text = consoleText;
-            }
+            if (tmpText != null) tmpText.text = consoleText;
+            else if (uiText != null) uiText.text = consoleText;
         }
     }
 }

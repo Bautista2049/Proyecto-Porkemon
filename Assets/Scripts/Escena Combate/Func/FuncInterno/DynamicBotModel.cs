@@ -4,39 +4,12 @@ using UnityEngine;
 using System.Linq;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+
 public class DynamicBotModel : MonoBehaviour
 {
     [Header("Model Setup")]
     public GameObject modelParentContainer; 
     [SerializeField] public bool isPlayerModel = false;
-
-    void Start()
-    {
-        if (isPlayerModel)
-        {
-            UpdateModelForCurrentPokemon();
-        }
-        else
-        {
-            Porkemon botPork = null;
-            if (GestorDeBatalla.instance != null && GestorDeBatalla.instance.porkemonBot != null)
-            {
-                // La fuente de verdad en la escena de combate es GestorDeBatalla.porkemonBot
-                botPork = GestorDeBatalla.instance.porkemonBot;
-            }
-string modelName = botPork.BaseData.nombre;
-            if (botPork == null)
-            {
-                
-                Debug.Log("Loading bot model: " + modelName);
-                UpdateModel(modelName);
-            }
-
-            
-            UpdateModel(modelName);
-        }
-    }
-
     public void UpdateModel(string modelName)
     {
         // Ruta de carga: Resources/Porkemons/{NombreDelPokemon}
@@ -46,11 +19,13 @@ string modelName = botPork.BaseData.nombre;
         {
             Transform modelParent = modelParentContainer != null ? modelParentContainer.transform : transform;
 
+            // Limpiar modelo anterior
             foreach (Transform child in modelParent)
             {
                 Destroy(child.gameObject);
             }
 
+            // Instanciar nuevo modelo
             Transform modelTransform = Instantiate(modelPrefab, modelParent).transform;
             modelTransform.localPosition = Vector3.zero;
             modelTransform.localRotation = Quaternion.identity;
@@ -58,8 +33,7 @@ string modelName = botPork.BaseData.nombre;
         }
         else
         {
-            // Mensaje de error mejorado
-            Debug.LogError($"ERROR: Prefab no encontrado");
+            Debug.LogError($"ERROR: Prefab no encontrado en 'Resources/Porkemons/{modelName}'");
         }
     }
 
@@ -96,19 +70,22 @@ string modelName = botPork.BaseData.nombre;
     
     public void PlayExitAnimation()
     {
-        Animator anim = GetCurrentAnimator();
-        if (anim != null)
+        // Esta función es llamada por la Porkebola
+        // Debería ocultar el modelo, tal vez con una animación o simplemente desactivándolo
+        Transform modelParent = modelParentContainer != null ? modelParentContainer.transform : transform;
+        foreach (Transform child in modelParent)
         {
-            anim.CrossFade("Exit", 0.1f);
+            child.gameObject.SetActive(false); // Oculta el modelo
         }
     }
     
     public void PlayEnterAnimation()
     {
-        Animator anim = GetCurrentAnimator();
-        if (anim != null)
+        // El modelo reaparece si la captura falla
+        Transform modelParent = modelParentContainer != null ? modelParentContainer.transform : transform;
+        foreach (Transform child in modelParent)
         {
-            anim.Play("Enter");
+            child.gameObject.SetActive(true); // Muestra el modelo
         }
     }
 

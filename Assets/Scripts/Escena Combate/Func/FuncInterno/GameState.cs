@@ -8,7 +8,7 @@ public static class GameState
 {
     public static bool player1Turn = true;
     public static AtaqueData ataqueSeleccionado;
-    public static BattleItem itemSeleccionado;
+    public static BattleItem itemSeleccionado; // <-- AÑADIDO
     public static Porkemon porkemonDelJugador;
     public static Porkemon porkemonDelBot;
     public static string nombreGanador;
