@@ -1178,10 +1178,10 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1028439296}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 115.13339, y: -60.78588, z: -1.4993439}
+  m_LocalPosition: {x: 184.77922, y: -83.25809, z: -52.171345}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1941011789}
+  m_Father: {fileID: 1583186883}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1028439298
@@ -1343,7 +1343,19 @@ MonoBehaviour:
   puntoSpawnBot: {fileID: 3813264235576479706, guid: 51c0cc0f42413ae438a577a5a903ce48,
     type: 3}
   escalaModeloBot: {x: 2, y: 2, z: 2}
-  inventarioBattleItems: []
+  inventarioBattleItems:
+  - type: 2
+    nombre: hiperpocion
+    descripcion: 
+    cantidad: 3
+  - type: 14
+    nombre: masterbola
+    descripcion: 
+    cantidad: 1
+  - type: 11
+    nombre: porkebolas
+    descripcion: 
+    cantidad: 30
   combateIniciado: 0
   posicionJugador: {fileID: 6726296229464280566, guid: 206fb3bd392131646a7cda1fe31b46fb,
     type: 3}
@@ -1817,7 +1829,9 @@ Transform:
   m_LocalPosition: {x: -89.77922, y: 34.258087, z: 52.171345}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 1028439297}
   - {fileID: 1941011789}
+  - {fileID: 2003803908}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2203,11 +2217,58 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 69.64583, y: -22.472204, z: -50.672}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1028439297}
+  m_Children: []
   m_Father: {fileID: 1583186883}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2003803907
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2003803908}
+  - component: {fileID: 2003803909}
+  m_Layer: 0
+  m_Name: Mochila
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2003803908
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2003803907}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1583186883}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2003803909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2003803907}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9237e86110808a479852264fdb314cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  botonesItems: []
+  tituloTexto: {fileID: 412141738}
+  sonidoSacudida: {fileID: 8300000, guid: 4caf604f4e0f3354ea260c2893c79a92, type: 3}
+  sonidoCaptura: {fileID: 8300000, guid: 04ef05f4793ad2a4287e7ffec36a21cb, type: 3}
+  efectoCaptura: {fileID: 0}
 --- !u!1 &2018115593
 GameObject:
   m_ObjectHideFlags: 0

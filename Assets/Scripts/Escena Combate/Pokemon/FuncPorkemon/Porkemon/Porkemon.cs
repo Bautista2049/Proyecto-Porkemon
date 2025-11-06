@@ -66,6 +66,12 @@ public class Porkemon
         OnHPChanged?.Invoke();
     }
 
+    public void Curar(float porcentaje)
+    {
+        int cantidadACurar = Mathf.FloorToInt(VidaMaxima * porcentaje);
+        VidaActual = Mathf.Min(VidaActual + cantidadACurar, VidaMaxima);
+    }
+
     public void AumentarDefensa(int cantidad)
     {
         Defensa = Mathf.Min(Defensa + cantidad, Defensa * 2);
