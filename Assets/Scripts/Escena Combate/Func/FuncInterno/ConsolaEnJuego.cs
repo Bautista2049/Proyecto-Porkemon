@@ -25,21 +25,21 @@ public class ConsolaEnJuego : MonoBehaviour
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
-            Application.logMessageReceived += HandleLog; // Suscribirse aquí
         }
         else
         {
             Destroy(gameObject);
         }
     }
-    
-    private void OnDestroy()
+
+    void OnEnable()
     {
-        // Solo la instancia original debe desuscribirse
-        if (instance == this)
-        {
-            Application.logMessageReceived -= HandleLog;
-        }
+        Application.logMessageReceived += HandleLog;
+    }
+
+    void OnDisable()
+    {
+        Application.logMessageReceived -= HandleLog;
     }
 
     private void HandleLog(string logString, string stackTrace, LogType type)
