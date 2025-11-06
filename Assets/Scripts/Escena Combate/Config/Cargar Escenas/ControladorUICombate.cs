@@ -12,6 +12,7 @@ public class ControladorUICombate : MonoBehaviour
     public GameObject panelDeAccionesDelJugador;
     public GameObject panelMovs;
     public Button botonMochila;
+    debug.log("{nameof(ControladorUICombate)} initialized.");
 
     void Start()
     {
