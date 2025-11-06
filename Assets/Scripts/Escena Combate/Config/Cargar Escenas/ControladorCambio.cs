@@ -95,7 +95,7 @@ public class ControladorCambio : MonoBehaviour
                 return;
             }
 
-            GestorDeBatalla.AplicarEfecto(selectedItem, porkemonActivo);
+            AplicarEfectoItem(selectedItem, porkemonActivo);
             selectedItem.cantidad--;
 
             if (selectedItem.cantidad <= 0)
@@ -104,6 +104,42 @@ public class ControladorCambio : MonoBehaviour
             }
             GameState.player1Turn = false;
             SceneTransitionManager.Instance.LoadScene("Escena de combate");
+        }
+    }
+
+    private void AplicarEfectoItem(BattleItem item, Porkemon porkemon)
+    {
+        switch (item.type)
+        {
+            case BattleItemType.AtaqueX:
+                porkemon.AumentarAtaque(2);
+                Debug.Log($"{porkemon.BaseData.nombre} usó {item.nombre}. Ataque aumentado!");
+                break;
+            case BattleItemType.DefensaX:
+                porkemon.AumentarDefensa(2);
+                Debug.Log($"{porkemon.BaseData.nombre} usó {item.nombre}. Defensa aumentada!");
+                break;
+            case BattleItemType.AtaqueEspecialX:
+                porkemon.AumentarEspiritu(2);
+                Debug.Log($"{porkemon.BaseData.nombre} usó {item.nombre}. Ataque Especial aumentado!");
+                break;
+            case BattleItemType.DefensaEspecialX:
+                porkemon.AumentarEspiritu(2);
+                Debug.Log($"{porkemon.BaseData.nombre} usó {item.nombre}. Defensa Especial aumentada!");
+                break;
+            case BattleItemType.VelocidadX:
+                porkemon.AumentarVelocidad(2);
+                Debug.Log($"{porkemon.BaseData.nombre} usó {item.nombre}. Velocidad aumentada!");
+                break;
+            case BattleItemType.PrecisionX:
+                Debug.Log($"{porkemon.BaseData.nombre} usó {item.nombre}. Precisión aumentada!");
+                break;
+            case BattleItemType.CriticoX:
+                Debug.Log($"{porkemon.BaseData.nombre} usó {item.nombre}. Índice crítico aumentado!");
+                break;
+            case BattleItemType.ProteccionX:
+                Debug.Log($"{porkemon.BaseData.nombre} usó {item.nombre}. Protección activada!");
+                break;
         }
     }
 

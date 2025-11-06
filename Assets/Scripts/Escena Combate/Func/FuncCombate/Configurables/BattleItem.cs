@@ -4,9 +4,6 @@ using UnityEngine;
 
 public enum BattleItemType
 {
-    Pocion,
-    SuperPocion,
-    HiperPocion,
     AtaqueX,
     DefensaX,
     AtaqueEspecialX,

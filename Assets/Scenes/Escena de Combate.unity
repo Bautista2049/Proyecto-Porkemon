@@ -6387,14 +6387,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 849252209}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c9237e86110808a479852264fdb314cd, type: 3}
+  m_Script: {fileID: 11500000, guid: dbe6a4d88eaa0ef4cac914079a47560c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  botonesItems: []
-  tituloTexto: {fileID: 306016146}
-  sonidoSacudida: {fileID: 8300000, guid: 4caf604f4e0f3354ea260c2893c79a92, type: 3}
-  sonidoCaptura: {fileID: 8300000, guid: 04ef05f4793ad2a4287e7ffec36a21cb, type: 3}
-  efectoCaptura: {fileID: 741004694}
 --- !u!1 &856788137
 GameObject:
   m_ObjectHideFlags: 0
