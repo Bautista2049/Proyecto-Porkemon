@@ -10,6 +10,7 @@ public class GestorDeBatalla : MonoBehaviour
     public static GestorDeBatalla instance;
 
     public List<Porkemon> equipoJugador = new List<Porkemon>();
+    public List<Porkemon> equipoBot = new List<Porkemon>();
     public Porkemon porkemonBot;
     public Porkemon porkemonDelBot;
 

@@ -72,6 +72,19 @@ public static class PorkemonExtension
         return expBase;
     }
 
+    public static int CalcularExperienciaGanada(this List<Porkemon> equipoGanador, List<Porkemon> equipoPerdedor)
+    {
+        int totalExp = 0;
+        foreach (var p in equipoGanador)
+        {
+            if (p.VidaActual > 0)
+            {
+                totalExp += p.CalcularExperienciaGanada(equipoPerdedor[0], true);
+            }
+        }
+        return totalExp;
+    }
+
     public static void RepartirExperiencia(this List<Porkemon> equipo, int expTotal)
     {
         int participantes = equipo.Count(p => p.VidaActual > 0);
