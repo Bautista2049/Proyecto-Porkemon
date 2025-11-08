@@ -28,6 +28,7 @@ public class Porkemon
     public int Experiencia { get; set; }
     public int ExperienciaParaSiguienteNivel { get; private set; }
 
+    // IVs y EVs
     public int IvVida { get; private set; }
     public int IvAtaque { get; private set; }
     public int IvDefensa { get; private set; }
@@ -61,7 +62,7 @@ public class Porkemon
 
     public void AumentarAtaque(int cantidad)
     {
-        Ataque = Mathf.Min(Ataque + cantidad, Ataque * 2);
+        Ataque = Mathf.Min(Ataque + cantidad, Ataque * 2); // Limitar a duplicar el stat máximo
         OnHPChanged?.Invoke();
     }
 
@@ -93,24 +94,28 @@ public class Porkemon
         BaseData = pData;
         Nivel = nivel;
 
+        // Inicializar IVs aleatorios (0-31)
         IvVida = Random.Range(0, 32);
         IvAtaque = Random.Range(0, 32);
         IvDefensa = Random.Range(0, 32);
         IvEspiritu = Random.Range(0, 32);
         IvVelocidad = Random.Range(0, 32);
 
+        // Inicializar EVs en 0
         EvVida = 0;
         EvAtaque = 0;
         EvDefensa = 0;
         EvEspiritu = 0;
         EvVelocidad = 0;
 
+        // Calcular estadísticas usando fórmula de tercera generación en adelante
         VidaMaxima = CalcularVidaMaxima();
         Ataque = CalcularAtaque();
         Defensa = CalcularDefensa();
         Espiritu = CalcularEspiritu();
         Velocidad = CalcularVelocidad();
 
+        // Inicializar experiencia
         Experiencia = CalcularExperienciaTotal(Nivel);
         ExperienciaParaSiguienteNivel = CalcularExperienciaTotal(Nivel + 1) - Experiencia;
 
@@ -130,6 +135,7 @@ public class Porkemon
         }
     }
 
+    // Fórmulas de cálculo de estadísticas (Tercera generación en adelante)
     private int CalcularVidaMaxima()
     {
         return Mathf.FloorToInt(((2 * BaseData.vidaMaxima + IvVida + (EvVida / 4)) * Nivel) / 100) + Nivel + 10;
@@ -165,28 +171,29 @@ public class Porkemon
         {
             case Naturaleza.Huraña: return stat == "Ataque" ? 1.1f : stat == "Defensa" ? 0.9f : 1f;
             case Naturaleza.Audaz: return stat == "Ataque" ? 1.1f : stat == "Velocidad" ? 0.9f : 1f;
-            case Naturaleza.Firme: return stat == "Ataque" ? 1.1f : stat == "Espiritu" ? 0.9f : 1f;
-            case Naturaleza.Pícara: return stat == "Ataque" ? 1.1f : stat == "Espiritu" ? 0.9f : 1f;
+            case Naturaleza.Firme: return stat == "Ataque" ? 1.1f : stat == "Espiritu" ? 0.9f : 1f; // Ataque especial
+            case Naturaleza.Pícara: return stat == "Ataque" ? 1.1f : stat == "Espiritu" ? 0.9f : 1f; // Defensa especial
             case Naturaleza.Osada: return stat == "Defensa" ? 1.1f : stat == "Ataque" ? 0.9f : 1f;
             case Naturaleza.Plácida: return stat == "Defensa" ? 1.1f : stat == "Velocidad" ? 0.9f : 1f;
-            case Naturaleza.Agitada: return stat == "Defensa" ? 1.1f : stat == "Espiritu" ? 0.9f : 1f;
-            case Naturaleza.Floja: return stat == "Defensa" ? 1.1f : stat == "Espiritu" ? 0.9f : 1f;
+            case Naturaleza.Agitada: return stat == "Defensa" ? 1.1f : stat == "Espiritu" ? 0.9f : 1f; // Ataque especial
+            case Naturaleza.Floja: return stat == "Defensa" ? 1.1f : stat == "Espiritu" ? 0.9f : 1f; // Defensa especial
             case Naturaleza.Miedosa: return stat == "Velocidad" ? 1.1f : stat == "Ataque" ? 0.9f : 1f;
             case Naturaleza.Activa: return stat == "Velocidad" ? 1.1f : stat == "Defensa" ? 0.9f : 1f;
-            case Naturaleza.Alegre: return stat == "Velocidad" ? 1.1f : stat == "Espiritu" ? 0.9f : 1f;
-            case Naturaleza.Ingenua: return stat == "Velocidad" ? 1.1f : stat == "Espiritu" ? 0.9f : 1f;
-            case Naturaleza.Modesta: return stat == "Espiritu" ? 1.1f : stat == "Ataque" ? 0.9f : 1f;
-            case Naturaleza.Afable: return stat == "Espiritu" ? 1.1f : stat == "Defensa" ? 0.9f : 1f;
-            case Naturaleza.Mansa: return stat == "Espiritu" ? 1.1f : stat == "Velocidad" ? 0.9f : 1f;
-            case Naturaleza.Alocada: return stat == "Espiritu" ? 1.1f : stat == "Espiritu" ? 0.9f : 1f;
-            case Naturaleza.Tranquila: return stat == "Espiritu" ? 1.1f : stat == "Ataque" ? 0.9f : 1f;
-            case Naturaleza.Amable: return stat == "Espiritu" ? 1.1f : stat == "Defensa" ? 0.9f : 1f;
-            case Naturaleza.Grosera: return stat == "Espiritu" ? 1.1f : stat == "Velocidad" ? 0.9f : 1f;
-            case Naturaleza.Cauta: return stat == "Espiritu" ? 1.1f : stat == "Espiritu" ? 0.9f : 1f;
-            default: return 1f;
+            case Naturaleza.Alegre: return stat == "Velocidad" ? 1.1f : stat == "Espiritu" ? 0.9f : 1f; // Ataque especial
+            case Naturaleza.Ingenua: return stat == "Velocidad" ? 1.1f : stat == "Espiritu" ? 0.9f : 1f; // Defensa especial
+            case Naturaleza.Modesta: return stat == "Espiritu" ? 1.1f : stat == "Ataque" ? 0.9f : 1f; // Ataque especial
+            case Naturaleza.Afable: return stat == "Espiritu" ? 1.1f : stat == "Defensa" ? 0.9f : 1f; // Ataque especial
+            case Naturaleza.Mansa: return stat == "Espiritu" ? 1.1f : stat == "Velocidad" ? 0.9f : 1f; // Ataque especial
+            case Naturaleza.Alocada: return stat == "Espiritu" ? 1.1f : stat == "Espiritu" ? 0.9f : 1f; // Ataque especial y Defensa especial
+            case Naturaleza.Tranquila: return stat == "Espiritu" ? 1.1f : stat == "Ataque" ? 0.9f : 1f; // Defensa especial
+            case Naturaleza.Amable: return stat == "Espiritu" ? 1.1f : stat == "Defensa" ? 0.9f : 1f; // Defensa especial
+            case Naturaleza.Grosera: return stat == "Espiritu" ? 1.1f : stat == "Velocidad" ? 0.9f : 1f; // Defensa especial
+            case Naturaleza.Cauta: return stat == "Espiritu" ? 1.1f : stat == "Espiritu" ? 0.9f : 1f; // Defensa especial y Ataque especial
+            default: return 1f; // Neutral
         }
     }
 
+    // Métodos de experiencia
     public int CalcularExperienciaTotal(int nivel)
     {
         switch (BaseData.tasaCrecimiento)
@@ -216,7 +223,7 @@ public class Porkemon
                 else
                     return Mathf.FloorToInt(Mathf.Pow(nivel, 3) * (32 + nivel / 2) / 50);
             default:
-                return Mathf.FloorToInt(Mathf.Pow(nivel, 3));
+                return Mathf.FloorToInt(Mathf.Pow(nivel, 3)); // Medio por defecto
         }
     }
 
@@ -227,12 +234,13 @@ public class Porkemon
         {
             Nivel++;
             ExperienciaParaSiguienteNivel = CalcularExperienciaTotal(Nivel + 1) - CalcularExperienciaTotal(Nivel);
+            // Recalcular estadísticas al subir de nivel
             VidaMaxima = CalcularVidaMaxima();
             Ataque = CalcularAtaque();
             Defensa = CalcularDefensa();
             Espiritu = CalcularEspiritu();
             Velocidad = CalcularVelocidad();
-            VidaActual = VidaMaxima;
+            VidaActual = VidaMaxima; // Restaurar vida al subir de nivel
             Debug.Log($"{BaseData.nombre} subió al nivel {Nivel}!");
         }
     }
@@ -258,70 +266,6 @@ public class Porkemon
     {
         VidaActual = data.vidaActual;
         Estado = data.estado;
-    }
-
-    public bool UsarItemCuracion(BattleItemType tipoItem)
-    {
-        if (VidaActual <= 0 && tipoItem != BattleItemType.Revivir && tipoItem != BattleItemType.RevivirMax)
-        {
-            Debug.Log($"{BaseData.nombre} está debilitado y no puede ser curado con este item.");
-            return false;
-        }
-
-        bool itemUsado = false;
-
-        switch (tipoItem)
-        {
-            case BattleItemType.Pocion:
-                if (VidaActual > 0 && VidaActual < VidaMaxima)
-                {
-                    VidaActual = Mathf.Min(VidaActual + 20, VidaMaxima);
-                    itemUsado = true;
-                }
-                break;
-
-            case BattleItemType.Superpocion:
-                if (VidaActual > 0 && VidaActual < VidaMaxima)
-                {
-                    VidaActual = Mathf.Min(VidaActual + 50, VidaMaxima);
-                    itemUsado = true;
-                }
-                break;
-
-            case BattleItemType.Hiperpocion:
-                if (VidaActual > 0 && VidaActual < VidaMaxima)
-                {
-                    VidaActual = Mathf.Min(VidaActual + 200, VidaMaxima);
-                    itemUsado = true;
-                }
-                break;
-
-            case BattleItemType.Maxipocion:
-                if (VidaActual > 0 && VidaActual < VidaMaxima)
-                {
-                    VidaActual = VidaMaxima;
-                    itemUsado = true;
-                }
-                break;
-
-            case BattleItemType.Revivir:
-                if (VidaActual <= 0)
-                {
-                    VidaActual = VidaMaxima / 2;
-                    itemUsado = true;
-                }
-                break;
-
-            case BattleItemType.RevivirMax:
-                if (VidaActual <= 0)
-                {
-                    VidaActual = VidaMaxima;
-                    itemUsado = true;
-                }
-                break;
-        }
-
-        return itemUsado;
     }
 }
 

@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
@@ -58,16 +58,7 @@ public class FuncTurnos : MonoBehaviour
         if (!corutinaEnEjecucion && isPlayer1Turn && GameState.ataqueSeleccionado != null && enCombate && !ConsolaEnJuego.instance.isTyping)
             StartCoroutine(RutinaAtaqueJugador());
         else if (!corutinaEnEjecucion && isPlayer1Turn && GameState.itemSeleccionado != null && enCombate && !ConsolaEnJuego.instance.isTyping)
-        {
-            if (EsItemDeCuracion(GameState.itemSeleccionado.type))
-            {
-                StartCoroutine(RutinaUsarItemCuracion());
-            }
-            else
-            {
-                StartCoroutine(RutinaLanzarPorkebola());
-            }
-        }
+            StartCoroutine(RutinaLanzarPorkebola());
     }
 
     private IEnumerator RutinaAtaqueJugador()
@@ -143,34 +134,14 @@ public class FuncTurnos : MonoBehaviour
     private void VerificarFinCombate()
     {
         if (jugador1.porkemon.VidaActual <= 0)
-        {
-            ReiniciarEstadoCombate();
             SceneTransitionManager.Instance.LoadScene("Escena de muerte");
-        }
         else if (jugador2.porkemon.VidaActual <= 0)
         {
             GameState.nombreGanador = jugador1.porkemon.BaseData.nombre;
             GameState.experienciaGanada = GestorDeBatalla.instance.equipoJugador[0].CalcularExperienciaGanada(jugador2.porkemon, true);
             GameState.equipoGanador = new List<Porkemon>(GestorDeBatalla.instance.equipoJugador);
-            ReiniciarEstadoCombate();
             SceneTransitionManager.Instance.LoadScene("Escena de Victoria");
         }
-    }
-
-    private void ReiniciarEstadoCombate()
-    {
-        GestorDeBatalla.instance.combateIniciado = false;
-        GameState.player1Turn = true;
-        GameState.ataqueSeleccionado = null;
-        GameState.itemSeleccionado = null;
-        GameState.nombreGanador = null;
-        GameState.experienciaGanada = 0;
-        GameState.equipoGanador = null;
-        
-        GameState.porkemonJugador = null;
-        GameState.porkemonBot = null;
-        
-        Debug.Log("Estado del combate reiniciado correctamente.");
     }
 
     public bool PuedeCombatir()
@@ -265,58 +236,4 @@ public class FuncTurnos : MonoBehaviour
         enCombate = true;
         corutinaEnEjecucion = false;
     }
-
-    private bool EsItemDeCuracion(BattleItemType tipo)
-    {
-        return tipo == BattleItemType.Pocion || 
-               tipo == BattleItemType.Superpocion || 
-               tipo == BattleItemType.Hiperpocion || 
-               tipo == BattleItemType.Maxipocion || 
-               tipo == BattleItemType.Revivir || 
-               tipo == BattleItemType.RevivirMax;
-    }
-
-    private IEnumerator RutinaUsarItemCuracion()
-    {
-        corutinaEnEjecucion = true;
-        enCombate = false;
-
-        BattleItem itemUsado = GameState.itemSeleccionado;
-        GameState.itemSeleccionado = null;
-
-        yield return new WaitUntil(() => !ConsolaEnJuego.instance.isTyping);
-
-        bool itemUsadoExitosamente = GestorDeBatalla.instance.UsarItemCuracionEnPorkemon(itemUsado.type, jugador1.porkemon);
-
-        yield return new WaitUntil(() => !ConsolaEnJuego.instance.isTyping);
-
-        if (itemUsadoExitosamente)
-        {
-            if (jugador2.porkemon.VidaActual > 0)
-            {
-                yield return new WaitForSeconds(0.5f);
-                jugador1.porkemon.AplicarDanioPorEstado();
-                jugador2.porkemon.AplicarDanioPorEstado();
-                
-                if (jugador1.porkemon.VidaActual <= 0)
-                {
-                    VerificarFinCombate();
-                }
-                else
-                {
-                    CambiarTurno();
-                }
-            }
-            else
-            {
-                CambiarTurno();
-            }
-        }
-        else
-        {
-            enCombate = true;
-        }
-
-        corutinaEnEjecucion = false;
-    }
-}   
+}
