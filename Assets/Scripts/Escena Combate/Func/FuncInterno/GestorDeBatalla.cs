@@ -82,12 +82,26 @@ public class GestorDeBatalla : MonoBehaviour
             porkemonBot = new Porkemon(dataInicialBot, dataInicialBot.nivel);
             GameState.porkemonDelBot = porkemonBot;
         }
+
+        if (GameState.porkemonDelJugador != null)
+        {
+            porkemonJugador = GameState.porkemonDelJugador;
+        }
+        else if (equipoJugador.Count > 0)
+        {
+            porkemonJugador = equipoJugador[0];
+            GameState.porkemonDelJugador = porkemonJugador;
+        }
         
         combateIniciado = true;
     }
 
     private void InicializarInventarioBattleItems()
     {
+        inventarioBattleItems.Add(new BattleItem(BattleItemType.Pocion, "Poción", "Restaura 20 PS de un Porkemon", 5));
+        inventarioBattleItems.Add(new BattleItem(BattleItemType.Superpocion, "Superpoción", "Restaura 50 PS de un Porkemon", 3));
+        inventarioBattleItems.Add(new BattleItem(BattleItemType.Hiperpocion, "Hiperpoción", "Restaura 200 PS de un Porkemon", 2));
+        inventarioBattleItems.Add(new BattleItem(BattleItemType.Pocionmaxima, "Poción Máxima", "Restaura todos los PS de un Porkemon", 1));
         inventarioBattleItems.Add(new BattleItem(BattleItemType.AtaqueX, "Ataque X", "Aumenta el Ataque en 2 niveles", 1));
         inventarioBattleItems.Add(new BattleItem(BattleItemType.DefensaX, "Defensa X", "Aumenta la Defensa en 2 niveles", 1));
         inventarioBattleItems.Add(new BattleItem(BattleItemType.AtaqueEspecialX, "Ataque Especial X", "Aumenta el Ataque Especial en 2 niveles", 1));
@@ -136,12 +150,12 @@ public class GestorDeBatalla : MonoBehaviour
     {
         yield return new WaitUntil(() => !ConsolaEnJuego.instance.isTyping);
         yield return new WaitForSeconds(1.5f);
-        
+
         if (victoria)
         {
             // No cargamos la escena de victoria, volvemos al mundo principal
             // O si quieres la pantalla de exp, carga "Escena de Victoria"
-            SceneTransitionManager.Instance.LoadScene("Escena Principal");
+            SceneTransitionManager.Instance.LoadScene("Escena de Victoria");
         }
     }
 }

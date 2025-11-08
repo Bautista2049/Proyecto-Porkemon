@@ -24,6 +24,10 @@ public class ConsolaEnJuego : MonoBehaviour
         if (instance == null)
         {
             instance = this;
+            if (transform.parent != null)
+            {
+                transform.SetParent(null);
+            }
             DontDestroyOnLoad(gameObject);
         }
         else
@@ -60,8 +64,11 @@ public class ConsolaEnJuego : MonoBehaviour
             lowerLogString.Contains("efect") ||
             lowerLogString.Contains("critico") ||
             lowerLogString.Contains("inmune") ||
-            lowerLogString.Contains("usó") || // Para objetos
+            lowerLogString.Contains("usó") ||
             lowerLogString.Contains("aumentado") ||
+            lowerLogString.Contains("recuperó") ||
+            lowerLogString.Contains("recupero") ||
+            lowerLogString.Contains("ps!") ||
             lowerLogString.Contains("lanzaste") ||
             lowerLogString.Contains("...") ||
             lowerLogString.Contains("gotcha") ||

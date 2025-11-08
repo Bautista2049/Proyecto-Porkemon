@@ -109,6 +109,26 @@ public class ControladorMochila : MonoBehaviour
     {
         switch (item.type)
         {
+            case BattleItemType.Pocion:
+                int curacion20 = Mathf.Min(20, porkemon.VidaMaxima - porkemon.VidaActual);
+                porkemon.VidaActual += curacion20;
+                Debug.Log($"{porkemon.BaseData.nombre} usó {item.nombre}. Recuperó {curacion20} PS!");
+                break;
+            case BattleItemType.Superpocion:
+                int curacion50 = Mathf.Min(50, porkemon.VidaMaxima - porkemon.VidaActual);
+                porkemon.VidaActual += curacion50;
+                Debug.Log($"{porkemon.BaseData.nombre} usó {item.nombre}. Recuperó {curacion50} PS!");
+                break;
+            case BattleItemType.Hiperpocion:
+                int curacion200 = Mathf.Min(200, porkemon.VidaMaxima - porkemon.VidaActual);
+                porkemon.VidaActual += curacion200;
+                Debug.Log($"{porkemon.BaseData.nombre} usó {item.nombre}. Recuperó {curacion200} PS!");
+                break;
+            case BattleItemType.Pocionmaxima:
+                int curacionMax = porkemon.VidaMaxima - porkemon.VidaActual;
+                porkemon.VidaActual = porkemon.VidaMaxima;
+                Debug.Log($"{porkemon.BaseData.nombre} usó {item.nombre}. Recuperó {curacionMax} PS!");
+                break;
             case BattleItemType.AtaqueX:
                 porkemon.AumentarAtaque(2);
                 Debug.Log($"{porkemon.BaseData.nombre} usó {item.nombre}. Ataque aumentado!");

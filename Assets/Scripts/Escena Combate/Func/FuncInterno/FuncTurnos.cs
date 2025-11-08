@@ -33,11 +33,19 @@ public class FuncTurnos : MonoBehaviour
         jugador1.Setup(GestorDeBatalla.instance.porkemonJugador);
         jugador2.Setup(GestorDeBatalla.instance.porkemonBot);
 
-        if (playerModelManager && jugador1.porkemon != null)
-            playerModelManager.UpdateModel(jugador1.porkemon.BaseData.nombre);
+        if (playerModelManager != null)
+        {
+            playerModelManager.ClearCurrentModel();
+            if (jugador1.porkemon != null)
+                playerModelManager.UpdateModel(jugador1.porkemon.BaseData.nombre);
+        }
 
-        if (botModelManager && jugador2.porkemon != null)
-            botModelManager.UpdateModel(jugador2.porkemon.BaseData.nombre);
+        if (botModelManager != null)
+        {
+            botModelManager.ClearCurrentModel();
+            if (jugador2.porkemon != null)
+                botModelManager.UpdateModel(jugador2.porkemon.BaseData.nombre);
+        }
 
         if (!GestorDeBatalla.instance.combateIniciado)
         {

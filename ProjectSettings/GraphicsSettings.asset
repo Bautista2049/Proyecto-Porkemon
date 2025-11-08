@@ -62,7 +62,7 @@ GraphicsSettings:
       useCascadedShadowMaps: 0
       prefer32BitShadowMaps: 0
       enableLPPV: 0
-      useDitherMaskForAlphaBlendedShadows: 0
+      useDitherMaskForAlphaBlendedShadows: 1
     m_Automatic: 0
   - serializedVersion: 5
     m_BuildTarget: 1
@@ -75,8 +75,8 @@ GraphicsSettings:
       useReflectionProbeBoxProjection: 1
       useReflectionProbeBlending: 1
       useHDR: 0
-      useDetailNormalMap: 0
-      useCascadedShadowMaps: 0
+      useDetailNormalMap: 1
+      useCascadedShadowMaps: 1
       prefer32BitShadowMaps: 0
       enableLPPV: 0
       useDitherMaskForAlphaBlendedShadows: 0
@@ -93,10 +93,10 @@ GraphicsSettings:
       useReflectionProbeBlending: 1
       useHDR: 0
       useDetailNormalMap: 0
-      useCascadedShadowMaps: 0
+      useCascadedShadowMaps: 1
       prefer32BitShadowMaps: 0
       enableLPPV: 0
-      useDitherMaskForAlphaBlendedShadows: 0
+      useDitherMaskForAlphaBlendedShadows: 1
     m_Automatic: 0
   m_LightmapStripping: 0
   m_FogStripping: 0

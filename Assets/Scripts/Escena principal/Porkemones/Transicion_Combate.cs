@@ -7,8 +7,8 @@ using TMPro;
 public class Transicion_Combate : MonoBehaviour
 {
     [SerializeField] private string nombreEscena = "Escena de Combate" ;
-    [SerializeField] private GameObject popupPanel; 
-    [SerializeField] private TextMeshProUGUI popupText; 
+    [SerializeField] private GameObject popupPanel;
+    [SerializeField] private TextMeshProUGUI popupText;
 
     public PorkemonData botPorkemonData;
     public int nivelSpawn;
@@ -22,8 +22,8 @@ public class Transicion_Combate : MonoBehaviour
                 return;
             }
 
-            if (GameState.porkemonDelBot != null && 
-                GameState.porkemonDelBot.BaseData == this.botPorkemonData && 
+            if (GameState.porkemonDelBot != null &&
+                GameState.porkemonDelBot.BaseData == this.botPorkemonData &&
                 GameState.porkemonDelBot.VidaActual <= 0)
             {
                 if (popupText != null)
@@ -34,8 +34,12 @@ public class Transicion_Combate : MonoBehaviour
                 }
                 return;
             }
-            
+
             GameState.porkemonDelBot = new Porkemon(botPorkemonData, nivelSpawn);
+            if (GestorDeBatalla.instance != null)
+            {
+                GestorDeBatalla.instance.combateIniciado = false;
+            }
 
             SceneManager.LoadScene(nombreEscena);
             Cursor.lockState = CursorLockMode.None;

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641275, b: 0.5748172, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -844,7 +844,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1151766225}
-  - component: {fileID: 1151766226}
   m_Layer: 0
   m_Name: Mochila
   m_TagString: Untagged
@@ -866,29 +865,6 @@ Transform:
   m_Father: {fileID: 647000436}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1151766226
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1151766224}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dbe6a4d88eaa0ef4cac914079a47560c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  botonesItems:
-  - {fileID: 2130501852}
-  - {fileID: 1701580506}
-  - {fileID: 610612565}
-  - {fileID: 1623150101}
-  - {fileID: 1754108486}
-  - {fileID: 1778134550}
-  tituloTexto: {fileID: 1314797914}
-  sonidoSacudida: {fileID: 8300000, guid: 4caf604f4e0f3354ea260c2893c79a92, type: 3}
-  sonidoCaptura: {fileID: 8300000, guid: 04ef05f4793ad2a4287e7ffec36a21cb, type: 3}
-  efectoCaptura: {fileID: 0}
 --- !u!1 &1288536354
 GameObject:
   m_ObjectHideFlags: 0
@@ -2506,8 +2482,8 @@ MonoBehaviour:
     nombre: Porkebola
     descripcion: 
     cantidad: 1
-  - type: 7
-    nombre: Proteccion X
+  - type: 14
+    nombre: hiperpocion
     descripcion: 
     cantidad: 2
   - type: 4

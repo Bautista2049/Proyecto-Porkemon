@@ -24,10 +24,14 @@ public class SceneTransitionManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
+            if (transform.parent != null)
+            {
+                transform.SetParent(null);
+            }
             DontDestroyOnLoad(gameObject);
             InitializeFade();
         }
-        else if (Instance == this)
+        else
         {
             Destroy(gameObject);
         }
