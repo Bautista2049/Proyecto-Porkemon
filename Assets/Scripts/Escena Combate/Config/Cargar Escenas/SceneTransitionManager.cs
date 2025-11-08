@@ -137,6 +137,14 @@ public class SceneTransitionManager : MonoBehaviour
                 autoRotate = false;
             }
         }
+        else if (scene.name == "Escena de Victoria")
+        {
+            // Reset camera settings for the victory scene to prevent rotation
+            if (mainCamera != null)
+            {
+                autoRotate = false;
+            }
+        }
     }
 
     private void OnDestroy()
