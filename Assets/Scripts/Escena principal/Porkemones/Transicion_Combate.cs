@@ -22,23 +22,19 @@ public class Transicion_Combate : MonoBehaviour
                 return;
             }
 
-            if (GameState.porkemonDelBot != null && 
-                GameState.porkemonDelBot.BaseData == this.botPorkemonData && 
-                GameState.porkemonDelBot.VidaActual <= 0)
-            {
-                if (popupText != null)
+            if (GameState.porkemonDelBot != null && GameState.porkemonDelBot.VidaActual <= 0)
                 {
                     popupText.gameObject.SetActive(true);
                     popupText.text = "Este Porkemon está debilitado. No puedes iniciar un combate.";
-                    StartCoroutine(DesactivarTexto(3f));
-                }
+                    popupText.gameObject.SetActive(true);
+                    popupText.text = "El Porkemon del bot está debilitado. No puedes iniciar un combate.";
                 return;
             }
             
             GameState.porkemonDelBot = new Porkemon(botPorkemonData, nivelSpawn);
 
-            SceneManager.LoadScene(nombreEscena);
-            Cursor.lockState = CursorLockMode.None;
+            // Set the bot's Pokémon based on this spawned one
+            GameState.porkemonDelBot = new Porkemon(botPorkemonData, botPorkemonData.nivel);
             Cursor.visible = true;
         }
     }

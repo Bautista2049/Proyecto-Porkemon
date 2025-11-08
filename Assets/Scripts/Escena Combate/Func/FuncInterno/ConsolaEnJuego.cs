@@ -65,7 +65,12 @@ public class ConsolaEnJuego : MonoBehaviour
             lowerLogString.Contains("lanzaste") ||
             lowerLogString.Contains("...") ||
             lowerLogString.Contains("gotcha") ||
-            lowerLogString.Contains("escapado"))
+            lowerLogString.Contains("escapado") ||
+            lowerLogString.Contains("poción") ||
+            lowerLogString.Contains("revivir") ||
+            lowerLogString.Contains("curó") ||
+            lowerLogString.Contains("restauró") ||
+            lowerLogString.Contains("salud"))
         {
             AddLogMessage(logString);
         }

@@ -15,7 +15,13 @@ public enum BattleItemType
     Porkebola,
     Superbola,
     Ultrabola,
-    Masterbola
+    Masterbola,
+    Pocion,
+    Superpocion,
+    Hiperpocion,
+    Maxipocion,
+    Revivir,
+    RevivirMax
 }
 
 [System.Serializable]

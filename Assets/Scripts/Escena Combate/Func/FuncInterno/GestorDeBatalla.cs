@@ -1,20 +1,25 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
-using TMPro;
-using System.Collections;
 
 public class GestorDeBatalla : MonoBehaviour
 {
     public static GestorDeBatalla instance;
 
-    public List<Porkemon> equipoJugador = new List<Porkemon>();
-    public Porkemon porkemonBot;
-    public Porkemon porkemonDelBot;
+    public ConsolaEnJuego consolaEnJuego;
 
+    [Header("Porkemon del Jugador")]
     public List<PorkemonData> dataEquipoJugador;
+    public List<Porkemon> equipoJugador = new List<Porkemon>();
+
+    [Header("Porkemon del Bot")]
     public PorkemonData dataInicialBot;
+    public Porkemon porkemonBot;
+
+    [Header("Puntos de Spawn")]
+    public Transform puntoSpawnJugador;
+    public Vector3 escalaModeloJugador = new Vector3(1.0f, 1.0f, 1.0f);
     public Transform puntoSpawnBot; 
     public Vector3 escalaModeloBot = new Vector3(1.0f, 1.0f, 1.0f);
     public List<BattleItem> inventarioBattleItems = new List<BattleItem>();
@@ -98,6 +103,12 @@ public class GestorDeBatalla : MonoBehaviour
         inventarioBattleItems.Add(new BattleItem(BattleItemType.ProteccionX, "Protección X", "Evita que las estadísticas bajen durante 5 turnos", 1));
         inventarioBattleItems.Add(new BattleItem(BattleItemType.Porkebola, "Porkebola", "Un objeto para capturar Porkemon salvajes.", 10));
         inventarioBattleItems.Add(new BattleItem(BattleItemType.Superbola, "Superbola", "Una Porkebola con mejor ratio de captura.", 5));
+        inventarioBattleItems.Add(new BattleItem(BattleItemType.Pocion, "Poción", "Restaura 20 PS de un Porkemon.", 5));
+        inventarioBattleItems.Add(new BattleItem(BattleItemType.Superpocion, "Superpoción", "Restaura 50 PS de un Porkemon.", 3));
+        inventarioBattleItems.Add(new BattleItem(BattleItemType.Hiperpocion, "Hiperpoción", "Restaura 200 PS de un Porkemon.", 2));
+        inventarioBattleItems.Add(new BattleItem(BattleItemType.Maxipocion, "Maxipoción", "Restaura todos los PS de un Porkemon.", 1));
+        inventarioBattleItems.Add(new BattleItem(BattleItemType.Revivir, "Revivir", "Revive a un Porkemon debilitado con la mitad de sus PS.", 2));
+        inventarioBattleItems.Add(new BattleItem(BattleItemType.RevivirMax, "Revivir Máx", "Revive a un Porkemon debilitado con todos sus PS.", 1));
     }
 
     public Porkemon GetPorkemonActivoJugador()
@@ -131,16 +142,73 @@ public class GestorDeBatalla : MonoBehaviour
         }
         StartCoroutine(FinalizarCombate(true));
     }
+
+    public bool UsarItemCuracionEnPorkemon(BattleItemType tipoItem, Porkemon objetivo)
+    {
+        if (objetivo == null)
+        {
+            Debug.LogError("No se puede usar el item: el Porkemon objetivo es nulo.");
+            return false;
+        }
+
+        BattleItem itemEnInventario = inventarioBattleItems.Find(item => item.type == tipoItem);
+        
+        if (itemEnInventario == null || itemEnInventario.quantity <= 0)
+        {
+            Debug.Log($"No tienes {tipoItem} en tu inventario.");
+            if (consolaEnJuego != null)
+            {
+                consolaEnJuego.AgregarTexto($"No tienes {tipoItem} en tu inventario.");
+            }
+            return false;
+        }
+
+        bool itemUsado = objetivo.UsarItemCuracion(tipoItem);
+        
+        if (itemUsado)
+        {
+            itemEnInventario.quantity--;
+            
+            if (itemEnInventario.quantity <= 0)
+            {
+                inventarioBattleItems.Remove(itemEnInventario);
+            }
+            
+            if (consolaEnJuego != null)
+            {
+                string mensaje = tipoItem switch
+                {
+                    BattleItemType.Pocion => $"{objetivo.BaseData.nombre} usó Poción y recuperó PS.",
+                    BattleItemType.Superpocion => $"{objetivo.BaseData.nombre} usó Superpoción y recuperó PS.",
+                    BattleItemType.Hiperpocion => $"{objetivo.BaseData.nombre} usó Hiperpoción y recuperó PS.",
+                    BattleItemType.Maxipocion => $"{objetivo.BaseData.nombre} usó Maxipoción y recuperó todos sus PS.",
+                    BattleItemType.Revivir => $"{objetivo.BaseData.nombre} fue revivido con Revivir.",
+                    BattleItemType.RevivirMax => $"{objetivo.BaseData.nombre} fue revivido con Revivir Máx.",
+                    _ => $"{objetivo.BaseData.nombre} usó {tipoItem}."
+                };
+                consolaEnJuego.AgregarTexto(mensaje);
+            }
+            
+            Debug.Log($"Item {tipoItem} usado exitosamente en {objetivo.BaseData.nombre}.");
+            return true;
+        }
+        else
+        {
+            if (consolaEnJuego != null)
+            {
+                consolaEnJuego.AgregarTexto($"No se pudo usar {tipoItem} en {objetivo.BaseData.nombre}.");
+            }
+            return false;
+        }
+    }
     
     private IEnumerator FinalizarCombate(bool victoria)
     {
-        yield return new WaitUntil(() => !ConsolaEnJuego.instance.isTyping);
+        yield return new WaitUntil(() => ConsolaEnJuego.instance != null && !ConsolaEnJuego.instance.isTyping);
         yield return new WaitForSeconds(1.5f);
         
         if (victoria)
         {
-            // No cargamos la escena de victoria, volvemos al mundo principal
-            // O si quieres la pantalla de exp, carga "Escena de Victoria"
             SceneTransitionManager.Instance.LoadScene("Escena Principal");
         }
     }
