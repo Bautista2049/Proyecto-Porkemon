@@ -153,8 +153,6 @@ public class GestorDeBatalla : MonoBehaviour
 
         if (victoria)
         {
-            // No cargamos la escena de victoria, volvemos al mundo principal
-            // O si quieres la pantalla de exp, carga "Escena de Victoria"
             SceneTransitionManager.Instance.LoadScene("Escena de Victoria");
         }
     }
