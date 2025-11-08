@@ -41,6 +41,13 @@ public class Transicion_Combate : MonoBehaviour
                 GestorDeBatalla.instance.combateIniciado = false;
             }
 
+            // Make the main camera persist across scene loads
+            Camera mainCamera = Camera.main;
+            if (mainCamera != null)
+            {
+                DontDestroyOnLoad(mainCamera.gameObject);
+            }
+
             SceneManager.LoadScene(nombreEscena);
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;

@@ -11,13 +11,15 @@ public class SceneTransitionManager : MonoBehaviour
     public float fadeDuration = 1f;
 
     [Header("Camera Orbit")]
-    public bool autoRotate = false;
+    public bool autoRotate = true;
     public float rotationSpeed = 30f;
     public Transform orbitCenter;
 
     private Animator transitionAnimator;
     private GameObject fadeInstance;
     private string lastSceneName = null;
+
+    private Camera mainCamera;
 
     private void Awake()
     {
@@ -30,6 +32,7 @@ public class SceneTransitionManager : MonoBehaviour
             }
             DontDestroyOnLoad(gameObject);
             InitializeFade();
+            SceneManager.sceneLoaded += OnSceneLoaded;
         }
         else
         {
@@ -46,10 +49,9 @@ public class SceneTransitionManager : MonoBehaviour
             Cursor.visible = true;
         }
 
-        if (autoRotate && orbitCenter != null)
+        if (autoRotate && mainCamera != null && orbitCenter != null)
         {
-            float angle = rotationSpeed * Time.deltaTime;
-            transform.RotateAround(orbitCenter.position, Vector3.up, angle);
+            mainCamera.transform.RotateAround(orbitCenter.position, Vector3.up, rotationSpeed * Time.deltaTime);
         }
     }
 
@@ -102,6 +104,44 @@ public class SceneTransitionManager : MonoBehaviour
             LoadScene(lastSceneName);
             lastSceneName = null;
         }
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (scene.name == "Escena de Combate")
+        {
+            // Find the main camera that persisted from the previous scene
+            mainCamera = Camera.main;
+            if (mainCamera != null)
+            {
+                // Set the desired position and rotation for the combat scene
+                mainCamera.transform.position = new Vector3(-322.7f, 12.76f, 57.6f);
+                mainCamera.transform.rotation = Quaternion.Euler(23.223f, 0f, 0f);
+                // Create orbit center if it doesn't exist
+                if (orbitCenter == null)
+                {
+                    GameObject orbitCenterObj = new GameObject("OrbitCenter");
+                    orbitCenter = orbitCenterObj.transform;
+                    orbitCenter.position = new Vector3(-322.7f, 3.91f, 84.52f);
+                }
+                // Enable auto rotation for combat
+                autoRotate = true;
+                rotationSpeed = 8f;
+            }
+        }
+        else if (scene.name == "Escena Principal")
+        {
+            // Reset camera settings for the principal scene if needed
+            if (mainCamera != null)
+            {
+                autoRotate = false;
+            }
+        }
+    }
+
+    private void OnDestroy()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
     private IEnumerator LoadSceneCoroutine(string sceneName, LoadSceneMode mode)
