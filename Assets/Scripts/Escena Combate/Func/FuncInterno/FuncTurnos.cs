@@ -79,14 +79,15 @@ public class FuncTurnos : MonoBehaviour
 
         yield return new WaitUntil(() => !ConsolaEnJuego.instance.isTyping);
         jugador1.porkemon.UsarAtaqueElemental(jugador2.porkemon, ataque);
-        bool debilitado = jugador2.porkemon.VidaActual <= 0;
 
         yield return new WaitUntil(() => !ConsolaEnJuego.instance.isTyping);
         jugador1.porkemon.AplicarDanioPorEstado();
         jugador2.porkemon.AplicarDanioPorEstado();
 
-        if (debilitado) VerificarFinCombate();
-        else CambiarTurno();
+        if (jugador1.porkemon.VidaActual <= 0 || jugador2.porkemon.VidaActual <= 0)
+            VerificarFinCombate();
+        else
+            CambiarTurno();
 
         enCombate = true;
         corutinaEnEjecucion = false;
@@ -106,14 +107,15 @@ public class FuncTurnos : MonoBehaviour
             AtaqueData ataqueDelBot = jugador2.porkemon.Ataques[indiceAtaque];
 
             jugador2.porkemon.UsarAtaqueElemental(jugador1.porkemon, ataqueDelBot);
-            bool debilitado = jugador1.porkemon.VidaActual <= 0;
 
             yield return new WaitUntil(() => !ConsolaEnJuego.instance.isTyping);
             jugador1.porkemon.AplicarDanioPorEstado();
             jugador2.porkemon.AplicarDanioPorEstado();
 
-            if (debilitado) VerificarFinCombate();
-            else CambiarTurno();
+            if (jugador1.porkemon.VidaActual <= 0 || jugador2.porkemon.VidaActual <= 0)
+                VerificarFinCombate();
+            else
+                CambiarTurno();
         }
 
         enCombate = true;
@@ -147,7 +149,7 @@ public class FuncTurnos : MonoBehaviour
         else if (jugador2.porkemon.VidaActual <= 0)
         {
             GameState.nombreGanador = jugador1.porkemon.BaseData.nombre;
-            GameState.experienciaGanada = CalcularExperienciaGanada(GestorDeBatalla.instance.equipoJugador, GestorDeBatalla.instance.equipoBot);
+            GameState.experienciaGanada = GestorDeBatalla.instance.equipoJugador.CalcularExperienciaGanada(new List<Porkemon> { jugador2.porkemon });
             GameState.equipoGanador = new List<Porkemon>(GestorDeBatalla.instance.equipoJugador);
             SceneTransitionManager.Instance.LoadScene("Escena de Victoria");
         }

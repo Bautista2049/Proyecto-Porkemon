@@ -32,7 +32,7 @@ public class ControladorExperienciaVictoria : MonoBehaviour
         }
     }
 
-    private IEnumerator MostrarExperienciaPorkemons()
+    public IEnumerator MostrarExperienciaPorkemons()
     {
         for (int i = 0; i < equipoGanador.Count; i++)
         {

@@ -266,15 +266,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 250511751}
-  m_LocalRotation: {x: -0.5, y: 0.5, z: -0.50000006, w: -0.50000006}
-  m_LocalPosition: {x: 1256, y: 0, z: 2.56}
-  m_LocalScale: {x: 2325.5422, y: 2325.5422, z: 2325.5422}
+  m_LocalRotation: {x: -0.49999997, y: 0.49999997, z: -0.5, w: -0.50000006}
+  m_LocalPosition: {x: 4827, y: 0, z: 495.55933}
+  m_LocalScale: {x: 2325.542, y: 2325.5425, z: 2325.542}
   m_Children:
   - {fileID: 256413628}
   - {fileID: 306639825}
   - {fileID: 963667775}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 90.00001, y: 180, z: -90}
 --- !u!1 &256413627
 GameObject:
@@ -398,7 +398,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2133752219}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -719,7 +719,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2133752219}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -991,12 +991,12 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 334532871}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 2133752219}
-  m_RootOrder: 1
+  m_Father: {fileID: 2094047093}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1015,7 +1015,7 @@ GameObject:
   - component: {fileID: 411870099}
   - component: {fileID: 411870098}
   - component: {fileID: 411870101}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -1040,7 +1040,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.7075472, g: 0.6139872, b: 0, a: 0}
+  m_BackGroundColor: {r: 0.754717, g: 0.6494658, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_SensorSize: {x: 36, y: 24}
   m_LensShift: {x: 0, y: 0}
@@ -1057,7 +1057,7 @@ Camera:
   field of view: 60
   orthographic: 0
   orthographic size: 5
-  m_Depth: -1
+  m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 0
@@ -1080,7 +1080,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 411870097}
   m_LocalRotation: {x: 0.07208225, y: 0.06839556, z: 0.0050092614, w: -0.9950383}
-  m_LocalPosition: {x: 519, y: 25720, z: -3746}
+  m_LocalPosition: {x: 4090, y: 25720, z: -3253}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1368810749}
@@ -1421,7 +1421,7 @@ RectTransform:
   - {fileID: 1340279738}
   - {fileID: 720879689}
   m_Father: {fileID: 2133752219}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1526,7 +1526,7 @@ PrefabInstance:
     - target: {fileID: 4695068768813509650, guid: a12bb92e43d7f554b800607632c5dd77,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4695068768813509661, guid: a12bb92e43d7f554b800607632c5dd77,
         type: 3}
@@ -1821,7 +1821,8 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 334532874}
   m_Father: {fileID: 2133752219}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1850,11 +1851,11 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 70
+    m_FontSize: 121
     m_FontStyle: 0
-    m_BestFit: 0
-    m_MinSize: 7
-    m_MaxSize: 70
+    m_BestFit: 1
+    m_MinSize: 0
+    m_MaxSize: 195
     m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -1974,12 +1975,11 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 2094047093}
-  - {fileID: 334532874}
   - {fileID: 265521665}
   - {fileID: 321113856}
   - {fileID: 971263485}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
