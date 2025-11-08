@@ -66,7 +66,7 @@ public class FuncTurnos : MonoBehaviour
         if (!corutinaEnEjecucion && isPlayer1Turn && GameState.ataqueSeleccionado != null && enCombate && !ConsolaEnJuego.instance.isTyping)
             StartCoroutine(RutinaAtaqueJugador());
         else if (!corutinaEnEjecucion && isPlayer1Turn && GameState.itemSeleccionado != null && enCombate && !ConsolaEnJuego.instance.isTyping)
-            StartCoroutine(RutinaLanzarPorkebola());
+            StartCoroutine(RutinaUsarItem());
     }
 
     private IEnumerator RutinaAtaqueJugador()
@@ -169,20 +169,99 @@ public class FuncTurnos : MonoBehaviour
         }
     }
 
-    private IEnumerator RutinaLanzarPorkebola()
+    private IEnumerator RutinaUsarItem()
     {
         corutinaEnEjecucion = true;
         enCombate = false;
 
-        BattleItem bolaUsada = GameState.itemSeleccionado;
+        BattleItem itemUsado = GameState.itemSeleccionado;
         GameState.itemSeleccionado = null;
+
+        yield return new WaitUntil(() => !ConsolaEnJuego.instance.isTyping);
+
+        if (itemUsado.type == BattleItemType.Porkebola || itemUsado.type == BattleItemType.Superbola || itemUsado.type == BattleItemType.Ultrabola || itemUsado.type == BattleItemType.Masterbola)
+        {
+            yield return StartCoroutine(RutinaLanzarPorkebola(itemUsado));
+        }
+        else
+        {
+            // Aplicar efecto del item al Porkemon del jugador
+            AplicarEfectoItem(itemUsado, jugador1.porkemon);
+            itemUsado.cantidad--;
+            if (itemUsado.cantidad <= 0)
+                GestorDeBatalla.instance.inventarioBattleItems.Remove(itemUsado);
+
+            yield return new WaitForSeconds(1f); // Esperar un poco para que se vea el efecto
+            CambiarTurno();
+        }
+
+        enCombate = true;
+        corutinaEnEjecucion = false;
+    }
+
+    private void AplicarEfectoItem(BattleItem item, Porkemon porkemon)
+    {
+        switch (item.type)
+        {
+            case BattleItemType.Pocion:
+                int curacion20 = Mathf.Min(20, porkemon.VidaMaxima - porkemon.VidaActual);
+                porkemon.VidaActual += curacion20;
+                Debug.Log($"{porkemon.BaseData.nombre} usó {item.nombre}. Recuperó {curacion20} PS!");
+                break;
+            case BattleItemType.Superpocion:
+                int curacion50 = Mathf.Min(50, porkemon.VidaMaxima - porkemon.VidaActual);
+                porkemon.VidaActual += curacion50;
+                Debug.Log($"{porkemon.BaseData.nombre} usó {item.nombre}. Recuperó {curacion50} PS!");
+                break;
+            case BattleItemType.Hiperpocion:
+                int curacion200 = Mathf.Min(200, porkemon.VidaMaxima - porkemon.VidaActual);
+                porkemon.VidaActual += curacion200;
+                Debug.Log($"{porkemon.BaseData.nombre} usó {item.nombre}. Recuperó {curacion200} PS!");
+                break;
+            case BattleItemType.Pocionmaxima:
+                int curacionMax = porkemon.VidaMaxima - porkemon.VidaActual;
+                porkemon.VidaActual = porkemon.VidaMaxima;
+                Debug.Log($"{porkemon.BaseData.nombre} usó {item.nombre}. Recuperó {curacionMax} PS!");
+                break;
+            case BattleItemType.AtaqueX:
+                porkemon.AumentarAtaque(2);
+                Debug.Log($"{porkemon.BaseData.nombre} usó {item.nombre}. Ataque aumentado!");
+                break;
+            case BattleItemType.DefensaX:
+                porkemon.AumentarDefensa(2);
+                Debug.Log($"{porkemon.BaseData.nombre} usó {item.nombre}. Defensa aumentada!");
+                break;
+            case BattleItemType.AtaqueEspecialX:
+                porkemon.AumentarEspiritu(2);
+                Debug.Log($"{porkemon.BaseData.nombre} usó {item.nombre}. Ataque Especial aumentado!");
+                break;
+            case BattleItemType.DefensaEspecialX:
+                porkemon.AumentarEspiritu(2);
+                Debug.Log($"{porkemon.BaseData.nombre} usó {item.nombre}. Defensa Especial aumentada!");
+                break;
+            case BattleItemType.VelocidadX:
+                porkemon.AumentarVelocidad(2);
+                Debug.Log($"{porkemon.BaseData.nombre} usó {item.nombre}. Velocidad aumentada!");
+                break;
+            case BattleItemType.PrecisionX:
+                Debug.Log($"{porkemon.BaseData.nombre} usó {item.nombre}. Precisión aumentada!");
+                break;
+            case BattleItemType.CriticoX:
+                Debug.Log($"{porkemon.BaseData.nombre} usó {item.nombre}. Índice crítico aumentado!");
+                break;
+            case BattleItemType.ProteccionX:
+                Debug.Log($"{porkemon.BaseData.nombre} usó {item.nombre}. Protección activada!");
+                break;
+        }
+    }
+
+    private IEnumerator RutinaLanzarPorkebola(BattleItem bolaUsada)
+    {
         Porkemon porkemonSalvaje = jugador2.porkemon;
 
         bolaUsada.cantidad--;
         if (bolaUsada.cantidad <= 0)
             GestorDeBatalla.instance.inventarioBattleItems.Remove(bolaUsada);
-
-        yield return new WaitUntil(() => !ConsolaEnJuego.instance.isTyping);
 
         GameObject pokebolaInstancia = Instantiate(pokebolaPrefab, posicionLanzamientoJugador.position, posicionLanzamientoJugador.rotation);
         AudioSource audioSource = pokebolaInstancia.GetComponent<AudioSource>();
@@ -240,8 +319,5 @@ public class FuncTurnos : MonoBehaviour
             yield return new WaitForSeconds(1f);
             CambiarTurno();
         }
-
-        enCombate = true;
-        corutinaEnEjecucion = false;
     }
 }

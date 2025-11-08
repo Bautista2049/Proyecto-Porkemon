@@ -7,10 +7,8 @@ public static class PorkemonExtension
 {
     public static bool UsarAtaqueElemental(this Porkemon atacante, Porkemon defensor, AtaqueData ataque)
     {
-        if (ataque.pp <= 0) return false;
-
         int danio = CalculadorDanioElemental.CalcularDanio(atacante, defensor, ataque);
-        
+
         Debug.Log($"{atacante.BaseData.nombre} inflige {danio} de daño a {defensor.BaseData.nombre}.");
 
         defensor.VidaActual = Mathf.Max(0, defensor.VidaActual - danio);
