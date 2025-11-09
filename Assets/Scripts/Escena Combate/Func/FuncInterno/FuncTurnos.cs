@@ -31,6 +31,11 @@ public class FuncTurnos : MonoBehaviour
         if (GestorDeBatalla.instance != null)
             GestorDeBatalla.instance.IniciarBatalla();
 
+        if (ConsolaEnJuego.instance != null)
+        {
+            ConsolaEnJuego.instance.ResetConsole();
+        }
+
         jugador1.Setup(GestorDeBatalla.instance.porkemonJugador);
         jugador2.Setup(GestorDeBatalla.instance.porkemonBot);
 
@@ -188,13 +193,12 @@ public class FuncTurnos : MonoBehaviour
         }
         else
         {
-            // Aplicar efecto del item al Porkemon del jugador
             AplicarEfectoItem(itemUsado, jugador1.porkemon);
             itemUsado.cantidad--;
             if (itemUsado.cantidad <= 0)
                 GestorDeBatalla.instance.inventarioBattleItems.Remove(itemUsado);
 
-            yield return new WaitForSeconds(1f); // Esperar un poco para que se vea el efecto
+            yield return new WaitForSeconds(1f);
             CambiarTurno();
         }
 

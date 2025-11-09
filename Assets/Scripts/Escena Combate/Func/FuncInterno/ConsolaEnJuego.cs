@@ -18,6 +18,9 @@ public class ConsolaEnJuego : MonoBehaviour
     private List<string> filteredLogs = new List<string>();
     private const int maxLogLines = 3;
     private Coroutine typingCoroutine;
+    
+    private Queue<string> messageQueue = new Queue<string>();
+    private bool isProcessingQueue = false;
 
     private void Awake()
     {
@@ -29,6 +32,8 @@ public class ConsolaEnJuego : MonoBehaviour
                 transform.SetParent(null);
             }
             DontDestroyOnLoad(gameObject);
+            
+            ResetConsole(); 
         }
         else
         {
@@ -39,11 +44,30 @@ public class ConsolaEnJuego : MonoBehaviour
     void OnEnable()
     {
         Application.logMessageReceived += HandleLog;
+        ResetConsole(); 
     }
 
     void OnDisable()
     {
         Application.logMessageReceived -= HandleLog;
+    }
+
+    public void ResetConsole()
+    {
+        if (typingCoroutine != null)
+        {
+            StopCoroutine(typingCoroutine);
+            typingCoroutine = null;
+        }
+        isTyping = false;
+        isProcessingQueue = false;
+        
+        filteredLogs.Clear();
+        messageQueue.Clear();
+        
+        ActualizarTextoConsola(true);
+        
+        Debug.Log("ConsolaEnJuego Reiniciada.");
     }
 
     private void HandleLog(string logString, string stackTrace, LogType type)
@@ -74,30 +98,49 @@ public class ConsolaEnJuego : MonoBehaviour
             lowerLogString.Contains("gotcha") ||
             lowerLogString.Contains("escapado"))
         {
-            AddLogMessage(logString);
+            EnqueueLogMessage(logString);
         }
     }
 
-    private void AddLogMessage(string message)
+    private void EnqueueLogMessage(string message)
     {
-        if (filteredLogs.Count >= maxLogLines)
-        {
-            filteredLogs.RemoveAt(0);
-        }
-        filteredLogs.Add(message);
+        messageQueue.Enqueue(message);
 
-        if (typingCoroutine != null)
+        if (!isProcessingQueue)
         {
-            StopCoroutine(typingCoroutine);
+            typingCoroutine = StartCoroutine(ProcessMessageQueue());
+        }
+    }
+
+    private IEnumerator ProcessMessageQueue()
+    {
+        isProcessingQueue = true;
+        
+        while (messageQueue.Count > 0)
+        {
+            string message = messageQueue.Dequeue();
+            
+            if (filteredLogs.Count >= maxLogLines)
+            {
+                filteredLogs.RemoveAt(0);
+            }
+            filteredLogs.Add(message);
+            
+            yield return StartCoroutine(MostrarMensaje(message));
+            
+            if (messageQueue.Count > 0)
+            {
+                yield return new WaitForSeconds(0.5f);
+            }
         }
         
-        typingCoroutine = StartCoroutine(MostrarMensaje());
+        isProcessingQueue = false;
+        typingCoroutine = null;
     }
 
-    public IEnumerator MostrarMensaje()
+    public IEnumerator MostrarMensaje(string messageToWrite)
     {
         isTyping = true;
-        string fullMessage = filteredLogs[filteredLogs.Count - 1];
         string currentText = "";
 
         string previousText = string.Join("\n", filteredLogs.Take(filteredLogs.Count - 1));
@@ -106,11 +149,11 @@ public class ConsolaEnJuego : MonoBehaviour
             previousText += "\n";
         }
 
-        foreach (char letter in fullMessage.ToCharArray())
+        foreach (char letter in messageToWrite.ToCharArray())
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                currentText = fullMessage;
+                currentText = messageToWrite;
                 string displayText = previousText + currentText; 
 
                 if (tmpText != null) tmpText.text = displayText;
@@ -129,12 +172,16 @@ public class ConsolaEnJuego : MonoBehaviour
         }
 
         isTyping = false;
-        typingCoroutine = null;
     }
 
-    private void ActualizarTextoConsola()
+    private void ActualizarTextoConsola(bool forceClear = false)
     {
-        if (typingCoroutine == null && filteredLogs.Count > 0)
+        if (forceClear)
+        {
+            if (tmpText != null) tmpText.text = "";
+            else if (uiText != null) uiText.text = "";
+        }
+        else if (typingCoroutine == null && filteredLogs.Count > 0)
         {
             string consoleText = string.Join("\n", filteredLogs);
 
