@@ -6,27 +6,24 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Escena de Combate.unity
-    guid: ae2e89448e989c0428a7061154768aee
-  - enabled: 1
-    path: Assets/Scenes/Escena de muerte.unity
-    guid: 3973d00804c50154baaf137abd21de9a
-  - enabled: 1
-    path: Assets/Scenes/Escena de Victoria.unity
-    guid: e24bd3de48870f848804474c6c621400
-  - enabled: 1
     path: Assets/Scenes/Escena Principal.unity
     guid: ad7c01cb8eee40a4782fd5fc9ea88a6c
   - enabled: 1
-    path: Assets/Scenes/Interfaz de Menu.unity
-    guid: 569af23ce32988b489e460771d6e89dc
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
+    path: Assets/Scenes/Escena de Combate.unity
+    guid: ae2e89448e989c0428a7061154768aee
   - enabled: 1
     path: Assets/Scenes/Escena CambioPorkemon.unity
     guid: 3f25177cd64f3eb4ca4eab5c4d8d6af8
   - enabled: 1
     path: Assets/Scenes/Escena CasaJ1.unity
     guid: d4c04bd44d0f8d34b987b56be18a8482
+  - enabled: 1
+    path: Assets/Scenes/Escena de Victoria.unity
+    guid: e24bd3de48870f848804474c6c621400
+  - enabled: 1
+    path: Assets/Scenes/Escena de muerte.unity
+    guid: 3973d00804c50154baaf137abd21de9a
+  - enabled: 1
+    path: Assets/Scenes/Interfaz de Menu.unity
+    guid: 569af23ce32988b489e460771d6e89dc
   m_configObjects: {}

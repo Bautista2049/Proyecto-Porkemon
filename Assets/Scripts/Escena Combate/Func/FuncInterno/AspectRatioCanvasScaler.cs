@@ -4,7 +4,7 @@ using UnityEngine.UI;
 [RequireComponent(typeof(CanvasScaler))]
 public class AspectRatioCanvasScaler : MonoBehaviour
 {
-    public Vector2 referenceResolution = new Vector2(1064, 768);
+    public Vector2 referenceResolution = new Vector2(1024, 768);
 
     private CanvasScaler scaler;
 
