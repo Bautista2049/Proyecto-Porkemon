@@ -6,6 +6,16 @@ public class SceneTransitionManager : MonoBehaviour
 {
     public static SceneTransitionManager Instance { get; private set; }
 
+    public static SceneTransitionManager GetInstance()
+    {
+        if (Instance == null)
+        {
+            GameObject go = new GameObject("SceneTransitionManager");
+            Instance = go.AddComponent<SceneTransitionManager>();
+        }
+        return Instance;
+    }
+
     [Header("Fade Settings")]
     public GameObject fadePrefab;
     public float fadeDuration = 1f;
@@ -83,7 +93,7 @@ public class SceneTransitionManager : MonoBehaviour
     {
         DestroyFadeInstance();
 
-        if (sceneName == "Interfaz de Menu")
+        if (sceneName == "Interfaz de Menu" && sceneName != SceneManager.GetActiveScene().name)
         {
             lastSceneName = SceneManager.GetActiveScene().name;
         }

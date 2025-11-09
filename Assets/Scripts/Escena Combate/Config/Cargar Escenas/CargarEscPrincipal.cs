@@ -7,7 +7,7 @@ public class CargarEscPrincipal : MonoBehaviour
 {
     public void CargarPrincipal()
     {
-        SceneTransitionManager.Instance.LoadScene("Escena Principal");
+        SceneTransitionManager.GetInstance().LoadScene("Escena Principal");
     }
     
     public void CargaCambio()

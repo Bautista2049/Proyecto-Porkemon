@@ -7,7 +7,14 @@ public class SceneTransitionInitializer : MonoBehaviour
 
     void Start()
     {
-        if (SceneTransitionManager.Instance != null)
+        if (SceneTransitionManager.Instance == null)
+        {
+            GameObject go = new GameObject("SceneTransitionManager");
+            SceneTransitionManager stm = go.AddComponent<SceneTransitionManager>();
+            stm.fadePrefab = fadePrefab;
+            stm.InitializeFade();
+        }
+        else
         {
             SceneTransitionManager.Instance.fadePrefab = fadePrefab;
             SceneTransitionManager.Instance.InitializeFade();
