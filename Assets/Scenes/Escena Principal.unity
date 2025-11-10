@@ -872,7 +872,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 35925034}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1430636291}
+        m_MethodName: ReanudarJuego
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &35925034
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1934,7 +1945,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 136236256}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1430636291}
+        m_MethodName: GuardarJuego
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &136236256
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9334,7 +9356,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 605768327}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1430636286}
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &605768327
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11874,7 +11907,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 726943390}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1430636291}
+        m_MethodName: CargarJuego
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &726943390
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12467,7 +12511,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &768556433
 RectTransform:
   m_ObjectHideFlags: 0
@@ -12794,7 +12838,7 @@ PrefabInstance:
     - target: {fileID: 8881211152802729362, guid: 51bacc702329b7c41a7663c89004074d,
         type: 3}
       propertyPath: mostrarSoloEnCombate
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8881211152802729363, guid: 51bacc702329b7c41a7663c89004074d,
         type: 3}
@@ -21631,7 +21675,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1413331115}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1430636291}
+        m_MethodName: AbrirMenuOrdenarPokemones
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1413331115
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22146,7 +22201,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1430636288}
-  - component: {fileID: 1430636287}
   - component: {fileID: 1430636291}
   m_Layer: 0
   m_Name: CargarMenu
@@ -22155,20 +22209,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1430636287
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1430636286}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 65fdf02e5001c904389b22d33044eabc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  panelNotificacion: {fileID: 0}
-  textoNotificacion: {fileID: 412141738}
 --- !u!4 &1430636288
 Transform:
   m_ObjectHideFlags: 0
@@ -27000,7 +27040,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1738072494}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1430636291}
+        m_MethodName: AbrirMenuOrdenarObjetos
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1738072494
 MonoBehaviour:
   m_ObjectHideFlags: 0
