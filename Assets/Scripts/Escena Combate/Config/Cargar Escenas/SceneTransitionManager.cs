@@ -52,13 +52,6 @@ public class SceneTransitionManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            LoadScene("Interfaz de Menu");
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
-        }
-
         if (autoRotate && mainCamera != null && orbitCenter != null)
         {
             mainCamera.transform.RotateAround(orbitCenter.position, Vector3.up, rotationSpeed * Time.deltaTime);

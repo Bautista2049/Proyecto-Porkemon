@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cfe5e20a480e9148859b0f488dadf57, type: 3}
+  m_Name: PunchBug_Data
+  m_EditorClassIdentifier: 
+  nombre: PunchBug
+  modeloPrefab: {fileID: 9028659022299789166, guid: 45e7dc4e28c781d42a84ecf68fbe44f2,
+    type: 3}
+  tipo1: 0
+  tipo2: 0
+  baseRate: 120
+  nivel: 5
+  vidaMaxima: 200
+  ataque: 100
+  defensa: 67
+  espiritu: 5
+  velocidad: 5
+  ataquesQuePuedeAprender:
+  - {fileID: 11400000, guid: fe222671ac2fb3f42be863e4695b3b67, type: 2}
+  - {fileID: 11400000, guid: 1ccdab0e51dbb2441be91180543b04a2, type: 2}
+  - {fileID: 11400000, guid: 8d9ae9c7ded39044381e9da05ced7775, type: 2}
+  evolucionSiguiente: {fileID: 0}
+  nivelDeEvolucion: 0
+  naturaleza: 2
+  tasaCrecimiento: 1
+  experienciaBase: 50

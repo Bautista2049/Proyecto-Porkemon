@@ -4,6 +4,7 @@ using TMPro;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine.SceneManagement;
 
 public class ConsolaEnJuego : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class ConsolaEnJuego : MonoBehaviour
     public Text uiText;
     public TextMeshProUGUI tmpText;
     public float typingSpeed = 0.03f;
+    public string consolaCanvasTag = "ConsolaCanvas";
+    public bool mostrarSoloEnCombate = false;
 
     public bool isTyping { get; private set; } = false;
 
@@ -21,6 +24,7 @@ public class ConsolaEnJuego : MonoBehaviour
     
     private Queue<string> messageQueue = new Queue<string>();
     private bool isProcessingQueue = false;
+    private Canvas consolaCanvas;
 
     private void Awake()
     {
@@ -33,6 +37,14 @@ public class ConsolaEnJuego : MonoBehaviour
             }
             DontDestroyOnLoad(gameObject);
             
+            consolaCanvas = GetComponentInChildren<Canvas>(true);
+            if (consolaCanvas == null)
+            {
+                consolaCanvas = GetComponent<Canvas>();
+            }
+            
+            SceneManager.sceneLoaded += OnSceneLoaded;
+            
             ResetConsole(); 
         }
         else
@@ -44,12 +56,110 @@ public class ConsolaEnJuego : MonoBehaviour
     void OnEnable()
     {
         Application.logMessageReceived += HandleLog;
+        BuscarReferenciasUI();
         ResetConsole(); 
     }
 
     void OnDisable()
     {
         Application.logMessageReceived -= HandleLog;
+    }
+    
+    private void OnDestroy()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+    
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (gameObject.activeInHierarchy)
+        {
+            StartCoroutine(ConfigurarConsolaEnNuevaEscena(scene.name));
+        }
+        else
+        {
+            ConfigurarConsolaInmediato(scene.name);
+        }
+    }
+    
+    private void ConfigurarConsolaInmediato(string sceneName)
+    {
+        BuscarReferenciasUI();
+        
+        if (mostrarSoloEnCombate)
+        {
+            bool esCombate = sceneName == "Escena de Combate";
+            MostrarConsola(esCombate);
+        }
+        else
+        {
+            MostrarConsola(true);
+        }
+        
+        if (sceneName == "Escena de Combate")
+        {
+            ResetConsole();
+        }
+    }
+    
+    private IEnumerator ConfigurarConsolaEnNuevaEscena(string sceneName)
+    {
+        yield return null;
+        ConfigurarConsolaInmediato(sceneName);
+    }
+    
+    private void BuscarReferenciasUI()
+    {
+        if ((tmpText != null || uiText != null) && 
+            ((tmpText != null && tmpText.gameObject.scene.IsValid()) || 
+             (uiText != null && uiText.gameObject.scene.IsValid())))
+        {
+            return;
+        }
+        
+        if (tmpText == null)
+        {
+            tmpText = GetComponentInChildren<TextMeshProUGUI>(true);
+        }
+        
+        if (uiText == null && tmpText == null)
+        {
+            uiText = GetComponentInChildren<Text>(true);
+        }
+        
+        if ((tmpText == null && uiText == null) && consolaCanvas != null)
+        {
+            tmpText = consolaCanvas.GetComponentInChildren<TextMeshProUGUI>(true);
+            if (tmpText == null)
+            {
+                uiText = consolaCanvas.GetComponentInChildren<Text>(true);
+            }
+        }
+        
+        if (tmpText == null && uiText == null)
+        {
+            GameObject consolaCanvasObj = GameObject.FindGameObjectWithTag(consolaCanvasTag);
+            if (consolaCanvasObj != null)
+            {
+                tmpText = consolaCanvasObj.GetComponentInChildren<TextMeshProUGUI>(true);
+                if (tmpText == null)
+                {
+                    uiText = consolaCanvasObj.GetComponentInChildren<Text>(true);
+                }
+            }
+        }
+    }
+    
+    public void MostrarConsola(bool mostrar)
+    {
+        if (consolaCanvas != null)
+        {
+            consolaCanvas.gameObject.SetActive(mostrar);
+        }
+        else
+        {
+            gameObject.SetActive(mostrar);
+        }
     }
 
     public void ResetConsole()

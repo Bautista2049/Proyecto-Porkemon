@@ -1,4 +1,4 @@
-﻿﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
@@ -33,6 +33,7 @@ public class FuncTurnos : MonoBehaviour
 
         if (ConsolaEnJuego.instance != null)
         {
+            ConsolaEnJuego.instance.MostrarConsola(true);
             ConsolaEnJuego.instance.ResetConsole();
         }
 
@@ -156,6 +157,7 @@ public class FuncTurnos : MonoBehaviour
             GameState.nombreGanador = jugador1.porkemon.BaseData.nombre;
             GameState.experienciaGanada = GestorDeBatalla.instance.equipoJugador.CalcularExperienciaGanada(new List<Porkemon> { jugador2.porkemon });
             GameState.equipoGanador = new List<Porkemon>(GestorDeBatalla.instance.equipoJugador);
+            GameState.victoriaFueCaptura = false;
             SceneTransitionManager.Instance.LoadScene("Escena de Victoria");
         }
     }

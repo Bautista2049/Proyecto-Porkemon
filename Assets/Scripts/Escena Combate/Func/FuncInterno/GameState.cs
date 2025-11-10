@@ -14,6 +14,8 @@ public static class GameState
     public static string nombreGanador;
     public static int experienciaGanada = 0;
     public static List<Porkemon> equipoGanador = new List<Porkemon>();
+    public static bool victoriaFueCaptura = false;
+    public static bool modoOrdenamiento = false;
 }
 
 [System.Serializable]

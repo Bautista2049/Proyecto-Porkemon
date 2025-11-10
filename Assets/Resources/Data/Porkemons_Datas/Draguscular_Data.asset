@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cfe5e20a480e9148859b0f488dadf57, type: 3}
+  m_Name: Draguscular_Data
+  m_EditorClassIdentifier: 
+  nombre: Draguscular
+  modeloPrefab: {fileID: 5628966268581028415, guid: 3cda29b0f927fa94a936c6d6d75d09fa,
+    type: 3}
+  tipo1: 8
+  tipo2: 17
+  baseRate: 120
+  nivel: 1
+  vidaMaxima: 50
+  ataque: 20
+  defensa: 25
+  espiritu: 67
+  velocidad: 34
+  ataquesQuePuedeAprender:
+  - {fileID: 11400000, guid: 1ccdab0e51dbb2441be91180543b04a2, type: 2}
+  - {fileID: 11400000, guid: fc645ae56d94fcb42be00560cba1dc4f, type: 2}
+  - {fileID: 11400000, guid: cb8fd03b3219e1a4493b7c2ba2c56667, type: 2}
+  - {fileID: 11400000, guid: 8d9ae9c7ded39044381e9da05ced7775, type: 2}
+  evolucionSiguiente: {fileID: 11400000, guid: 0a20be05971a3ac4491dcdcebc40e8e9, type: 2}
+  nivelDeEvolucion: 4
+  naturaleza: 1
+  tasaCrecimiento: 3
+  experienciaBase: 20

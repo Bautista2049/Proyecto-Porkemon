@@ -1,4 +1,4 @@
-﻿﻿﻿﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -10,6 +10,9 @@ public class ControladorCambio : MonoBehaviour
     public TextMeshProUGUI tituloTexto;
 
     private List<Porkemon> equipoJugador;
+    private int primerSeleccionado = -1;
+    private List<BattleItem> objetosSeleccionados = new List<BattleItem>();
+    private const int MAX_OBJETOS_COMBATE = 6;
 
     void Start()
     {
@@ -28,14 +31,33 @@ public class ControladorCambio : MonoBehaviour
         {
             equipoJugador = GestorDeBatalla.instance.equipoJugador;
             ActualizarBotones();
-            tituloTexto.text = $"Tienes {equipoJugador.Count} Pokémon";
+            if (GameState.modoOrdenamiento)
+            {
+                tituloTexto.text = $"Ordenar Pokémon ({equipoJugador.Count})";
+            }
+            else
+            {
+                tituloTexto.text = $"Tienes {equipoJugador.Count} Pokémon";
+            }
         }
     }
 
     private void InicializarMochila()
     {
-        tituloTexto.text = "Objetos de Batalla";
         List<BattleItem> inventario = GestorDeBatalla.instance.inventarioBattleItems;
+        
+        if (GameState.modoOrdenamiento)
+        {
+            if (objetosSeleccionados.Count == 0)
+            {
+                objetosSeleccionados = new List<BattleItem>(inventario.GetRange(0, Mathf.Min(MAX_OBJETOS_COMBATE, inventario.Count)));
+            }
+            tituloTexto.text = $"Seleccionar Objetos ({objetosSeleccionados.Count}/{MAX_OBJETOS_COMBATE})";
+        }
+        else
+        {
+            tituloTexto.text = "Objetos de Batalla";
+        }
 
         for (int i = 0; i < botonesPokemon.Count; i++)
         {
@@ -46,11 +68,33 @@ public class ControladorCambio : MonoBehaviour
 
                 TextMeshProUGUI texto = botonesPokemon[i].GetComponentInChildren<TextMeshProUGUI>();
                 if (texto != null)
-                    texto.text = $"{item.nombre} x{item.cantidad}";
+                {
+                    if (GameState.modoOrdenamiento)
+                    {
+                        bool seleccionado = objetosSeleccionados.Contains(item);
+                        texto.text = $"{(seleccionado ? "[X] " : "[ ] ")}{item.nombre} x{item.cantidad}";
+                    }
+                    else
+                    {
+                        texto.text = $"{item.nombre} x{item.cantidad}";
+                    }
+                }
 
                 botonesPokemon[i].onClick.RemoveAllListeners();
                 int index = i;
-                botonesPokemon[i].onClick.AddListener(() => UsarItem(index));
+                
+                if (GameState.modoOrdenamiento)
+                {
+                    bool seleccionado = objetosSeleccionados.Contains(item);
+                    ColorBlock colors = botonesPokemon[i].colors;
+                    colors.normalColor = seleccionado ? new Color(0.3f, 0.6f, 0.3f) : Color.white;
+                    botonesPokemon[i].colors = colors;
+                    botonesPokemon[i].onClick.AddListener(() => ToggleSeleccionObjeto(index));
+                }
+                else
+                {
+                    botonesPokemon[i].onClick.AddListener(() => UsarItem(index));
+                }
             }
             else
             {
@@ -69,6 +113,11 @@ public class ControladorCambio : MonoBehaviour
 
     private void UsarItem(int index)
     {
+        if (GameState.modoOrdenamiento)
+        {
+            return;
+        }
+
         List<BattleItem> inventario = GestorDeBatalla.instance.inventarioBattleItems;
         if (index < 0 || index >= inventario.Count)
         {
@@ -158,7 +207,17 @@ public class ControladorCambio : MonoBehaviour
                 if (texto != null)
                     texto.text = $"{p.BaseData.nombre} ({p.VidaActual}/{p.VidaMaxima})";
 
-                if (p == activo)
+                if (GameState.modoOrdenamiento)
+                {
+                    botonesPokemon[i].interactable = true;
+                    botonesPokemon[i].onClick.RemoveAllListeners();
+                    ColorBlock colors = botonesPokemon[i].colors;
+                    colors.normalColor = Color.white;
+                    botonesPokemon[i].colors = colors;
+                    int index = i; 
+                    botonesPokemon[i].onClick.AddListener(() => OnButtonClicked(index));
+                }
+                else if (p == activo)
                 {
                     botonesPokemon[i].interactable = false;
                     botonesPokemon[i].onClick.RemoveAllListeners();
@@ -185,13 +244,36 @@ public class ControladorCambio : MonoBehaviour
             return;
         }
 
-        Porkemon selected = equipoJugador[index];
-        SeleccionarPorkemon(selected);
+        if (GameState.modoOrdenamiento)
+        {
+            if (primerSeleccionado == -1)
+            {
+                primerSeleccionado = index;
+                ColorearBoton(index, new Color(0.3f, 0.6f, 0.3f));
+            }
+            else
+            {
+                IntercambiarPokemones(primerSeleccionado, index);
+                ColorearBoton(primerSeleccionado, Color.white);
+                primerSeleccionado = -1;
+                ActualizarBotones();
+            }
+        }
+        else
+        {
+            Porkemon selected = equipoJugador[index];
+            SeleccionarPorkemon(selected);
+        }
     }
 
     public void SeleccionarPorkemon(Porkemon nuevo)
     {
-        if (nuevo == null || nuevo.VidaActual <= 0)
+        if (GameState.modoOrdenamiento || nuevo == null)
+        {
+            return;
+        }
+
+        if (nuevo.VidaActual <= 0)
         {
             return;
         }
@@ -204,9 +286,66 @@ public class ControladorCambio : MonoBehaviour
         SceneTransitionManager.Instance.LoadScene("Escena de combate");
     }
     
+    private void ToggleSeleccionObjeto(int index)
+    {
+        List<BattleItem> inventario = GestorDeBatalla.instance.inventarioBattleItems;
+        if (index < 0 || index >= inventario.Count) return;
+
+        BattleItem item = inventario[index];
+
+        if (objetosSeleccionados.Contains(item))
+        {
+            objetosSeleccionados.Remove(item);
+        }
+        else
+        {
+            if (objetosSeleccionados.Count < MAX_OBJETOS_COMBATE)
+            {
+                objetosSeleccionados.Add(item);
+            }
+        }
+
+        InicializarMochila();
+    }
+
+    public void IntercambiarPokemones(int indice1, int indice2)
+    {
+        if (indice1 == indice2) return;
+        if (indice1 < 0 || indice1 >= equipoJugador.Count) return;
+        if (indice2 < 0 || indice2 >= equipoJugador.Count) return;
+
+        Porkemon temp = equipoJugador[indice1];
+        equipoJugador[indice1] = equipoJugador[indice2];
+        equipoJugador[indice2] = temp;
+    }
+
+    private void ColorearBoton(int index, Color color)
+    {
+        if (index >= 0 && index < botonesPokemon.Count)
+        {
+            ColorBlock colors = botonesPokemon[index].colors;
+            colors.normalColor = color;
+            botonesPokemon[index].colors = colors;
+        }
+    }
+
     public void CancelarCambio()
     {
-        GameState.player1Turn = true;
-        SceneTransitionManager.Instance.LoadScene("Escena de combate");
+        if (GameState.modoOrdenamiento)
+        {
+            if (GameState.player1Turn == false)
+            {
+                GestorDeBatalla.instance.inventarioBattleItems.Clear();
+                GestorDeBatalla.instance.inventarioBattleItems.AddRange(objetosSeleccionados);
+            }
+            primerSeleccionado = -1;
+            GameState.modoOrdenamiento = false;
+            SceneTransitionManager.Instance.LoadScene("Escena Principal");
+        }
+        else
+        {
+            GameState.player1Turn = true;
+            SceneTransitionManager.Instance.LoadScene("Escena de combate");
+        }
     }
 }

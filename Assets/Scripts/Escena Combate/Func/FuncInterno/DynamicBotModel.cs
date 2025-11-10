@@ -6,6 +6,7 @@ public class DynamicBotModel : MonoBehaviour
 {
     public GameObject modelParentContainer;
     [SerializeField] public bool isPlayerModel = false;
+    public Transform posicionOponente;
 
     public void UpdateModel(string modelName)
     {
@@ -19,7 +20,16 @@ public class DynamicBotModel : MonoBehaviour
         Transform modelTransform = Instantiate(modelPrefab, modelParent).transform;
         modelTransform.localPosition = Vector3.zero;
         modelTransform.localRotation = Quaternion.identity;
-        modelTransform.localScale = Vector3.one;
+
+        if (posicionOponente != null)
+        {
+            Vector3 direccion = posicionOponente.position - modelTransform.position;
+            direccion.y = 0;
+            if (direccion != Vector3.zero)
+            {
+                modelTransform.rotation = Quaternion.LookRotation(direccion);
+            }
+        }
 
         Resources.UnloadUnusedAssets();
     }

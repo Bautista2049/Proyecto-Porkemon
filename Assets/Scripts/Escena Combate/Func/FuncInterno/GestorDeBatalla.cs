@@ -144,6 +144,13 @@ public class GestorDeBatalla : MonoBehaviour
         {
             Debug.Log($"{pokemon.BaseData.nombre} ha sido enviado al PC!");
         }
+        
+        // Configurar GameState para la escena de victoria por captura
+        GameState.nombreGanador = pokemon.BaseData.nombre;
+        GameState.experienciaGanada = equipoJugador.CalcularExperienciaGanada(new List<Porkemon> { pokemon });
+        GameState.equipoGanador = new List<Porkemon>(equipoJugador);
+        GameState.victoriaFueCaptura = true;
+        
         StartCoroutine(FinalizarCombate(true));
     }
     

@@ -9,6 +9,7 @@ TagManager:
   - Porkemon
   - Ground
   - HierbaAlta
+  - ConsolaCanvas
   layers:
   - Default
   - TransparentFX
