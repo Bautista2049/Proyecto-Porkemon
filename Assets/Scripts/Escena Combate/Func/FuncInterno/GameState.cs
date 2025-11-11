@@ -16,26 +16,6 @@ public static class GameState
     public static List<Porkemon> equipoGanador = new List<Porkemon>();
     public static bool victoriaFueCaptura = false;
     public static bool modoOrdenamiento = false;
-    public static int totalPokemonEnJuego = 5;
-    public static bool npcYaHablo = false;
-
-    public static bool TodosLosPokemonCapturados()
-    {
-        if (GestorDeBatalla.instance == null)
-            return false;
-            
-        HashSet<string> pokemonUnicos = new HashSet<string>();
-        
-        foreach (Porkemon poke in GestorDeBatalla.instance.equipoJugador)
-        {
-            if (poke != null && poke.BaseData != null)
-            {
-                pokemonUnicos.Add(poke.BaseData.nombre);
-            }
-        }
-        
-        return pokemonUnicos.Count >= totalPokemonEnJuego;
-    }
 }
 
 [System.Serializable]

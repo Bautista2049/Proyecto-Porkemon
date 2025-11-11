@@ -24,8 +24,7 @@ public class ControladorMochila : MonoBehaviour
         }
         inventario = GestorDeBatalla.instance.inventarioBattleItems;
         ActualizarBotonesItems();
-        int maxItems = Mathf.Min(6, inventario.Count);
-        tituloTexto.text = $"Objetos de Batalla ({maxItems})";
+        tituloTexto.text = $"Objetos de Batalla ({inventario.Count})";
     }
 
     void ActualizarBotonesItems()
@@ -67,7 +66,7 @@ public class ControladorMochila : MonoBehaviour
     {
         if (item.cantidad <= 0)
         {
-            Debug.Log("No quedan unidades de este objeto.");
+            Debug.Log("Intentaron usar un item sin cantidad.");
             return;
         }
 
@@ -84,23 +83,18 @@ public class ControladorMochila : MonoBehaviour
             return;
         }
 
-        bool efectoAplicado = AplicarEfectoItem(item, porkemonActivo);
-        if (!efectoAplicado)
-        {
-            return;
-        }
-        
+        AplicarEfectoItem(item, porkemonActivo);
         item.cantidad--;
 
         if (item.cantidad <= 0)
         {
             GestorDeBatalla.instance.inventarioBattleItems.Remove(item);
-            GestorDeBatalla.instance.inventarioCompleto.Remove(item);
         }
 
         ActualizarBotonesItems();
-        int maxItems = Mathf.Min(6, GestorDeBatalla.instance.inventarioBattleItems.Count);
-        tituloTexto.text = $"Objetos de Batalla ({maxItems})";
+        tituloTexto.text = $"Objetos de Batalla ({GestorDeBatalla.instance.inventarioBattleItems.Count})";
+
+        Debug.Log($"Usado {item.nombre} sobre {porkemonActivo.BaseData?.nombre ?? "sin-nombre"}. Cantidad restante: {item.cantidad}");
 
         StartCoroutine(VolverCombateConDelay());
     }
@@ -111,90 +105,58 @@ public class ControladorMochila : MonoBehaviour
         SceneTransitionManager.Instance.LoadScene("Escena de combate");
     }
 
-    private bool AplicarEfectoItem(BattleItem item, Porkemon porkemon)
+    private void AplicarEfectoItem(BattleItem item, Porkemon porkemon)
     {
         switch (item.type)
         {
             case BattleItemType.Pocion:
                 int curacion20 = Mathf.Min(20, porkemon.VidaMaxima - porkemon.VidaActual);
-                if (curacion20 > 0)
-                {
-                    porkemon.VidaActual += curacion20;
-                    Debug.Log($"{porkemon.BaseData.nombre} usó {item.nombre}. Recuperó {curacion20} PS!");
-                    return true;
-                }
-                else
-                {
-                    Debug.Log($"{porkemon.BaseData.nombre} ya tiene los PS al máximo!");
-                    return false;
-                }
+                porkemon.VidaActual += curacion20;
+                Debug.Log($"{porkemon.BaseData.nombre} usó {item.nombre}. Recuperó {curacion20} PS!");
+                break;
             case BattleItemType.Superpocion:
                 int curacion50 = Mathf.Min(50, porkemon.VidaMaxima - porkemon.VidaActual);
-                if (curacion50 > 0)
-                {
-                    porkemon.VidaActual += curacion50;
-                    Debug.Log($"{porkemon.BaseData.nombre} usó {item.nombre}. Recuperó {curacion50} PS!");
-                    return true;
-                }
-                else
-                {
-                    Debug.Log($"{porkemon.BaseData.nombre} ya tiene los PS al máximo!");
-                    return false;
-                }
+                porkemon.VidaActual += curacion50;
+                Debug.Log($"{porkemon.BaseData.nombre} usó {item.nombre}. Recuperó {curacion50} PS!");
+                break;
             case BattleItemType.Hiperpocion:
                 int curacion200 = Mathf.Min(200, porkemon.VidaMaxima - porkemon.VidaActual);
-                if (curacion200 > 0)
-                {
-                    porkemon.VidaActual += curacion200;
-                    Debug.Log($"{porkemon.BaseData.nombre} usó {item.nombre}. Recuperó {curacion200} PS!");
-                    return true;
-                }
-                else
-                {
-                    Debug.Log($"{porkemon.BaseData.nombre} ya tiene los PS al máximo!");
-                    return false;
-                }
+                porkemon.VidaActual += curacion200;
+                Debug.Log($"{porkemon.BaseData.nombre} usó {item.nombre}. Recuperó {curacion200} PS!");
+                break;
             case BattleItemType.Pocionmaxima:
                 int curacionMax = porkemon.VidaMaxima - porkemon.VidaActual;
-                if (curacionMax > 0)
-                {
-                    porkemon.VidaActual = porkemon.VidaMaxima;
-                    Debug.Log($"{porkemon.BaseData.nombre} usó {item.nombre}. Recuperó {curacionMax} PS!");
-                    return true;
-                }
-                else
-                {
-                    Debug.Log($"{porkemon.BaseData.nombre} ya tiene los PS al máximo!");
-                    return false;
-                }
+                porkemon.VidaActual = porkemon.VidaMaxima;
+                Debug.Log($"{porkemon.BaseData.nombre} usó {item.nombre}. Recuperó {curacionMax} PS!");
+                break;
             case BattleItemType.AtaqueX:
                 porkemon.AumentarAtaque(2);
-                Debug.Log($"{porkemon.BaseData.nombre} usó {item.nombre}. ¡Ataque aumentado!");
+                Debug.Log($"{porkemon.BaseData.nombre} usó {item.nombre}. Ataque aumentado!");
                 break;
             case BattleItemType.DefensaX:
                 porkemon.AumentarDefensa(2);
-                Debug.Log($"{porkemon.BaseData.nombre} usó {item.nombre}. ¡Defensa aumentada!");
+                Debug.Log($"{porkemon.BaseData.nombre} usó {item.nombre}. Defensa aumentada!");
                 break;
             case BattleItemType.AtaqueEspecialX:
                 porkemon.AumentarEspiritu(2);
-                Debug.Log($"{porkemon.BaseData.nombre} usó {item.nombre}. ¡Ataque Especial aumentado!");
+                Debug.Log($"{porkemon.BaseData.nombre} usó {item.nombre}. Ataque Especial aumentado!");
                 break;
             case BattleItemType.DefensaEspecialX:
                 porkemon.AumentarEspiritu(2);
-                Debug.Log($"{porkemon.BaseData.nombre} usó {item.nombre}. ¡Defensa Especial aumentada!");
+                Debug.Log($"{porkemon.BaseData.nombre} usó {item.nombre}. Defensa Especial aumentada!");
                 break;
             case BattleItemType.VelocidadX:
                 porkemon.AumentarVelocidad(2);
-                Debug.Log($"{porkemon.BaseData.nombre} usó {item.nombre}. ¡Velocidad aumentada!");
+                Debug.Log($"{porkemon.BaseData.nombre} usó {item.nombre}. Velocidad aumentada!");
                 break;
             case BattleItemType.PrecisionX:
-                Debug.Log($"{porkemon.BaseData.nombre} usó {item.nombre}. ¡Precisión aumentada!");
+                Debug.Log($"{porkemon.BaseData.nombre} usó {item.nombre}. Precisión aumentada!");
                 break;
             case BattleItemType.CriticoX:
-                Debug.Log($"{porkemon.BaseData.nombre} usó {item.nombre}. ¡Índice crítico aumentado!");
+                Debug.Log($"{porkemon.BaseData.nombre} usó {item.nombre}. Índice crítico aumentado!");
                 break;
             case BattleItemType.ProteccionX:
-                Debug.Log($"{porkemon.BaseData.nombre} usó {item.nombre}. ¡Protección activada!");
+                Debug.Log($"{porkemon.BaseData.nombre} usó {item.nombre}. Protección activada!");
                 break;
             case BattleItemType.Porkebola:
                 StartCoroutine(IniciarCaptura());
@@ -207,9 +169,8 @@ public class ControladorMochila : MonoBehaviour
                 break;
             case BattleItemType.Masterbola:
                 StartCoroutine(IniciarCaptura());
-                return true;
+                break;
         }
-        return true;
     }
 
     private bool CalcularCaptura(Porkemon pokemon, BattleItemType tipoPorkebola)
