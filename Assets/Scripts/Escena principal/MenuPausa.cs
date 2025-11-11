@@ -37,17 +37,55 @@ public class MenuPausa : MonoBehaviour
 
     private void Start()
     {
+        Debug.Log("[MenuPausa] Iniciando MenuPausa...");
+        
         if (menuPausaPanel != null)
             menuPausaPanel.SetActive(false);
         
         if (panelNotificacion != null)
             panelNotificacion.SetActive(false);
             
-        // Mostrar pantalla de bienvenida solo la primera vez
+        // Verificar si ya se completó el proceso de bienvenida
+        int bienvenidaCompletada = PlayerPrefs.GetInt("BienvenidaCompletada", 0);
+        primeraVez = (bienvenidaCompletada == 0);
+        
+        Debug.Log($"[MenuPausa] Es primera vez: {primeraVez} (PlayerPrefs BienvenidaCompletada: {bienvenidaCompletada})");
+            
+        // Mostrar pantalla de bienvenida solo si no se ha completado
         if (primeraVez)
         {
+            Debug.Log("[MenuPausa] Mostrando pantalla de bienvenida");
+            
+            // Asegurarse de que los paneles estén ocultos inicialmente
+            if (panelBienvenida != null) 
+            {
+                panelBienvenida.SetActive(false);
+                Debug.Log("[MenuPausa] Panel de bienvenida desactivado inicialmente");
+            }
+            
+            if (panelInstrucciones != null) 
+            {
+                panelInstrucciones.SetActive(false);
+                Debug.Log("[MenuPausa] Panel de instrucciones desactivado inicialmente");
+            }
+            
             MostrarPantallaBienvenida();
-            primeraVez = false;
+        }
+        else
+        {
+            Debug.Log("[MenuPausa] No es la primera vez, ocultando paneles");
+            // Asegurarse de que los paneles estén ocultos
+            if (panelBienvenida != null) 
+            {
+                panelBienvenida.SetActive(false);
+                Debug.Log("[MenuPausa] Panel de bienvenida desactivado");
+            }
+            
+            if (panelInstrucciones != null) 
+            {
+                panelInstrucciones.SetActive(false);
+                Debug.Log("[MenuPausa] Panel de instrucciones desactivado");
+            }
         }
     }
 
@@ -249,6 +287,7 @@ public class MenuPausa : MonoBehaviour
     
     private void MostrarPantallaBienvenida()
     {
+        Debug.Log("[MenuPausa] Mostrando pantalla de bienvenida");
         // Pausar el juego
         Time.timeScale = 0f;
         juegoPausado = true;
@@ -256,9 +295,17 @@ public class MenuPausa : MonoBehaviour
         // Mostrar panel de bienvenida
         if (panelBienvenida != null)
         {
+            Debug.Log("[MenuPausa] Activando panel de bienvenida");
             panelBienvenida.SetActive(true);
             if (inputNombre != null)
+            {
                 inputNombre.Select();
+                Debug.Log("[MenuPausa] Campo de entrada de nombre seleccionado");
+            }
+        }
+        else
+        {
+            Debug.LogError("[MenuPausa] No se encontró el panel de bienvenida");
         }
     }
     
@@ -277,10 +324,35 @@ public class MenuPausa : MonoBehaviour
     
     public void EmpezarJuego()
     {
-        // Ocultar paneles de bienvenida/instrucciones
-        if (panelBienvenida != null) panelBienvenida.SetActive(false);
-        if (panelInstrucciones != null) panelInstrucciones.SetActive(false);
+        Debug.Log("[MenuPausa] EmpezarJuego() llamado");
         
+        // Marcar que la bienvenida se completó
+        if (primeraVez)
+        {
+            Debug.Log("[MenuPausa] Marcando bienvenida como completada");
+            PlayerPrefs.SetInt("BienvenidaCompletada", 1);
+            PlayerPrefs.Save();
+            primeraVez = false;
+        }
+        
+        // Ocultar paneles de bienvenida/instrucciones
+        if (panelBienvenida != null) 
+        {
+            Debug.Log("[MenuPausa] Desactivando panel de bienvenida");
+            panelBienvenida.SetActive(false);
+            // Desactivar para que no se active si el objeto se recicla
+            panelBienvenida.hideFlags = HideFlags.NotEditable;
+        }
+        
+        if (panelInstrucciones != null) 
+        {
+            Debug.Log("[MenuPausa] Desactivando panel de instrucciones");
+            panelInstrucciones.SetActive(false);
+            // Desactivar para que no se active si el objeto se recicla
+            panelInstrucciones.hideFlags = HideFlags.NotEditable;
+        }
+        
+        Debug.Log("[MenuPausa] Reanudando juego...");
         // Reanudar el juego
         ReanudarJuego();
     }
