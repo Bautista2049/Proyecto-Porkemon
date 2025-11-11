@@ -5051,7 +5051,7 @@ PrefabInstance:
     - target: {fileID: 9500000, guid: a897ee1157474204ca75fd073632b9d8, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: 99ef6bb8b20211e4c8785e3bcccc396f, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 9500000, guid: a897ee1157474204ca75fd073632b9d8, type: 3}
       propertyPath: m_UpdateMode
       value: 0
@@ -16704,6 +16704,7 @@ GameObject:
   - component: {fileID: 1032549574}
   - component: {fileID: 1032549576}
   - component: {fileID: 1032549577}
+  - component: {fileID: 1032549575}
   - component: {fileID: 1032549578}
   m_Layer: 0
   m_Name: Personaje
@@ -16749,6 +16750,25 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   verificadorSuelo: {fileID: 1302000014}
+--- !u!95 &1032549575
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1032549572}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: 54f4158f6bdf8224f927c9f82b9d65c5, type: 3}
+  m_Controller: {fileID: 9100000, guid: 99ef6bb8b20211e4c8785e3bcccc396f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!65 &1032549576
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -25244,10 +25264,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 9500000, guid: e5860a7c026fca64b90bc013badcb759, type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: 99ef6bb8b20211e4c8785e3bcccc396f, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e5860a7c026fca64b90bc013badcb759, type: 3}
 --- !u!1001 &1601279340
