@@ -7,6 +7,12 @@ using System.Collections;
 
 public class GestorDeBatalla : MonoBehaviour
 {
+    void Start()
+    {
+      Cursor.lockState = CursorLockMode.None;
+      Cursor.visible = true;
+         
+    }
     public static GestorDeBatalla instance;
 
     public List<Porkemon> equipoJugador = new List<Porkemon>();
