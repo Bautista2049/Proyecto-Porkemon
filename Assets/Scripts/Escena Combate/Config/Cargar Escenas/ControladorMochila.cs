@@ -62,6 +62,37 @@ public class ControladorMochila : MonoBehaviour
         UsarItem(selectedItem);
     }
 
+    private BattleItem itemSeleccionado;
+    private bool esperandoSeleccionPokemon = false;
+
+    public void OnPokemonSeleccionado(Porkemon pokemon)
+    {
+        if (!esperandoSeleccionPokemon || itemSeleccionado == null) return;
+
+        // Aplicar el efecto del item en el Pokémon seleccionado
+        AplicarEfectoItem(itemSeleccionado, pokemon);
+        
+        // Reducir la cantidad del ítem
+        itemSeleccionado.cantidad--;
+
+        // Si se acabó el ítem, quitarlo del inventario
+        if (itemSeleccionado.cantidad <= 0)
+        {
+            GestorDeBatalla.instance.inventarioBattleItems.Remove(itemSeleccionado);
+        }
+
+        // Actualizar la interfaz
+        ActualizarBotonesItems();
+        tituloTexto.text = $"Objetos de Batalla ({GestorDeBatalla.instance.inventarioBattleItems.Count})";
+        
+        // Volver al combate
+        StartCoroutine(VolverCombateConDelay());
+        
+        // Resetear el estado
+        itemSeleccionado = null;
+        esperandoSeleccionPokemon = false;
+    }
+
     public void UsarItem(BattleItem item)
     {
         if (item.cantidad <= 0)
@@ -76,6 +107,34 @@ public class ControladorMochila : MonoBehaviour
             return;
         }
 
+        // Si es un objeto de revivir, necesitamos seleccionar un Pokémon
+        if (item.type == BattleItemType.Revivir || item.type == BattleItemType.RevivirMax)
+        {
+            itemSeleccionado = item;
+            esperandoSeleccionPokemon = true;
+            
+            // Mostrar mensaje para seleccionar un Pokémon
+            tituloTexto.text = "Selecciona un Pokémon para revivir";
+            
+            // Aquí deberías activar la interfaz para seleccionar un Pokémon
+            // Por ahora, lo simulamos seleccionando el primer Pokémon debilitado
+            var equipo = GestorDeBatalla.instance.equipoJugador;
+            var pokemonDebilitado = equipo.Find(p => p.VidaActual <= 0);
+            
+            if (pokemonDebilitado != null)
+            {
+                OnPokemonSeleccionado(pokemonDebilitado);
+            }
+            else
+            {
+                Debug.Log("¡No hay Pokémon debilitados en tu equipo!");
+                esperandoSeleccionPokemon = false;
+                itemSeleccionado = null;
+            }
+            return;
+        }
+
+        // Para otros ítems, usarlos directamente en el Pokémon activo
         Porkemon porkemonActivo = GestorDeBatalla.instance.porkemonJugador;
         if (porkemonActivo == null)
         {
@@ -169,6 +228,34 @@ public class ControladorMochila : MonoBehaviour
                 break;
             case BattleItemType.Masterbola:
                 StartCoroutine(IniciarCaptura());
+                break;
+            case BattleItemType.Revivir:
+                if (porkemon.VidaActual <= 0)
+                {
+                    porkemon.VidaActual = Mathf.FloorToInt(porkemon.VidaMaxima * 0.3f);
+                    porkemon.Estado = EstadoAlterado.Ninguno;
+                    Debug.Log($"{porkemon.BaseData.nombre} ha revivido con el 30% de sus PS!");
+                }
+                else
+                {
+                    Debug.Log("¡No puedes usar Revivir en un Pokémon que no está debilitado!");
+                    // No gastar el objeto si no se puede usar
+                    item.cantidad++;
+                }
+                break;
+            case BattleItemType.RevivirMax:
+                if (porkemon.VidaActual <= 0)
+                {
+                    porkemon.VidaActual = porkemon.VidaMaxima;
+                    porkemon.Estado = EstadoAlterado.Ninguno;
+                    Debug.Log($"{porkemon.BaseData.nombre} ha revivido con todos sus PS!");
+                }
+                else
+                {
+                    Debug.Log("¡No puedes usar Revivir Máx. en un Pokémon que no está debilitado!");
+                    // No gastar el objeto si no se puede usar
+                    item.cantidad++;
+                }
                 break;
         }
     }

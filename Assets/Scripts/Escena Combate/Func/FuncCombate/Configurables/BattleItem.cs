@@ -19,7 +19,9 @@ public enum BattleItemType
     Pocion,
     Superpocion,
     Hiperpocion,
-    Pocionmaxima
+    Pocionmaxima,
+    Revivir,
+    RevivirMax
 }
 
 [System.Serializable]

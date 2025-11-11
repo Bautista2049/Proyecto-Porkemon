@@ -12,8 +12,16 @@ public class MenuPausa : MonoBehaviour
     public GameObject menuPausaPanel;
     public TextMeshProUGUI textoNotificacion;
     public GameObject panelNotificacion;
+    
+    // Variables para la pantalla de bienvenida
+    public GameObject panelBienvenida;
+    public TMP_InputField inputNombre;
+    public TextMeshProUGUI textoBienvenida;
+    public GameObject panelInstrucciones;
+    private string nombreJugador;
 
     private bool juegoPausado = false;
+    private bool primeraVez = true;
 
     private void Awake()
     {
@@ -34,6 +42,13 @@ public class MenuPausa : MonoBehaviour
         
         if (panelNotificacion != null)
             panelNotificacion.SetActive(false);
+            
+        // Mostrar pantalla de bienvenida solo la primera vez
+        if (primeraVez)
+        {
+            MostrarPantallaBienvenida();
+            primeraVez = false;
+        }
     }
 
     private void Update()
@@ -229,6 +244,74 @@ public class MenuPausa : MonoBehaviour
         if (panelNotificacion != null)
         {
             panelNotificacion.SetActive(false);
+        }
+    }
+    
+    private void MostrarPantallaBienvenida()
+    {
+        // Pausar el juego
+        Time.timeScale = 0f;
+        juegoPausado = true;
+        
+        // Mostrar panel de bienvenida
+        if (panelBienvenida != null)
+        {
+            panelBienvenida.SetActive(true);
+            if (inputNombre != null)
+                inputNombre.Select();
+        }
+    }
+    
+    public void OnAceptarNombre()
+    {
+        if (inputNombre != null && !string.IsNullOrEmpty(inputNombre.text.Trim()))
+        {
+            nombreJugador = inputNombre.text.Trim();
+            PlayerPrefs.SetString("NombreJugador", nombreJugador);
+            
+            // Mostrar instrucciones
+            if (panelBienvenida != null) panelBienvenida.SetActive(false);
+            if (panelInstrucciones != null) panelInstrucciones.SetActive(true);
+        }
+    }
+    
+    public void EmpezarJuego()
+    {
+        // Ocultar paneles de bienvenida/instrucciones
+        if (panelBienvenida != null) panelBienvenida.SetActive(false);
+        if (panelInstrucciones != null) panelInstrucciones.SetActive(false);
+        
+        // Reanudar el juego
+        ReanudarJuego();
+    }
+    
+    public void MostrarMensajeVictoria()
+    {
+        string nombre = PlayerPrefs.GetString("NombreJugador", "Entrenador");
+        MostrarNotificacion($"¡Felicidades {nombre}! Has atrapado todos los Pokémon.");
+        
+        // Pausar el juego
+        Time.timeScale = 0f;
+        juegoPausado = true;
+    }
+    
+    public void OpcionesMenuVictoria()
+    {
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            // Reiniciar el juego
+            PlayerPrefs.DeleteKey("PartidaGuardada");
+            PlayerPrefs.DeleteKey("NombreJugador");
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+        else if (Input.GetKeyDown(KeyCode.N))
+        {
+            // Salir del juego
+            #if UNITY_EDITOR
+                UnityEditor.EditorApplication.isPlaying = false;
+            #else
+                Application.Quit();
+            #endif
         }
     }
 }

@@ -8,18 +8,33 @@ public class ControladorCambio : MonoBehaviour
 {
     public List<Button> botonesPokemon;
     public TextMeshProUGUI tituloTexto;
+    public GameObject panelConfirmacion;
+    public Button botonConfirmar;
+    public Button botonCancelar;
 
     private List<Porkemon> equipoJugador;
     private int primerSeleccionado = -1;
-    private List<BattleItem> objetosSeleccionados = new List<BattleItem>();
+    private static List<BattleItem> objetosSeleccionados = new List<BattleItem>();
     private const int MAX_OBJETOS_COMBATE = 6;
+    private bool mochilaInicializada = false;
 
     void Start()
     {
         if (GestorDeBatalla.instance == null)
         {
+            Debug.LogError("GestorDeBatalla no encontrado");
             return;
         }
+
+        // Configurar botones de confirmación
+        if (botonConfirmar != null)
+            botonConfirmar.onClick.AddListener(ConfirmarCambios);
+            
+        if (botonCancelar != null)
+            botonCancelar.onClick.AddListener(CancelarCambio);
+            
+        if (panelConfirmacion != null)
+            panelConfirmacion.SetActive(false);
 
         bool esMochila = (GameState.player1Turn == false);
 
@@ -44,15 +59,31 @@ public class ControladorCambio : MonoBehaviour
 
     private void InicializarMochila()
     {
-        List<BattleItem> inventario = GestorDeBatalla.instance.inventarioBattleItems;
+        // En modo ordenamiento, mostramos el inventario completo
+        // En modo normal, mostramos solo los objetos de combate
+        List<BattleItem> inventarioAMostrar = GameState.modoOrdenamiento ? 
+            GestorDeBatalla.instance.inventarioCompleto : 
+            GestorDeBatalla.instance.inventarioBattleItems;
         
         if (GameState.modoOrdenamiento)
         {
-            if (objetosSeleccionados.Count == 0)
+            // Si es la primera vez que entramos al modo ordenamiento, cargamos los objetos actuales
+            if (!mochilaInicializada)
             {
-                objetosSeleccionados = new List<BattleItem>(inventario.GetRange(0, Mathf.Min(MAX_OBJETOS_COMBATE, inventario.Count)));
+                objetosSeleccionados.Clear();
+                // Solo copiamos los objetos que existen en el inventario completo para evitar referencias nulas
+                foreach (var item in GestorDeBatalla.instance.inventarioBattleItems)
+                {
+                    var itemEncontrado = GestorDeBatalla.instance.inventarioCompleto.Find(i => 
+                        i.nombre == item.nombre && i.type == item.type);
+                    if (itemEncontrado != null)
+                    {
+                        objetosSeleccionados.Add(itemEncontrado);
+                    }
+                }
+                mochilaInicializada = true;
             }
-            tituloTexto.text = $"Seleccionar Objetos ({objetosSeleccionados.Count}/{MAX_OBJETOS_COMBATE})";
+            tituloTexto.text = $"Selecciona hasta {MAX_OBJETOS_COMBATE} objetos para el combate ({objetosSeleccionados.Count}/{MAX_OBJETOS_COMBATE})";
         }
         else
         {
@@ -61,9 +92,9 @@ public class ControladorCambio : MonoBehaviour
 
         for (int i = 0; i < botonesPokemon.Count; i++)
         {
-            if (i < inventario.Count)
+            if (i < inventarioAMostrar.Count)
             {
-                BattleItem item = inventario[i];
+                BattleItem item = inventarioAMostrar[i];
                 botonesPokemon[i].gameObject.SetActive(true);
 
                 TextMeshProUGUI texto = botonesPokemon[i].GetComponentInChildren<TextMeshProUGUI>();
@@ -71,8 +102,14 @@ public class ControladorCambio : MonoBehaviour
                 {
                     if (GameState.modoOrdenamiento)
                     {
-                        bool seleccionado = objetosSeleccionados.Contains(item);
+                        // Comprobamos si el item actual está en la lista de seleccionados
+                        bool seleccionado = objetosSeleccionados.Exists(obj => obj.nombre == item.nombre && obj.type == item.type);
                         texto.text = $"{(seleccionado ? "[X] " : "[ ] ")}{item.nombre} x{item.cantidad}";
+                        
+                        // Actualizamos el color del botón
+                        ColorBlock colors = botonesPokemon[i].colors;
+                        colors.normalColor = seleccionado ? new Color(0.3f, 0.6f, 0.3f) : Color.white;
+                        botonesPokemon[i].colors = colors;
                     }
                     else
                     {
@@ -288,23 +325,36 @@ public class ControladorCambio : MonoBehaviour
     
     private void ToggleSeleccionObjeto(int index)
     {
-        List<BattleItem> inventario = GestorDeBatalla.instance.inventarioBattleItems;
+        // Usamos el inventario completo para la selección
+        List<BattleItem> inventario = GestorDeBatalla.instance.inventarioCompleto;
         if (index < 0 || index >= inventario.Count) return;
 
         BattleItem item = inventario[index];
+        
+        // Buscamos si el objeto ya está seleccionado
+        var itemSeleccionado = objetosSeleccionados.Find(i => i.nombre == item.nombre && i.type == item.type);
 
-        if (objetosSeleccionados.Contains(item))
+        if (itemSeleccionado != null)
         {
-            objetosSeleccionados.Remove(item);
+            // Si ya está seleccionado, lo quitamos
+            objetosSeleccionados.Remove(itemSeleccionado);
         }
         else
         {
+            // Si no está seleccionado y no hemos alcanzado el límite, lo añadimos
             if (objetosSeleccionados.Count < MAX_OBJETOS_COMBATE)
             {
-                objetosSeleccionados.Add(item);
+                // Creamos una copia del item del inventario completo
+                var copiaItem = new BattleItem(item.type, item.nombre, item.descripcion, item.cantidad);
+                objetosSeleccionados.Add(copiaItem);
+            }
+            else
+            {
+                Debug.Log($"Solo puedes seleccionar hasta {MAX_OBJETOS_COMBATE} objetos para el combate");
             }
         }
 
+        // Actualizamos la interfaz
         InicializarMochila();
     }
 
@@ -329,23 +379,79 @@ public class ControladorCambio : MonoBehaviour
         }
     }
 
+    public void ConfirmarCambios()
+    {
+        if (GameState.modoOrdenamiento)
+        {
+            if (GameState.player1Turn == false) // Modo selección de objetos
+            {
+                // Verificar que no se hayan seleccionado más de 6 objetos
+                if (objetosSeleccionados.Count > MAX_OBJETOS_COMBATE)
+                {
+                    Debug.LogError("¡No puedes seleccionar más de 6 objetos para el combate!");
+                    return;
+                }
+
+                // Actualizar inventario de combate con la selección actual
+                GestorDeBatalla.instance.inventarioBattleItems.Clear();
+                
+                // Asegurarnos de que los objetos seleccionados existen en el inventario completo
+                foreach (var item in objetosSeleccionados)
+                {
+                    // Buscar el objeto correspondiente en el inventario completo
+                    var itemCompleto = GestorDeBatalla.instance.inventarioCompleto.Find(i => 
+                        i.nombre == item.nombre && i.type == item.type);
+                        
+                    if (itemCompleto != null)
+                    {
+                        // Crear una copia del item para el inventario de combate
+                        var itemCopia = new BattleItem(item.type, item.nombre, item.descripcion, item.cantidad);
+                        GestorDeBatalla.instance.inventarioBattleItems.Add(itemCopia);
+                    }
+                }
+                
+                Debug.Log($"Inventario de combate actualizado con {GestorDeBatalla.instance.inventarioBattleItems.Count} objetos");
+            }
+            
+            if (panelConfirmacion != null)
+                panelConfirmacion.SetActive(false);
+                
+            primerSeleccionado = -1;
+            GameState.modoOrdenamiento = false;
+            SceneTransitionManager.Instance.LoadScene("Escena Principal");
+        }
+    }
+
     public void CancelarCambio()
     {
         if (GameState.modoOrdenamiento)
         {
-            if (GameState.player1Turn == false)
+            if (panelConfirmacion != null)
             {
-                GestorDeBatalla.instance.inventarioBattleItems.Clear();
-                GestorDeBatalla.instance.inventarioBattleItems.AddRange(objetosSeleccionados);
+                panelConfirmacion.SetActive(true);
             }
-            primerSeleccionado = -1;
-            GameState.modoOrdenamiento = false;
-            SceneTransitionManager.Instance.LoadScene("Escena Principal");
+            else
+            {
+                // Si no hay panel de confirmación, cancelar directamente
+                RealizarCancelacion();
+            }
         }
         else
         {
             GameState.player1Turn = true;
             SceneTransitionManager.Instance.LoadScene("Escena de combate");
         }
+    }
+    
+    private void RealizarCancelacion()
+    {
+        if (GameState.player1Turn == false)
+        {
+            // Restaurar selección anterior
+            objetosSeleccionados = new List<BattleItem>(GestorDeBatalla.instance.inventarioBattleItems);
+        }
+        primerSeleccionado = -1;
+        GameState.modoOrdenamiento = false;
+        SceneTransitionManager.Instance.LoadScene("Escena Principal");
     }
 }
