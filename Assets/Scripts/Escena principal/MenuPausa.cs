@@ -88,7 +88,6 @@ public class MenuPausa : MonoBehaviour
                 }
 
                 PlayerPrefs.SetInt("CantidadObjetos", GestorDeBatalla.instance.inventarioBattleItems.Count);
-                
                 for (int i = 0; i < GestorDeBatalla.instance.inventarioBattleItems.Count; i++)
                 {
                     BattleItem item = GestorDeBatalla.instance.inventarioBattleItems[i];
@@ -96,6 +95,17 @@ public class MenuPausa : MonoBehaviour
                     {
                         string itemJson = JsonUtility.ToJson(item);
                         PlayerPrefs.SetString($"Item_{i}", itemJson);
+                    }
+                }
+
+                PlayerPrefs.SetInt("CantidadObjetosCompleto", GestorDeBatalla.instance.inventarioCompleto.Count);
+                for (int i = 0; i < GestorDeBatalla.instance.inventarioCompleto.Count; i++)
+                {
+                    BattleItem item = GestorDeBatalla.instance.inventarioCompleto[i];
+                    if (item != null)
+                    {
+                        string itemJson = JsonUtility.ToJson(item);
+                        PlayerPrefs.SetString($"ItemCompleto_{i}", itemJson);
                     }
                 }
             }
@@ -152,7 +162,6 @@ public class MenuPausa : MonoBehaviour
 
                 int cantidadObjetos = PlayerPrefs.GetInt("CantidadObjetos", 0);
                 GestorDeBatalla.instance.inventarioBattleItems.Clear();
-                
                 for (int i = 0; i < cantidadObjetos; i++)
                 {
                     if (PlayerPrefs.HasKey($"Item_{i}"))
@@ -162,6 +171,21 @@ public class MenuPausa : MonoBehaviour
                         if (item != null)
                         {
                             GestorDeBatalla.instance.inventarioBattleItems.Add(item);
+                        }
+                    }
+                }
+
+                int cantidadObjetosCompleto = PlayerPrefs.GetInt("CantidadObjetosCompleto", 0);
+                GestorDeBatalla.instance.inventarioCompleto.Clear();
+                for (int i = 0; i < cantidadObjetosCompleto; i++)
+                {
+                    if (PlayerPrefs.HasKey($"ItemCompleto_{i}"))
+                    {
+                        string itemJson = PlayerPrefs.GetString($"ItemCompleto_{i}");
+                        BattleItem item = JsonUtility.FromJson<BattleItem>(itemJson);
+                        if (item != null)
+                        {
+                            GestorDeBatalla.instance.inventarioCompleto.Add(item);
                         }
                     }
                 }
@@ -229,6 +253,37 @@ public class MenuPausa : MonoBehaviour
         if (panelNotificacion != null)
         {
             panelNotificacion.SetActive(false);
+        }
+    }
+
+    public void ReiniciarJuego()
+    {
+        if (GestorDeBatalla.instance != null)
+        {
+            GestorDeBatalla.instance.equipoJugador.Clear();
+            GestorDeBatalla.instance.ResetearCombate();
+        }
+        
+        GameState.player1Turn = true;
+        GameState.ataqueSeleccionado = null;
+        GameState.itemSeleccionado = null;
+        GameState.porkemonDelJugador = null;
+        GameState.porkemonDelBot = null;
+        GameState.nombreGanador = "";
+        GameState.experienciaGanada = 0;
+        GameState.equipoGanador.Clear();
+        GameState.victoriaFueCaptura = false;
+        GameState.npcYaHablo = false;
+        
+        Time.timeScale = 1f;
+        
+        if (SceneTransitionManager.Instance != null)
+        {
+            SceneTransitionManager.Instance.LoadScene("Escena Principal");
+        }
+        else
+        {
+            SceneManager.LoadScene("Escena Principal");
         }
     }
 }

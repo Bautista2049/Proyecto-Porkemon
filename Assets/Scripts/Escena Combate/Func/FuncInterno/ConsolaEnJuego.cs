@@ -200,13 +200,17 @@ public class ConsolaEnJuego : MonoBehaviour
             lowerLogString.Contains("inmune") ||
             lowerLogString.Contains("usó") ||
             lowerLogString.Contains("aumentado") ||
+            lowerLogString.Contains("aumentada") ||
             lowerLogString.Contains("recuperó") ||
             lowerLogString.Contains("recupero") ||
             lowerLogString.Contains("ps!") ||
+            lowerLogString.Contains("ps al máximo") ||
             lowerLogString.Contains("lanzaste") ||
             lowerLogString.Contains("...") ||
             lowerLogString.Contains("gotcha") ||
-            lowerLogString.Contains("escapado"))
+            lowerLogString.Contains("escapado") ||
+            lowerLogString.Contains("protección") ||
+            lowerLogString.Contains("no quedan"))
         {
             EnqueueLogMessage(logString);
         }

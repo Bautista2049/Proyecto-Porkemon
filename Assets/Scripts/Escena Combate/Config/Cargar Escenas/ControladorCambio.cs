@@ -8,8 +8,12 @@ public class ControladorCambio : MonoBehaviour
 {
     public List<Button> botonesPokemon;
     public TextMeshProUGUI tituloTexto;
+    public Button botonConfirmar;
+    public Button botonCancelar;
 
     private List<Porkemon> equipoJugador;
+    private List<Porkemon> equipoOriginal;
+    private List<BattleItem> inventarioOriginal;
     private int primerSeleccionado = -1;
     private List<BattleItem> objetosSeleccionados = new List<BattleItem>();
     private const int MAX_OBJETOS_COMBATE = 6;
@@ -21,15 +25,25 @@ public class ControladorCambio : MonoBehaviour
             return;
         }
 
+        ConfigurarBotones();
+
         bool esMochila = (GameState.player1Turn == false);
 
         if (esMochila)
         {
+            if (GameState.modoOrdenamiento)
+            {
+                inventarioOriginal = new List<BattleItem>(GestorDeBatalla.instance.inventarioBattleItems);
+            }
             InicializarMochila();
         }
         else
         {
             equipoJugador = GestorDeBatalla.instance.equipoJugador;
+            if (GameState.modoOrdenamiento)
+            {
+                equipoOriginal = new List<Porkemon>(equipoJugador);
+            }
             ActualizarBotones();
             if (GameState.modoOrdenamiento)
             {
@@ -42,26 +56,51 @@ public class ControladorCambio : MonoBehaviour
         }
     }
 
+    private void ConfigurarBotones()
+    {
+        if (botonConfirmar != null)
+        {
+            botonConfirmar.gameObject.SetActive(GameState.modoOrdenamiento);
+            botonConfirmar.onClick.RemoveAllListeners();
+            botonConfirmar.onClick.AddListener(ConfirmarCambios);
+        }
+
+        if (botonCancelar != null)
+        {
+            botonCancelar.onClick.RemoveAllListeners();
+            botonCancelar.onClick.AddListener(CancelarCambio);
+            
+            TextMeshProUGUI textoCancelar = botonCancelar.GetComponentInChildren<TextMeshProUGUI>();
+            if (textoCancelar != null)
+            {
+                textoCancelar.text = GameState.modoOrdenamiento ? "Cancelar" : "Volver";
+            }
+        }
+    }
+
     private void InicializarMochila()
     {
-        List<BattleItem> inventario = GestorDeBatalla.instance.inventarioBattleItems;
+        List<BattleItem> inventario = GameState.modoOrdenamiento ? 
+            GestorDeBatalla.instance.inventarioCompleto : 
+            GestorDeBatalla.instance.inventarioBattleItems;
+        int limiteVisible = GameState.modoOrdenamiento ? inventario.Count : Mathf.Min(MAX_OBJETOS_COMBATE, inventario.Count);
         
         if (GameState.modoOrdenamiento)
         {
             if (objetosSeleccionados.Count == 0)
             {
-                objetosSeleccionados = new List<BattleItem>(inventario.GetRange(0, Mathf.Min(MAX_OBJETOS_COMBATE, inventario.Count)));
+                objetosSeleccionados = new List<BattleItem>(GestorDeBatalla.instance.inventarioBattleItems);
             }
             tituloTexto.text = $"Seleccionar Objetos ({objetosSeleccionados.Count}/{MAX_OBJETOS_COMBATE})";
         }
         else
         {
-            tituloTexto.text = "Objetos de Batalla";
+            tituloTexto.text = $"Objetos de Batalla ({Mathf.Min(inventario.Count, MAX_OBJETOS_COMBATE)})";
         }
 
         for (int i = 0; i < botonesPokemon.Count; i++)
         {
-            if (i < inventario.Count)
+            if (i < limiteVisible)
             {
                 BattleItem item = inventario[i];
                 botonesPokemon[i].gameObject.SetActive(true);
@@ -150,6 +189,7 @@ public class ControladorCambio : MonoBehaviour
             if (selectedItem.cantidad <= 0)
             {
                 GestorDeBatalla.instance.inventarioBattleItems.Remove(selectedItem);
+                GestorDeBatalla.instance.inventarioCompleto.Remove(selectedItem);
             }
             GameState.player1Turn = false;
             SceneTransitionManager.Instance.LoadScene("Escena de combate");
@@ -162,32 +202,32 @@ public class ControladorCambio : MonoBehaviour
         {
             case BattleItemType.AtaqueX:
                 porkemon.AumentarAtaque(2);
-                Debug.Log($"{porkemon.BaseData.nombre} usó {item.nombre}. Ataque aumentado!");
+                Debug.Log($"{porkemon.BaseData.nombre} usó {item.nombre}. ¡Ataque aumentado!");
                 break;
             case BattleItemType.DefensaX:
                 porkemon.AumentarDefensa(2);
-                Debug.Log($"{porkemon.BaseData.nombre} usó {item.nombre}. Defensa aumentada!");
+                Debug.Log($"{porkemon.BaseData.nombre} usó {item.nombre}. ¡Defensa aumentada!");
                 break;
             case BattleItemType.AtaqueEspecialX:
                 porkemon.AumentarEspiritu(2);
-                Debug.Log($"{porkemon.BaseData.nombre} usó {item.nombre}. Ataque Especial aumentado!");
+                Debug.Log($"{porkemon.BaseData.nombre} usó {item.nombre}. ¡Ataque Especial aumentado!");
                 break;
             case BattleItemType.DefensaEspecialX:
                 porkemon.AumentarEspiritu(2);
-                Debug.Log($"{porkemon.BaseData.nombre} usó {item.nombre}. Defensa Especial aumentada!");
+                Debug.Log($"{porkemon.BaseData.nombre} usó {item.nombre}. ¡Defensa Especial aumentada!");
                 break;
             case BattleItemType.VelocidadX:
                 porkemon.AumentarVelocidad(2);
-                Debug.Log($"{porkemon.BaseData.nombre} usó {item.nombre}. Velocidad aumentada!");
+                Debug.Log($"{porkemon.BaseData.nombre} usó {item.nombre}. ¡Velocidad aumentada!");
                 break;
             case BattleItemType.PrecisionX:
-                Debug.Log($"{porkemon.BaseData.nombre} usó {item.nombre}. Precisión aumentada!");
+                Debug.Log($"{porkemon.BaseData.nombre} usó {item.nombre}. ¡Precisión aumentada!");
                 break;
             case BattleItemType.CriticoX:
-                Debug.Log($"{porkemon.BaseData.nombre} usó {item.nombre}. Índice crítico aumentado!");
+                Debug.Log($"{porkemon.BaseData.nombre} usó {item.nombre}. ¡Índice crítico aumentado!");
                 break;
             case BattleItemType.ProteccionX:
-                Debug.Log($"{porkemon.BaseData.nombre} usó {item.nombre}. Protección activada!");
+                Debug.Log($"{porkemon.BaseData.nombre} usó {item.nombre}. ¡Protección activada!");
                 break;
         }
     }
@@ -195,10 +235,11 @@ public class ControladorCambio : MonoBehaviour
     void ActualizarBotones()
     {
         Porkemon activo = GestorDeBatalla.instance.porkemonJugador;
+        int limiteVisible = GameState.modoOrdenamiento ? equipoJugador.Count : Mathf.Min(MAX_OBJETOS_COMBATE, equipoJugador.Count);
 
         for (int i = 0; i < botonesPokemon.Count; i++)
         {
-            if (i < equipoJugador.Count)
+            if (i < limiteVisible)
             {
                 Porkemon p = equipoJugador[i];
                 botonesPokemon[i].gameObject.SetActive(true);
@@ -288,7 +329,7 @@ public class ControladorCambio : MonoBehaviour
     
     private void ToggleSeleccionObjeto(int index)
     {
-        List<BattleItem> inventario = GestorDeBatalla.instance.inventarioBattleItems;
+        List<BattleItem> inventario = GestorDeBatalla.instance.inventarioCompleto;
         if (index < 0 || index >= inventario.Count) return;
 
         BattleItem item = inventario[index];
@@ -329,15 +370,49 @@ public class ControladorCambio : MonoBehaviour
         }
     }
 
+    private void ConfirmarCambios()
+    {
+        if (!GameState.modoOrdenamiento) return;
+
+        bool huboCambios = false;
+
+        if (GameState.player1Turn == false)
+        {
+            if (objetosSeleccionados.Count > 0)
+            {
+                huboCambios = !ListasIguales(inventarioOriginal, objetosSeleccionados);
+                if (huboCambios)
+                {
+                    GestorDeBatalla.instance.inventarioBattleItems.Clear();
+                    GestorDeBatalla.instance.inventarioBattleItems.AddRange(objetosSeleccionados);
+                }
+            }
+        }
+        else
+        {
+            huboCambios = !ListasIgualesPokemon(equipoOriginal, equipoJugador);
+        }
+
+        primerSeleccionado = -1;
+        GameState.modoOrdenamiento = false;
+        SceneTransitionManager.Instance.LoadScene("Escena Principal");
+    }
+
     public void CancelarCambio()
     {
         if (GameState.modoOrdenamiento)
         {
-            if (GameState.player1Turn == false)
+            if (GameState.player1Turn == false && inventarioOriginal != null)
             {
                 GestorDeBatalla.instance.inventarioBattleItems.Clear();
-                GestorDeBatalla.instance.inventarioBattleItems.AddRange(objetosSeleccionados);
+                GestorDeBatalla.instance.inventarioBattleItems.AddRange(inventarioOriginal);
             }
+            else if (GameState.player1Turn == true && equipoOriginal != null)
+            {
+                GestorDeBatalla.instance.equipoJugador.Clear();
+                GestorDeBatalla.instance.equipoJugador.AddRange(equipoOriginal);
+            }
+
             primerSeleccionado = -1;
             GameState.modoOrdenamiento = false;
             SceneTransitionManager.Instance.LoadScene("Escena Principal");
@@ -347,5 +422,25 @@ public class ControladorCambio : MonoBehaviour
             GameState.player1Turn = true;
             SceneTransitionManager.Instance.LoadScene("Escena de combate");
         }
+    }
+
+    private bool ListasIguales(List<BattleItem> lista1, List<BattleItem> lista2)
+    {
+        if (lista1.Count != lista2.Count) return false;
+        for (int i = 0; i < lista1.Count; i++)
+        {
+            if (lista1[i] != lista2[i]) return false;
+        }
+        return true;
+    }
+
+    private bool ListasIgualesPokemon(List<Porkemon> lista1, List<Porkemon> lista2)
+    {
+        if (lista1.Count != lista2.Count) return false;
+        for (int i = 0; i < lista1.Count; i++)
+        {
+            if (lista1[i] != lista2[i]) return false;
+        }
+        return true;
     }
 }
