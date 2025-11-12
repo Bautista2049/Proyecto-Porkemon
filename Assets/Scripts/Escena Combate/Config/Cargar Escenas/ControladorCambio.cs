@@ -186,7 +186,9 @@ public class ControladorCambio : MonoBehaviour
 
             if (selectedItem.cantidad <= 0)
             {
+                // Remove from both inventories
                 GestorDeBatalla.instance.inventarioBattleItems.Remove(selectedItem);
+                GestorDeBatalla.instance.inventarioCompleto.RemoveAll(i => i.type == selectedItem.type);
             }
             GameState.player1Turn = false;
             SceneTransitionManager.Instance.LoadScene("Escena de combate");

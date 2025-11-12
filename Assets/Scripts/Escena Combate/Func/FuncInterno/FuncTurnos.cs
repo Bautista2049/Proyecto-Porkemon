@@ -233,7 +233,11 @@ public class FuncTurnos : MonoBehaviour
             AplicarEfectoItem(itemUsado, jugador1.porkemon);
             itemUsado.cantidad--;
             if (itemUsado.cantidad <= 0)
+            {
+                // Remove from both inventories
                 GestorDeBatalla.instance.inventarioBattleItems.Remove(itemUsado);
+                GestorDeBatalla.instance.inventarioCompleto.RemoveAll(i => i.type == itemUsado.type);
+            }
 
             yield return new WaitForSeconds(1f);
             CambiarTurno();
@@ -305,7 +309,11 @@ public class FuncTurnos : MonoBehaviour
 
         bolaUsada.cantidad--;
         if (bolaUsada.cantidad <= 0)
+        {
+            // Remove from both inventories
             GestorDeBatalla.instance.inventarioBattleItems.Remove(bolaUsada);
+            GestorDeBatalla.instance.inventarioCompleto.RemoveAll(i => i.type == bolaUsada.type);
+        }
 
         GameObject pokebolaInstancia = Instantiate(pokebolaPrefab, posicionLanzamientoJugador.position, posicionLanzamientoJugador.rotation);
         AudioSource audioSource = pokebolaInstancia.GetComponent<AudioSource>();

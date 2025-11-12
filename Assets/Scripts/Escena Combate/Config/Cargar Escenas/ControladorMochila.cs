@@ -75,10 +75,23 @@ public class ControladorMochila : MonoBehaviour
         // Reducir la cantidad del ítem
         itemSeleccionado.cantidad--;
 
-        // Si se acabó el ítem, quitarlo del inventario
+        // Si se acabó el ítem, quitarlo de ambos inventarios
         if (itemSeleccionado.cantidad <= 0)
         {
+            // Remove from both inventories
             GestorDeBatalla.instance.inventarioBattleItems.Remove(itemSeleccionado);
+            GestorDeBatalla.instance.inventarioCompleto.RemoveAll(i => i.type == itemSeleccionado.type);
+        }
+
+        // Si era un revivir, actualizar el estado del Pokémon en el equipo
+        if (itemSeleccionado.type == BattleItemType.Revivir || itemSeleccionado.type == BattleItemType.RevivirMax)
+        {
+            // Verificar si el Pokémon revivido es el activo actual
+            if (pokemon == GestorDeBatalla.instance.porkemonJugador)
+            {
+                // Si el Pokémon activo fue revivido, asegurarse de que esté listo para el combate
+                // Esto podría incluir actualizar la UI o el estado del combate
+            }
         }
 
         // Actualizar la interfaz
@@ -88,6 +101,9 @@ public class ControladorMochila : MonoBehaviour
         // Volver al combate
         StartCoroutine(VolverCombateConDelay());
         
+        // Resetear el estado de selección
+        esperandoSeleccionPokemon = false;
+        itemSeleccionado = null;
         // Resetear el estado
         itemSeleccionado = null;
         esperandoSeleccionPokemon = false;
@@ -142,12 +158,19 @@ public class ControladorMochila : MonoBehaviour
             return;
         }
 
+        Debug.Log($"[DEBUG] Usando item: {item.nombre} en {porkemonActivo.BaseData.nombre}");
+        Debug.Log($"[DEBUG] Vida antes: {porkemonActivo.VidaActual}/{porkemonActivo.VidaMaxima}");
+        
         AplicarEfectoItem(item, porkemonActivo);
+        
+        Debug.Log($"[DEBUG] Vida después: {porkemonActivo.VidaActual}/{porkemonActivo.VidaMaxima}");
         item.cantidad--;
 
         if (item.cantidad <= 0)
         {
+            // Remove from both inventories
             GestorDeBatalla.instance.inventarioBattleItems.Remove(item);
+            GestorDeBatalla.instance.inventarioCompleto.RemoveAll(i => i.type == item.type);
         }
 
         ActualizarBotonesItems();
@@ -167,6 +190,8 @@ public class ControladorMochila : MonoBehaviour
 
     private void AplicarEfectoItem(BattleItem item, Porkemon porkemon)
     {
+        Debug.Log($"[DEBUG] Aplicando efecto: {item.type} a {porkemon.BaseData.nombre}");
+        
         switch (item.type)
         {
             case BattleItemType.Pocion:
@@ -189,6 +214,7 @@ public class ControladorMochila : MonoBehaviour
                 porkemon.VidaActual = porkemon.VidaMaxima;
                 Debug.Log($"{porkemon.BaseData.nombre} usó {item.nombre}. Recuperó {curacionMax} PS!");
                 break;
+            // Los casos de Revivir y RevivirMax se manejan en la parte inferior del switch
             case BattleItemType.AtaqueX:
                 porkemon.AumentarAtaque(2);
                 Debug.Log($"{porkemon.BaseData.nombre} usó {item.nombre}. Ataque aumentado!");
@@ -231,11 +257,11 @@ public class ControladorMochila : MonoBehaviour
                 StartCoroutine(IniciarCaptura());
                 break;
             case BattleItemType.Revivir:
-                if (porkemon.VidaActual <= 0)
+                if (porkemon.VidaActual <= 0) // Solo revivir si está debilitado
                 {
-                    porkemon.VidaActual = Mathf.FloorToInt(porkemon.VidaMaxima * 0.3f);
-                    porkemon.Estado = EstadoAlterado.Ninguno;
-                    Debug.Log($"{porkemon.BaseData.nombre} ha revivido con el 30% de sus PS!");
+                    porkemon.VidaActual = Mathf.FloorToInt(porkemon.VidaMaxima * 0.3f); // 30% de vida
+                    porkemon.Estado = EstadoAlterado.Ninguno; // Quitar cualquier estado alterado
+                    Debug.Log($"¡{porkemon.BaseData.nombre} ha revivido con el 30% de sus PS!");
                 }
                 else
                 {
@@ -245,11 +271,11 @@ public class ControladorMochila : MonoBehaviour
                 }
                 break;
             case BattleItemType.RevivirMax:
-                if (porkemon.VidaActual <= 0)
+                if (porkemon.VidaActual <= 0) // Solo revivir si está debilitado
                 {
-                    porkemon.VidaActual = porkemon.VidaMaxima;
-                    porkemon.Estado = EstadoAlterado.Ninguno;
-                    Debug.Log($"{porkemon.BaseData.nombre} ha revivido con todos sus PS!");
+                    porkemon.VidaActual = porkemon.VidaMaxima; // 100% de vida
+                    porkemon.Estado = EstadoAlterado.Ninguno; // Quitar cualquier estado alterado
+                    Debug.Log($"¡{porkemon.BaseData.nombre} ha revivido con todos sus PS!");
                 }
                 else
                 {
