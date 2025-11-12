@@ -160,7 +160,8 @@ public class ControladorMochila : MonoBehaviour
 
     private IEnumerator VolverCombateConDelay()
     {
-        yield return null;
+        // Add a small delay to allow the healing effect to be applied and shown
+        yield return new WaitForSeconds(1.5f);  // Wait for 1.5 seconds
         SceneTransitionManager.Instance.LoadScene("Escena de combate");
     }
 

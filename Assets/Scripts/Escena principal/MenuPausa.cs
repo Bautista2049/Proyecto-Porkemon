@@ -39,28 +39,32 @@ public class MenuPausa : MonoBehaviour
     {
         Debug.Log("[MenuPausa] Iniciando MenuPausa...");
         
+        // Reset PlayerPrefs for testing (uncomment if needed)
+        // PlayerPrefs.DeleteKey("BienvenidaCompletada");
+        // PlayerPrefs.Save();
+        
         if (menuPausaPanel != null)
             menuPausaPanel.SetActive(false);
         
         if (panelNotificacion != null)
             panelNotificacion.SetActive(false);
             
-        // Verificar si ya se completó el proceso de bienvenida
+        // Check if welcome process has been completed
         int bienvenidaCompletada = PlayerPrefs.GetInt("BienvenidaCompletada", 0);
         primeraVez = (bienvenidaCompletada == 0);
         
         Debug.Log($"[MenuPausa] Es primera vez: {primeraVez} (PlayerPrefs BienvenidaCompletada: {bienvenidaCompletada})");
             
-        // Mostrar pantalla de bienvenida solo si no se ha completado
+        // Show welcome screen only if not completed
         if (primeraVez)
         {
-            Debug.Log("[MenuPausa] Mostrando pantalla de bienvenida");
+            Debug.Log("[MenuPausa] Mostrando pantalla de bienvenida (primera vez)");
             
-            // Asegurarse de que los paneles estén ocultos inicialmente
+            // Initialize panels
             if (panelBienvenida != null) 
             {
-                panelBienvenida.SetActive(false);
-                Debug.Log("[MenuPausa] Panel de bienvenida desactivado inicialmente");
+                panelBienvenida.SetActive(true);
+                Debug.Log("[MenuPausa] Panel de bienvenida activado");
             }
             
             if (panelInstrucciones != null) 
@@ -69,12 +73,13 @@ public class MenuPausa : MonoBehaviour
                 Debug.Log("[MenuPausa] Panel de instrucciones desactivado inicialmente");
             }
             
-            MostrarPantallaBienvenida();
+            // Make sure time is paused when showing welcome screen
+            Time.timeScale = 0f;
         }
         else
         {
             Debug.Log("[MenuPausa] No es la primera vez, ocultando paneles");
-            // Asegurarse de que los paneles estén ocultos
+            // Hide panels
             if (panelBienvenida != null) 
             {
                 panelBienvenida.SetActive(false);
