@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 170076734}
-  m_IndirectSpecularColor: {r: 0.65742165, g: 0.5420472, b: 0.32342148, a: 1}
+  m_IndirectSpecularColor: {r: 0.6574417, g: 0.5420627, b: 0.3233886, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -8413,7 +8413,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1672cee11d505544a9e8cf0fa160e46b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 6086104074334267177}
+  target: {fileID: 1302000014}
   distance: 8
   minDistance: 2
   maxDistance: 10
@@ -12743,7 +12743,6 @@ GameObject:
   - component: {fileID: 757921463}
   - component: {fileID: 757921466}
   - component: {fileID: 757921465}
-  - component: {fileID: 757921464}
   - component: {fileID: 757921467}
   m_Layer: 0
   m_Name: Capsule
@@ -12768,20 +12767,6 @@ Transform:
   m_Father: {fileID: 1032549573}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!136 &757921464
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 757921462}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  m_Radius: 0.3437271
-  m_Height: 2.537331
-  m_Direction: 1
-  m_Center: {x: -0.097709656, y: -1.3420696, z: 0}
 --- !u!23 &757921465
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -17149,7 +17134,7 @@ Animator:
   m_GameObject: {fileID: 1032549572}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: a897ee1157474204ca75fd073632b9d8, type: 3}
-  m_Controller: {fileID: 9100000, guid: 99ef6bb8b20211e4c8785e3bcccc396f, type: 2}
+  m_Controller: {fileID: 0}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -17183,7 +17168,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 4
   m_CollisionDetection: 0
@@ -20920,7 +20905,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1302000013}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.07, y: 0.2, z: 0.37}
+  m_LocalPosition: {x: 0.07, y: 2.82, z: 0.47}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 757921463}
@@ -34139,6 +34124,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 757921463}
     m_Modifications:
+    - target: {fileID: 6086104073552001941, guid: d48345255fdb33243a518273e4ba67e2,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 6086104073558889509, guid: d48345255fdb33243a518273e4ba67e2,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -34198,6 +34188,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PersonajeUsuario
+      objectReference: {fileID: 0}
+    - target: {fileID: 6086104073559246970, guid: d48345255fdb33243a518273e4ba67e2,
+        type: 3}
+      propertyPath: moveSpeed
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6883079335771474323, guid: d48345255fdb33243a518273e4ba67e2,
+        type: 3}
+      propertyPath: m_Center.z
+      value: 1.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 6883079335771474323, guid: d48345255fdb33243a518273e4ba67e2,
+        type: 3}
+      propertyPath: m_Center.x
+      value: -0.29
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d48345255fdb33243a518273e4ba67e2, type: 3}
