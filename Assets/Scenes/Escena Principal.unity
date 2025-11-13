@@ -16577,7 +16577,6 @@ GameObject:
   - component: {fileID: 986664613}
   - component: {fileID: 986664612}
   - component: {fileID: 986664611}
-  - component: {fileID: 986664615}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: ConsolaCanvas
@@ -16672,19 +16671,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &986664615
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 986664610}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b9e28efc6a65b248b0663e78e389b23, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  referenceResolution: {x: 1024, y: 768}
 --- !u!1001 &986936030
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -91,20 +91,12 @@ public class GestorDeBatalla : MonoBehaviour
             };
         }
 
-        // Inicializar inventario de combate con los primeros 6 objetos que tengan cantidad > 0
+        // Inicializar inventario de combate con los primeros 6 objetos
         inventarioBattleItems.Clear();
-        int itemsAdded = 0;
-        
-        foreach (var item in inventarioCompleto)
+        int maxItems = Mathf.Min(6, inventarioCompleto.Count);
+        for (int i = 0; i < maxItems; i++)
         {
-            if (item.cantidad > 0)
-            {
-                inventarioBattleItems.Add(item);
-                itemsAdded++;
-                
-                if (itemsAdded >= 6) // Limit to 6 items
-                    break;
-            }
+            inventarioBattleItems.Add(inventarioCompleto[i]);
         }
 
         if (equipoJugador.Count > 0)
