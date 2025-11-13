@@ -7,18 +7,12 @@ using System.Collections;
 
 public class GestorDeBatalla : MonoBehaviour
 {
-    public enum ModoCombate
-    {
-        Salvaje,
-        Entrenador
-    }
-
     void Start()
     {
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
+      Cursor.lockState = CursorLockMode.None;
+      Cursor.visible = true;
+         
     }
-    
     public static GestorDeBatalla instance;
 
     public List<Porkemon> equipoJugador = new List<Porkemon>();
@@ -35,9 +29,7 @@ public class GestorDeBatalla : MonoBehaviour
     public bool combateIniciado = false;
     public Transform posicionJugador;
     
-    public ModoCombate modoCombateActual = ModoCombate.Salvaje;
-    public bool EsCombateSalvaje => modoCombateActual == ModoCombate.Salvaje;
-    
+    // Lista de nombres de Pokémon que se deben atrapar para ganar
     private List<string> pokemonesParaAtrapar = new List<string>
     {
         "Bulbasaur", "Charmander", "Squirtle", "Pikachu" // Ajusta esta lista según tus Pokémon
@@ -59,23 +51,21 @@ public class GestorDeBatalla : MonoBehaviour
 
     public void ResetearCombate()
     {
-            if (equipoJugador.Count == 0 && dataEquipoJugador != null && dataEquipoJugador.Count > 0)
+        // Inicializar equipo de Pokémon
+        equipoJugador.Clear();
+        foreach (var data in dataEquipoJugador)
         {
-            foreach (var data in dataEquipoJugador)
-            {
-                if (data != null)
-                {
-                    Porkemon nuevo = new Porkemon(data, data.nivel);
-                    equipoJugador.Add(nuevo);
-                    if (equipoJugador.Count >= 6) break;
-                }
-            }
+            Porkemon nuevo = new Porkemon(data, data.nivel);
+            equipoJugador.Add(nuevo);
+            if (equipoJugador.Count >= 6) break;
         }
 
-            if (inventarioCompleto.Count == 0)
+        // Inicializar inventario completo (solo si está vacío)
+        if (inventarioCompleto.Count == 0)
         {
             inventarioCompleto = new List<BattleItem>
             {
+                // Objetos de curación
                 new BattleItem(BattleItemType.Pocion, "Poción", "Restaura 20 PS", 5),
                 new BattleItem(BattleItemType.Superpocion, "Superpoción", "Restaura 50 PS", 3),
                 new BattleItem(BattleItemType.Hiperpocion, "Hiperpoción", "Restaura 120 PS", 2),
@@ -83,6 +73,7 @@ public class GestorDeBatalla : MonoBehaviour
                 new BattleItem(BattleItemType.Revivir, "Revivir", "Revive un Pokémon con 30% de PS", 2),
                 new BattleItem(BattleItemType.RevivirMax, "Revivir Máx", "Revive un Pokémon con todos sus PS", 1),
                 
+                // Objetos de mejora de estadísticas
                 new BattleItem(BattleItemType.AtaqueX, "Ataque X", "Aumenta el ataque en 1 nivel", 2),
                 new BattleItem(BattleItemType.DefensaX, "Defensa X", "Aumenta la defensa en 1 nivel", 2),
                 new BattleItem(BattleItemType.AtaqueEspecialX, "Ataque Especial X", "Aumenta el ataque especial en 1 nivel", 2),
@@ -92,6 +83,7 @@ public class GestorDeBatalla : MonoBehaviour
                 new BattleItem(BattleItemType.CriticoX, "Crítico X", "Aumenta la probabilidad de golpe crítico", 1),
                 new BattleItem(BattleItemType.ProteccionX, "Protección X", "Aumenta la evasión durante 5 turnos", 1),
                 
+                // Pokébolas
                 new BattleItem(BattleItemType.Porkebola, "Pokéball", "Atrapa Pokémon salvajes más fácilmente", 5),
                 new BattleItem(BattleItemType.Superbola, "Superball", "Más efectiva que una Pokéball normal", 3),
                 new BattleItem(BattleItemType.Ultrabola, "Ultraball", "Muy efectiva para Pokémon difíciles de atrapar", 2),
@@ -99,6 +91,7 @@ public class GestorDeBatalla : MonoBehaviour
             };
         }
 
+        // Inicializar inventario de combate con los primeros 6 objetos que tengan cantidad > 0
         inventarioBattleItems.Clear();
         int itemsAdded = 0;
         
@@ -109,7 +102,7 @@ public class GestorDeBatalla : MonoBehaviour
                 inventarioBattleItems.Add(item);
                 itemsAdded++;
                 
-                if (itemsAdded >= 6) 
+                if (itemsAdded >= 6) // Limit to 6 items
                     break;
             }
         }
@@ -137,49 +130,20 @@ public class GestorDeBatalla : MonoBehaviour
         combateIniciado = false;
     }
 
-    public void IniciarBatalla(bool esSalvaje = true, PorkemonData pokemonSalvaje = null, int nivelSalvaje = 1)
+    public void IniciarBatalla()
     {
         if (combateIniciado) return;
 
-        // Configurar el modo de combate
-        modoCombateActual = esSalvaje ? ModoCombate.Salvaje : ModoCombate.Entrenador;
-        Debug.Log($"[GestorDeBatalla] Iniciando combate - Modo: {modoCombateActual}");
-
-        if (esSalvaje)
+        if (GameState.porkemonDelBot != null)
         {
-            // Para combate salvaje
-            if (pokemonSalvaje != null)
-            {
-                porkemonBot = new Porkemon(pokemonSalvaje, nivelSalvaje);
-                GameState.porkemonDelBot = porkemonBot;
-                Debug.Log($"[GestorDeBatalla] Combate salvaje contra {pokemonSalvaje.nombre} nivel {nivelSalvaje}");
-            }
-            else
-            {
-                Debug.LogError("[GestorDeBatalla] No se proporcionó un Pokémon salvaje para el combate");
-                return;
-            }
+            porkemonBot = GameState.porkemonDelBot;
         }
         else
         {
-            // Para combate contra entrenador
-            if (GameState.porkemonDelBot != null)
-            {
-                porkemonBot = GameState.porkemonDelBot;
-            }
-            else if (equipoBot.Count > 0)
-            {
-                porkemonBot = equipoBot[0];
-                GameState.porkemonDelBot = porkemonBot;
-            }
-            else
-            {
-                Debug.LogError("[GestorDeBatalla] No hay Pokémon en el equipo del rival");
-                return;
-            }
+            porkemonBot = new Porkemon(dataInicialBot, dataInicialBot.nivel);
+            GameState.porkemonDelBot = porkemonBot;
         }
 
-        // Configurar Pokémon del jugador
         if (GameState.porkemonDelJugador != null)
         {
             porkemonJugador = GameState.porkemonDelJugador;
@@ -189,14 +153,8 @@ public class GestorDeBatalla : MonoBehaviour
             porkemonJugador = equipoJugador[0];
             GameState.porkemonDelJugador = porkemonJugador;
         }
-        else
-        {
-            Debug.LogError("[GestorDeBatalla] No hay Pokémon en el equipo del jugador");
-            return;
-        }
         
         combateIniciado = true;
-        Debug.Log($"[GestorDeBatalla] Combate iniciado: {porkemonJugador.BaseData.nombre} vs {porkemonBot.BaseData.nombre}");
     }
 
     private void InicializarInventarioBattleItems()
@@ -277,6 +235,7 @@ public class GestorDeBatalla : MonoBehaviour
     
     private bool SeCompletoLaDex()
     {
+        // Verificar si el jugador tiene todos los Pokémon necesarios
         foreach (var pokemonNombre in pokemonesParaAtrapar)
         {
             bool encontrado = false;
@@ -301,6 +260,7 @@ public class GestorDeBatalla : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.S))
             {
+                // Reiniciar el juego
                 PlayerPrefs.DeleteKey("PartidaGuardada");
                 PlayerPrefs.DeleteKey("NombreJugador");
                 Time.timeScale = 1f;
@@ -309,6 +269,7 @@ public class GestorDeBatalla : MonoBehaviour
             }
             else if (Input.GetKeyDown(KeyCode.N))
             {
+                // Salir del juego
                 #if UNITY_EDITOR
                     UnityEditor.EditorApplication.isPlaying = false;
                 #else
@@ -327,8 +288,10 @@ public class GestorDeBatalla : MonoBehaviour
 
         if (victoria)
         {
-                if (SeCompletoLaDex())
+            // Verificar si ya se capturaron todos los Pokémon
+            if (SeCompletoLaDex())
             {
+                // Cargar escena de victoria final
                 SceneManager.LoadScene("InterfazDeMenu");
             }
             else

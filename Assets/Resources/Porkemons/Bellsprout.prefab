@@ -1039,23 +1039,23 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f26017d8e23c17247955a1e403a477d6, type: 3}
-  - {fileID: 2100002, guid: f26017d8e23c17247955a1e403a477d6, type: 3}
-  - {fileID: 2100004, guid: f26017d8e23c17247955a1e403a477d6, type: 3}
-  - {fileID: 2100006, guid: f26017d8e23c17247955a1e403a477d6, type: 3}
-  - {fileID: 2100008, guid: f26017d8e23c17247955a1e403a477d6, type: 3}
-  - {fileID: 2100010, guid: f26017d8e23c17247955a1e403a477d6, type: 3}
-  - {fileID: 2100012, guid: f26017d8e23c17247955a1e403a477d6, type: 3}
-  - {fileID: 2100014, guid: f26017d8e23c17247955a1e403a477d6, type: 3}
-  - {fileID: 2100016, guid: f26017d8e23c17247955a1e403a477d6, type: 3}
-  - {fileID: 2100018, guid: f26017d8e23c17247955a1e403a477d6, type: 3}
-  - {fileID: 2100020, guid: f26017d8e23c17247955a1e403a477d6, type: 3}
-  - {fileID: 2100022, guid: f26017d8e23c17247955a1e403a477d6, type: 3}
-  - {fileID: 2100024, guid: f26017d8e23c17247955a1e403a477d6, type: 3}
-  - {fileID: 2100026, guid: f26017d8e23c17247955a1e403a477d6, type: 3}
-  - {fileID: 2100028, guid: f26017d8e23c17247955a1e403a477d6, type: 3}
-  - {fileID: 2100030, guid: f26017d8e23c17247955a1e403a477d6, type: 3}
-  - {fileID: 2100032, guid: f26017d8e23c17247955a1e403a477d6, type: 3}
+  - {fileID: 2100000, guid: 4324deb7b9a124647bbdd8173cafe09d, type: 3}
+  - {fileID: 2100002, guid: 4324deb7b9a124647bbdd8173cafe09d, type: 3}
+  - {fileID: 2100004, guid: 4324deb7b9a124647bbdd8173cafe09d, type: 3}
+  - {fileID: 2100006, guid: 4324deb7b9a124647bbdd8173cafe09d, type: 3}
+  - {fileID: 2100008, guid: 4324deb7b9a124647bbdd8173cafe09d, type: 3}
+  - {fileID: 2100010, guid: 4324deb7b9a124647bbdd8173cafe09d, type: 3}
+  - {fileID: 2100012, guid: 4324deb7b9a124647bbdd8173cafe09d, type: 3}
+  - {fileID: 2100014, guid: 4324deb7b9a124647bbdd8173cafe09d, type: 3}
+  - {fileID: 2100016, guid: 4324deb7b9a124647bbdd8173cafe09d, type: 3}
+  - {fileID: 2100018, guid: 4324deb7b9a124647bbdd8173cafe09d, type: 3}
+  - {fileID: 2100020, guid: 4324deb7b9a124647bbdd8173cafe09d, type: 3}
+  - {fileID: 2100022, guid: 4324deb7b9a124647bbdd8173cafe09d, type: 3}
+  - {fileID: 2100024, guid: 4324deb7b9a124647bbdd8173cafe09d, type: 3}
+  - {fileID: 2100026, guid: 4324deb7b9a124647bbdd8173cafe09d, type: 3}
+  - {fileID: 2100028, guid: 4324deb7b9a124647bbdd8173cafe09d, type: 3}
+  - {fileID: 2100030, guid: 4324deb7b9a124647bbdd8173cafe09d, type: 3}
+  - {fileID: 2100032, guid: 4324deb7b9a124647bbdd8173cafe09d, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1079,7 +1079,7 @@ SkinnedMeshRenderer:
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
   m_SkinnedMotionVectors: 1
-  m_Mesh: {fileID: 4300000, guid: f26017d8e23c17247955a1e403a477d6, type: 3}
+  m_Mesh: {fileID: 4300000, guid: 4324deb7b9a124647bbdd8173cafe09d, type: 3}
   m_Bones:
   - {fileID: 1433957337944403358}
   - {fileID: 1433957337944403352}
@@ -2167,6 +2167,7 @@ GameObject:
   - component: {fileID: 136510473696817524}
   - component: {fileID: 54046790277432370}
   - component: {fileID: 114305995589165948}
+  - component: {fileID: 114884114624635788}
   m_Layer: 0
   m_Name: Bellsprout
   m_TagString: Untagged
@@ -2182,7 +2183,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1433957337944174730}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -290.0313, y: 0.24876845, z: 131.16255}
+  m_LocalPosition: {x: -66.55028, y: 32.994476, z: -26.05938}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1433957337944403356}
@@ -2219,10 +2220,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 1.2218246
-  m_Height: 2.4436493
+  m_Radius: 0.6810045
+  m_Height: 3.6491976
   m_Direction: 1
-  m_Center: {x: 0.39, y: 0.63, z: -0.6586075}
+  m_Center: {x: 0, y: 0.7222533, z: -0.74164486}
 --- !u!54 &54046790277432370
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2235,7 +2236,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -2255,7 +2256,21 @@ MonoBehaviour:
   popupPanel: {fileID: 0}
   popupText: {fileID: 0}
   botPorkemonData: {fileID: 11400000, guid: 6c9eb4021237ff14a82c44f71a59ea8a, type: 2}
-  nivelSpawn: 1
+  nivelSpawn: 5
+--- !u!114 &114884114624635788
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1433957337944174730}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e022259df580ad44cac4aa166e7dfe42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  modelParentContainer: {fileID: 1433957337944174730}
+  isPlayerModel: 1
 --- !u!1 &1433957337944174732
 GameObject:
   m_ObjectHideFlags: 0
