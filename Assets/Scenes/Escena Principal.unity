@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 170076734}
-  m_IndirectSpecularColor: {r: 0.65742165, g: 0.5420472, b: 0.32342148, a: 1}
+  m_IndirectSpecularColor: {r: 0.6573798, g: 0.5419396, b: 0.32329232, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -12838,8 +12838,8 @@ Rigidbody:
   m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -17118,7 +17118,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1032549572}
   m_LocalRotation: {x: -0, y: -0.44612643, z: -0, w: 0.89497}
-  m_LocalPosition: {x: -282.71, y: -2.15, z: 123.68}
+  m_LocalPosition: {x: -290.31, y: -2.15, z: 116.16}
   m_LocalScale: {x: 0.6096, y: 0.4957755, z: 0.6096}
   m_Children:
   - {fileID: 757921463}
@@ -17183,8 +17183,8 @@ Rigidbody:
   m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 4
   m_CollisionDetection: 0
@@ -19446,6 +19446,7 @@ MonoBehaviour:
   combateIniciado: 0
   posicionJugador: {fileID: 6726296229464280566, guid: 206fb3bd392131646a7cda1fe31b46fb,
     type: 3}
+  modoCombateActual: 0
 --- !u!4 &1208131122
 Transform:
   m_ObjectHideFlags: 0
@@ -20999,8 +21000,8 @@ Rigidbody:
   m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -24233,8 +24234,8 @@ Rigidbody:
   m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -34023,6 +34024,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: KittyZap
       objectReference: {fileID: 0}
+    - target: {fileID: 9083633850193479348, guid: 288c70cf39701df47be456867a4d7a69,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 288c70cf39701df47be456867a4d7a69, type: 3}
 --- !u!1001 &1707427050875752400
@@ -34291,6 +34297,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: PunchBug
       objectReference: {fileID: 0}
+    - target: {fileID: 9028659022299789166, guid: 45e7dc4e28c781d42a84ecf68fbe44f2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 45e7dc4e28c781d42a84ecf68fbe44f2, type: 3}
 --- !u!1001 &1893658452177372978
@@ -34303,12 +34314,12 @@ PrefabInstance:
     - target: {fileID: 1143580375922344924, guid: d48345255fdb33243a518273e4ba67e2,
         type: 3}
       propertyPath: m_IsKinematic
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1143580375922344924, guid: d48345255fdb33243a518273e4ba67e2,
         type: 3}
       propertyPath: m_UseGravity
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6086104073552001941, guid: d48345255fdb33243a518273e4ba67e2,
         type: 3}
@@ -34476,6 +34487,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Draguscular
+      objectReference: {fileID: 0}
+    - target: {fileID: 5628966268581028415, guid: 3cda29b0f927fa94a936c6d6d75d09fa,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3cda29b0f927fa94a936c6d6d75d09fa, type: 3}
@@ -34692,6 +34708,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Bellsprout
+      objectReference: {fileID: 0}
+    - target: {fileID: 1433957337944174730, guid: bd0d236192418cc4fa0277bab2f7a2d7,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1433957337944403050, guid: bd0d236192418cc4fa0277bab2f7a2d7,
         type: 3}
@@ -34999,6 +35020,11 @@ PrefabInstance:
     - target: {fileID: 7401976893472971677, guid: 94b2b2b8381a0c6479ef496fff7ac78d,
         type: 3}
       propertyPath: m_UseGravity
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7401976893472971677, guid: 94b2b2b8381a0c6479ef496fff7ac78d,
+        type: 3}
+      propertyPath: m_IsKinematic
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -35093,6 +35119,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Charmander
+      objectReference: {fileID: 0}
+    - target: {fileID: 4715058446490799311, guid: 9277b7c9e2dd4564a8297073d31dd2b1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4715058446491029743, guid: 9277b7c9e2dd4564a8297073d31dd2b1,
         type: 3}
@@ -35281,6 +35312,16 @@ PrefabInstance:
     - target: {fileID: 8771467920201887983, guid: 78ce25844fb9f03459915fe6d86a43cf,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8771467920835629494, guid: 78ce25844fb9f03459915fe6d86a43cf,
+        type: 3}
+      propertyPath: m_UseGravity
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8771467920835629494, guid: 78ce25844fb9f03459915fe6d86a43cf,
+        type: 3}
+      propertyPath: m_IsKinematic
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
