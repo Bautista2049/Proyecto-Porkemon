@@ -1173,7 +1173,7 @@ Transform:
   m_GameObject: {fileID: 9028659022299789166}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -327.2, y: 1, z: 86.32}
-  m_LocalScale: {x: 0.6569478, y: 0.6569478, z: 0.6569478}
+  m_LocalScale: {x: 0.361, y: 0.361, z: 0.361}
   m_Children:
   - {fileID: 9028659022299556636}
   - {fileID: 9028659022299556680}
@@ -1260,7 +1260,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   modelParentContainer: {fileID: 9028659022299789166}
   isPlayerModel: 0
-  posicionOponente: {fileID: 0}
 --- !u!1 &9028659022299789168
 GameObject:
   m_ObjectHideFlags: 0

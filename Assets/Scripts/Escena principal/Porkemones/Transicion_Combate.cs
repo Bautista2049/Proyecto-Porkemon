@@ -17,7 +17,6 @@ public class Transicion_Combate : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            Debug.Log("Aieka");
             if (botPorkemonData == null)
             {
                 return;
