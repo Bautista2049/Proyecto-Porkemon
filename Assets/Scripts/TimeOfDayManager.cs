@@ -97,6 +97,18 @@ public class TimeOfDayManager : MonoBehaviour
         }
     }
 
+    public void SkipToMorning()
+    {
+        // Fijamos la hora a un valor típico de mañana / pleno día
+        timeOfDay01 = 0.3f; // dentro del rango Day
+        UpdateLighting(0f, true);
+    }
+
+    public bool PuedeDormir()
+    {
+        return currentPhase == TimeOfDayPhase.Dusk || currentPhase == TimeOfDayPhase.Night;
+    }
+
     private TimeOfDayPhase CalculatePhase(float t)
     {
         // t en [0,1]

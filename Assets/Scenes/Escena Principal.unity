@@ -1257,7 +1257,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dayDurationMinutes: 5
-  startTimeOfDay: 0.33333334
+  startTimeOfDay: 0
   mainLight: {fileID: 170076734}
   lightColorOverDay:
     serializedVersion: 2
@@ -1293,21 +1293,21 @@ MonoBehaviour:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0.19163819
-      inSlope: 7.821889
-      outSlope: 7.821889
+      value: -0.4502533
+      inSlope: 14.268156
+      outSlope: 14.268156
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0.028268669
+      outWeight: 0.027297363
     - serializedVersion: 3
       time: 1
-      value: 0.19163819
-      inSlope: -10.755111
-      outSlope: -10.755111
+      value: -0.4502533
+      inSlope: -13.461709
+      outSlope: -13.461709
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.020137131
+      inWeight: 0.024911225
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
