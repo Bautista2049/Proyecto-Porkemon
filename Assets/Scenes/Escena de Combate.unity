@@ -8882,6 +8882,7 @@ MonoBehaviour:
   dataInicialBot: {fileID: 11400000, guid: 6c9eb4021237ff14a82c44f71a59ea8a, type: 2}
   puntoSpawnBot: {fileID: 335757306}
   escalaModeloBot: {x: 3, y: 3, z: 3}
+  inventarioCompleto: []
   inventarioBattleItems:
   - type: 8
     nombre: Porkebola
@@ -14902,7 +14903,7 @@ PrefabInstance:
     - target: {fileID: 4662795840016671841, guid: 49a94ae02db01754eafc986495481b0c,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 225.4
+      value: 250
       objectReference: {fileID: 0}
     - target: {fileID: 4662795840016671841, guid: 49a94ae02db01754eafc986495481b0c,
         type: 3}
@@ -15596,7 +15597,7 @@ PrefabInstance:
     - target: {fileID: 7037923140145733270, guid: 2d62d673a357bf940a9eec818e05d426,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 225.4
+      value: 250
       objectReference: {fileID: 0}
     - target: {fileID: 7037923140145733270, guid: 2d62d673a357bf940a9eec818e05d426,
         type: 3}

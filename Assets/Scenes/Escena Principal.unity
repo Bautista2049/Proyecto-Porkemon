@@ -1257,7 +1257,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dayDurationMinutes: 5
-  startTimeOfDay: 0
+  startTimeOfDay: 0.4
   mainLight: {fileID: 170076734}
   lightColorOverDay:
     serializedVersion: 2
@@ -1294,20 +1294,20 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0
       value: -0.4502533
-      inSlope: 14.268156
-      outSlope: 14.268156
+      inSlope: 4.4672856
+      outSlope: 4.4672856
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0.027297363
+      outWeight: 0.080519475
     - serializedVersion: 3
       time: 1
       value: -0.4502533
-      inSlope: -13.461709
-      outSlope: -13.461709
+      inSlope: -7.296251
+      outSlope: -7.296251
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.024911225
+      inWeight: 0.057142913
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
@@ -3428,6 +3428,16 @@ PrefabInstance:
       propertyPath: cam
       value: 
       objectReference: {fileID: 534669905}
+    - target: {fileID: 4957051908102589879, guid: 46f965d1a6fa1f54fa35ba6f29827e21,
+        type: 3}
+      propertyPath: velocidad
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7079167334910369823, guid: 46f965d1a6fa1f54fa35ba6f29827e21,
+        type: 3}
+      propertyPath: runSpeed
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 7660228976443930024, guid: 46f965d1a6fa1f54fa35ba6f29827e21,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -8845,9 +8855,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1079563426}
-  distance: 8
+  distance: 20
   minDistance: 2
-  maxDistance: 10
+  maxDistance: 20
   zoomSpeed: 5
   yaw: 0
   pitch: 20
@@ -8862,7 +8872,7 @@ MonoBehaviour:
     m_Bits: 4294967295
   collisionRadius: 0.2
   collisionOffset: 0.1
-  lockCursorOnPlay: 1
+  lockCursorOnPlay: 0
 --- !u!1001 &535455360
 PrefabInstance:
   m_ObjectHideFlags: 0

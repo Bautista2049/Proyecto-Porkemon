@@ -142,22 +142,22 @@ RectTransform:
   - {fileID: 2130501849}
   - {fileID: 1701580503}
   - {fileID: 610612564}
+  - {fileID: 1641726192}
   - {fileID: 1623150098}
   - {fileID: 1754108483}
   - {fileID: 1778134549}
+  - {fileID: 670858622}
   - {fileID: 360358473}
   - {fileID: 2026190191}
   - {fileID: 1400329736}
+  - {fileID: 2028339084}
   - {fileID: 549367381}
   - {fileID: 1388557550}
   - {fileID: 722824493}
+  - {fileID: 1949989464}
   - {fileID: 396085136}
   - {fileID: 75123550}
   - {fileID: 1794881539}
-  - {fileID: 1949989464}
-  - {fileID: 1641726192}
-  - {fileID: 670858622}
-  - {fileID: 2028339084}
   - {fileID: 154649141}
   m_Father: {fileID: 1975018087}
   m_RootOrder: 0
@@ -180,7 +180,7 @@ GameObject:
   - component: {fileID: 75123551}
   - component: {fileID: 75123553}
   m_Layer: 5
-  m_Name: Porkemon 14
+  m_Name: Porkemon 18
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -199,7 +199,7 @@ RectTransform:
   m_Children:
   - {fileID: 1517468646}
   m_Father: {fileID: 17427627}
-  m_RootOrder: 13
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1071,7 +1071,7 @@ GameObject:
   - component: {fileID: 360358474}
   - component: {fileID: 360358476}
   m_Layer: 5
-  m_Name: Porkemon 7
+  m_Name: Porkemon 9
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1090,7 +1090,7 @@ RectTransform:
   m_Children:
   - {fileID: 152196270}
   m_Father: {fileID: 17427627}
-  m_RootOrder: 6
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1185,7 +1185,7 @@ GameObject:
   - component: {fileID: 396085137}
   - component: {fileID: 396085139}
   m_Layer: 5
-  m_Name: Porkemon 13
+  m_Name: Porkemon 17
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1204,7 +1204,7 @@ RectTransform:
   m_Children:
   - {fileID: 1147846751}
   m_Father: {fileID: 17427627}
-  m_RootOrder: 12
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1683,7 +1683,7 @@ GameObject:
   - component: {fileID: 549367382}
   - component: {fileID: 549367384}
   m_Layer: 5
-  m_Name: Porkemon 10
+  m_Name: Porkemon 13
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1702,7 +1702,7 @@ RectTransform:
   m_Children:
   - {fileID: 1132091381}
   m_Father: {fileID: 17427627}
-  m_RootOrder: 9
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1944,7 +1944,7 @@ GameObject:
   - component: {fileID: 670858623}
   - component: {fileID: 670858625}
   m_Layer: 5
-  m_Name: Porkemon 18
+  m_Name: Porkemon 8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1963,7 +1963,7 @@ RectTransform:
   m_Children:
   - {fileID: 440209674}
   m_Father: {fileID: 17427627}
-  m_RootOrder: 17
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2058,7 +2058,7 @@ GameObject:
   - component: {fileID: 722824494}
   - component: {fileID: 722824496}
   m_Layer: 5
-  m_Name: Porkemon 12
+  m_Name: Porkemon 15
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2077,7 +2077,7 @@ RectTransform:
   m_Children:
   - {fileID: 1239405449}
   m_Father: {fileID: 17427627}
-  m_RootOrder: 11
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -4058,7 +4058,7 @@ GameObject:
   - component: {fileID: 1388557551}
   - component: {fileID: 1388557553}
   m_Layer: 5
-  m_Name: Porkemon 11
+  m_Name: Porkemon 14
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4077,7 +4077,7 @@ RectTransform:
   m_Children:
   - {fileID: 1807188704}
   m_Father: {fileID: 17427627}
-  m_RootOrder: 10
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -4172,7 +4172,7 @@ GameObject:
   - component: {fileID: 1400329737}
   - component: {fileID: 1400329739}
   m_Layer: 5
-  m_Name: Porkemon 9
+  m_Name: Porkemon 11
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4191,7 +4191,7 @@ RectTransform:
   m_Children:
   - {fileID: 1105225369}
   m_Father: {fileID: 17427627}
-  m_RootOrder: 8
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -4665,7 +4665,7 @@ GameObject:
   - component: {fileID: 1623150099}
   - component: {fileID: 1623150101}
   m_Layer: 5
-  m_Name: Porkemon 4
+  m_Name: Porkemon 5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4684,7 +4684,7 @@ RectTransform:
   m_Children:
   - {fileID: 1927892518}
   m_Father: {fileID: 17427627}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -4779,7 +4779,7 @@ GameObject:
   - component: {fileID: 1641726193}
   - component: {fileID: 1641726195}
   m_Layer: 5
-  m_Name: Porkemon 17
+  m_Name: Porkemon 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4798,7 +4798,7 @@ RectTransform:
   m_Children:
   - {fileID: 1127707635}
   m_Father: {fileID: 17427627}
-  m_RootOrder: 16
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -5383,7 +5383,7 @@ GameObject:
   - component: {fileID: 1754108484}
   - component: {fileID: 1754108486}
   m_Layer: 5
-  m_Name: Porkemon 5
+  m_Name: Porkemon 6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5402,7 +5402,7 @@ RectTransform:
   m_Children:
   - {fileID: 1524328078}
   m_Father: {fileID: 17427627}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -5497,7 +5497,7 @@ GameObject:
   - component: {fileID: 1778134551}
   - component: {fileID: 1778134550}
   m_Layer: 5
-  m_Name: Porkemon 6
+  m_Name: Porkemon 7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5516,7 +5516,7 @@ RectTransform:
   m_Children:
   - {fileID: 1961813486}
   m_Father: {fileID: 17427627}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -5611,7 +5611,7 @@ GameObject:
   - component: {fileID: 1794881540}
   - component: {fileID: 1794881542}
   m_Layer: 5
-  m_Name: Porkemon 15
+  m_Name: Porkemon 19
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5630,7 +5630,7 @@ RectTransform:
   m_Children:
   - {fileID: 236725984}
   m_Father: {fileID: 17427627}
-  m_RootOrder: 14
+  m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -6071,22 +6071,22 @@ MonoBehaviour:
   - {fileID: 2130501852}
   - {fileID: 1701580506}
   - {fileID: 610612565}
+  - {fileID: 1641726195}
   - {fileID: 1623150101}
   - {fileID: 1754108486}
   - {fileID: 1778134550}
+  - {fileID: 670858625}
   - {fileID: 360358476}
   - {fileID: 2026190194}
   - {fileID: 1400329739}
+  - {fileID: 2028339087}
   - {fileID: 549367384}
   - {fileID: 1388557553}
   - {fileID: 722824496}
+  - {fileID: 1949989467}
   - {fileID: 396085139}
   - {fileID: 75123553}
   - {fileID: 1794881542}
-  - {fileID: 1949989467}
-  - {fileID: 1641726195}
-  - {fileID: 670858625}
-  - {fileID: 2028339087}
   - {fileID: 154649144}
   tituloTexto: {fileID: 1314797914}
   panelConfirmacion: {fileID: 783584440}
@@ -6547,7 +6547,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dataEquipoJugador:
   - {fileID: 11400000, guid: 6c9eb4021237ff14a82c44f71a59ea8a, type: 2}
-  - {fileID: 11400000, guid: 448fd5351b275e94b8999870f99c542d, type: 2}
   dataInicialBot: {fileID: 11400000, guid: 448fd5351b275e94b8999870f99c542d, type: 2}
   puntoSpawnBot: {fileID: 3813264235576479706, guid: 51c0cc0f42413ae438a577a5a903ce48,
     type: 3}
@@ -6780,7 +6779,7 @@ GameObject:
   - component: {fileID: 2026190192}
   - component: {fileID: 2026190194}
   m_Layer: 5
-  m_Name: Porkemon 8
+  m_Name: Porkemon 10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6799,7 +6798,7 @@ RectTransform:
   m_Children:
   - {fileID: 1666436293}
   m_Father: {fileID: 17427627}
-  m_RootOrder: 7
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -6894,7 +6893,7 @@ GameObject:
   - component: {fileID: 2028339085}
   - component: {fileID: 2028339087}
   m_Layer: 5
-  m_Name: Porkemon 19
+  m_Name: Porkemon 12
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6913,7 +6912,7 @@ RectTransform:
   m_Children:
   - {fileID: 2082719267}
   m_Father: {fileID: 17427627}
-  m_RootOrder: 18
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}

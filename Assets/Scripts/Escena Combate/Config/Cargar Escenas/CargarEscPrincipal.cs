@@ -23,4 +23,29 @@ public class CargarEscPrincipal : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
     }
+
+    public void GuardarJuego()
+    {
+        string escenaActual = SceneManager.GetActiveScene().name;
+        PlayerPrefs.SetString("EscenaGuardada", escenaActual);
+        PlayerPrefs.Save();
+    }
+
+    public void CargarUltimaVersion()
+    {
+        // Leer la última escena guardada. Si no hay, usamos Escena Principal.
+        string escenaGuardada = PlayerPrefs.GetString("EscenaGuardada", "");
+
+        if (string.IsNullOrEmpty(escenaGuardada))
+        {
+            escenaGuardada = "Escena Principal";
+        }
+
+        SceneTransitionManager.GetInstance().LoadScene(escenaGuardada);
+    }
+
+    public void SalirDelJuego()
+    {
+        Application.Quit();
+    }
 }
