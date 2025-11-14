@@ -118,6 +118,7 @@ public class ControladorUICombate : MonoBehaviour
     public void AbrirMochila()
     {
         GameState.player1Turn = false;
+        GameState.modoRevivir = false;
         SceneTransitionManager.Instance.LoadScene("Escena CambioPorkemon");
     }
 

@@ -36,7 +36,7 @@ public class ControladorCambio : MonoBehaviour
         if (panelConfirmacion != null)
             panelConfirmacion.SetActive(false);
 
-        bool esMochila = (GameState.player1Turn == false);
+        bool esMochila = (GameState.player1Turn == false && !GameState.modoRevivir);
 
         if (esMochila)
         {
@@ -46,7 +46,11 @@ public class ControladorCambio : MonoBehaviour
         {
             equipoJugador = GestorDeBatalla.instance.equipoJugador;
             ActualizarBotones();
-            if (GameState.modoOrdenamiento)
+            if (GameState.modoRevivir)
+            {
+                tituloTexto.text = "Selecciona un Pokémon para revivir";
+            }
+            else if (GameState.modoOrdenamiento)
             {
                 tituloTexto.text = $"Ordenar Pokémon ({equipoJugador.Count})";
             }
@@ -64,6 +68,12 @@ public class ControladorCambio : MonoBehaviour
         List<BattleItem> inventarioAMostrar = GameState.modoOrdenamiento ? 
             GestorDeBatalla.instance.inventarioCompleto : 
             GestorDeBatalla.instance.inventarioBattleItems;
+
+        // Limpiar items sin cantidad para que no aparezcan como x0
+        if (inventarioAMostrar != null)
+        {
+            inventarioAMostrar.RemoveAll(i => i == null || i.cantidad <= 0);
+        }
         
         if (GameState.modoOrdenamiento)
         {
@@ -175,6 +185,17 @@ public class ControladorCambio : MonoBehaviour
         }
         else
         {
+            // Soportar Revivir desde la "mochila" de esta escena: ir a modo revivir
+            if (selectedItem.type == BattleItemType.Revivir || selectedItem.type == BattleItemType.RevivirMax)
+            {
+                GameState.itemSeleccionado = selectedItem;
+                GameState.modoRevivir = true;
+                // Volvemos a esta misma escena pero en modo de selección de Pokémon
+                GameState.player1Turn = true;
+                SceneTransitionManager.Instance.LoadScene("Escena CambioPorkemon");
+                return;
+            }
+
             Porkemon porkemonActivo = GestorDeBatalla.instance.porkemonJugador;
             if (porkemonActivo == null)
             {
@@ -183,6 +204,9 @@ public class ControladorCambio : MonoBehaviour
 
             AplicarEfectoItem(selectedItem, porkemonActivo);
             selectedItem.cantidad--;
+            
+            // Sincronizar inventario completo con la nueva cantidad
+            GestorDeBatalla.instance.SincronizarInventarioCompleto(selectedItem);
 
             if (selectedItem.cantidad <= 0)
             {
@@ -197,6 +221,26 @@ public class ControladorCambio : MonoBehaviour
     {
         switch (item.type)
         {
+            case BattleItemType.Pocion:
+                int curacion20 = Mathf.Min(20, porkemon.VidaMaxima - porkemon.VidaActual);
+                porkemon.VidaActual += curacion20;
+                Debug.Log($"{porkemon.BaseData.nombre} usó {item.nombre}. Recuperó {curacion20} PS!");
+                break;
+            case BattleItemType.Superpocion:
+                int curacion50 = Mathf.Min(50, porkemon.VidaMaxima - porkemon.VidaActual);
+                porkemon.VidaActual += curacion50;
+                Debug.Log($"{porkemon.BaseData.nombre} usó {item.nombre}. Recuperó {curacion50} PS!");
+                break;
+            case BattleItemType.Hiperpocion:
+                int curacion200 = Mathf.Min(200, porkemon.VidaMaxima - porkemon.VidaActual);
+                porkemon.VidaActual += curacion200;
+                Debug.Log($"{porkemon.BaseData.nombre} usó {item.nombre}. Recuperó {curacion200} PS!");
+                break;
+            case BattleItemType.Pocionmaxima:
+                int curacionMax = porkemon.VidaMaxima - porkemon.VidaActual;
+                porkemon.VidaActual = porkemon.VidaMaxima;
+                Debug.Log($"{porkemon.BaseData.nombre} usó {item.nombre}. Recuperó {curacionMax} PS!");
+                break;
             case BattleItemType.AtaqueX:
                 porkemon.AumentarAtaque(2);
                 Debug.Log($"{porkemon.BaseData.nombre} usó {item.nombre}. Ataque aumentado!");
@@ -310,6 +354,61 @@ public class ControladorCambio : MonoBehaviour
             return;
         }
 
+        // Si estamos en modo revivir, aquí aplicamos el efecto del objeto de revivir
+        if (GameState.modoRevivir)
+        {
+            // Solo se pueden seleccionar Pokémon debilitados
+            if (nuevo.VidaActual > 0)
+            {
+                return;
+            }
+
+            BattleItem item = GameState.itemSeleccionado;
+            if (item == null)
+            {
+                return;
+            }
+
+            if (item.type == BattleItemType.Revivir)
+            {
+                nuevo.VidaActual = Mathf.FloorToInt(nuevo.VidaMaxima * 0.3f);
+                nuevo.Estado = EstadoAlterado.Ninguno;
+                Debug.Log($"{nuevo.BaseData.nombre} ha revivido con el 30% de sus PS!");
+            }
+            else if (item.type == BattleItemType.RevivirMax)
+            {
+                nuevo.VidaActual = nuevo.VidaMaxima;
+                nuevo.Estado = EstadoAlterado.Ninguno;
+                Debug.Log($"{nuevo.BaseData.nombre} ha revivido con todos sus PS!");
+            }
+            else
+            {
+                // Tipo inesperado en modo revivir
+                return;
+            }
+
+            // Consumir el objeto del inventario de batalla
+            item.cantidad--;
+            
+            // Sincronizar inventario completo con la nueva cantidad
+            GestorDeBatalla.instance.SincronizarInventarioCompleto(item);
+
+            if (item.cantidad <= 0)
+            {
+                GestorDeBatalla.instance.inventarioBattleItems.Remove(item);
+            }
+
+            // Limpiar estado de revivir
+            GameState.itemSeleccionado = null;
+            GameState.modoRevivir = false;
+
+            // Después de usar el objeto, el turno pasa al bot
+            GameState.player1Turn = false;
+            SceneTransitionManager.Instance.LoadScene("Escena de combate");
+            return;
+        }
+
+        // Flujo normal de cambio de Pokémon
         if (nuevo.VidaActual <= 0)
         {
             return;

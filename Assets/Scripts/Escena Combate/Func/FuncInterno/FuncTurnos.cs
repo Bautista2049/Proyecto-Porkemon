@@ -232,6 +232,10 @@ public class FuncTurnos : MonoBehaviour
         {
             AplicarEfectoItem(itemUsado, jugador1.porkemon);
             itemUsado.cantidad--;
+
+            // Sincronizar inventario completo con la nueva cantidad
+            GestorDeBatalla.instance.SincronizarInventarioCompleto(itemUsado);
+
             if (itemUsado.cantidad <= 0)
                 GestorDeBatalla.instance.inventarioBattleItems.Remove(itemUsado);
 
@@ -304,6 +308,10 @@ public class FuncTurnos : MonoBehaviour
         Porkemon porkemonSalvaje = jugador2.porkemon;
 
         bolaUsada.cantidad--;
+
+        // Sincronizar inventario completo con la nueva cantidad
+        GestorDeBatalla.instance.SincronizarInventarioCompleto(bolaUsada);
+
         if (bolaUsada.cantidad <= 0)
             GestorDeBatalla.instance.inventarioBattleItems.Remove(bolaUsada);
 

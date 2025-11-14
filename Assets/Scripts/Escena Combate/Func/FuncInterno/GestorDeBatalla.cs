@@ -292,4 +292,22 @@ public class GestorDeBatalla : MonoBehaviour
             }
         }
     }
+
+    public void SincronizarInventarioCompleto(BattleItem itemReferencia)
+    {
+        if (itemReferencia == null) return;
+
+        var itemCompleto = inventarioCompleto.Find(i => i != null &&
+            i.type == itemReferencia.type && i.nombre == itemReferencia.nombre);
+
+        if (itemCompleto != null)
+        {
+            itemCompleto.cantidad = itemReferencia.cantidad;
+
+            if (itemCompleto.cantidad <= 0)
+            {
+                inventarioCompleto.Remove(itemCompleto);
+            }
+        }
+    }
 }

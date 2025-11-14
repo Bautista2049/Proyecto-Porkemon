@@ -29,6 +29,12 @@ public class ControladorMochila : MonoBehaviour
 
     void ActualizarBotonesItems()
     {
+        // Limpiar del inventario los items que ya no tienen cantidad
+        if (inventario != null)
+        {
+            inventario.RemoveAll(i => i == null || i.cantidad <= 0);
+        }
+
         for (int i = 0; i < botonesItems.Count; i++)
         {
             if (i < inventario.Count)
@@ -75,7 +81,10 @@ public class ControladorMochila : MonoBehaviour
         // Reducir la cantidad del ítem
         itemSeleccionado.cantidad--;
 
-        // Si se acabó el ítem, quitarlo del inventario
+        // Sincronizar inventario completo con la nueva cantidad
+        GestorDeBatalla.instance.SincronizarInventarioCompleto(itemSeleccionado);
+
+        // Si se acabó el ítem, quitarlo del inventario de batalla
         if (itemSeleccionado.cantidad <= 0)
         {
             GestorDeBatalla.instance.inventarioBattleItems.Remove(itemSeleccionado);
@@ -107,30 +116,14 @@ public class ControladorMochila : MonoBehaviour
             return;
         }
 
-        // Si es un objeto de revivir, necesitamos seleccionar un Pokémon
+        // Si es un objeto de revivir, vamos a la escena de cambio para que el jugador elija a quién revivir
         if (item.type == BattleItemType.Revivir || item.type == BattleItemType.RevivirMax)
         {
-            itemSeleccionado = item;
-            esperandoSeleccionPokemon = true;
-            
-            // Mostrar mensaje para seleccionar un Pokémon
-            tituloTexto.text = "Selecciona un Pokémon para revivir";
-            
-            // Aquí deberías activar la interfaz para seleccionar un Pokémon
-            // Por ahora, lo simulamos seleccionando el primer Pokémon debilitado
-            var equipo = GestorDeBatalla.instance.equipoJugador;
-            var pokemonDebilitado = equipo.Find(p => p.VidaActual <= 0);
-            
-            if (pokemonDebilitado != null)
-            {
-                OnPokemonSeleccionado(pokemonDebilitado);
-            }
-            else
-            {
-                Debug.Log("¡No hay Pokémon debilitados en tu equipo!");
-                esperandoSeleccionPokemon = false;
-                itemSeleccionado = null;
-            }
+            GameState.itemSeleccionado = item;
+            GameState.modoRevivir = true;
+            // En la escena de cambio, player1Turn debe ser true para mostrar los Pokémon
+            GameState.player1Turn = true;
+            SceneTransitionManager.Instance.LoadScene("Escena CambioPorkemon");
             return;
         }
 
@@ -144,6 +137,9 @@ public class ControladorMochila : MonoBehaviour
 
         AplicarEfectoItem(item, porkemonActivo);
         item.cantidad--;
+
+        // Sincronizar inventario completo con la nueva cantidad
+        GestorDeBatalla.instance.SincronizarInventarioCompleto(item);
 
         if (item.cantidad <= 0)
         {
@@ -229,34 +225,6 @@ public class ControladorMochila : MonoBehaviour
                 break;
             case BattleItemType.Masterbola:
                 StartCoroutine(IniciarCaptura());
-                break;
-            case BattleItemType.Revivir:
-                if (porkemon.VidaActual <= 0)
-                {
-                    porkemon.VidaActual = Mathf.FloorToInt(porkemon.VidaMaxima * 0.3f);
-                    porkemon.Estado = EstadoAlterado.Ninguno;
-                    Debug.Log($"{porkemon.BaseData.nombre} ha revivido con el 30% de sus PS!");
-                }
-                else
-                {
-                    Debug.Log("¡No puedes usar Revivir en un Pokémon que no está debilitado!");
-                    // No gastar el objeto si no se puede usar
-                    item.cantidad++;
-                }
-                break;
-            case BattleItemType.RevivirMax:
-                if (porkemon.VidaActual <= 0)
-                {
-                    porkemon.VidaActual = porkemon.VidaMaxima;
-                    porkemon.Estado = EstadoAlterado.Ninguno;
-                    Debug.Log($"{porkemon.BaseData.nombre} ha revivido con todos sus PS!");
-                }
-                else
-                {
-                    Debug.Log("¡No puedes usar Revivir Máx. en un Pokémon que no está debilitado!");
-                    // No gastar el objeto si no se puede usar
-                    item.cantidad++;
-                }
                 break;
         }
     }
