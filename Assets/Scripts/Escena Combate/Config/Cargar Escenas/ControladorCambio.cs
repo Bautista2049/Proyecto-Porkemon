@@ -26,7 +26,6 @@ public class ControladorCambio : MonoBehaviour
             return;
         }
 
-        // Configurar botones de confirmación
         if (botonConfirmar != null)
             botonConfirmar.onClick.AddListener(ConfirmarCambios);
             
@@ -63,13 +62,9 @@ public class ControladorCambio : MonoBehaviour
 
     private void InicializarMochila()
     {
-        // En modo ordenamiento, mostramos el inventario completo
-        // En modo normal, mostramos solo los objetos de combate
         List<BattleItem> inventarioAMostrar = GameState.modoOrdenamiento ? 
             GestorDeBatalla.instance.inventarioCompleto : 
             GestorDeBatalla.instance.inventarioBattleItems;
-
-        // Limpiar items sin cantidad para que no aparezcan como x0
         if (inventarioAMostrar != null)
         {
             inventarioAMostrar.RemoveAll(i => i == null || i.cantidad <= 0);
@@ -77,11 +72,9 @@ public class ControladorCambio : MonoBehaviour
         
         if (GameState.modoOrdenamiento)
         {
-            // Si es la primera vez que entramos al modo ordenamiento, cargamos los objetos actuales
             if (!mochilaInicializada)
             {
                 objetosSeleccionados.Clear();
-                // Solo copiamos los objetos que existen en el inventario completo para evitar referencias nulas
                 foreach (var item in GestorDeBatalla.instance.inventarioBattleItems)
                 {
                     var itemEncontrado = GestorDeBatalla.instance.inventarioCompleto.Find(i => 
@@ -112,11 +105,9 @@ public class ControladorCambio : MonoBehaviour
                 {
                     if (GameState.modoOrdenamiento)
                     {
-                        // Comprobamos si el item actual está en la lista de seleccionados
                         bool seleccionado = objetosSeleccionados.Exists(obj => obj.nombre == item.nombre && obj.type == item.type);
                         texto.text = $"{(seleccionado ? "[X] " : "[ ] ")}{item.nombre} x{item.cantidad}";
                         
-                        // Actualizamos el color del botón
                         ColorBlock colors = botonesPokemon[i].colors;
                         colors.normalColor = seleccionado ? new Color(0.3f, 0.6f, 0.3f) : Color.white;
                         botonesPokemon[i].colors = colors;
@@ -185,12 +176,10 @@ public class ControladorCambio : MonoBehaviour
         }
         else
         {
-            // Soportar Revivir desde la "mochila" de esta escena: ir a modo revivir
             if (selectedItem.type == BattleItemType.Revivir || selectedItem.type == BattleItemType.RevivirMax)
             {
                 GameState.itemSeleccionado = selectedItem;
                 GameState.modoRevivir = true;
-                // Volvemos a esta misma escena pero en modo de selección de Pokémon
                 GameState.player1Turn = true;
                 SceneTransitionManager.Instance.LoadScene("Escena CambioPorkemon");
                 return;
@@ -205,7 +194,6 @@ public class ControladorCambio : MonoBehaviour
             AplicarEfectoItem(selectedItem, porkemonActivo);
             selectedItem.cantidad--;
             
-            // Sincronizar inventario completo con la nueva cantidad
             GestorDeBatalla.instance.SincronizarInventarioCompleto(selectedItem);
 
             if (selectedItem.cantidad <= 0)
@@ -354,10 +342,8 @@ public class ControladorCambio : MonoBehaviour
             return;
         }
 
-        // Si estamos en modo revivir, aquí aplicamos el efecto del objeto de revivir
         if (GameState.modoRevivir)
         {
-            // Solo se pueden seleccionar Pokémon debilitados
             if (nuevo.VidaActual > 0)
             {
                 return;
@@ -383,14 +369,11 @@ public class ControladorCambio : MonoBehaviour
             }
             else
             {
-                // Tipo inesperado en modo revivir
                 return;
             }
 
-            // Consumir el objeto del inventario de batalla
             item.cantidad--;
             
-            // Sincronizar inventario completo con la nueva cantidad
             GestorDeBatalla.instance.SincronizarInventarioCompleto(item);
 
             if (item.cantidad <= 0)
@@ -398,17 +381,14 @@ public class ControladorCambio : MonoBehaviour
                 GestorDeBatalla.instance.inventarioBattleItems.Remove(item);
             }
 
-            // Limpiar estado de revivir
             GameState.itemSeleccionado = null;
             GameState.modoRevivir = false;
 
-            // Después de usar el objeto, el turno pasa al bot
             GameState.player1Turn = false;
             SceneTransitionManager.Instance.LoadScene("Escena de combate");
             return;
         }
 
-        // Flujo normal de cambio de Pokémon
         if (nuevo.VidaActual <= 0)
         {
             return;
@@ -424,26 +404,22 @@ public class ControladorCambio : MonoBehaviour
     
     private void ToggleSeleccionObjeto(int index)
     {
-        // Usamos el inventario completo para la selección
         List<BattleItem> inventario = GestorDeBatalla.instance.inventarioCompleto;
         if (index < 0 || index >= inventario.Count) return;
 
         BattleItem item = inventario[index];
         
-        // Buscamos si el objeto ya está seleccionado
+       
         var itemSeleccionado = objetosSeleccionados.Find(i => i.nombre == item.nombre && i.type == item.type);
 
         if (itemSeleccionado != null)
         {
-            // Si ya está seleccionado, lo quitamos
             objetosSeleccionados.Remove(itemSeleccionado);
         }
         else
         {
-            // Si no está seleccionado y no hemos alcanzado el límite, lo añadimos
             if (objetosSeleccionados.Count < MAX_OBJETOS_COMBATE)
             {
-                // Creamos una copia del item del inventario completo
                 var copiaItem = new BattleItem(item.type, item.nombre, item.descripcion, item.cantidad);
                 objetosSeleccionados.Add(copiaItem);
             }
@@ -453,7 +429,6 @@ public class ControladorCambio : MonoBehaviour
             }
         }
 
-        // Actualizamos la interfaz
         InicializarMochila();
     }
 
@@ -482,28 +457,23 @@ public class ControladorCambio : MonoBehaviour
     {
         if (GameState.modoOrdenamiento)
         {
-            if (GameState.player1Turn == false) // Modo selección de objetos
+            if (GameState.player1Turn == false) 
             {
-                // Verificar que no se hayan seleccionado más de 6 objetos
                 if (objetosSeleccionados.Count > MAX_OBJETOS_COMBATE)
                 {
                     Debug.LogError("¡No puedes seleccionar más de 6 objetos para el combate!");
                     return;
                 }
 
-                // Actualizar inventario de combate con la selección actual
                 GestorDeBatalla.instance.inventarioBattleItems.Clear();
                 
-                // Asegurarnos de que los objetos seleccionados existen en el inventario completo
                 foreach (var item in objetosSeleccionados)
                 {
-                    // Buscar el objeto correspondiente en el inventario completo
                     var itemCompleto = GestorDeBatalla.instance.inventarioCompleto.Find(i => 
                         i.nombre == item.nombre && i.type == item.type);
                         
                     if (itemCompleto != null)
                     {
-                        // Crear una copia del item para el inventario de combate
                         var itemCopia = new BattleItem(item.type, item.nombre, item.descripcion, item.cantidad);
                         GestorDeBatalla.instance.inventarioBattleItems.Add(itemCopia);
                     }
@@ -531,7 +501,6 @@ public class ControladorCambio : MonoBehaviour
             }
             else
             {
-                // Si no hay panel de confirmación, cancelar directamente
                 RealizarCancelacion();
             }
         }
@@ -546,7 +515,6 @@ public class ControladorCambio : MonoBehaviour
     {
         if (GameState.player1Turn == false)
         {
-            // Restaurar selección anterior
             objetosSeleccionados = new List<BattleItem>(GestorDeBatalla.instance.inventarioBattleItems);
         }
         primerSeleccionado = -1;

@@ -12,8 +12,6 @@ public class MenuPausa : MonoBehaviour
     public GameObject menuPausaPanel;
     public TextMeshProUGUI textoNotificacion;
     public GameObject panelNotificacion;
-    
-    // Variables para la pantalla de bienvenida
     public GameObject panelBienvenida;
     public TMP_InputField inputNombre;
     public TextMeshProUGUI textoBienvenida;
@@ -39,28 +37,21 @@ public class MenuPausa : MonoBehaviour
     {
         Debug.Log("[MenuPausa] Iniciando MenuPausa...");
         
-        // Reset PlayerPrefs for testing (uncomment if needed)
-        // PlayerPrefs.DeleteKey("BienvenidaCompletada");
-        // PlayerPrefs.Save();
-        
         if (menuPausaPanel != null)
             menuPausaPanel.SetActive(false);
         
         if (panelNotificacion != null)
             panelNotificacion.SetActive(false);
             
-        // Check if welcome process has been completed
         int bienvenidaCompletada = PlayerPrefs.GetInt("BienvenidaCompletada", 0);
         primeraVez = (bienvenidaCompletada == 0);
         
         Debug.Log($"[MenuPausa] Es primera vez: {primeraVez} (PlayerPrefs BienvenidaCompletada: {bienvenidaCompletada})");
             
-        // Show welcome screen only if not completed
         if (primeraVez)
         {
             Debug.Log("[MenuPausa] Mostrando pantalla de bienvenida (primera vez)");
             
-            // Initialize panels
             if (panelBienvenida != null) 
             {
                 panelBienvenida.SetActive(true);
@@ -73,13 +64,11 @@ public class MenuPausa : MonoBehaviour
                 Debug.Log("[MenuPausa] Panel de instrucciones desactivado inicialmente");
             }
             
-            // Make sure time is paused when showing welcome screen
             Time.timeScale = 0f;
         }
         else
         {
             Debug.Log("[MenuPausa] No es la primera vez, ocultando paneles");
-            // Hide panels
             if (panelBienvenida != null) 
             {
                 panelBienvenida.SetActive(false);
@@ -293,11 +282,9 @@ public class MenuPausa : MonoBehaviour
     private void MostrarPantallaBienvenida()
     {
         Debug.Log("[MenuPausa] Mostrando pantalla de bienvenida");
-        // Pausar el juego
         Time.timeScale = 0f;
         juegoPausado = true;
         
-        // Mostrar panel de bienvenida
         if (panelBienvenida != null)
         {
             Debug.Log("[MenuPausa] Activando panel de bienvenida");
@@ -321,7 +308,6 @@ public class MenuPausa : MonoBehaviour
             nombreJugador = inputNombre.text.Trim();
             PlayerPrefs.SetString("NombreJugador", nombreJugador);
             
-            // Mostrar instrucciones
             if (panelBienvenida != null) panelBienvenida.SetActive(false);
             if (panelInstrucciones != null) panelInstrucciones.SetActive(true);
         }
@@ -331,7 +317,6 @@ public class MenuPausa : MonoBehaviour
     {
         Debug.Log("[MenuPausa] EmpezarJuego() llamado");
         
-        // Marcar que la bienvenida se completó
         if (primeraVez)
         {
             Debug.Log("[MenuPausa] Marcando bienvenida como completada");
@@ -340,12 +325,10 @@ public class MenuPausa : MonoBehaviour
             primeraVez = false;
         }
         
-        // Ocultar paneles de bienvenida/instrucciones
         if (panelBienvenida != null) 
         {
             Debug.Log("[MenuPausa] Desactivando panel de bienvenida");
             panelBienvenida.SetActive(false);
-            // Desactivar para que no se active si el objeto se recicla
             panelBienvenida.hideFlags = HideFlags.NotEditable;
         }
         
@@ -353,12 +336,10 @@ public class MenuPausa : MonoBehaviour
         {
             Debug.Log("[MenuPausa] Desactivando panel de instrucciones");
             panelInstrucciones.SetActive(false);
-            // Desactivar para que no se active si el objeto se recicla
             panelInstrucciones.hideFlags = HideFlags.NotEditable;
         }
         
         Debug.Log("[MenuPausa] Reanudando juego...");
-        // Reanudar el juego
         ReanudarJuego();
     }
     
@@ -367,7 +348,6 @@ public class MenuPausa : MonoBehaviour
         string nombre = PlayerPrefs.GetString("NombreJugador", "Entrenador");
         MostrarNotificacion($"¡Felicidades {nombre}! Has atrapado todos los Pokémon.");
         
-        // Pausar el juego
         Time.timeScale = 0f;
         juegoPausado = true;
     }
@@ -376,14 +356,12 @@ public class MenuPausa : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.S))
         {
-            // Reiniciar el juego
             PlayerPrefs.DeleteKey("PartidaGuardada");
             PlayerPrefs.DeleteKey("NombreJugador");
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
         else if (Input.GetKeyDown(KeyCode.N))
         {
-            // Salir del juego
             #if UNITY_EDITOR
                 UnityEditor.EditorApplication.isPlaying = false;
             #else

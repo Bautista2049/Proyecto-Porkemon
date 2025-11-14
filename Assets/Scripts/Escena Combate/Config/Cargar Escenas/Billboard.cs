@@ -19,15 +19,12 @@ public class Billboard : MonoBehaviour
             if (mainCamera == null) return;
         }
 
-        // hacer que el objeto rote para mirar a la cámara sin cambiar su posición (forma simple)
         Vector3 lookPos = mainCamera.transform.position - transform.position;
         lookPos.y = 0;
         if (lookPos.sqrMagnitude > 0.001f)
         {
-            // Usar LookAt para rotar sin cambiar posición
-            transform.LookAt(transform.position + lookPos);
+             transform.LookAt(transform.position + lookPos);
 
-            // Corregir si el texto está volteado
             Vector3 euler = transform.eulerAngles;
             if (euler.y > -1000 && euler.y < 360)
             {

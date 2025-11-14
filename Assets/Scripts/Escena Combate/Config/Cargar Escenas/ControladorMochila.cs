@@ -29,7 +29,6 @@ public class ControladorMochila : MonoBehaviour
 
     void ActualizarBotonesItems()
     {
-        // Limpiar del inventario los items que ya no tienen cantidad
         if (inventario != null)
         {
             inventario.RemoveAll(i => i == null || i.cantidad <= 0);
@@ -75,29 +74,22 @@ public class ControladorMochila : MonoBehaviour
     {
         if (!esperandoSeleccionPokemon || itemSeleccionado == null) return;
 
-        // Aplicar el efecto del item en el Pokémon seleccionado
         AplicarEfectoItem(itemSeleccionado, pokemon);
         
-        // Reducir la cantidad del ítem
         itemSeleccionado.cantidad--;
 
-        // Sincronizar inventario completo con la nueva cantidad
         GestorDeBatalla.instance.SincronizarInventarioCompleto(itemSeleccionado);
 
-        // Si se acabó el ítem, quitarlo del inventario de batalla
         if (itemSeleccionado.cantidad <= 0)
         {
             GestorDeBatalla.instance.inventarioBattleItems.Remove(itemSeleccionado);
         }
 
-        // Actualizar la interfaz
         ActualizarBotonesItems();
         tituloTexto.text = $"Objetos de Batalla ({GestorDeBatalla.instance.inventarioBattleItems.Count})";
         
-        // Volver al combate
         StartCoroutine(VolverCombateConDelay());
         
-        // Resetear el estado
         itemSeleccionado = null;
         esperandoSeleccionPokemon = false;
     }
@@ -116,18 +108,15 @@ public class ControladorMochila : MonoBehaviour
             return;
         }
 
-        // Si es un objeto de revivir, vamos a la escena de cambio para que el jugador elija a quién revivir
         if (item.type == BattleItemType.Revivir || item.type == BattleItemType.RevivirMax)
         {
             GameState.itemSeleccionado = item;
             GameState.modoRevivir = true;
-            // En la escena de cambio, player1Turn debe ser true para mostrar los Pokémon
             GameState.player1Turn = true;
             SceneTransitionManager.Instance.LoadScene("Escena CambioPorkemon");
             return;
         }
 
-        // Para otros ítems, usarlos directamente en el Pokémon activo
         Porkemon porkemonActivo = GestorDeBatalla.instance.porkemonJugador;
         if (porkemonActivo == null)
         {
@@ -138,7 +127,6 @@ public class ControladorMochila : MonoBehaviour
         AplicarEfectoItem(item, porkemonActivo);
         item.cantidad--;
 
-        // Sincronizar inventario completo con la nueva cantidad
         GestorDeBatalla.instance.SincronizarInventarioCompleto(item);
 
         if (item.cantidad <= 0)
@@ -156,8 +144,7 @@ public class ControladorMochila : MonoBehaviour
 
     private IEnumerator VolverCombateConDelay()
     {
-        // Add a small delay to allow the healing effect to be applied and shown
-        yield return new WaitForSeconds(1.5f);  // Wait for 1.5 seconds
+        yield return new WaitForSeconds(1.5f);  
         SceneTransitionManager.Instance.LoadScene("Escena de combate");
     }
 

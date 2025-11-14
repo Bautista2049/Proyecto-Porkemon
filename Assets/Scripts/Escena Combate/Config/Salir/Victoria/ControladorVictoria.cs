@@ -28,9 +28,5 @@ public class ControladorVictoria : MonoBehaviour
             }
         }
 
-        // No longer auto-return to main menu - experience animation will handle this
-        // StartCoroutine(RegresarAlMenuPrincipal());
     }
-
-    // Removed the auto-return coroutine since experience controller handles scene transition
 }

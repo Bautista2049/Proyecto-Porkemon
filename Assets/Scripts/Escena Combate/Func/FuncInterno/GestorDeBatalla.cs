@@ -29,10 +29,10 @@ public class GestorDeBatalla : MonoBehaviour
     public bool combateIniciado = false;
     public Transform posicionJugador;
     
-    // Lista de nombres de Pokémon que se deben atrapar para ganar
+
     private List<string> pokemonesParaAtrapar = new List<string>
     {
-        "Bulbasaur", "Charmander", "Squirtle", "Pikachu" // Ajusta esta lista según tus Pokémon
+        "KittyZap", "Charmander", "PunchBug", "Draguscular"
     };
     
     private void Awake()
@@ -51,7 +51,6 @@ public class GestorDeBatalla : MonoBehaviour
 
     public void ResetearCombate()
     {
-        // Inicializar equipo de Pokémon
         equipoJugador.Clear();
         foreach (var data in dataEquipoJugador)
         {
@@ -60,12 +59,10 @@ public class GestorDeBatalla : MonoBehaviour
             if (equipoJugador.Count >= 6) break;
         }
 
-        // Inicializar inventario completo (solo si está vacío)
         if (inventarioCompleto.Count == 0)
         {
             inventarioCompleto = new List<BattleItem>
             {
-                // Objetos de curación
                 new BattleItem(BattleItemType.Pocion, "Poción", "Restaura 20 PS", 5),
                 new BattleItem(BattleItemType.Superpocion, "Superpoción", "Restaura 50 PS", 3),
                 new BattleItem(BattleItemType.Hiperpocion, "Hiperpoción", "Restaura 120 PS", 2),
@@ -73,7 +70,6 @@ public class GestorDeBatalla : MonoBehaviour
                 new BattleItem(BattleItemType.Revivir, "Revivir", "Revive un Pokémon con 30% de PS", 2),
                 new BattleItem(BattleItemType.RevivirMax, "Revivir Máx", "Revive un Pokémon con todos sus PS", 1),
                 
-                // Objetos de mejora de estadísticas
                 new BattleItem(BattleItemType.AtaqueX, "Ataque X", "Aumenta el ataque en 1 nivel", 2),
                 new BattleItem(BattleItemType.DefensaX, "Defensa X", "Aumenta la defensa en 1 nivel", 2),
                 new BattleItem(BattleItemType.AtaqueEspecialX, "Ataque Especial X", "Aumenta el ataque especial en 1 nivel", 2),
@@ -83,7 +79,6 @@ public class GestorDeBatalla : MonoBehaviour
                 new BattleItem(BattleItemType.CriticoX, "Crítico X", "Aumenta la probabilidad de golpe crítico", 1),
                 new BattleItem(BattleItemType.ProteccionX, "Protección X", "Aumenta la evasión durante 5 turnos", 1),
                 
-                // Pokébolas
                 new BattleItem(BattleItemType.Porkebola, "Pokéball", "Atrapa Pokémon salvajes más fácilmente", 5),
                 new BattleItem(BattleItemType.Superbola, "Superball", "Más efectiva que una Pokéball normal", 3),
                 new BattleItem(BattleItemType.Ultrabola, "Ultraball", "Muy efectiva para Pokémon difíciles de atrapar", 2),
@@ -91,7 +86,6 @@ public class GestorDeBatalla : MonoBehaviour
             };
         }
 
-        // Inicializar inventario de combate con los primeros 6 objetos
         inventarioBattleItems.Clear();
         int maxItems = Mathf.Min(6, inventarioCompleto.Count);
         for (int i = 0; i < maxItems; i++)
@@ -197,25 +191,19 @@ public class GestorDeBatalla : MonoBehaviour
             Debug.Log($"{pokemon.BaseData.nombre} ha sido enviado al PC!");
         }
 
-        // Verificar si se completó la Pokédex
         if (SeCompletoLaDex())
         {
-            // Mostrar mensaje de victoria
             string nombreJugador = PlayerPrefs.GetString("NombreJugador", "Entrenador");
             Debug.Log($"¡Felicidades {nombreJugador}! Has atrapado todos los Pokémon.\n¡Eres un Maestro Pokémon!");
             
-            // Pausar el juego
             Time.timeScale = 0f;
             
-            // Mostrar opciones (S/N)
             Debug.Log("¿Quieres volver a jugar? (S/N)");
             
-            // Usar el Update para detectar la entrada del usuario
             StartCoroutine(EsperarInputVictoria());
         }
         else
         {
-            // Continuar con el combate normal
             GameState.nombreGanador = pokemon.BaseData.nombre;
             GameState.experienciaGanada = equipoJugador.CalcularExperienciaGanada(new List<Porkemon> { pokemon });
             GameState.equipoGanador = new List<Porkemon>(equipoJugador);
@@ -227,7 +215,6 @@ public class GestorDeBatalla : MonoBehaviour
     
     private bool SeCompletoLaDex()
     {
-        // Verificar si el jugador tiene todos los Pokémon necesarios
         foreach (var pokemonNombre in pokemonesParaAtrapar)
         {
             bool encontrado = false;
@@ -252,7 +239,6 @@ public class GestorDeBatalla : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.S))
             {
-                // Reiniciar el juego
                 PlayerPrefs.DeleteKey("PartidaGuardada");
                 PlayerPrefs.DeleteKey("NombreJugador");
                 Time.timeScale = 1f;
@@ -261,7 +247,6 @@ public class GestorDeBatalla : MonoBehaviour
             }
             else if (Input.GetKeyDown(KeyCode.N))
             {
-                // Salir del juego
                 #if UNITY_EDITOR
                     UnityEditor.EditorApplication.isPlaying = false;
                 #else
@@ -280,10 +265,8 @@ public class GestorDeBatalla : MonoBehaviour
 
         if (victoria)
         {
-            // Verificar si ya se capturaron todos los Pokémon
             if (SeCompletoLaDex())
             {
-                // Cargar escena de victoria final
                 SceneManager.LoadScene("InterfazDeMenu");
             }
             else

@@ -62,7 +62,7 @@ public class Porkemon
 
     public void AumentarAtaque(int cantidad)
     {
-        Ataque = Mathf.Min(Ataque + cantidad, Ataque * 2); // Limitar a duplicar el stat máximo
+        Ataque = Mathf.Min(Ataque + cantidad, Ataque * 2);
         OnHPChanged?.Invoke();
     }
 
@@ -94,28 +94,24 @@ public class Porkemon
         BaseData = pData;
         Nivel = nivel;
 
-        // Inicializar IVs aleatorios (0-31)
         IvVida = Random.Range(0, 32);
         IvAtaque = Random.Range(0, 32);
         IvDefensa = Random.Range(0, 32);
         IvEspiritu = Random.Range(0, 32);
         IvVelocidad = Random.Range(0, 32);
 
-        // Inicializar EVs en 0
         EvVida = 0;
         EvAtaque = 0;
         EvDefensa = 0;
         EvEspiritu = 0;
         EvVelocidad = 0;
 
-        // Calcular estadísticas usando fórmula de tercera generación en adelante
         VidaMaxima = CalcularVidaMaxima();
         Ataque = CalcularAtaque();
         Defensa = CalcularDefensa();
         Espiritu = CalcularEspiritu();
         Velocidad = CalcularVelocidad();
 
-        // Inicializar experiencia
         Experiencia = CalcularExperienciaTotal(Nivel);
         ExperienciaParaSiguienteNivel = CalcularExperienciaTotal(Nivel + 1) - Experiencia;
 
@@ -135,7 +131,6 @@ public class Porkemon
         }
     }
 
-    // Fórmulas de cálculo de estadísticas (Tercera generación en adelante)
     private int CalcularVidaMaxima()
     {
         return Mathf.FloorToInt(((2 * BaseData.vidaMaxima + IvVida + (EvVida / 4)) * Nivel) / 100) + Nivel + 10;
@@ -193,7 +188,6 @@ public class Porkemon
         }
     }
 
-    // Métodos de experiencia
     public int CalcularExperienciaTotal(int nivel)
     {
         switch (BaseData.tasaCrecimiento)
@@ -223,7 +217,7 @@ public class Porkemon
                 else
                     return Mathf.FloorToInt(Mathf.Pow(nivel, 3) * (32 + nivel / 2) / 50);
             default:
-                return Mathf.FloorToInt(Mathf.Pow(nivel, 3)); // Medio por defecto
+                return Mathf.FloorToInt(Mathf.Pow(nivel, 3));
         }
     }
 
@@ -234,13 +228,12 @@ public class Porkemon
         {
             Nivel++;
             ExperienciaParaSiguienteNivel = CalcularExperienciaTotal(Nivel + 1) - CalcularExperienciaTotal(Nivel);
-            // Recalcular estadísticas al subir de nivel
             VidaMaxima = CalcularVidaMaxima();
             Ataque = CalcularAtaque();
             Defensa = CalcularDefensa();
             Espiritu = CalcularEspiritu();
             Velocidad = CalcularVelocidad();
-            VidaActual = VidaMaxima; // Restaurar vida al subir de nivel
+            VidaActual = VidaMaxima;
             Debug.Log($"{BaseData.nombre} subió al nivel {Nivel}!");
         }
     }

@@ -175,16 +175,75 @@ public class CalculadorDanioElemental : MonoBehaviour
         
         // El resto de los tipos faltantes (Normal, Lucha, Veneno, Tierra, Roca, Bicho, Dragón, Acero, Hada, Hielo, Siniestro)
         // deberían completarse aquí siguiendo la misma lógica.
-
-        // Corrección de doble-entrada (si aplica)
-        tablaEfectividad[(int)TipoElemental.Electrico, (int)TipoElemental.Tierra] = 0f;
-        tablaEfectividad[(int)TipoElemental.Fantasma, (int)TipoElemental.Normal] = 0f;
+        //Lucha
+        tablaEfectividad[(int)TipoElemental.Lucha, (int)TipoElemental.Normal] = 2f;
+        tablaEfectividad[(int)TipoElemental.Lucha, (int)TipoElemental.Roca] = 2f;
+        tablaEfectividad[(int)TipoElemental.Lucha, (int)TipoElemental.Veneno] = 0.5f;
         tablaEfectividad[(int)TipoElemental.Lucha, (int)TipoElemental.Fantasma] = 0f;
-        tablaEfectividad[(int)TipoElemental.Psiquico, (int)TipoElemental.Siniestro] = 0f;
-        tablaEfectividad[(int)TipoElemental.Veneno, (int)TipoElemental.Acero] = 0f;
+        tablaEfectividad[(int)TipoElemental.Lucha, (int)TipoElemental.Siniestro] = 2f;
+
+        //Veneno
+        tablaEfectividad[(int)TipoElemental.Veneno, (int)TipoElemental.Planta] = 2f;
+        tablaEfectividad[(int)TipoElemental.Veneno, (int)TipoElemental.Psiquico] = 2f;
+        tablaEfectividad[(int)TipoElemental.Veneno, (int)TipoElemental.Roca] = 0.5f;
+        tablaEfectividad[(int)TipoElemental.Veneno, (int)TipoElemental.Veneno] = 0.5f;
+        tablaEfectividad[(int)TipoElemental.Veneno, (int)TipoElemental.Fantasma] = 0.5f;
+
+        //Tierra
+        tablaEfectividad[(int)TipoElemental.Tierra, (int)TipoElemental.Fuego] = 2f;
+        tablaEfectividad[(int)TipoElemental.Tierra, (int)TipoElemental.Electrico] = 2f;
+        tablaEfectividad[(int)TipoElemental.Tierra, (int)TipoElemental.Veneno] = 2f;
+        tablaEfectividad[(int)TipoElemental.Tierra, (int)TipoElemental.Roca] = 2f;
+        tablaEfectividad[(int)TipoElemental.Tierra, (int)TipoElemental.Acero] = 2f;
+        tablaEfectividad[(int)TipoElemental.Tierra, (int)TipoElemental.Planta] = 0.5f;
+        tablaEfectividad[(int)TipoElemental.Tierra, (int)TipoElemental.Bicho] = 0.5f;
+        tablaEfectividad[(int)TipoElemental.Tierra, (int)TipoElemental.Volador] = 0f;
+
+        //Roca
+        tablaEfectividad[(int)TipoElemental.Roca, (int)TipoElemental.Fuego] = 2f;
+        tablaEfectividad[(int)TipoElemental.Roca, (int)TipoElemental.Hielo] = 2f;
+        tablaEfectividad[(int)TipoElemental.Roca, (int)TipoElemental.Volador] = 2f;
+        tablaEfectividad[(int)TipoElemental.Roca, (int)TipoElemental.Bicho] = 2f;
+        tablaEfectividad[(int)TipoElemental.Roca, (int)TipoElemental.Lucha] = 0.5f;
+        tablaEfectividad[(int)TipoElemental.Roca, (int)TipoElemental.Tierra] = 0.5f;
+        tablaEfectividad[(int)TipoElemental.Roca, (int)TipoElemental.Acero] = 0.5f;
+
+        //Bicho
+        tablaEfectividad[(int)TipoElemental.Bicho, (int)TipoElemental.Fuego] = 2f;
+        tablaEfectividad[(int)TipoElemental.Bicho, (int)TipoElemental.Hielo] = 2f;
+        tablaEfectividad[(int)TipoElemental.Bicho, (int)TipoElemental.Volador] = 2f;
+        tablaEfectividad[(int)TipoElemental.Bicho, (int)TipoElemental.Fantasma] = 2f;
+        tablaEfectividad[(int)TipoElemental.Bicho, (int)TipoElemental.Lucha] = 0.5f;
+        tablaEfectividad[(int)TipoElemental.Bicho, (int)TipoElemental.Tierra] = 0.5f;
+        tablaEfectividad[(int)TipoElemental.Bicho, (int)TipoElemental.Acero] = 0.5f;
+
+        //Dragón
+        tablaEfectividad[(int)TipoElemental.Dragon, (int)TipoElemental.Dragon] = 2f;
+        tablaEfectividad[(int)TipoElemental.Dragon, (int)TipoElemental.Acero] = 0.5f;
+        tablaEfectividad[(int)TipoElemental.Dragon, (int)TipoElemental.Hada] = 0f;
+
+        //Acero
+        tablaEfectividad[(int)TipoElemental.Acero, (int)TipoElemental.Fuego] = 0.5f;
+        tablaEfectividad[(int)TipoElemental.Acero, (int)TipoElemental.Agua] = 0.5f;
+        tablaEfectividad[(int)TipoElemental.Acero, (int)TipoElemental.Electrico] = 0.5f;
+        tablaEfectividad[(int)TipoElemental.Acero, (int)TipoElemental.Acero] = 0.5f;
+
+        //Hielo
+        tablaEfectividad[(int)TipoElemental.Hielo, (int)TipoElemental.Fuego] = 0.5f;
+        tablaEfectividad[(int)TipoElemental.Hielo, (int)TipoElemental.Agua] = 0.5f;
+        tablaEfectividad[(int)TipoElemental.Hielo, (int)TipoElemental.Electrico] = 0.5f;
+        tablaEfectividad[(int)TipoElemental.Hielo, (int)TipoElemental.Hielo] = 0.5f;
+
+        //Hada
+        tablaEfectividad[(int)TipoElemental.Hada, (int)TipoElemental.Lucha] = 2f;
+        tablaEfectividad[(int)TipoElemental.Hada, (int)TipoElemental.Dragon] = 2f;
+        tablaEfectividad[(int)TipoElemental.Hada, (int)TipoElemental.Siniestro] = 2f;
+        tablaEfectividad[(int)TipoElemental.Hada, (int)TipoElemental.Fuego] = 0.5f;
+        tablaEfectividad[(int)TipoElemental.Hada, (int)TipoElemental.Veneno] = 0.5f;
+        tablaEfectividad[(int)TipoElemental.Hada, (int)TipoElemental.Acero] = 0.5f;
     }
     
-    // MÉTODO AGREGADO PARA LA IA DEL BOT
+
     public static float CalcularEfectividad(TipoElemental ataqueTipo, TipoElemental defensorTipo1, TipoElemental defensorTipo2)
     {
         float efectividad = tablaEfectividad[(int)ataqueTipo, (int)defensorTipo1];
@@ -197,7 +256,7 @@ public class CalculadorDanioElemental : MonoBehaviour
         return efectividad;
     }
 
-    // MÉTODO AGREGADO para PorkemonExtension.cs
+
     public static string GetMensajeEfectividad(float efectividad)
     {
         if (efectividad > 1.0f)

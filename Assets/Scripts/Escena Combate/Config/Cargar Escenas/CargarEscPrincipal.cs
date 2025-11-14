@@ -33,7 +33,7 @@ public class CargarEscPrincipal : MonoBehaviour
 
     public void CargarUltimaVersion()
     {
-        // Leer la última escena guardada. Si no hay, usamos Escena Principal.
+
         string escenaGuardada = PlayerPrefs.GetString("EscenaGuardada", "");
 
         if (string.IsNullOrEmpty(escenaGuardada))

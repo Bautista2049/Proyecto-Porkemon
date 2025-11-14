@@ -113,28 +113,23 @@ public class SceneTransitionManager : MonoBehaviour
     {
         if (scene.name == "Escena de Combate")
         {
-            // Find the main camera that persisted from the previous scene
             mainCamera = Camera.main;
             if (mainCamera != null)
             {
-                // Set the desired position and rotation for the combat scene
                 mainCamera.transform.position = new Vector3(-322.7f, 12.76f, 57.6f);
                 mainCamera.transform.rotation = Quaternion.Euler(23.223f, 0f, 0f);
-                // Create orbit center if it doesn't exist
                 if (orbitCenter == null)
                 {
                     GameObject orbitCenterObj = new GameObject("OrbitCenter");
                     orbitCenter = orbitCenterObj.transform;
                     orbitCenter.position = new Vector3(-322.7f, 3.91f, 84.52f);
                 }
-                // Enable auto rotation for combat
                 autoRotate = true;
                 rotationSpeed = 8f;
             }
         }
         else if (scene.name == "Escena Principal")
         {
-            // Reset camera settings for the principal scene if needed
             if (mainCamera != null)
             {
                 autoRotate = false;
@@ -142,7 +137,6 @@ public class SceneTransitionManager : MonoBehaviour
         }
         else if (scene.name == "Escena de Victoria")
         {
-            // Reset camera settings for the victory scene to prevent rotation
             if (mainCamera != null)
             {
                 autoRotate = false;

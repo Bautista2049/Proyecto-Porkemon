@@ -36,7 +36,7 @@ public class ControladorExperienciaVictoria : MonoBehaviour
     {
         for (int i = 0; i < equipoGanador.Count; i++)
         {
-            if (equipoGanador[i].VidaActual > 0) // Solo mostrar experiencia para Porkemons vivos
+            if (equipoGanador[i].VidaActual > 0) 
             {
                 indicePorkemonActual = i;
                 yield return StartCoroutine(AnimarExperienciaPorkemon(equipoGanador[i]));
@@ -44,38 +44,30 @@ public class ControladorExperienciaVictoria : MonoBehaviour
             }
         }
 
-        // Después de mostrar toda la experiencia, regresar al menú principal
+     
         yield return new WaitForSeconds(3f);
         SceneTransitionManager.Instance.LoadScene("Escena Principal");
     }
 
     private IEnumerator AnimarExperienciaPorkemon(Porkemon porkemon)
     {
-        // Actualizar nombre del Porkemon
         if (textoNombrePorkemon != null)
         {
             textoNombrePorkemon.text = porkemon.BaseData.nombre;
         }
-
-        // Calcular experiencia por participante
         int participantes = equipoGanador.Count(p => p.VidaActual > 0);
         int expPorParticipante = experienciaTotal / participantes;
 
-        // Guardar nivel inicial
         int nivelInicial = porkemon.Nivel;
         int experienciaInicial = porkemon.Experiencia;
 
-        // Calcular experiencia necesaria para el siguiente nivel
         int expParaSiguienteNivel = porkemon.ExperienciaParaSiguienteNivel;
-
-        // Configurar barra de experiencia
         if (barraExperiencia != null)
         {
             barraExperiencia.maxValue = expParaSiguienteNivel;
-            barraExperiencia.value = experienciaInicial % expParaSiguienteNivel; // Experiencia actual en el nivel
+            barraExperiencia.value = experienciaInicial % expParaSiguienteNivel; 
         }
 
-        // Actualizar texto inicial
         if (textoNivel != null)
         {
             textoNivel.text = $"Nv. {nivelInicial}";
@@ -86,7 +78,6 @@ public class ControladorExperienciaVictoria : MonoBehaviour
             textoExperiencia.text = $"+{expPorParticipante} EXP";
         }
 
-        // Animar la barra de experiencia
         float tiempoInicio = Time.time;
         float valorInicial = barraExperiencia.value;
         float valorFinal = Mathf.Min(expParaSiguienteNivel, valorInicial + expPorParticipante);
@@ -104,19 +95,15 @@ public class ControladorExperienciaVictoria : MonoBehaviour
             yield return null;
         }
 
-        // Aplicar experiencia real al Porkemon
         porkemon.GanarExperiencia(expPorParticipante);
 
-        // Verificar si subió de nivel
         if (porkemon.Nivel > nivelInicial)
         {
-            // Animación de subida de nivel
             if (textoNivel != null)
             {
                 textoNivel.text = $"Nv. {porkemon.Nivel}";
             }
 
-            // Resetear barra para el nuevo nivel
             if (barraExperiencia != null)
             {
                 barraExperiencia.maxValue = porkemon.ExperienciaParaSiguienteNivel;
@@ -127,7 +114,6 @@ public class ControladorExperienciaVictoria : MonoBehaviour
         }
         else
         {
-            // Actualizar barra con la experiencia final
             if (barraExperiencia != null)
             {
                 barraExperiencia.value = porkemon.Experiencia % expParaSiguienteNivel;

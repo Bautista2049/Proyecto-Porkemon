@@ -150,45 +150,36 @@ public class FuncTurnos : MonoBehaviour
 
     private IEnumerator VerificarFinCombate()
     {
-        // Verificar si el Pokémon del jugador se debilitó
         if (jugador1.porkemon.VidaActual <= 0)
         {
-            // Buscar el siguiente Pokémon disponible
             var equipoJugador = GestorDeBatalla.instance.equipoJugador;
             var siguientePokemon = equipoJugador.Find(p => p != jugador1.porkemon && p.VidaActual > 0);
             
             if (siguientePokemon != null)
             {
-                // Mostrar mensaje de que el Pokémon se debilitó
                 yield return StartCoroutine(ConsolaEnJuego.instance.MostrarMensaje($"¡{jugador1.porkemon.BaseData.nombre} se ha debilitado!"));
                 
-                // Cambiar al siguiente Pokémon
                 jugador1.porkemon = siguientePokemon;
                 GameState.porkemonDelJugador = siguientePokemon;
                 
-                // Actualizar la UI
+                jugador1.Setup(siguientePokemon);
                 jugador1.Setup(siguientePokemon);
                 if (playerModelManager != null)
                 {
                     playerModelManager.UpdateModel(siguientePokemon.BaseData.nombre);
                 }
                 
-                // Mostrar mensaje del nuevo Pokémon
                 yield return StartCoroutine(ConsolaEnJuego.instance.MostrarMensaje($"¡Adelante {siguientePokemon.BaseData.nombre}!"));
                 
-                // Cambiar el turno al bot
                 CambiarTurno();
             }
             else
             {
-                // No hay más Pokémon disponibles, el jugador pierde
                 SceneTransitionManager.Instance.LoadScene("Escena de muerte");
             }
         }
-        // Verificar si el Pokémon del bot se debilitó
         else if (jugador2.porkemon.VidaActual <= 0)
         {
-            // Mostrar mensaje de victoria
             GameState.nombreGanador = jugador1.porkemon.BaseData.nombre;
             GameState.experienciaGanada = GestorDeBatalla.instance.equipoJugador.CalcularExperienciaGanada(new List<Porkemon> { jugador2.porkemon });
             GameState.equipoGanador = new List<Porkemon>(GestorDeBatalla.instance.equipoJugador);
@@ -232,8 +223,6 @@ public class FuncTurnos : MonoBehaviour
         {
             AplicarEfectoItem(itemUsado, jugador1.porkemon);
             itemUsado.cantidad--;
-
-            // Sincronizar inventario completo con la nueva cantidad
             GestorDeBatalla.instance.SincronizarInventarioCompleto(itemUsado);
 
             if (itemUsado.cantidad <= 0)
@@ -308,8 +297,6 @@ public class FuncTurnos : MonoBehaviour
         Porkemon porkemonSalvaje = jugador2.porkemon;
 
         bolaUsada.cantidad--;
-
-        // Sincronizar inventario completo con la nueva cantidad
         GestorDeBatalla.instance.SincronizarInventarioCompleto(bolaUsada);
 
         if (bolaUsada.cantidad <= 0)

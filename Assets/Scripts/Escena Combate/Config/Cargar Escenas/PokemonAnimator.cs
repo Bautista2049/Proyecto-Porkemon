@@ -20,8 +20,8 @@ public class PokemonAnimator : MonoBehaviour
     {
         animator.SetInteger("attackType", attackIndex);
 
-        // volver a Idle al terminar la animación
-        Invoke(nameof(ResetToIdle), 1f); // ajustá el 1f al largo real de la animación
+     
+        Invoke(nameof(ResetToIdle), 1f); 
     }
 
     private void ResetToIdle()

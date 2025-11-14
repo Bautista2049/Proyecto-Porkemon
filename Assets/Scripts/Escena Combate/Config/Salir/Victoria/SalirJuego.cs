@@ -26,7 +26,6 @@ public class SalirJuego : MonoBehaviour
     {
         Application.Quit();
 
-        //Para ver si funciona en el editor
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
 #endif
