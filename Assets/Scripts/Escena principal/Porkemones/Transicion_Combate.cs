@@ -35,6 +35,19 @@ public class Transicion_Combate : MonoBehaviour
                 return;
             }
 
+            Vector3 posicionGuardada = collision.transform.position;
+            if (collision.contactCount > 0)
+            {
+                Vector3 normal = collision.GetContact(0).normal;
+                normal.y = 0f;
+                if (normal.sqrMagnitude > 0.0001f)
+                {
+                    normal.Normalize();
+                    posicionGuardada += normal * 0.75f;
+                }
+            }
+
+            GameState.GuardarPosicionJugador(posicionGuardada, SceneManager.GetActiveScene().name);
             GameState.porkemonDelBot = new Porkemon(botPorkemonData, nivelSpawn);
             if (GestorDeBatalla.instance != null)
             {

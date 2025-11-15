@@ -266,7 +266,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 54f4158f6bdf8224f927c9f82b9d65c5, type: 3}
+  - {fileID: 2100000, guid: 7d05a6e39c6ad0643b1e5409698e3ff2, type: 2}
   - {fileID: 2100010, guid: 54f4158f6bdf8224f927c9f82b9d65c5, type: 3}
   - {fileID: 2100008, guid: 54f4158f6bdf8224f927c9f82b9d65c5, type: 3}
   - {fileID: 2100006, guid: 54f4158f6bdf8224f927c9f82b9d65c5, type: 3}
@@ -1462,7 +1462,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d72b4681853a0fd4699daadee6f1bbbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  runSpeed: 5
+  runSpeed: 10
   rotationSpeed: 10
 --- !u!54 &9054372686034207728
 Rigidbody:
@@ -1475,10 +1475,10 @@ Rigidbody:
   m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 80
+  m_Constraints: 126
   m_CollisionDetection: 0
 --- !u!136 &5707896931033036453
 CapsuleCollider:
@@ -1506,5 +1506,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d8d21381a359f04fa0e9fba39832a63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocidad: 5
+  velocidad: 10
   cam: {fileID: 0}

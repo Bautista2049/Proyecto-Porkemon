@@ -1,11 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Movimiento : MonoBehaviour
 {
     public float velocidad = 5f;
     public Transform cam;
+
+    private void Start()
+    {
+        if (GameState.posicionJugadorGuardadaDisponible && SceneManager.GetActiveScene().name == "Escena Principal")
+        {
+            transform.position = GameState.posicionJugadorGuardada;
+        }
+    }
 
     void Update()
     {

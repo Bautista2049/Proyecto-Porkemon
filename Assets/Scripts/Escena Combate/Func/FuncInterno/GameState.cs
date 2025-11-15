@@ -17,6 +17,16 @@ public static class GameState
     public static bool victoriaFueCaptura = false;
     public static bool modoOrdenamiento = false;
     public static bool modoRevivir = false;
+    public static bool posicionJugadorGuardadaDisponible;
+    public static Vector3 posicionJugadorGuardada;
+    public static string escenaPosicionGuardada;
+
+    public static void GuardarPosicionJugador(Vector3 posicion, string escena)
+    {
+        posicionJugadorGuardada = posicion;
+        posicionJugadorGuardadaDisponible = true;
+        escenaPosicionGuardada = escena;
+    }
 }
 
 [System.Serializable]

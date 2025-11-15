@@ -34,11 +34,14 @@ public class TimeOfDayManager : MonoBehaviour
     public TimeOfDayPhase currentPhase;
 
     private float _secondsPerDay;
+    private static bool _hasSavedTime;
+    private static float _savedTime;
 
     private void Awake()
     {
         if (Instance != null && Instance != this)
         {
+            Instance.CopySceneSettings(this);
             Destroy(gameObject);
             return;
         }
@@ -47,7 +50,16 @@ public class TimeOfDayManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
 
         _secondsPerDay = Mathf.Max(1f, dayDurationMinutes * 60f);
-        timeOfDay01 = Mathf.Repeat(startTimeOfDay, 1f);
+        if (_hasSavedTime)
+        {
+            timeOfDay01 = _savedTime;
+        }
+        else
+        {
+            timeOfDay01 = Mathf.Repeat(startTimeOfDay, 1f);
+            _savedTime = timeOfDay01;
+            _hasSavedTime = true;
+        }
         UpdateLighting(0f, true);
     }
 
@@ -60,8 +72,34 @@ public class TimeOfDayManager : MonoBehaviour
 
         float delta = Time.unscaledDeltaTime / _secondsPerDay;
         timeOfDay01 = Mathf.Repeat(timeOfDay01 + delta, 1f);
+        _savedTime = timeOfDay01;
+        _hasSavedTime = true;
 
         UpdateLighting(delta, false);
+    }
+
+    private void CopySceneSettings(TimeOfDayManager source)
+    {
+        dayDurationMinutes = source.dayDurationMinutes;
+        startTimeOfDay = source.startTimeOfDay;
+        mainLight = source.mainLight;
+        lightColorOverDay = source.lightColorOverDay;
+        lightIntensityOverDay = source.lightIntensityOverDay;
+        ambientColorOverDay = source.ambientColorOverDay;
+        minSunAngle = source.minSunAngle;
+        maxSunAngle = source.maxSunAngle;
+        _secondsPerDay = Mathf.Max(1f, dayDurationMinutes * 60f);
+        if (_hasSavedTime)
+        {
+            UpdateLighting(0f, true);
+        }
+        else
+        {
+            timeOfDay01 = Mathf.Repeat(startTimeOfDay, 1f);
+            _savedTime = timeOfDay01;
+            _hasSavedTime = true;
+            UpdateLighting(0f, true);
+        }
     }
 
     private void UpdateLighting(float delta, bool forcePhaseRecalc)
@@ -101,6 +139,8 @@ public class TimeOfDayManager : MonoBehaviour
     {
         // Fijamos la hora a un valor típico de mañana / pleno día
         timeOfDay01 = 0.3f; // dentro del rango Day
+        _savedTime = timeOfDay01;
+        _hasSavedTime = true;
         UpdateLighting(0f, true);
     }
 

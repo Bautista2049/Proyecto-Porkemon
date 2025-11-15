@@ -1,8 +1,6 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using TMPro;
 
 public class Transicion_Jugador : MonoBehaviour
 {
@@ -10,6 +8,7 @@ public class Transicion_Jugador : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
+            GameState.posicionJugadorGuardadaDisponible = false;
             SceneManager.LoadScene("Escena CasaJ1");
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
