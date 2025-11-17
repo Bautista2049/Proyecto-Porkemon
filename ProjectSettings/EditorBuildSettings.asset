@@ -27,6 +27,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Escena de muerte.unity
     guid: 3973d00804c50154baaf137abd21de9a
   - enabled: 1
-    path: Assets/Scenes/Interfaz de Menu.unity
+    path: Assets/Scenes/Interfaces/Interfaz de Menu.unity
     guid: 569af23ce32988b489e460771d6e89dc
   m_configObjects: {}
