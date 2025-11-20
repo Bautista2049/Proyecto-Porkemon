@@ -1157,6 +1157,8 @@ GameObject:
   - component: {fileID: 1031663080204022252}
   - component: {fileID: 54840874400132886}
   - component: {fileID: 114636474784558308}
+  - component: {fileID: 114566295345612226}
+  - component: {fileID: 114727952510365424}
   m_Layer: 0
   m_Name: PunchBug
   m_TagString: Untagged
@@ -1190,7 +1192,7 @@ Animator:
   m_GameObject: {fileID: 9028659022299789166}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 4f613d6ba9b8253429d0331ac0906a65, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: aa9e625234fd03944aaf5975835a3380, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1261,6 +1263,30 @@ MonoBehaviour:
   modelParentContainer: {fileID: 9028659022299789166}
   isPlayerModel: 0
   posicionOponente: {fileID: 0}
+--- !u!114 &114566295345612226
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9028659022299789166}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c15718be9be31d4eb6e76e9966fd1aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114727952510365424
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9028659022299789166}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 271bf98a11af10541b18a3180688d477, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &9028659022299789168
 GameObject:
   m_ObjectHideFlags: 0

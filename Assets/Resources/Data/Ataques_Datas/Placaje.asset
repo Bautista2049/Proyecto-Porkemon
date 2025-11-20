@@ -10,14 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 820638e9bbbd70a41a8c16bdd3f08c84, type: 3}
-  m_Name: Fuego Igneo_Data
+  m_Name: Placaje
   m_EditorClassIdentifier: 
-  nombreAtaque: Fuego Igneo
-  descripcion: Ataca con un poderoso ataque de fuego, el cual aunque parezca inofensivo
-    te quema toda la casa
-  tipo: 1
+  nombreAtaque: Placaje
+  descripcion: Es un combate cuerpo a cuerpo
+  tipo: 0
   categoria: 0
-  poder: 20
-  precision: 100
-  pp: 10
+  poder: 10
+  precision: 75
+  pp: 5
   chanceCritico: 20

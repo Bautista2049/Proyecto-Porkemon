@@ -84,6 +84,8 @@ public class FuncTurnos : MonoBehaviour
         GameState.ataqueSeleccionado = null;
 
         yield return new WaitUntil(() => !ConsolaEnJuego.instance.isTyping);
+        if (playerModelManager != null && jugador1.porkemon != null)
+            playerModelManager.PlayAttackAnimationByName(jugador1.porkemon, ataque);
         jugador1.porkemon.UsarAtaqueElemental(jugador2.porkemon, ataque);
 
         yield return new WaitUntil(() => !ConsolaEnJuego.instance.isTyping);
@@ -112,6 +114,8 @@ public class FuncTurnos : MonoBehaviour
             int indiceAtaque = Random.Range(0, jugador2.porkemon.Ataques.Count);
             AtaqueData ataqueDelBot = jugador2.porkemon.Ataques[indiceAtaque];
 
+            if (botModelManager != null && jugador2.porkemon != null)
+                botModelManager.PlayAttackAnimationByName(jugador2.porkemon, ataqueDelBot);
             jugador2.porkemon.UsarAtaqueElemental(jugador1.porkemon, ataqueDelBot);
 
             yield return new WaitUntil(() => !ConsolaEnJuego.instance.isTyping);

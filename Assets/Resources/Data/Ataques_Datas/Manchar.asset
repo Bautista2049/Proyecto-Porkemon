@@ -10,15 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 820638e9bbbd70a41a8c16bdd3f08c84, type: 3}
-  m_Name: Golpe Terraqueo_Data
+  m_Name: Manchar
   m_EditorClassIdentifier: 
-  nombreAtaque: Golpe Terraqueo
-  descripcion: 'Destroza a tu oponente con un terremoto estilo chileno
-
-'
-  tipo: 0
+  nombreAtaque: Manchar
+  descripcion: Suelta un poco de liquido el cual moja tu oponente
+  tipo: 2
   categoria: 0
-  poder: 70
-  precision: 75
-  pp: 100
-  chanceCritico: 47.2
+  poder: 30
+  precision: 100
+  pp: 40
+  chanceCritico: 100

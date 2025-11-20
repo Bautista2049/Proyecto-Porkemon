@@ -7,6 +7,8 @@ public class DynamicBotModel : MonoBehaviour
     public GameObject modelParentContainer;
     [SerializeField] public bool isPlayerModel = false;
     public Transform posicionOponente;
+    private GameObject currentModelInstance;
+    private PokemonAttackByName currentAttackByName;
 
     public void UpdateModel(string modelName)
     {
@@ -21,6 +23,13 @@ public class DynamicBotModel : MonoBehaviour
         modelTransform.localPosition = Vector3.zero;
         modelTransform.localRotation = Quaternion.identity;
 
+        currentModelInstance = modelTransform.gameObject;
+        currentAttackByName = currentModelInstance.GetComponentInChildren<PokemonAttackByName>();
+        if (currentAttackByName == null)
+        {
+            currentAttackByName = GetComponentInChildren<PokemonAttackByName>();
+        }
+
         if (posicionOponente != null)
         {
             Vector3 direccion = posicionOponente.position - modelTransform.position;
@@ -32,6 +41,14 @@ public class DynamicBotModel : MonoBehaviour
         }
 
         Resources.UnloadUnusedAssets();
+    }
+
+    public void PlayAttackAnimationByName(Porkemon porkemon, AtaqueData ataque)
+    {
+        if (currentAttackByName == null)
+            return;
+
+        currentAttackByName.PlayAttackAnimation(porkemon, ataque);
     }
 
     public void PlayExitAnimation()

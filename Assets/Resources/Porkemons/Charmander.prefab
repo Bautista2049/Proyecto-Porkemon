@@ -672,6 +672,8 @@ GameObject:
   - component: {fileID: 54934884835499334}
   - component: {fileID: 114127751060047068}
   - component: {fileID: 114824630709080114}
+  - component: {fileID: 114341176217853658}
+  - component: {fileID: 114637214346816446}
   m_Layer: 0
   m_Name: Charmander
   m_TagString: Untagged
@@ -705,7 +707,7 @@ Animator:
   m_GameObject: {fileID: 4715058446490799311}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 778203e1dc4375d4fabfb09eb2b9bc48, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: fb4085f53938f074b84c31cc014ce901, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -776,6 +778,30 @@ MonoBehaviour:
   modelParentContainer: {fileID: 4715058446490799311}
   isPlayerModel: 0
   posicionOponente: {fileID: 0}
+--- !u!114 &114341176217853658
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4715058446490799311}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c15718be9be31d4eb6e76e9966fd1aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114637214346816446
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4715058446490799311}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 271bf98a11af10541b18a3180688d477, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4715058446490799329
 GameObject:
   m_ObjectHideFlags: 0
