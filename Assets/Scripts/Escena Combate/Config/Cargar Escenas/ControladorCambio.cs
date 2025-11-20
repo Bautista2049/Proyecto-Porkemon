@@ -20,6 +20,12 @@ public class ControladorCambio : MonoBehaviour
 
     void Start()
     {
+        if (GameState.modoTienda)
+        {
+            OcultarUISeleccion();
+            return;
+        }
+
         if (GestorDeBatalla.instance == null)
         {
             Debug.LogError("GestorDeBatalla no encontrado");
@@ -56,6 +62,40 @@ public class ControladorCambio : MonoBehaviour
             else
             {
                 tituloTexto.text = $"Tienes {equipoJugador.Count} Pokémon";
+            }
+        }
+    }
+
+    private void OcultarUISeleccion()
+    {
+        if (tituloTexto != null)
+        {
+            tituloTexto.gameObject.SetActive(false);
+        }
+
+        if (panelConfirmacion != null)
+        {
+            panelConfirmacion.SetActive(false);
+        }
+
+        if (botonConfirmar != null)
+        {
+            botonConfirmar.gameObject.SetActive(false);
+        }
+
+        if (botonCancelar != null)
+        {
+            botonCancelar.gameObject.SetActive(false);
+        }
+
+        if (botonesPokemon != null)
+        {
+            foreach (var boton in botonesPokemon)
+            {
+                if (boton != null)
+                {
+                    boton.gameObject.SetActive(false);
+                }
             }
         }
     }

@@ -26,6 +26,11 @@ public class ControladorVictoria : MonoBehaviour
             {
                 textoVictoria.text = "¡Has Ganado!";
             }
+
+            if (GameState.dineroGanado > 0)
+            {
+                textoVictoria.text += $"\nHas ganado ${GameState.dineroGanado}";
+            }
         }
 
     }

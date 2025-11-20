@@ -8,6 +8,7 @@ public class Transicion_Tienda : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
+            GameState.modoTienda = true;
             GameState.posicionJugadorGuardadaDisponible = false;
             SceneManager.LoadScene("Escena Tienda");
             Cursor.lockState = CursorLockMode.None;

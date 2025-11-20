@@ -63,26 +63,27 @@ public class GestorDeBatalla : MonoBehaviour
         {
             inventarioCompleto = new List<BattleItem>
             {
-                new BattleItem(BattleItemType.Pocion, "Poción", "Restaura 20 PS", 5),
-                new BattleItem(BattleItemType.Superpocion, "Superpoción", "Restaura 50 PS", 3),
-                new BattleItem(BattleItemType.Hiperpocion, "Hiperpoción", "Restaura 120 PS", 2),
-                new BattleItem(BattleItemType.Pocionmaxima, "Poción Máxima", "Restaura todos los PS", 1),
-                new BattleItem(BattleItemType.Revivir, "Revivir", "Revive un Pokémon con 30% de PS", 2),
-                new BattleItem(BattleItemType.RevivirMax, "Revivir Máx", "Revive un Pokémon con todos sus PS", 1),
-                
-                new BattleItem(BattleItemType.AtaqueX, "Ataque X", "Aumenta el ataque en 1 nivel", 2),
-                new BattleItem(BattleItemType.DefensaX, "Defensa X", "Aumenta la defensa en 1 nivel", 2),
-                new BattleItem(BattleItemType.AtaqueEspecialX, "Ataque Especial X", "Aumenta el ataque especial en 1 nivel", 2),
-                new BattleItem(BattleItemType.DefensaEspecialX, "Defensa Especial X", "Aumenta la defensa especial en 1 nivel", 2),
-                new BattleItem(BattleItemType.VelocidadX, "Velocidad X", "Aumenta la velocidad en 1 nivel", 2),
-                new BattleItem(BattleItemType.PrecisionX, "Precisión X", "Aumenta la precisión en 1 nivel", 2),
-                new BattleItem(BattleItemType.CriticoX, "Crítico X", "Aumenta la probabilidad de golpe crítico", 1),
-                new BattleItem(BattleItemType.ProteccionX, "Protección X", "Aumenta la evasión durante 5 turnos", 1),
-                
+                new BattleItem(BattleItemType.Pocion, "Poción", "Restaura 20 PS", 1),
                 new BattleItem(BattleItemType.Porkebola, "Pokéball", "Atrapa Pokémon salvajes más fácilmente", 5),
-                new BattleItem(BattleItemType.Superbola, "Superball", "Más efectiva que una Pokéball normal", 3),
-                new BattleItem(BattleItemType.Ultrabola, "Ultraball", "Muy efectiva para Pokémon difíciles de atrapar", 2),
-                new BattleItem(BattleItemType.Masterbola, "Masterball", "Atrapa cualquier Pokémon sin fallar", 1)
+
+                new BattleItem(BattleItemType.Superpocion, "Superpoción", "Restaura 50 PS", 0),
+                new BattleItem(BattleItemType.Hiperpocion, "Hiperpoción", "Restaura 120 PS", 0),
+                new BattleItem(BattleItemType.Pocionmaxima, "Poción Máxima", "Restaura todos los PS", 0),
+                new BattleItem(BattleItemType.Revivir, "Revivir", "Revive un Pokémon con 30% de PS", 0),
+                new BattleItem(BattleItemType.RevivirMax, "Revivir Máx", "Revive un Pokémon con todos sus PS", 0),
+
+                new BattleItem(BattleItemType.AtaqueX, "Ataque X", "Aumenta el ataque en 1 nivel", 0),
+                new BattleItem(BattleItemType.DefensaX, "Defensa X", "Aumenta la defensa en 1 nivel", 0),
+                new BattleItem(BattleItemType.AtaqueEspecialX, "Ataque Especial X", "Aumenta el ataque especial en 1 nivel", 0),
+                new BattleItem(BattleItemType.DefensaEspecialX, "Defensa Especial X", "Aumenta la defensa en 1 nivel", 0),
+                new BattleItem(BattleItemType.VelocidadX, "Velocidad X", "Aumenta la velocidad en 1 nivel", 0),
+                new BattleItem(BattleItemType.PrecisionX, "Precisión X", "Aumenta la precisión en 1 nivel", 0),
+                new BattleItem(BattleItemType.CriticoX, "Crítico X", "Aumenta la probabilidad de golpe crítico", 0),
+                new BattleItem(BattleItemType.ProteccionX, "Protección X", "Aumenta la evasión durante 5 turnos", 0),
+
+                new BattleItem(BattleItemType.Superbola, "Superball", "Más efectiva que una Pokéball normal", 0),
+                new BattleItem(BattleItemType.Ultrabola, "Ultraball", "Muy efectiva para Pokémon difíciles de atrapar", 0),
+                new BattleItem(BattleItemType.Masterbola, "Masterball", "Atrapa cualquier Pokémon sin fallar", 0)
             };
         }
 
@@ -208,7 +209,9 @@ public class GestorDeBatalla : MonoBehaviour
             GameState.experienciaGanada = equipoJugador.CalcularExperienciaGanada(new List<Porkemon> { pokemon });
             GameState.equipoGanador = new List<Porkemon>(equipoJugador);
             GameState.victoriaFueCaptura = true;
-            
+            GameState.dineroGanado = Mathf.Max(1, GameState.experienciaGanada / 2);
+            GameState.dineroJugador += GameState.dineroGanado;
+
             StartCoroutine(FinalizarCombate(true));
         }
     }

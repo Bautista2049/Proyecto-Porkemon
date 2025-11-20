@@ -32,6 +32,7 @@ public class TimeOfDayManager : MonoBehaviour
     public float timeOfDay01; // 0-1 dentro del ciclo actual
 
     public TimeOfDayPhase currentPhase;
+    public int currentDay = 0;
 
     private float _secondsPerDay;
     private static bool _hasSavedTime;
@@ -60,6 +61,7 @@ public class TimeOfDayManager : MonoBehaviour
             _savedTime = timeOfDay01;
             _hasSavedTime = true;
         }
+        
         UpdateLighting(0f, true);
     }
 
@@ -71,7 +73,14 @@ public class TimeOfDayManager : MonoBehaviour
         }
 
         float delta = Time.unscaledDeltaTime / _secondsPerDay;
+        float previousTime = timeOfDay01;
         timeOfDay01 = Mathf.Repeat(timeOfDay01 + delta, 1f);
+
+        if (timeOfDay01 < previousTime)
+        {
+            currentDay++;
+        }
+
         _savedTime = timeOfDay01;
         _hasSavedTime = true;
 
@@ -138,6 +147,7 @@ public class TimeOfDayManager : MonoBehaviour
     public void SkipToMorning()
     {
         // Fijamos la hora a un valor típico de mañana / pleno día
+        currentDay++;
         timeOfDay01 = 0.3f; // dentro del rango Day
         _savedTime = timeOfDay01;
         _hasSavedTime = true;

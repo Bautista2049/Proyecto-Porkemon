@@ -37,6 +37,7 @@ public class SalirJuego : MonoBehaviour
         {
             
             PlayerPrefs.SetInt("Player1Turn", GameState.player1Turn ? 1 : 0);
+            PlayerPrefs.SetInt("DineroJugador", GameState.dineroJugador);
             
             if (GameState.porkemonDelJugador != null)
             {
@@ -70,6 +71,7 @@ public class SalirJuego : MonoBehaviour
             if (PlayerPrefs.HasKey("UltimoGuardado"))
             {
                 GameState.player1Turn = PlayerPrefs.GetInt("Player1Turn", 1) == 1;
+                GameState.dineroJugador = PlayerPrefs.GetInt("DineroJugador", 0);
                 
                 if (PlayerPrefs.HasKey("PorkemonJugador"))
                 {

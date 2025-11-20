@@ -237,6 +237,7 @@ public class MenuPausa : MonoBehaviour
         Time.timeScale = 1f;
         GameState.player1Turn = true;
         GameState.modoOrdenamiento = true;
+        GameState.modoTienda = false;
         SceneTransitionManager.Instance.LoadScene("Escena CambioPorkemon");
     }
 
@@ -245,6 +246,7 @@ public class MenuPausa : MonoBehaviour
         Time.timeScale = 1f;
         GameState.player1Turn = false;
         GameState.modoOrdenamiento = true;
+        GameState.modoTienda = false;
         SceneTransitionManager.Instance.LoadScene("Escena CambioPorkemon");
     }
 

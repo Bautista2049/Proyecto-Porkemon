@@ -188,6 +188,10 @@ public class FuncTurnos : MonoBehaviour
             GameState.experienciaGanada = GestorDeBatalla.instance.equipoJugador.CalcularExperienciaGanada(new List<Porkemon> { jugador2.porkemon });
             GameState.equipoGanador = new List<Porkemon>(GestorDeBatalla.instance.equipoJugador);
             GameState.victoriaFueCaptura = false;
+
+            GameState.dineroGanado = Mathf.Max(1, GameState.experienciaGanada / 2);
+            GameState.dineroJugador += GameState.dineroGanado;
+
             SceneTransitionManager.Instance.LoadScene("Escena de Victoria");
         }
     }
