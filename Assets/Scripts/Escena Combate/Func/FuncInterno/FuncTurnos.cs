@@ -28,6 +28,10 @@ public class FuncTurnos : MonoBehaviour
 
     private void Start()
     {
+        GameState.multiplicadorDinero = 1f;
+        GameState.multiplicadorExp = 1f;
+        GameState.multiplicadorCaptura = 1f;
+
         if (GestorDeBatalla.instance != null)
             GestorDeBatalla.instance.IniciarBatalla();
 
@@ -158,23 +162,23 @@ public class FuncTurnos : MonoBehaviour
         {
             var equipoJugador = GestorDeBatalla.instance.equipoJugador;
             var siguientePokemon = equipoJugador.Find(p => p != jugador1.porkemon && p.VidaActual > 0);
-            
+
             if (siguientePokemon != null)
             {
                 yield return StartCoroutine(ConsolaEnJuego.instance.MostrarMensaje($"¡{jugador1.porkemon.BaseData.nombre} se ha debilitado!"));
-                
+
                 jugador1.porkemon = siguientePokemon;
                 GameState.porkemonDelJugador = siguientePokemon;
-                
+
                 jugador1.Setup(siguientePokemon);
                 jugador1.Setup(siguientePokemon);
                 if (playerModelManager != null)
                 {
                     playerModelManager.UpdateModel(siguientePokemon.BaseData.nombre);
                 }
-                
+
                 yield return StartCoroutine(ConsolaEnJuego.instance.MostrarMensaje($"¡Adelante {siguientePokemon.BaseData.nombre}!"));
-                
+
                 CambiarTurno();
             }
             else
@@ -185,12 +189,18 @@ public class FuncTurnos : MonoBehaviour
         else if (jugador2.porkemon.VidaActual <= 0)
         {
             GameState.nombreGanador = jugador1.porkemon.BaseData.nombre;
-            GameState.experienciaGanada = GestorDeBatalla.instance.equipoJugador.CalcularExperienciaGanada(new List<Porkemon> { jugador2.porkemon });
+            int expBase = GestorDeBatalla.instance.equipoJugador.CalcularExperienciaGanada(new List<Porkemon> { jugador2.porkemon });
+            GameState.experienciaGanada = Mathf.RoundToInt(expBase * Mathf.Max(0.1f, GameState.multiplicadorExp));
             GameState.equipoGanador = new List<Porkemon>(GestorDeBatalla.instance.equipoJugador);
             GameState.victoriaFueCaptura = false;
 
-            GameState.dineroGanado = Mathf.Max(1, GameState.experienciaGanada / 2);
+            int dineroBase = Mathf.Max(1, GameState.experienciaGanada / 2);
+            GameState.dineroGanado = Mathf.RoundToInt(dineroBase * Mathf.Max(0.1f, GameState.multiplicadorDinero));
             GameState.dineroJugador += GameState.dineroGanado;
+
+            GameState.multiplicadorDinero = 1f;
+            GameState.multiplicadorExp = 1f;
+            GameState.multiplicadorCaptura = 1f;
 
             SceneTransitionManager.Instance.LoadScene("Escena de Victoria");
         }
@@ -203,14 +213,17 @@ public class FuncTurnos : MonoBehaviour
 
     private float GetBallMultiplier(BattleItemType type)
     {
+        float baseMult;
         switch (type)
         {
-            case BattleItemType.Porkebola: return 1f;
-            case BattleItemType.Superbola: return 1.5f;
-            case BattleItemType.Ultrabola: return 2f;
-            case BattleItemType.Masterbola: return 255f;
-            default: return 1f;
+            case BattleItemType.Porkebola: baseMult = 1f; break;
+            case BattleItemType.Superbola: baseMult = 1.5f; break;
+            case BattleItemType.Ultrabola: baseMult = 2f; break;
+            case BattleItemType.Masterbola: baseMult = 255f; break;
+            default: baseMult = 1f; break;
         }
+
+        return baseMult * Mathf.Max(0.1f, GameState.multiplicadorCaptura);
     }
 
     private IEnumerator RutinaUsarItem()
@@ -296,6 +309,29 @@ public class FuncTurnos : MonoBehaviour
                 break;
             case BattleItemType.ProteccionX:
                 Debug.Log($"{porkemon.BaseData.nombre} usó {item.nombre}. Protección activada!");
+                break;
+            case BattleItemType.RotoPremio:
+                GameState.multiplicadorDinero = 3f;
+                Debug.Log($"{porkemon.BaseData.nombre} usó {item.nombre}. ¡Las recompensas de dinero aumentarán esta batalla!");
+                break;
+            case BattleItemType.RotoExp:
+                GameState.multiplicadorExp = 1.5f;
+                Debug.Log($"{porkemon.BaseData.nombre} usó {item.nombre}. ¡La experiencia ganada aumentará esta batalla!");
+                break;
+            case BattleItemType.RotoBoost:
+                porkemon.AumentarAtaque(2);
+                porkemon.AumentarDefensa(2);
+                porkemon.AumentarEspiritu(2);
+                porkemon.AumentarVelocidad(2);
+                Debug.Log($"{porkemon.BaseData.nombre} usó {item.nombre}. ¡Todas sus estadísticas han aumentado!");
+                break;
+            case BattleItemType.RotoCatch:
+                GameState.multiplicadorCaptura = 2f;
+                Debug.Log($"{porkemon.BaseData.nombre} usó {item.nombre}. ¡La probabilidad de captura ha aumentado esta batalla!");
+                break;
+            case BattleItemType.RotoOferta:
+                GameState.multiplicadorPreciosTienda = 0.5f;
+                Debug.Log($"{porkemon.BaseData.nombre} usó {item.nombre}. ¡Los precios de la tienda se han reducido temporalmente!");
                 break;
         }
     }

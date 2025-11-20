@@ -21,7 +21,35 @@ public enum BattleItemType
     Hiperpocion,
     Pocionmaxima,
     Revivir,
-    RevivirMax
+    RevivirMax,
+
+    // Mentas (cambian la naturaleza del Porkemon)
+    MentaTimida,
+    MentaSeria,
+    MentaAtrevida,
+    MentaRelajante,
+    MentaErupcion,
+    MentaTranquila,
+    MentaTraviesa,
+    MentaIngenua,
+    MentaModesta,
+    MentaSuave,
+    MentaSolitaria,
+    MentaLaxa,
+    MentaAlegre,
+    MentaRapida,
+    MentaCuidadosa,
+    MentaCalmante,
+    MentaValiente,
+    MentaAudaz,
+    MentaAdamant,
+
+    // Objetos Roto / de apoyo
+    RotoPremio,
+    RotoExp,
+    RotoBoost,
+    RotoCatch,
+    RotoOferta
 }
 
 [System.Serializable]

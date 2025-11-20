@@ -254,9 +254,12 @@ public class ControladorTienda : MonoBehaviour
 
                     string lineaNombre = $"{prefijo}{item.nombre}";
                     string lineaDescripcion = item.descripcion;
+
+                    int precioActual = ObtenerPrecioActual(item);
+
                     string lineaCantidadPrecio = agotado
                         ? "Stock: 0 - AGOTADO"
-                        : $"Stock: {item.stock} - ${item.precio}";
+                        : $"Stock: {item.stock} - ${precioActual}";
 
                     texto.text = $"{lineaNombre}\n{lineaDescripcion}\n{lineaCantidadPrecio}";
                 }
@@ -283,7 +286,7 @@ public class ControladorTienda : MonoBehaviour
 
             TiendaItemData item = itemsTienda[index];
             if (item != null)
-                totalCompra += Mathf.Max(0, item.precio);
+                totalCompra += Mathf.Max(0, ObtenerPrecioActual(item));
         }
 
         if (textoDineroActual != null)
@@ -291,6 +294,16 @@ public class ControladorTienda : MonoBehaviour
 
         if (textoPrecio != null)
             textoPrecio.text = $"Total: {totalCompra}";
+    }
+
+    private int ObtenerPrecioActual(TiendaItemData item)
+    {
+        if (item == null)
+            return 0;
+
+        float mult = Mathf.Max(0.1f, GameState.multiplicadorPreciosTienda);
+        int precio = Mathf.RoundToInt(item.precio * mult);
+        return Mathf.Max(0, precio);
     }
 
     private static TiendaItemData CopiarItem(TiendaItemData source)

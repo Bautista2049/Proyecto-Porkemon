@@ -298,6 +298,29 @@ public class ControladorCambio : MonoBehaviour
             case BattleItemType.ProteccionX:
                 Debug.Log($"{porkemon.BaseData.nombre} usó {item.nombre}. Protección activada!");
                 break;
+            case BattleItemType.RotoPremio:
+                GameState.multiplicadorDinero = 3f;
+                Debug.Log($"{porkemon.BaseData.nombre} usó {item.nombre}. ¡Las recompensas de dinero aumentarán esta batalla!");
+                break;
+            case BattleItemType.RotoExp:
+                GameState.multiplicadorExp = 1.5f;
+                Debug.Log($"{porkemon.BaseData.nombre} usó {item.nombre}. ¡La experiencia ganada aumentará esta batalla!");
+                break;
+            case BattleItemType.RotoBoost:
+                porkemon.AumentarAtaque(2);
+                porkemon.AumentarDefensa(2);
+                porkemon.AumentarEspiritu(2);
+                porkemon.AumentarVelocidad(2);
+                Debug.Log($"{porkemon.BaseData.nombre} usó {item.nombre}. ¡Todas sus estadísticas han aumentado!");
+                break;
+            case BattleItemType.RotoCatch:
+                GameState.multiplicadorCaptura = 2f;
+                Debug.Log($"{porkemon.BaseData.nombre} usó {item.nombre}. ¡La probabilidad de captura ha aumentado esta batalla!");
+                break;
+            case BattleItemType.RotoOferta:
+                GameState.multiplicadorPreciosTienda = 0.5f;
+                Debug.Log($"{porkemon.BaseData.nombre} usó {item.nombre}. ¡Los precios de la tienda se han reducido temporalmente!");
+                break;
         }
     }
 

@@ -24,6 +24,11 @@ public static class GameState
     public static Vector3 posicionJugadorGuardada;
     public static string escenaPosicionGuardada;
 
+    public static float multiplicadorDinero = 1f;
+    public static float multiplicadorExp = 1f;
+    public static float multiplicadorCaptura = 1f;
+    public static float multiplicadorPreciosTienda = 1f;
+
     public static void GuardarPosicionJugador(Vector3 posicion, string escena)
     {
         posicionJugadorGuardada = posicion;
