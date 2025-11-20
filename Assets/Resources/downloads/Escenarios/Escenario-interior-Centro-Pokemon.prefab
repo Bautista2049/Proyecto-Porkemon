@@ -324,15 +324,15 @@ MeshRenderer:
   m_Materials:
   - {fileID: 2100000, guid: d6ca1a4f84bb5a949895a3abb4396a21, type: 2}
   - {fileID: 2100004, guid: 43244c58139c4b4468fa61968435caeb, type: 3}
-  - {fileID: 2100006, guid: 43244c58139c4b4468fa61968435caeb, type: 3}
+  - {fileID: 2100000, guid: 16128239bca8a59488a68f8363a2e778, type: 2}
   - {fileID: 2100008, guid: 43244c58139c4b4468fa61968435caeb, type: 3}
-  - {fileID: 2100010, guid: 43244c58139c4b4468fa61968435caeb, type: 3}
-  - {fileID: 2100012, guid: 43244c58139c4b4468fa61968435caeb, type: 3}
-  - {fileID: 2100014, guid: 43244c58139c4b4468fa61968435caeb, type: 3}
-  - {fileID: 2100016, guid: 43244c58139c4b4468fa61968435caeb, type: 3}
+  - {fileID: 2100000, guid: 4b17a91444e7d074f8f8bc9c0cbc07a0, type: 2}
+  - {fileID: 2100000, guid: 6a6a5f0b58239924ba91f42ac699cd12, type: 2}
+  - {fileID: 2100000, guid: 4b17a91444e7d074f8f8bc9c0cbc07a0, type: 2}
+  - {fileID: 2100000, guid: 6a6a5f0b58239924ba91f42ac699cd12, type: 2}
   - {fileID: 2100018, guid: 43244c58139c4b4468fa61968435caeb, type: 3}
   - {fileID: 2100020, guid: 43244c58139c4b4468fa61968435caeb, type: 3}
-  - {fileID: 2100022, guid: 43244c58139c4b4468fa61968435caeb, type: 3}
+  - {fileID: 2100000, guid: 16128239bca8a59488a68f8363a2e778, type: 2}
   - {fileID: 2100024, guid: 43244c58139c4b4468fa61968435caeb, type: 3}
   - {fileID: 2100026, guid: 43244c58139c4b4468fa61968435caeb, type: 3}
   - {fileID: 2100028, guid: 43244c58139c4b4468fa61968435caeb, type: 3}

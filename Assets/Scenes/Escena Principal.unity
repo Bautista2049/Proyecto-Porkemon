@@ -1401,7 +1401,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &44728342 stripped
 Transform:
@@ -3047,7 +3047,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!4 &173000793 stripped
 Transform:
@@ -3575,11 +3575,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9054372686034207728, guid: 46f965d1a6fa1f54fa35ba6f29827e21,
-        type: 3}
-      propertyPath: m_Constraints
-      value: 122
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 46f965d1a6fa1f54fa35ba6f29827e21, type: 3}
@@ -8152,7 +8147,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05dd85ab87a239244a0621d39c70321e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tiempoEntreSpawn: 33
+  tiempoEntreSpawn: 4
   porkemons:
   - {fileID: 5628966268581028415, guid: 3cda29b0f927fa94a936c6d6d75d09fa, type: 3}
   - {fileID: 9028659022299789166, guid: 45e7dc4e28c781d42a84ecf68fbe44f2, type: 3}
@@ -8962,7 +8957,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 23.223001, y: 0, z: 0}
 --- !u!114 &534669906
 MonoBehaviour:
@@ -9589,6 +9584,138 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1751614547}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &566656726
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2670090125345042640, guid: 1514b11d7ec23974f83971b613b176b5,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -462.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2670090125345042640, guid: 1514b11d7ec23974f83971b613b176b5,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 8.5395
+      objectReference: {fileID: 0}
+    - target: {fileID: 2670090125345042640, guid: 1514b11d7ec23974f83971b613b176b5,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -18.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2670090125345042640, guid: 1514b11d7ec23974f83971b613b176b5,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2670090125345042640, guid: 1514b11d7ec23974f83971b613b176b5,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.4139954
+      objectReference: {fileID: 0}
+    - target: {fileID: 2670090125345042640, guid: 1514b11d7ec23974f83971b613b176b5,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2670090125345042640, guid: 1514b11d7ec23974f83971b613b176b5,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.91027904
+      objectReference: {fileID: 0}
+    - target: {fileID: 2670090125345042640, guid: 1514b11d7ec23974f83971b613b176b5,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2670090125345042640, guid: 1514b11d7ec23974f83971b613b176b5,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2670090125345042640, guid: 1514b11d7ec23974f83971b613b176b5,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 48.912003
+      objectReference: {fileID: 0}
+    - target: {fileID: 2670090125345042640, guid: 1514b11d7ec23974f83971b613b176b5,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2670090125345042640, guid: 1514b11d7ec23974f83971b613b176b5,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 3.0144656
+      objectReference: {fileID: 0}
+    - target: {fileID: 2670090125345042640, guid: 1514b11d7ec23974f83971b613b176b5,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 3.0144656
+      objectReference: {fileID: 0}
+    - target: {fileID: 2670090125345042640, guid: 1514b11d7ec23974f83971b613b176b5,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 3.0144656
+      objectReference: {fileID: 0}
+    - target: {fileID: 2670090125345533168, guid: 1514b11d7ec23974f83971b613b176b5,
+        type: 3}
+      propertyPath: m_Name
+      value: Escenario-interior-Centro-Pokemon
+      objectReference: {fileID: 0}
+    - target: {fileID: 2827181001774275366, guid: 1514b11d7ec23974f83971b613b176b5,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 56.658173
+      objectReference: {fileID: 0}
+    - target: {fileID: 2827181001774275366, guid: 1514b11d7ec23974f83971b613b176b5,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 36.63525
+      objectReference: {fileID: 0}
+    - target: {fileID: 2827181001774275366, guid: 1514b11d7ec23974f83971b613b176b5,
+        type: 3}
+      propertyPath: m_Size.z
+      value: 6.097371
+      objectReference: {fileID: 0}
+    - target: {fileID: 2827181001774275366, guid: 1514b11d7ec23974f83971b613b176b5,
+        type: 3}
+      propertyPath: m_Center.x
+      value: -2.7790236
+      objectReference: {fileID: 0}
+    - target: {fileID: 2827181001774275366, guid: 1514b11d7ec23974f83971b613b176b5,
+        type: 3}
+      propertyPath: m_Center.y
+      value: 13.831529
+      objectReference: {fileID: 0}
+    - target: {fileID: 2827181001774275366, guid: 1514b11d7ec23974f83971b613b176b5,
+        type: 3}
+      propertyPath: m_Center.z
+      value: 0.4744565
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 1514b11d7ec23974f83971b613b176b5, type: 3}
+--- !u!1 &566656727 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2670090125345533158, guid: 1514b11d7ec23974f83971b613b176b5,
+    type: 3}
+  m_PrefabInstance: {fileID: 566656726}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &566656728
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 566656727}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3fea6ed146ce5cc48a59546167460aa2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &566857262
 GameObject:
   m_ObjectHideFlags: 0
@@ -9649,7 +9776,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05dd85ab87a239244a0621d39c70321e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tiempoEntreSpawn: 15
+  tiempoEntreSpawn: 4
   porkemons:
   - {fileID: 1433957337944174730, guid: bd0d236192418cc4fa0277bab2f7a2d7, type: 3}
   - {fileID: 4715058446490799311, guid: 9277b7c9e2dd4564a8297073d31dd2b1, type: 3}
@@ -17156,7 +17283,7 @@ RectTransform:
   - {fileID: 1922178765}
   - {fileID: 1855357692}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -20013,7 +20140,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1210021217
 GameObject:
@@ -20620,7 +20747,7 @@ MonoBehaviour:
   porkemonDatas:
   - {fileID: 11400000, guid: 6c9eb4021237ff14a82c44f71a59ea8a, type: 2}
   - {fileID: 11400000, guid: ffe23ad346c18a146807d3a9f28a1b7a, type: 2}
-  quantities: 0800000004000000
+  quantities: 0400000004000000
 --- !u!64 &1235146317
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -23761,21 +23888,12 @@ PrefabInstance:
       objectReference: {fileID: 2100002, guid: a360bc52a13d2e4498cc84952d773958, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a360bc52a13d2e4498cc84952d773958, type: 3}
---- !u!4 &1426439707
+--- !u!4 &1426439707 stripped
 Transform:
-  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 400000, guid: a360bc52a13d2e4498cc84952d773958,
     type: 3}
   m_PrefabInstance: {fileID: 1426439706}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1921043086}
-  m_LocalRotation: {x: -0, y: -0, z: -0.0039328746, w: 0.9999923}
-  m_LocalPosition: {x: -88.600006, y: 24.1, z: 221.15347}
-  m_LocalScale: {x: -42.32771, y: -14.13269, z: -41.39065}
-  m_Children: []
-  m_Father: {fileID: 2018115594}
-  m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -0.45100003}
 --- !u!1 &1430636286
 GameObject:
   m_ObjectHideFlags: 0
@@ -25584,7 +25702,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1529815014
 PrefabInstance:
@@ -26311,7 +26429,7 @@ Transform:
   - {fileID: 1028439297}
   - {fileID: 1941011789}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1585985141
 PrefabInstance:
@@ -27593,7 +27711,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05dd85ab87a239244a0621d39c70321e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tiempoEntreSpawn: 80
+  tiempoEntreSpawn: 4
   porkemons:
   - {fileID: 5628966268581028415, guid: 3cda29b0f927fa94a936c6d6d75d09fa, type: 3}
   - {fileID: 9083633850193479348, guid: 288c70cf39701df47be456867a4d7a69, type: 3}
@@ -31740,77 +31858,6 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: e2effe8cead1da24aa68fcc13c6d26e3, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6597bb88c11c938478f500eab9ad9c2f, type: 3}
---- !u!1 &1921043086
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 100000, guid: a360bc52a13d2e4498cc84952d773958,
-    type: 3}
-  m_PrefabInstance: {fileID: 1426439706}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1426439707}
-  - component: {fileID: 1921043088}
-  - component: {fileID: 1921043087}
-  m_Layer: 0
-  m_Name: CentroPokemon
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!23 &1921043087
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 2300000, guid: a360bc52a13d2e4498cc84952d773958,
-    type: 3}
-  m_PrefabInstance: {fileID: 1426439706}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1921043086}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100002, guid: a360bc52a13d2e4498cc84952d773958, type: 3}
-  - {fileID: 2100002, guid: a360bc52a13d2e4498cc84952d773958, type: 3}
-  - {fileID: 2100004, guid: a360bc52a13d2e4498cc84952d773958, type: 3}
-  - {fileID: 2100006, guid: a360bc52a13d2e4498cc84952d773958, type: 3}
-  - {fileID: 2100008, guid: a360bc52a13d2e4498cc84952d773958, type: 3}
-  - {fileID: 2100010, guid: a360bc52a13d2e4498cc84952d773958, type: 3}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
---- !u!33 &1921043088
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 3300000, guid: a360bc52a13d2e4498cc84952d773958,
-    type: 3}
-  m_PrefabInstance: {fileID: 1426439706}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1921043086}
-  m_Mesh: {fileID: 4300000, guid: a360bc52a13d2e4498cc84952d773958, type: 3}
 --- !u!1 &1922178764
 GameObject:
   m_ObjectHideFlags: 0
@@ -32769,10 +32816,10 @@ Transform:
   - {fileID: 1780264400}
   - {fileID: 1846017219}
   - {fileID: 1590434194}
-  - {fileID: 507550043}
   - {fileID: 1426439707}
+  - {fileID: 507550043}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2019005269
 GameObject:
@@ -34009,7 +34056,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05dd85ab87a239244a0621d39c70321e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tiempoEntreSpawn: 2
+  tiempoEntreSpawn: 4
   porkemons:
   - {fileID: 9083633850193479348, guid: 288c70cf39701df47be456867a4d7a69, type: 3}
   - {fileID: 4715058446490799311, guid: 9277b7c9e2dd4564a8297073d31dd2b1, type: 3}
