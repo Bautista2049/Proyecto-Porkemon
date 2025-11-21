@@ -1204,6 +1204,7 @@ MonoBehaviour:
   textoDineroActual: {fileID: 36076052}
   textoPrecio: {fileID: 1389424740}
   textoMensaje: {fileID: 2094880920}
+  textoDescripcionSeleccionada: {fileID: 0}
   botonesItems:
   - {fileID: 878679790}
   - {fileID: 1902222092}
@@ -7637,7 +7638,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1854330547
 RectTransform:
   m_ObjectHideFlags: 0

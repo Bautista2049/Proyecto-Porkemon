@@ -119,6 +119,7 @@ public class ControladorUICombate : MonoBehaviour
     {
         GameState.player1Turn = false;
         GameState.modoRevivir = false;
+        GameState.modoTienda = false;
         SceneTransitionManager.Instance.LoadScene("Escena CambioPorkemon");
     }
 

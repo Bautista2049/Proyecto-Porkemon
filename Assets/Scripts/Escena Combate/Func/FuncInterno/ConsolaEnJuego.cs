@@ -37,6 +37,9 @@ public class ConsolaEnJuego : MonoBehaviour
             }
             DontDestroyOnLoad(gameObject);
             
+            // Forzar que por defecto la consola sólo se muestre en la escena de combate
+            mostrarSoloEnCombate = true;
+            
             consolaCanvas = GetComponentInChildren<Canvas>(true);
             if (consolaCanvas == null)
             {
@@ -110,6 +113,15 @@ public class ConsolaEnJuego : MonoBehaviour
     
     private void BuscarReferenciasUI()
     {
+        if (tmpText != null && tmpText.gameObject != null && tmpText.gameObject.name == "Consola")
+        {
+            tmpText = null;
+        }
+        if (uiText != null && uiText.gameObject != null && uiText.gameObject.name == "Consola")
+        {
+            uiText = null;
+        }
+
         if ((tmpText != null || uiText != null) && 
             ((tmpText != null && tmpText.gameObject.scene.IsValid()) || 
              (uiText != null && uiText.gameObject.scene.IsValid())))
@@ -141,12 +153,58 @@ public class ConsolaEnJuego : MonoBehaviour
             GameObject consolaCanvasObj = GameObject.FindGameObjectWithTag(consolaCanvasTag);
             if (consolaCanvasObj != null)
             {
+                consolaCanvas = consolaCanvasObj.GetComponent<Canvas>();
                 tmpText = consolaCanvasObj.GetComponentInChildren<TextMeshProUGUI>(true);
                 if (tmpText == null)
                 {
                     uiText = consolaCanvasObj.GetComponentInChildren<Text>(true);
                 }
             }
+        }
+
+        if (tmpText == null && uiText == null)
+        {
+            GameObject canvasObj = new GameObject("ConsolaCanvasAuto");
+            canvasObj.transform.SetParent(transform, false);
+
+            int uiLayer = LayerMask.NameToLayer("UI");
+            if (uiLayer >= 0)
+            {
+                canvasObj.layer = uiLayer;
+            }
+
+            try
+            {
+                canvasObj.tag = consolaCanvasTag;
+            }
+            catch { }
+
+            consolaCanvas = canvasObj.AddComponent<Canvas>();
+            consolaCanvas.renderMode = RenderMode.ScreenSpaceOverlay;
+
+            var scaler = canvasObj.AddComponent<CanvasScaler>();
+            scaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
+            scaler.referenceResolution = new Vector2(1920, 1080);
+
+            canvasObj.AddComponent<GraphicRaycaster>();
+
+            GameObject textObj = new GameObject("ConsolaTextoTMP");
+            textObj.transform.SetParent(canvasObj.transform, false);
+
+            tmpText = textObj.AddComponent<TextMeshProUGUI>();
+            tmpText.text = "";
+            tmpText.enableAutoSizing = true;
+            tmpText.fontSizeMin = 18f;
+            tmpText.fontSizeMax = 66f;
+            tmpText.enableWordWrapping = true;
+            tmpText.alignment = TextAlignmentOptions.BottomLeft;
+
+            RectTransform rt = tmpText.rectTransform;
+            rt.anchorMin = new Vector2(0f, 0f);
+            rt.anchorMax = new Vector2(1f, 0f);
+            rt.pivot = new Vector2(0f, 0f);
+            rt.sizeDelta = new Vector2(0f, 150f);
+            rt.anchoredPosition = new Vector2(0f, 0f);
         }
     }
     
