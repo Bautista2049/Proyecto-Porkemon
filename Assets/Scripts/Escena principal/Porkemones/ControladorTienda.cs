@@ -221,6 +221,21 @@ public class ControladorTienda : MonoBehaviour
         ActualizarUICompleta();
     }
 
+    public void ConfirmarCompraYSalir()
+    {
+        int dineroAntes = GameState.dineroJugador;
+        int seleccionAntes = indicesSeleccionados.Count;
+
+        ConfirmarCompra();
+
+        bool huboCompra = (seleccionAntes > 0 && GameState.dineroJugador < dineroAntes);
+        if (huboCompra)
+        {
+            GameState.modoTienda = false;
+            SceneTransitionManager.GetInstance().LoadScene("Escena Principal");
+        }
+    }
+
     private void ActualizarUICompleta()
     {
         ConfigurarBotones();
@@ -261,7 +276,7 @@ public class ControladorTienda : MonoBehaviour
                         ? "Stock: 0 - AGOTADO"
                         : $"Stock: {item.stock} - ${precioActual}";
 
-                    texto.text = $"{lineaNombre}\n{lineaDescripcion}\n{lineaCantidadPrecio}";
+                    texto.text = $"{lineaNombre}\n{lineaCantidadPrecio}";
                 }
 
                 boton.onClick.RemoveAllListeners();

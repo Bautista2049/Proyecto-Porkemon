@@ -24085,7 +24085,7 @@ GameObject:
   - component: {fileID: 1430636288}
   - component: {fileID: 1430636291}
   m_Layer: 0
-  m_Name: CargarMenu
+  m_Name: MenuPausa
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32315,7 +32315,7 @@ GameObject:
   - component: {fileID: 1941011789}
   - component: {fileID: 1941011788}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: Combate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -35429,7 +35429,7 @@ PrefabInstance:
     - target: {fileID: 7708817409545764753, guid: bab49e4d56774d44aa827f39c6dbffe5,
         type: 3}
       propertyPath: m_Name
-      value: GameObject
+      value: Combate
       objectReference: {fileID: 0}
     - target: {fileID: 7708817409545764758, guid: bab49e4d56774d44aa827f39c6dbffe5,
         type: 3}

@@ -10,7 +10,7 @@ public class Transicion_Tienda : MonoBehaviour
         {
             GameState.modoTienda = true;
             GameState.posicionJugadorGuardadaDisponible = false;
-            SceneManager.LoadScene("Escena Tienda");
+            SceneManager.LoadScene("Escena TiendaInterior");
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
         }

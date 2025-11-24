@@ -14,7 +14,7 @@ public static class GameState
     public static string nombreGanador;
     public static int experienciaGanada = 0;
     public static List<Porkemon> equipoGanador = new List<Porkemon>();
-    public static int dineroJugador = 0;
+    public static int dineroJugador = 500;
     public static int dineroGanado = 0;
     public static bool victoriaFueCaptura = false;
     public static bool modoOrdenamiento = false;
