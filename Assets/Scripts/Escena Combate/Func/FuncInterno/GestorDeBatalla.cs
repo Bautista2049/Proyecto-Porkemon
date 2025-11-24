@@ -15,6 +15,23 @@ public class GestorDeBatalla : MonoBehaviour
     }
     public static GestorDeBatalla instance;
 
+    [Header("Musica General")]
+    public bool usarPlaylist = false;
+    public AudioClip musicaUnica;
+    public List<AudioClip> playlist;
+
+    [Header("Musica Combate")]
+    public AudioClip musicaCombate;
+
+    [Range(0f, 1f)]
+    public float volumenMusicaNormal = 0.7f;
+    [Range(0f, 1f)]
+    public float volumenMusicaCombate = 0.8f;
+
+    private AudioSource musicSource;
+    private Coroutine playlistCoroutine;
+    private int playlistIndex = 0;
+
     public List<Porkemon> equipoJugador = new List<Porkemon>();
     public List<Porkemon> equipoBot = new List<Porkemon>();
     public Porkemon porkemonBot;
@@ -41,11 +58,32 @@ public class GestorDeBatalla : MonoBehaviour
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
+
+            musicSource = GetComponent<AudioSource>();
+            if (musicSource == null)
+            {
+                musicSource = gameObject.AddComponent<AudioSource>();
+            }
+            musicSource.playOnAwake = false;
+            musicSource.loop = false;
+
+            SceneManager.sceneLoaded += OnSceneLoaded;
+
             ResetearCombate();
+
+            OnSceneLoaded(SceneManager.GetActiveScene(), LoadSceneMode.Single);
         }
         else
         {
             Destroy(gameObject);
+        }
+    }
+
+    private void OnDestroy()
+    {
+        if (instance == this)
+        {
+            SceneManager.sceneLoaded -= OnSceneLoaded;
         }
     }
 
@@ -115,6 +153,85 @@ public class GestorDeBatalla : MonoBehaviour
         }
 
         combateIniciado = false;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (scene.name == "Escena de Combate")
+        {
+            PlayBattleMusic();
+        }
+        else
+        {
+            PlayWorldMusic();
+        }
+    }
+
+    private void PlayWorldMusic()
+    {
+        if (musicSource == null)
+            return;
+
+        if (playlistCoroutine != null)
+        {
+            StopCoroutine(playlistCoroutine);
+            playlistCoroutine = null;
+        }
+
+        if (usarPlaylist && playlist != null && playlist.Count > 0)
+        {
+            playlistIndex = 0;
+            playlistCoroutine = StartCoroutine(PlaylistLoop());
+        }
+        else if (musicaUnica != null)
+        {
+            musicSource.loop = true;
+            musicSource.clip = musicaUnica;
+            musicSource.volume = volumenMusicaNormal;
+            musicSource.Play();
+        }
+    }
+
+    private IEnumerator PlaylistLoop()
+    {
+        while (true)
+        {
+            if (playlist == null || playlist.Count == 0)
+                yield break;
+
+            if (playlistIndex >= playlist.Count)
+                playlistIndex = 0;
+
+            AudioClip clip = playlist[playlistIndex];
+            playlistIndex++;
+
+            if (clip == null)
+                continue;
+
+            musicSource.loop = false;
+            musicSource.clip = clip;
+            musicSource.volume = volumenMusicaNormal;
+            musicSource.Play();
+
+            yield return new WaitForSeconds(clip.length);
+        }
+    }
+
+    private void PlayBattleMusic()
+    {
+        if (musicSource == null || musicaCombate == null)
+            return;
+
+        if (playlistCoroutine != null)
+        {
+            StopCoroutine(playlistCoroutine);
+            playlistCoroutine = null;
+        }
+
+        musicSource.loop = true;
+        musicSource.clip = musicaCombate;
+        musicSource.volume = volumenMusicaCombate;
+        musicSource.Play();
     }
 
     public void IniciarBatalla()

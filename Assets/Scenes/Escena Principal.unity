@@ -20297,6 +20297,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81155f9b566743f488ca8f4cdbfa2f01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  usarPlaylist: 1
+  musicaUnica: {fileID: 0}
+  playlist:
+  - {fileID: 8300000, guid: 050fb5ebf3cd689498ccfcc9b604aec6, type: 3}
+  - {fileID: 8300000, guid: 8ca38db88de5acb4cb8de65b4bc9664c, type: 3}
+  - {fileID: 8300000, guid: 61b471023afa97b428d9037f700d4119, type: 3}
+  - {fileID: 8300000, guid: a738c83f67bceff4eab1952c324f1d81, type: 3}
+  - {fileID: 8300000, guid: cbcf781fb8881e948984f4bf9fb7c8f3, type: 3}
+  - {fileID: 8300000, guid: 9ffdb149033aa994981db29f4ac379d8, type: 3}
+  - {fileID: 8300000, guid: 8dd06205117506e4bb3f9c6e5bc26a76, type: 3}
+  musicaCombate: {fileID: 8300000, guid: be107f3d88d881c45965b393ebc6e8c9, type: 3}
+  volumenMusicaNormal: 0.38
+  volumenMusicaCombate: 0.33
   dataEquipoJugador:
   - {fileID: 11400000, guid: 6c9eb4021237ff14a82c44f71a59ea8a, type: 2}
   dataInicialBot: {fileID: 11400000, guid: 448fd5351b275e94b8999870f99c542d, type: 2}
