@@ -29,8 +29,11 @@ public class GestorDeBatalla : MonoBehaviour
     public float volumenMusicaCombate = 0.8f;
 
     private AudioSource musicSource;
+    private AudioSource battleMusicSource;
     private Coroutine playlistCoroutine;
     private int playlistIndex = 0;
+    private bool worldPaused = false;
+    private bool inBattle = false;
 
     public List<Porkemon> equipoJugador = new List<Porkemon>();
     public List<Porkemon> equipoBot = new List<Porkemon>();
@@ -66,6 +69,10 @@ public class GestorDeBatalla : MonoBehaviour
             }
             musicSource.playOnAwake = false;
             musicSource.loop = false;
+
+            battleMusicSource = gameObject.AddComponent<AudioSource>();
+            battleMusicSource.playOnAwake = false;
+            battleMusicSource.loop = true;
 
             SceneManager.sceneLoaded += OnSceneLoaded;
 
@@ -159,11 +166,54 @@ public class GestorDeBatalla : MonoBehaviour
     {
         if (scene.name == "Escena de Combate")
         {
+            inBattle = true;
+
+            if (musicSource != null && musicSource.isPlaying)
+            {
+                worldPaused = true;
+                musicSource.Pause();
+            }
+
             PlayBattleMusic();
         }
         else
         {
-            PlayWorldMusic();
+            // Escenas de mundo (no combate)
+            if (inBattle)
+            {
+                // Venimos de un combate: detener música de combate y reanudar la del mundo
+                inBattle = false;
+
+                if (battleMusicSource != null && battleMusicSource.isPlaying)
+                {
+                    battleMusicSource.Stop();
+                }
+
+                if (musicSource != null && musicSource.clip != null)
+                {
+                    worldPaused = false;
+                    musicSource.volume = volumenMusicaNormal;
+                    musicSource.UnPause();
+                }
+                else
+                {
+                    PlayWorldMusic();
+                }
+
+                if (usarPlaylist && playlist != null && playlist.Count > 0 && playlistCoroutine == null)
+                {
+                    playlistCoroutine = StartCoroutine(PlaylistLoop());
+                }
+            }
+            else
+            {
+                // Primera escena de mundo o recarga sin haber pasado por combate.
+                if (musicSource == null || (!musicSource.isPlaying && musicSource.clip == null))
+                {
+                    PlayWorldMusic();
+                }
+                // Si ya hay música del mundo sonando, no hacemos nada para no reiniciarla.
+            }
         }
     }
 
@@ -172,19 +222,27 @@ public class GestorDeBatalla : MonoBehaviour
         if (musicSource == null)
             return;
 
-        if (playlistCoroutine != null)
-        {
-            StopCoroutine(playlistCoroutine);
-            playlistCoroutine = null;
-        }
+        worldPaused = false;
 
         if (usarPlaylist && playlist != null && playlist.Count > 0)
         {
-            playlistIndex = 0;
-            playlistCoroutine = StartCoroutine(PlaylistLoop());
+            // Iniciar playlist solo si aún no está corriendo
+            if (playlistCoroutine == null)
+            {
+                playlistCoroutine = StartCoroutine(PlaylistLoop());
+            }
         }
         else if (musicaUnica != null)
         {
+            if (musicSource.clip == musicaUnica && musicSource.isPlaying)
+                return; // Ya se está reproduciendo
+
+            if (playlistCoroutine != null)
+            {
+                StopCoroutine(playlistCoroutine);
+                playlistCoroutine = null;
+            }
+
             musicSource.loop = true;
             musicSource.clip = musicaUnica;
             musicSource.volume = volumenMusicaNormal;
@@ -199,39 +257,51 @@ public class GestorDeBatalla : MonoBehaviour
             if (playlist == null || playlist.Count == 0)
                 yield break;
 
-            if (playlistIndex >= playlist.Count)
-                playlistIndex = 0;
-
-            AudioClip clip = playlist[playlistIndex];
-            playlistIndex++;
-
-            if (clip == null)
+            // Si la música del mundo está pausada (por combate), espera a que se reanude
+            if (worldPaused)
+            {
+                yield return null;
                 continue;
+            }
 
-            musicSource.loop = false;
-            musicSource.clip = clip;
-            musicSource.volume = volumenMusicaNormal;
-            musicSource.Play();
+            // Si no hay nada sonando, iniciar o continuar la playlist
+            if (!musicSource.isPlaying)
+            {
+                if (musicSource.clip == null || !playlist.Contains(musicSource.clip))
+                {
+                    if (playlistIndex >= playlist.Count)
+                        playlistIndex = 0;
 
-            yield return new WaitForSeconds(clip.length);
+                    AudioClip clip = playlist[playlistIndex];
+                    playlistIndex++;
+
+                    if (clip == null)
+                    {
+                        yield return null;
+                        continue;
+                    }
+
+                    musicSource.loop = false;
+                    musicSource.clip = clip;
+                    musicSource.time = 0f;
+                    musicSource.volume = volumenMusicaNormal;
+                    musicSource.Play();
+                }
+            }
+
+            yield return null;
         }
     }
 
     private void PlayBattleMusic()
     {
-        if (musicSource == null || musicaCombate == null)
+        if (battleMusicSource == null || musicaCombate == null)
             return;
 
-        if (playlistCoroutine != null)
-        {
-            StopCoroutine(playlistCoroutine);
-            playlistCoroutine = null;
-        }
-
-        musicSource.loop = true;
-        musicSource.clip = musicaCombate;
-        musicSource.volume = volumenMusicaCombate;
-        musicSource.Play();
+        battleMusicSource.loop = true;
+        battleMusicSource.clip = musicaCombate;
+        battleMusicSource.volume = volumenMusicaCombate;
+        battleMusicSource.Play();
     }
 
     public void IniciarBatalla()

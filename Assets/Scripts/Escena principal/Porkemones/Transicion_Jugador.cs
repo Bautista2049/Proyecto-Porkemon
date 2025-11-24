@@ -11,7 +11,7 @@ public class Transicion_Jugador : MonoBehaviour
             GameState.posicionJugadorGuardadaDisponible = false;
             SceneManager.LoadScene("Escena CasaJ1");
             Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
+            Cursor.visible = false;
         }
     }
 }
