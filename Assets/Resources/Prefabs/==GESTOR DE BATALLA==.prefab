@@ -84,3 +84,5 @@ MonoBehaviour:
     type: 3}
   psImpactoTierra: {fileID: 1139705686843132568, guid: 93541158508e58d479e38aa57ff179eb,
     type: 3}
+  psImpactoGenerico: {fileID: 5443067328485613451, guid: ab4cd19b4d69658449e0d3f34b148c1b,
+    type: 3}

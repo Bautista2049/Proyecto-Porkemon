@@ -35096,6 +35096,12 @@ PrefabInstance:
       propertyPath: cameraCombate
       value: 
       objectReference: {fileID: 534669904}
+    - target: {fileID: 5090179195071123133, guid: c10628d43ccf2a74daff36c86dd85205,
+        type: 3}
+      propertyPath: psImpactoGenerico
+      value: 
+      objectReference: {fileID: 5443067328485613451, guid: ab4cd19b4d69658449e0d3f34b148c1b,
+        type: 3}
     - target: {fileID: 5090179195071123134, guid: c10628d43ccf2a74daff36c86dd85205,
         type: 3}
       propertyPath: m_Name
