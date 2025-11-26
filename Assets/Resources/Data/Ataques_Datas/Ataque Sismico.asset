@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nombreAtaque: Ataque Sismico
   descripcion: Poderoso ataque de tipo lucha a la tierra
-  tipo: 8
+  tipo: 16
   categoria: 0
   poder: 100
   precision: 90

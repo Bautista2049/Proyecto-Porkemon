@@ -58,6 +58,7 @@ public class GestorDeBatalla : MonoBehaviour
     public ParticleSystem psImpactoVeneno;
     public ParticleSystem psImpactoRoca;
     public ParticleSystem psImpactoTierra;
+    public ParticleSystem psImpactoGenerico;
 
     private Coroutine shakeCoroutine;
 
@@ -500,85 +501,58 @@ public class GestorDeBatalla : MonoBehaviour
         if (ataque == null)
             return;
 
-        Transform posImpacto = null;
+        Transform posImpacto = ObtenerPosImpacto(defensor);
+        ParticleSystem prefab = ObtenerParticulaImpacto(ataque.tipo);
 
+        if (prefab != null)
+            InstanciarParticulaImpacto(prefab, posImpacto);
+
+        if (ataque.tipo == TipoElemental.Roca || ataque.tipo == TipoElemental.Tierra)
+            IniciarSacudidaCamara(0.15f, 0.4f);
+    }
+
+    private ParticleSystem ObtenerParticulaImpacto(TipoElemental tipo)
+    {
+        switch (tipo)
+        {
+            case TipoElemental.Fuego: return psImpactoFuego;
+            case TipoElemental.Agua: return psImpactoAgua;
+            case TipoElemental.Planta: return psImpactoPlanta;
+            case TipoElemental.Electrico: return psImpactoElectrico;
+            case TipoElemental.Hielo: return psImpactoHielo;
+            case TipoElemental.Veneno: return psImpactoVeneno;
+            case TipoElemental.Roca: return psImpactoRoca;
+            case TipoElemental.Tierra: return psImpactoTierra;
+            default: return psImpactoGenerico != null ? psImpactoGenerico : psImpactoFuego;
+        }
+    }
+
+    private Transform ObtenerPosImpacto(Porkemon defensor)
+    {
         if (defensor != null)
         {
             if (defensor == porkemonBot || defensor == GameState.porkemonDelBot)
-                posImpacto = puntoSpawnBot;
-            else if (defensor == porkemonJugador || defensor == GameState.porkemonDelJugador)
-                posImpacto = posicionJugador;
+                return puntoSpawnBot ?? posicionJugador;
+
+            if (defensor == porkemonJugador || defensor == GameState.porkemonDelJugador)
+                return posicionJugador ?? puntoSpawnBot;
         }
 
-        switch (ataque.tipo)
-        {
-            case TipoElemental.Fuego:
-                if (psImpactoFuego != null)
-                {
-                    if (posImpacto != null)
-                        psImpactoFuego.transform.position = posImpacto.position;
-                    psImpactoFuego.Play();
-                }
-                break;
-            case TipoElemental.Agua:
-                if (psImpactoAgua != null)
-                {
-                    if (posImpacto != null)
-                        psImpactoAgua.transform.position = posImpacto.position;
-                    psImpactoAgua.Play();
-                }
-                break;
-            case TipoElemental.Planta:
-                if (psImpactoPlanta != null)
-                {
-                    if (posImpacto != null)
-                        psImpactoPlanta.transform.position = posImpacto.position;
-                    psImpactoPlanta.Play();
-                }
-                break;
-            case TipoElemental.Electrico:
-                if (psImpactoElectrico != null)
-                {
-                    if (posImpacto != null)
-                        psImpactoElectrico.transform.position = posImpacto.position;
-                    psImpactoElectrico.Play();
-                }
-                break;
-            case TipoElemental.Hielo:
-                if (psImpactoHielo != null)
-                {
-                    if (posImpacto != null)
-                        psImpactoHielo.transform.position = posImpacto.position;
-                    psImpactoHielo.Play();
-                }
-                break;
-            case TipoElemental.Veneno:
-                if (psImpactoVeneno != null)
-                {
-                    if (posImpacto != null)
-                        psImpactoVeneno.transform.position = posImpacto.position;
-                    psImpactoVeneno.Play();
-                }
-                break;
-            case TipoElemental.Roca:
-                if (psImpactoRoca != null)
-                {
-                    if (posImpacto != null)
-                        psImpactoRoca.transform.position = posImpacto.position;
-                    psImpactoRoca.Play();
-                }
-                IniciarSacudidaCamara(0.15f, 0.4f);
-                break;
-            case TipoElemental.Tierra:
-                if (psImpactoTierra != null)
-                {
-                    if (posImpacto != null)
-                        psImpactoTierra.transform.position = posImpacto.position;
-                    psImpactoTierra.Play();
-                }
-                IniciarSacudidaCamara(0.15f, 0.4f);
-                break;
-        }
+        return puntoSpawnBot ?? posicionJugador;
+    }
+
+    private void InstanciarParticulaImpacto(ParticleSystem prefab, Transform posImpacto)
+    {
+        if (prefab == null || posImpacto == null)
+            return;
+
+        ParticleSystem instancia = Instantiate(prefab, posImpacto.position, prefab.transform.rotation);
+
+        var main = instancia.main;
+        float duracion = main.duration + main.startLifetime.constantMax;
+        if (!instancia.isPlaying)
+            instancia.Play();
+        Destroy(instancia.gameObject, duracion);
     }
 
     public void IniciarSacudidaCamara(float intensidad, float duracion)
@@ -599,6 +573,7 @@ public class GestorDeBatalla : MonoBehaviour
 
         Transform camTransform = cameraCombate.transform;
         Vector3 posicionOriginal = camTransform.localPosition;
+        Quaternion rotacionOriginal = camTransform.localRotation;
         float tiempoTranscurrido = 0f;
 
         while (tiempoTranscurrido < duracion)
@@ -612,6 +587,7 @@ public class GestorDeBatalla : MonoBehaviour
         }
 
         camTransform.localPosition = posicionOriginal;
+        camTransform.localRotation = rotacionOriginal;
         shakeCoroutine = null;
     }
 }

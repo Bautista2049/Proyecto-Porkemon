@@ -17,6 +17,7 @@ MonoBehaviour:
     type: 3}
   tipo1: 1
   tipo2: 8
+  baseRate: 120
   nivel: 1
   vidaMaxima: 100
   ataque: 20
@@ -25,7 +26,7 @@ MonoBehaviour:
   velocidad: 20
   ataquesQuePuedeAprender:
   - {fileID: 11400000, guid: fc645ae56d94fcb42be00560cba1dc4f, type: 2}
-  - {fileID: 11400000, guid: b7f748cd018c3f04fa06c21f226040b7, type: 2}
+  - {fileID: 11400000, guid: 6e90b7d7c51dd1843b22d2730ca20f87, type: 2}
   - {fileID: 11400000, guid: 8d9ae9c7ded39044381e9da05ced7775, type: 2}
   evolucionSiguiente: {fileID: 0}
   nivelDeEvolucion: 0

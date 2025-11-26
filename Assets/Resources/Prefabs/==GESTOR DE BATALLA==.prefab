@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5090179195071123134}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 455, y: 63, z: 0}
+  m_LocalPosition: {x: -315.5232, y: 1.1183271, z: 89.55482}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -43,5 +43,44 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81155f9b566743f488ca8f4cdbfa2f01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dataInicialJugador: {fileID: 11400000, guid: 6c9eb4021237ff14a82c44f71a59ea8a, type: 2}
+  usarPlaylist: 1
+  musicaUnica: {fileID: 0}
+  playlist:
+  - {fileID: 8300000, guid: 8ca38db88de5acb4cb8de65b4bc9664c, type: 3}
+  - {fileID: 8300000, guid: a738c83f67bceff4eab1952c324f1d81, type: 3}
+  - {fileID: 8300000, guid: 61b471023afa97b428d9037f700d4119, type: 3}
+  - {fileID: 8300000, guid: a738c83f67bceff4eab1952c324f1d81, type: 3}
+  - {fileID: 8300000, guid: cbcf781fb8881e948984f4bf9fb7c8f3, type: 3}
+  - {fileID: 8300000, guid: 9ffdb149033aa994981db29f4ac379d8, type: 3}
+  - {fileID: 8300000, guid: 8dd06205117506e4bb3f9c6e5bc26a76, type: 3}
+  musicaCombate: {fileID: 8300000, guid: 121a3395e0d8d6f49b2d7ce1b1da828a, type: 3}
+  volumenMusicaNormal: 0.38
+  volumenMusicaCombate: 0.33
+  dataEquipoJugador:
+  - {fileID: 11400000, guid: 6c9eb4021237ff14a82c44f71a59ea8a, type: 2}
   dataInicialBot: {fileID: 11400000, guid: 448fd5351b275e94b8999870f99c542d, type: 2}
+  puntoSpawnBot: {fileID: 3813264235576479706, guid: 51c0cc0f42413ae438a577a5a903ce48,
+    type: 3}
+  escalaModeloBot: {x: 2, y: 2, z: 2}
+  inventarioCompleto: []
+  inventarioBattleItems: []
+  combateIniciado: 0
+  posicionJugador: {fileID: 6726296229464280566, guid: 206fb3bd392131646a7cda1fe31b46fb,
+    type: 3}
+  cameraCombate: {fileID: 0}
+  psImpactoFuego: {fileID: 2031779268522411164, guid: 6217ecd352a86b04c80d3ba813cfc835,
+    type: 3}
+  psImpactoAgua: {fileID: 1554522841033017094, guid: 4d0b24fee214fdb41a8d2129d149e52a,
+    type: 3}
+  psImpactoPlanta: {fileID: 7302920326271358813, guid: 3d55c1ec2bc3b2d4e986748dfd0d2beb,
+    type: 3}
+  psImpactoElectrico: {fileID: 2135429689768353579, guid: 49584e3a871f3b7499b76089c5f2b861,
+    type: 3}
+  psImpactoHielo: {fileID: 7218791807954717453, guid: c3c25c253c7ae034d8f7807401f5f3cb,
+    type: 3}
+  psImpactoVeneno: {fileID: 7014119995738623063, guid: 74e205c9047d9024f9b8448a1053ec5c,
+    type: 3}
+  psImpactoRoca: {fileID: 1139705686843132568, guid: 93541158508e58d479e38aa57ff179eb,
+    type: 3}
+  psImpactoTierra: {fileID: 1139705686843132568, guid: 93541158508e58d479e38aa57ff179eb,
+    type: 3}

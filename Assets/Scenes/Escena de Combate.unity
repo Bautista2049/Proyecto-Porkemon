@@ -1152,12 +1152,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 14
   m_Mesh: {fileID: 4300000, guid: 0167bb69aa7275e46a2507173174adb7, type: 3}
---- !u!4 &335757306 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6718303528279375174, guid: d27181d38c02d864cad532c9f26ad33d,
-    type: 3}
-  m_PrefabInstance: {fileID: 6718303528615101116}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &340072638
 GameObject:
   m_ObjectHideFlags: 0
@@ -8848,72 +8842,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1720479141}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &856788137
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 856788139}
-  - component: {fileID: 856788138}
-  m_Layer: 0
-  m_Name: ' ==GESTOR DE BATALLA=='
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &856788138
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 856788137}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 81155f9b566743f488ca8f4cdbfa2f01, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  usarPlaylist: 0
-  musicaUnica: {fileID: 0}
-  playlist: []
-  musicaCombate: {fileID: 0}
-  volumenMusicaNormal: 0.7
-  volumenMusicaCombate: 0.8
-  dataEquipoJugador:
-  - {fileID: 11400000, guid: 6c9eb4021237ff14a82c44f71a59ea8a, type: 2}
-  dataInicialBot: {fileID: 11400000, guid: 6c9eb4021237ff14a82c44f71a59ea8a, type: 2}
-  puntoSpawnBot: {fileID: 335757306}
-  escalaModeloBot: {x: 3, y: 3, z: 3}
-  inventarioCompleto: []
-  inventarioBattleItems:
-  - type: 8
-    nombre: Porkebola
-    descripcion: 
-    cantidad: 2
-  - type: 11
-    nombre: Masterbola
-    descripcion: 
-    cantidad: 2
-  combateIniciado: 0
-  posicionJugador: {fileID: 1255231757}
---- !u!4 &856788139
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 856788137}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 455.27005, y: 63, z: 1.0800018}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 10
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &872798031
 GameObject:
   m_ObjectHideFlags: 0
@@ -10522,7 +10450,7 @@ Transform:
   m_LocalScale: {x: 51.6, y: 51.6, z: 51.6}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1255231757 stripped
 Transform:
