@@ -25,6 +25,9 @@ public static class PorkemonExtension
         if (!string.IsNullOrEmpty(mensaje))
             Debug.Log(mensaje);
 
+        if (GestorDeBatalla.instance != null)
+            GestorDeBatalla.instance.ReproducirEfectosAtaque(ataque, atacante, defensor);
+
         ataque.AplicarEfectoSecundario(defensor);
 
         return true;

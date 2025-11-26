@@ -49,6 +49,17 @@ public class GestorDeBatalla : MonoBehaviour
     public bool combateIniciado = false;
     public Transform posicionJugador;
     
+    public Camera cameraCombate;
+    public ParticleSystem psImpactoFuego;
+    public ParticleSystem psImpactoAgua;
+    public ParticleSystem psImpactoPlanta;
+    public ParticleSystem psImpactoElectrico;
+    public ParticleSystem psImpactoHielo;
+    public ParticleSystem psImpactoVeneno;
+    public ParticleSystem psImpactoRoca;
+    public ParticleSystem psImpactoTierra;
+
+    private Coroutine shakeCoroutine;
 
     private List<string> pokemonesParaAtrapar = new List<string>
     {
@@ -482,5 +493,125 @@ public class GestorDeBatalla : MonoBehaviour
                 inventarioCompleto.Remove(itemCompleto);
             }
         }
+    }
+
+    public void ReproducirEfectosAtaque(AtaqueData ataque, Porkemon atacante, Porkemon defensor)
+    {
+        if (ataque == null)
+            return;
+
+        Transform posImpacto = null;
+
+        if (defensor != null)
+        {
+            if (defensor == porkemonBot || defensor == GameState.porkemonDelBot)
+                posImpacto = puntoSpawnBot;
+            else if (defensor == porkemonJugador || defensor == GameState.porkemonDelJugador)
+                posImpacto = posicionJugador;
+        }
+
+        switch (ataque.tipo)
+        {
+            case TipoElemental.Fuego:
+                if (psImpactoFuego != null)
+                {
+                    if (posImpacto != null)
+                        psImpactoFuego.transform.position = posImpacto.position;
+                    psImpactoFuego.Play();
+                }
+                break;
+            case TipoElemental.Agua:
+                if (psImpactoAgua != null)
+                {
+                    if (posImpacto != null)
+                        psImpactoAgua.transform.position = posImpacto.position;
+                    psImpactoAgua.Play();
+                }
+                break;
+            case TipoElemental.Planta:
+                if (psImpactoPlanta != null)
+                {
+                    if (posImpacto != null)
+                        psImpactoPlanta.transform.position = posImpacto.position;
+                    psImpactoPlanta.Play();
+                }
+                break;
+            case TipoElemental.Electrico:
+                if (psImpactoElectrico != null)
+                {
+                    if (posImpacto != null)
+                        psImpactoElectrico.transform.position = posImpacto.position;
+                    psImpactoElectrico.Play();
+                }
+                break;
+            case TipoElemental.Hielo:
+                if (psImpactoHielo != null)
+                {
+                    if (posImpacto != null)
+                        psImpactoHielo.transform.position = posImpacto.position;
+                    psImpactoHielo.Play();
+                }
+                break;
+            case TipoElemental.Veneno:
+                if (psImpactoVeneno != null)
+                {
+                    if (posImpacto != null)
+                        psImpactoVeneno.transform.position = posImpacto.position;
+                    psImpactoVeneno.Play();
+                }
+                break;
+            case TipoElemental.Roca:
+                if (psImpactoRoca != null)
+                {
+                    if (posImpacto != null)
+                        psImpactoRoca.transform.position = posImpacto.position;
+                    psImpactoRoca.Play();
+                }
+                IniciarSacudidaCamara(0.15f, 0.4f);
+                break;
+            case TipoElemental.Tierra:
+                if (psImpactoTierra != null)
+                {
+                    if (posImpacto != null)
+                        psImpactoTierra.transform.position = posImpacto.position;
+                    psImpactoTierra.Play();
+                }
+                IniciarSacudidaCamara(0.15f, 0.4f);
+                break;
+        }
+    }
+
+    public void IniciarSacudidaCamara(float intensidad, float duracion)
+    {
+        if (cameraCombate == null)
+            return;
+
+        if (shakeCoroutine != null)
+            StopCoroutine(shakeCoroutine);
+
+        shakeCoroutine = StartCoroutine(SacudirCamaraRutina(intensidad, duracion));
+    }
+
+    private IEnumerator SacudirCamaraRutina(float intensidad, float duracion)
+    {
+        if (cameraCombate == null)
+            yield break;
+
+        Transform camTransform = cameraCombate.transform;
+        Vector3 posicionOriginal = camTransform.localPosition;
+        float tiempoTranscurrido = 0f;
+
+        while (tiempoTranscurrido < duracion)
+        {
+            float desplazamientoX = Random.Range(-1f, 1f) * intensidad;
+            float desplazamientoY = Random.Range(-1f, 1f) * intensidad;
+            camTransform.localPosition = posicionOriginal + new Vector3(desplazamientoX, desplazamientoY, 0f);
+
+            tiempoTranscurrido += Time.deltaTime;
+            yield return null;
+        }
+
+        camTransform.localPosition = posicionOriginal;
+        shakeCoroutine = null;
     }
 }
