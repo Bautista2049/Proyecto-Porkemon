@@ -183,12 +183,14 @@ public class FuncTurnos : MonoBehaviour
             }
             else
             {
+                GameState.esCombateBoss = false;
                 SceneTransitionManager.Instance.LoadScene("Escena de muerte");
             }
         }
         else if (jugador2.porkemon.VidaActual <= 0)
         {
             GameState.nombreGanador = jugador1.porkemon.BaseData.nombre;
+
             int expBase = GestorDeBatalla.instance.equipoJugador.CalcularExperienciaGanada(new List<Porkemon> { jugador2.porkemon });
             GameState.experienciaGanada = Mathf.RoundToInt(expBase * Mathf.Max(0.1f, GameState.multiplicadorExp));
             GameState.equipoGanador = new List<Porkemon>(GestorDeBatalla.instance.equipoJugador);
@@ -202,6 +204,7 @@ public class FuncTurnos : MonoBehaviour
             GameState.multiplicadorExp = 1f;
             GameState.multiplicadorCaptura = 1f;
 
+            GameState.esCombateBoss = false;
             SceneTransitionManager.Instance.LoadScene("Escena de Victoria");
         }
     }
@@ -238,6 +241,22 @@ public class FuncTurnos : MonoBehaviour
 
         if (itemUsado.type == BattleItemType.Porkebola || itemUsado.type == BattleItemType.Superbola || itemUsado.type == BattleItemType.Ultrabola || itemUsado.type == BattleItemType.Masterbola)
         {
+            if (GameState.esCombateBoss)
+            {
+                if (ConsolaEnJuego.instance != null)
+                {
+                    yield return StartCoroutine(ConsolaEnJuego.instance.MostrarMensaje("No puedes capturar el Porkemon de un entrenador."));
+                }
+                else
+                {
+                    Debug.Log("No puedes capturar el Porkemon de un entrenador.");
+                }
+
+                enCombate = true;
+                corutinaEnEjecucion = false;
+                yield break;
+            }
+
             yield return StartCoroutine(RutinaLanzarPorkebola(itemUsado));
         }
         else
@@ -284,31 +303,38 @@ public class FuncTurnos : MonoBehaviour
             case BattleItemType.AtaqueX:
                 porkemon.AumentarAtaque(2);
                 Debug.Log($"{porkemon.BaseData.nombre} usó {item.nombre}. Ataque aumentado!");
+                if (GestorDeBatalla.instance != null)
+                    GestorDeBatalla.instance.ActivarBuffVisualJugador(-1f);
                 break;
             case BattleItemType.DefensaX:
                 porkemon.AumentarDefensa(2);
                 Debug.Log($"{porkemon.BaseData.nombre} usó {item.nombre}. Defensa aumentada!");
+                if (GestorDeBatalla.instance != null)
+                    GestorDeBatalla.instance.ActivarBuffVisualJugador(-1f);
                 break;
             case BattleItemType.AtaqueEspecialX:
                 porkemon.AumentarEspiritu(2);
                 Debug.Log($"{porkemon.BaseData.nombre} usó {item.nombre}. Ataque Especial aumentado!");
+                if (GestorDeBatalla.instance != null)
+                    GestorDeBatalla.instance.ActivarBuffVisualJugador(-1f);
                 break;
             case BattleItemType.DefensaEspecialX:
                 porkemon.AumentarEspiritu(2);
                 Debug.Log($"{porkemon.BaseData.nombre} usó {item.nombre}. Defensa Especial aumentada!");
+                if (GestorDeBatalla.instance != null)
+                    GestorDeBatalla.instance.ActivarBuffVisualJugador(-1f);
                 break;
             case BattleItemType.VelocidadX:
                 porkemon.AumentarVelocidad(2);
                 Debug.Log($"{porkemon.BaseData.nombre} usó {item.nombre}. Velocidad aumentada!");
+                if (GestorDeBatalla.instance != null)
+                    GestorDeBatalla.instance.ActivarBuffVisualJugador(-1f);
                 break;
             case BattleItemType.PrecisionX:
                 Debug.Log($"{porkemon.BaseData.nombre} usó {item.nombre}. Precisión aumentada!");
                 break;
             case BattleItemType.CriticoX:
                 Debug.Log($"{porkemon.BaseData.nombre} usó {item.nombre}. Índice crítico aumentado!");
-                break;
-            case BattleItemType.ProteccionX:
-                Debug.Log($"{porkemon.BaseData.nombre} usó {item.nombre}. Protección activada!");
                 break;
             case BattleItemType.RotoPremio:
                 GameState.multiplicadorDinero = 3f;
@@ -324,6 +350,8 @@ public class FuncTurnos : MonoBehaviour
                 porkemon.AumentarEspiritu(2);
                 porkemon.AumentarVelocidad(2);
                 Debug.Log($"{porkemon.BaseData.nombre} usó {item.nombre}. ¡Todas sus estadísticas han aumentado!");
+                if (GestorDeBatalla.instance != null)
+                    GestorDeBatalla.instance.ActivarBuffVisualJugador(-1f);
                 break;
             case BattleItemType.RotoCatch:
                 GameState.multiplicadorCaptura = 2f;

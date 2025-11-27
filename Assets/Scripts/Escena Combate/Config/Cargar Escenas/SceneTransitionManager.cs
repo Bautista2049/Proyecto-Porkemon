@@ -111,7 +111,7 @@ public class SceneTransitionManager : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        if (scene.name == "Escena de Combate")
+        if (scene.name == "Escena de Combate" || scene.name == "EscenaCombateBoss")
         {
             mainCamera = Camera.main;
             if (mainCamera != null)

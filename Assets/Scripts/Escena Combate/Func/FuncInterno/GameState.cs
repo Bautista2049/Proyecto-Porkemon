@@ -20,6 +20,7 @@ public static class GameState
     public static bool modoOrdenamiento = false;
     public static bool modoTienda = false;
     public static bool modoRevivir = false;
+    public static bool esCombateBoss = false;
     public static bool posicionJugadorGuardadaDisponible;
     public static Vector3 posicionJugadorGuardada;
     public static string escenaPosicionGuardada;

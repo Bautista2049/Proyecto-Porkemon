@@ -14,13 +14,9 @@ public class GestorDeBatalla : MonoBehaviour
          
     }
     public static GestorDeBatalla instance;
-
-    [Header("Musica General")]
     public bool usarPlaylist = false;
     public AudioClip musicaUnica;
     public List<AudioClip> playlist;
-
-    [Header("Musica Combate")]
     public AudioClip musicaCombate;
 
     [Range(0f, 1f)]
@@ -59,12 +55,14 @@ public class GestorDeBatalla : MonoBehaviour
     public ParticleSystem psImpactoRoca;
     public ParticleSystem psImpactoTierra;
     public ParticleSystem psImpactoGenerico;
+    public ParticleSystem psBuffJugador;
 
+    private ParticleSystem instanciaBuffJugador;
     private Coroutine shakeCoroutine;
 
     private List<string> pokemonesParaAtrapar = new List<string>
     {
-        "KittyZap", "Charmander", "PunchBug", "Draguscular"
+        "KittyZap", "Charmander", "PunchBug", "Draguscular", "Bellsprout"
     };
     
     private void Awake()
@@ -553,6 +551,45 @@ public class GestorDeBatalla : MonoBehaviour
         if (!instancia.isPlaying)
             instancia.Play();
         Destroy(instancia.gameObject, duracion);
+    }
+
+    public void ActivarBuffVisualJugador(float duracion = -1f)
+    {
+        if (psBuffJugador == null || posicionJugador == null)
+            return;
+
+        if (instanciaBuffJugador == null)
+        {
+            instanciaBuffJugador = Instantiate(psBuffJugador, posicionJugador.position, Quaternion.identity, posicionJugador);
+        }
+
+        instanciaBuffJugador.gameObject.SetActive(true);
+        instanciaBuffJugador.Play(true);
+
+        if (duracion > 0f)
+        {
+            StartCoroutine(DesactivarBuffVisualJugadorTrasTiempo(duracion));
+        }
+    }
+
+    private IEnumerator DesactivarBuffVisualJugadorTrasTiempo(float tiempo)
+    {
+        yield return new WaitForSeconds(tiempo);
+
+        if (instanciaBuffJugador != null)
+        {
+            instanciaBuffJugador.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+            instanciaBuffJugador.gameObject.SetActive(false);
+        }
+    }
+
+    public void DesactivarBuffVisualJugador()
+    {
+        if (instanciaBuffJugador != null)
+        {
+            instanciaBuffJugador.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+            instanciaBuffJugador.gameObject.SetActive(false);
+        }
     }
 
     public void IniciarSacudidaCamara(float intensidad, float duracion)

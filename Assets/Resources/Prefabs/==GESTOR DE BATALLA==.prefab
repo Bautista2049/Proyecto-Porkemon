@@ -43,7 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81155f9b566743f488ca8f4cdbfa2f01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  usarPlaylist: 1
+  usarPlaylist: 0
   musicaUnica: {fileID: 0}
   playlist:
   - {fileID: 8300000, guid: 8ca38db88de5acb4cb8de65b4bc9664c, type: 3}
@@ -59,14 +59,12 @@ MonoBehaviour:
   dataEquipoJugador:
   - {fileID: 11400000, guid: 6c9eb4021237ff14a82c44f71a59ea8a, type: 2}
   dataInicialBot: {fileID: 11400000, guid: 448fd5351b275e94b8999870f99c542d, type: 2}
-  puntoSpawnBot: {fileID: 3813264235576479706, guid: 51c0cc0f42413ae438a577a5a903ce48,
-    type: 3}
+  puntoSpawnBot: {fileID: 0}
   escalaModeloBot: {x: 2, y: 2, z: 2}
   inventarioCompleto: []
   inventarioBattleItems: []
   combateIniciado: 0
-  posicionJugador: {fileID: 6726296229464280566, guid: 206fb3bd392131646a7cda1fe31b46fb,
-    type: 3}
+  posicionJugador: {fileID: 0}
   cameraCombate: {fileID: 0}
   psImpactoFuego: {fileID: 2031779268522411164, guid: 6217ecd352a86b04c80d3ba813cfc835,
     type: 3}

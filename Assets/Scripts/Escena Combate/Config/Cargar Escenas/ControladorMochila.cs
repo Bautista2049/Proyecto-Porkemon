@@ -175,22 +175,32 @@ public class ControladorMochila : MonoBehaviour
             case BattleItemType.AtaqueX:
                 porkemon.AumentarAtaque(2);
                 Debug.Log($"{porkemon.BaseData.nombre} usó {item.nombre}. Ataque aumentado!");
+                if (GestorDeBatalla.instance != null)
+                    GestorDeBatalla.instance.ActivarBuffVisualJugador(-1f);
                 break;
             case BattleItemType.DefensaX:
                 porkemon.AumentarDefensa(2);
                 Debug.Log($"{porkemon.BaseData.nombre} usó {item.nombre}. Defensa aumentada!");
+                if (GestorDeBatalla.instance != null)
+                    GestorDeBatalla.instance.ActivarBuffVisualJugador(-1f);
                 break;
             case BattleItemType.AtaqueEspecialX:
                 porkemon.AumentarEspiritu(2);
                 Debug.Log($"{porkemon.BaseData.nombre} usó {item.nombre}. Ataque Especial aumentado!");
+                if (GestorDeBatalla.instance != null)
+                    GestorDeBatalla.instance.ActivarBuffVisualJugador(-1f);
                 break;
             case BattleItemType.DefensaEspecialX:
                 porkemon.AumentarEspiritu(2);
                 Debug.Log($"{porkemon.BaseData.nombre} usó {item.nombre}. Defensa Especial aumentada!");
+                if (GestorDeBatalla.instance != null)
+                    GestorDeBatalla.instance.ActivarBuffVisualJugador(-1f);
                 break;
             case BattleItemType.VelocidadX:
                 porkemon.AumentarVelocidad(2);
                 Debug.Log($"{porkemon.BaseData.nombre} usó {item.nombre}. Velocidad aumentada!");
+                if (GestorDeBatalla.instance != null)
+                    GestorDeBatalla.instance.ActivarBuffVisualJugador(-1f);
                 break;
             case BattleItemType.PrecisionX:
                 Debug.Log($"{porkemon.BaseData.nombre} usó {item.nombre}. Precisión aumentada!");
@@ -227,6 +237,8 @@ public class ControladorMochila : MonoBehaviour
                 porkemon.AumentarEspiritu(2);
                 porkemon.AumentarVelocidad(2);
                 Debug.Log($"{porkemon.BaseData.nombre} usó {item.nombre}. ¡Todas sus estadísticas han aumentado!");
+                if (GestorDeBatalla.instance != null)
+                    GestorDeBatalla.instance.ActivarBuffVisualJugador(-1f);
                 break;
             case BattleItemType.RotoCatch:
                 GameState.multiplicadorCaptura = 2f;

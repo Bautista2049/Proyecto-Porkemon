@@ -91,7 +91,7 @@ public class ConsolaEnJuego : MonoBehaviour
         
         if (mostrarSoloEnCombate)
         {
-            bool esCombate = sceneName == "Escena de Combate";
+            bool esCombate = sceneName == "Escena de Combate" || sceneName == "EscenaCombateBoss";
             MostrarConsola(esCombate);
         }
         else
@@ -99,7 +99,7 @@ public class ConsolaEnJuego : MonoBehaviour
             MostrarConsola(true);
         }
         
-        if (sceneName == "Escena de Combate")
+        if (sceneName == "Escena de Combate" || sceneName == "EscenaCombateBoss")
         {
             ResetConsole();
         }

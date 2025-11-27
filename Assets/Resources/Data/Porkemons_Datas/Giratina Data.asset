@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cfe5e20a480e9148859b0f488dadf57, type: 3}
+  m_Name: Giratina Data
+  m_EditorClassIdentifier: 
+  nombre: Giratina
+  modeloPrefab: {fileID: 2445901872350055439, guid: 4c8d05029ad1f5741be81830438c31c5,
+    type: 3}
+  tipo1: 7
+  tipo2: 13
+  baseRate: 1000
+  nivel: 20
+  vidaMaxima: 1000
+  ataque: 100
+  defensa: 20
+  espiritu: 20000
+  velocidad: 2
+  ataquesQuePuedeAprender:
+  - {fileID: 11400000, guid: b188d3e88e443934f911d4b611efc374, type: 2}
+  - {fileID: 11400000, guid: 1664256c305bce04281c664ae279d8cf, type: 2}
+  - {fileID: 11400000, guid: 71c37af836d836545b320a774ed0b823, type: 2}
+  - {fileID: 11400000, guid: 20f65e7e3e59ccd45a4aea878989bbe6, type: 2}
+  evolucionSiguiente: {fileID: 0}
+  nivelDeEvolucion: 0
+  naturaleza: 2
+  tasaCrecimiento: 4
+  experienciaBase: 200

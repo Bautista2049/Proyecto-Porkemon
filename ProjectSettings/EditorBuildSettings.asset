@@ -32,4 +32,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Escena Tienda.unity
     guid: f3708760ae637ca47b5487b869b1a432
+  - enabled: 1
+    path: Assets/Scenes/EscenaCombateBoss.unity
+    guid: 56142669696a0194aa3421983491eb40
   m_configObjects: {}

@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nombreAtaque: Manchar
   descripcion: Suelta un poco de liquido el cual moja tu oponente
-  tipo: 2
+  tipo: 7
   categoria: 0
   poder: 30
   precision: 100
-  pp: 40
+  pp: 39
   chanceCritico: 100
