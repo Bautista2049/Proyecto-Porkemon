@@ -14114,6 +14114,12 @@ PrefabInstance:
       propertyPath: cameraCombate
       value: 
       objectReference: {fileID: 965146521}
+    - target: {fileID: 5090179195071123133, guid: c10628d43ccf2a74daff36c86dd85205,
+        type: 3}
+      propertyPath: psBuffJugador
+      value: 
+      objectReference: {fileID: 7585669420758129859, guid: b59e030c5761a8e47a3f3acc998a6985,
+        type: 3}
     - target: {fileID: 5090179195071123134, guid: c10628d43ccf2a74daff36c86dd85205,
         type: 3}
       propertyPath: m_Name
