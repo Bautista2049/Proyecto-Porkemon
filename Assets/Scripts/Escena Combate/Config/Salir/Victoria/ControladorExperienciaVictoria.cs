@@ -46,7 +46,16 @@ public class ControladorExperienciaVictoria : MonoBehaviour
 
      
         yield return new WaitForSeconds(3f);
-        SceneTransitionManager.Instance.LoadScene("Escena Principal");
+        
+        CargarEscPrincipal cargador = FindObjectOfType<CargarEscPrincipal>();
+        if (cargador != null && GameState.esCombateBoss)
+        {
+            cargador.RecargarEscenaBoss();
+        }
+        else
+        {
+            SceneTransitionManager.Instance.LoadScene("Escena Principal");
+        }
     }
 
     private IEnumerator AnimarExperienciaPorkemon(Porkemon porkemon)

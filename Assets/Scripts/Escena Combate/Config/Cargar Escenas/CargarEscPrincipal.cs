@@ -48,4 +48,27 @@ public class CargarEscPrincipal : MonoBehaviour
     {
         Application.Quit();
     }
+
+    public void RecargarEscenaBoss()
+    {
+        if (GameState.esCombateBoss)
+        {
+            GameState.porkemonDelBot = new Porkemon(GameState.porkemonDelBot.BaseData, GameState.porkemonDelBot.Nivel);
+            
+            if (GestorDeBatalla.instance != null)
+            {
+                GestorDeBatalla.instance.combateIniciado = false;
+            }
+            
+            Camera mainCamera = Camera.main;
+            if (mainCamera != null)
+            {
+                Object.DontDestroyOnLoad(mainCamera.gameObject);
+            }
+            
+            SceneTransitionManager.Instance.LoadScene("EscenaCombateBoss");
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
+    }
 }

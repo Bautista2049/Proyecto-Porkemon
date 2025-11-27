@@ -447,8 +447,14 @@ public class ControladorCambio : MonoBehaviour
             GameState.itemSeleccionado = null;
             GameState.modoRevivir = false;
 
-            GameState.player1Turn = false;
-            SceneTransitionManager.Instance.LoadScene("Escena de combate");
+            if (GameState.esCombateBoss)
+            {
+                SceneTransitionManager.Instance.LoadScene("EscenaCombateBoss");
+            }
+            else
+            {
+                SceneTransitionManager.Instance.LoadScene("Escena de combate");
+            }
             return;
         }
 
@@ -462,7 +468,14 @@ public class ControladorCambio : MonoBehaviour
 
         GameState.player1Turn = false;
 
-        SceneTransitionManager.Instance.LoadScene("Escena de combate");
+        if (GameState.esCombateBoss)
+        {
+            SceneTransitionManager.Instance.LoadScene("EscenaCombateBoss");
+        }
+        else
+        {
+            SceneTransitionManager.Instance.LoadScene("Escena de combate");
+        }
     }
     
     private void ToggleSeleccionObjeto(int index)
@@ -550,7 +563,16 @@ public class ControladorCambio : MonoBehaviour
                 
             primerSeleccionado = -1;
             GameState.modoOrdenamiento = false;
-            SceneTransitionManager.Instance.LoadScene("Escena Principal");
+            
+            CargarEscPrincipal cargador = FindObjectOfType<CargarEscPrincipal>();
+            if (cargador != null && GameState.esCombateBoss)
+            {
+                cargador.RecargarEscenaBoss();
+            }
+            else
+            {
+                SceneTransitionManager.Instance.LoadScene("Escena Principal");
+            }
         }
     }
 
@@ -570,7 +592,15 @@ public class ControladorCambio : MonoBehaviour
         else
         {
             GameState.player1Turn = true;
-            SceneTransitionManager.Instance.LoadScene("Escena de combate");
+            
+            if (GameState.esCombateBoss)
+            {
+                SceneTransitionManager.Instance.LoadScene("EscenaCombateBoss");
+            }
+            else
+            {
+                SceneTransitionManager.Instance.LoadScene("Escena de combate");
+            }
         }
     }
     
@@ -582,6 +612,15 @@ public class ControladorCambio : MonoBehaviour
         }
         primerSeleccionado = -1;
         GameState.modoOrdenamiento = false;
-        SceneTransitionManager.Instance.LoadScene("Escena Principal");
+        
+        CargarEscPrincipal cargador = FindObjectOfType<CargarEscPrincipal>();
+        if (cargador != null && GameState.esCombateBoss)
+        {
+            cargador.RecargarEscenaBoss();
+        }
+        else
+        {
+            SceneTransitionManager.Instance.LoadScene("Escena Principal");
+        }
     }
 }
