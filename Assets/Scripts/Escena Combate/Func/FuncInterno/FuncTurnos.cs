@@ -204,6 +204,9 @@ public class FuncTurnos : MonoBehaviour
             GameState.multiplicadorExp = 1f;
             GameState.multiplicadorCaptura = 1f;
 
+            // Incrementar contador de misión si está activa
+            SistemaMisiones.IncrementarCombates();
+
             GameState.esCombateBoss = false;
             SceneTransitionManager.Instance.LoadScene("Escena de Victoria");
         }
@@ -415,6 +418,10 @@ public class FuncTurnos : MonoBehaviour
             if (audioSource && audioCaptura) audioSource.PlayOneShot(audioCaptura);
             yield return new WaitForSeconds(2f);
             Destroy(pokebolaInstancia);
+            
+            // Incrementar contador de misión por captura
+            SistemaMisiones.IncrementarCombates();
+            
             GestorDeBatalla.instance.PokemonCapturado(porkemonSalvaje);
         }
         else

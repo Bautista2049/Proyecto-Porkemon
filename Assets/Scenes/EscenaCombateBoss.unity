@@ -9950,6 +9950,8 @@ GameObject:
   - component: {fileID: 1131002165}
   - component: {fileID: 1131002164}
   - component: {fileID: 1131002163}
+  - component: {fileID: 1131002167}
+  - component: {fileID: 1131002166}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -10035,6 +10037,41 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &1131002166
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1131002161}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b9e28efc6a65b248b0663e78e389b23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  referenceResolution: {x: 1024, y: 768}
+--- !u!114 &1131002167
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1131002161}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1980459831, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_UiScaleMode: 0
+  m_ReferencePixelsPerUnit: 100
+  m_ScaleFactor: 1
+  m_ReferenceResolution: {x: 800, y: 600}
+  m_ScreenMatchMode: 0
+  m_MatchWidthOrHeight: 0
+  m_PhysicalUnit: 3
+  m_FallbackScreenDPI: 96
+  m_DefaultSpriteDPI: 96
+  m_DynamicPixelsPerUnit: 1
 --- !u!1 &1163583766 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3188078610943905287, guid: 2648c118e0557c344807f2433444977e,
@@ -14535,6 +14572,7 @@ GameObject:
   - component: {fileID: 2004767054}
   - component: {fileID: 2004767053}
   - component: {fileID: 2004767052}
+  - component: {fileID: 2004767056}
   m_Layer: 5
   m_Name: Canvas (1)
   m_TagString: EditorOnly
@@ -14580,7 +14618,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b9e28efc6a65b248b0663e78e389b23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  referenceResolution: {x: 1064, y: 768}
+  referenceResolution: {x: 1024, y: 768}
 --- !u!114 &2004767053
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14641,6 +14679,19 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &2004767056
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2004767050}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b9e28efc6a65b248b0663e78e389b23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  referenceResolution: {x: 1024, y: 768}
 --- !u!1 &2007272104
 GameObject:
   m_ObjectHideFlags: 0
