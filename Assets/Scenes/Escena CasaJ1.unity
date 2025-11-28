@@ -1783,7 +1783,7 @@ MonoBehaviour:
   duracionMensajeNoEsNoche: 2
   teclaDormir: 101
   "duracionSimulacionSue\xF1o": 3
-  distanciaMaximaInteraccion: 7.36
+  distanciaMaximaInteraccion: 10
 --- !u!4 &1740165673
 Transform:
   m_ObjectHideFlags: 0

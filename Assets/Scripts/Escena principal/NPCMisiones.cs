@@ -53,50 +53,6 @@ public class NPCMisiones : MonoBehaviour
         // Actualizar UI basado en el estado de la misión
         ActualizarEstadoUI();
 
-        // Inicializar diálogos por defecto si no están configurados
-        if (dialogoInicial.Length == 0)
-        {
-            dialogoInicial = new string[]
-            {
-                "Hola viajero",
-                "No pareces de estos lares",
-                "Si ayudas con un problema que tengo te compensaré",
-                "Necesito que derrotes o captures cinco pokemones salvajes",
-                "Hazlo y te daré algo que te será muy útil en tu aventura"
-            };
-        }
-
-        if (dialogoMisionActiva.Length == 0)
-        {
-            dialogoMisionActiva = new string[]
-            {
-                "Sigue adelante, viajero",
-                "Recuerda que necesito que derrotes o captures cinco pokemones salvajes",
-                "Vuelve cuando hayas completado tu tarea"
-            };
-        }
-
-        if (dialogoMisionCompletada.Length == 0)
-        {
-            dialogoMisionCompletada = new string[]
-            {
-                "¡Excelente trabajo, viajero!",
-                "Has completado la misión que te encomendé",
-                "Como prometí, aquí tienes tu recompensa",
-                "Te daré una Ultrabola y un Charmander que te serán de gran ayuda"
-            };
-        }
-
-        if (dialogoRecompensaEntregada.Length == 0)
-        {
-            dialogoRecompensaEntregada = new string[]
-            {
-                "Gracias por tu ayuda, viajero",
-                "Espero que esta Ultrabola y tu nuevo Charmander te sirvan bien en tu aventura",
-                "¡Buena suerte en tu viaje!"
-            };
-        }
-
         // Ocultar UI al inicio
         if (panelDialogo != null)
             panelDialogo.SetActive(false);
@@ -199,19 +155,19 @@ public class NPCMisiones : MonoBehaviour
             // Mostrar el diálogo apropiado basado en el estado de la misión
             if (controladorMisiones.recompensaEntregada)
             {
-                MostrarDialogo(dialogoRecompensaEntregada);
+                MostrarDialogo(controladorMisiones.dialogos.dialogoRecompensaEntregada);
             }
             else if (controladorMisiones.misionCompletada)
             {
-                MostrarDialogo(dialogoMisionCompletada);
+                MostrarDialogo(controladorMisiones.dialogos.dialogoMisionCompletada);
             }
             else if (controladorMisiones.misionAceptada)
             {
-                MostrarDialogo(dialogoMisionActiva);
+                MostrarDialogo(controladorMisiones.dialogos.dialogoMisionActiva);
             }
             else
             {
-                MostrarDialogo(dialogoInicial);
+                MostrarDialogo(controladorMisiones.dialogos.dialogoInicial);
             }
         }
     }
@@ -330,7 +286,7 @@ public class NPCMisiones : MonoBehaviour
 
     private void ActualizarSliderProgreso()
     {
-        if (sliderProgreso != null && textoProgreso != null)
+        if (sliderProgreso != null && textoProgreso != null && controladorMisiones != null)
         {
             float progreso = (float)controladorMisiones.pokemonesDerrotados / ControladorMisiones.POKEMONES_NECESARIOS;
             sliderProgreso.value = progreso;
