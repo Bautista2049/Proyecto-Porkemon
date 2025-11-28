@@ -48,3 +48,25 @@ MonoBehaviour:
   recompensaEntregada: 0
   pokemonesDerrotados: 0
   panelMisionesVisible: 0
+  dialogos:
+    dialogoInicial: []
+    dialogoMisionActiva: []
+    dialogoMisionCompletada: []
+    dialogoRecompensaEntregada: []
+  panelDialogo: {fileID: 0}
+  textoDialogo: {fileID: 0}
+  botonContinuar: {fileID: 0}
+  botonAceptarMision: {fileID: 0}
+  botonRechazarMision: {fileID: 0}
+  panelProgreso: {fileID: 0}
+  sliderProgreso: {fileID: 0}
+  textoProgreso: {fileID: 0}
+  rellenoSlider: {fileID: 0}
+  tituloMision: {fileID: 0}
+  velocidadEscritura: 0.05
+  teclaInteraccion: 101
+  colorInicio: {r: 1, g: 0, b: 0, a: 1}
+  colorMitad: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  colorFinal: {r: 0, g: 1, b: 0, a: 1}
+  animarSlider: 1
+  velocidadAnimacion: 2
