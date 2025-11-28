@@ -19496,9 +19496,9 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 768556433}
+  - {fileID: 1922178765}
   - {fileID: 1597274299}
   - {fileID: 2000601347}
-  - {fileID: 1922178765}
   - {fileID: 1855357692}
   m_Father: {fileID: 0}
   m_RootOrder: 4
@@ -36382,7 +36382,7 @@ RectTransform:
   - {fileID: 1950569}
   - {fileID: 1213132379}
   m_Father: {fileID: 986664614}
-  m_RootOrder: 3
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -39819,6 +39819,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 5443067328485613451, guid: ab4cd19b4d69658449e0d3f34b148c1b,
         type: 3}
+    - target: {fileID: 5090179195071123133, guid: c10628d43ccf2a74daff36c86dd85205,
+        type: 3}
+      propertyPath: usarPlaylist
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5090179195071123134, guid: c10628d43ccf2a74daff36c86dd85205,
         type: 3}
       propertyPath: m_Name
