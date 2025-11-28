@@ -12,6 +12,7 @@ public class ControladorTienda : MonoBehaviour
     public List<Button> botonesItems;
     public List<TiendaItemData> itemsTienda = new List<TiendaItemData>(); // items del día actual
     public List<TiendaItemData> catalogoBase = new List<TiendaItemData>(); // catálogo total de la tienda
+    public List<TiendaItemData> catalogoTienda = new List<TiendaItemData>(); // catálogo fijo de la tienda
 
     private HashSet<int> indicesSeleccionados = new HashSet<int>();
     private int totalCompra = 0;
@@ -42,40 +43,30 @@ public class ControladorTienda : MonoBehaviour
 
     private void InicializarItemsDelDia()
     {
-        // Si el catálogo base está vacío, intentamos llenarlo automáticamente
-        // usando el inventario completo del GestorDeBatalla (lista global de objetos).
-        if ((catalogoBase == null || catalogoBase.Count == 0) &&
-            GestorDeBatalla.instance != null &&
-            GestorDeBatalla.instance.inventarioCompleto != null &&
-            GestorDeBatalla.instance.inventarioCompleto.Count > 0 &&
-            ultimoDiaGenerado == -1 && cacheItemsDia.Count == 0)
+        // Inicializar catálogo fijo de la tienda si no está inicializado
+        if (catalogoTienda == null || catalogoTienda.Count == 0)
         {
-            catalogoBase = new List<TiendaItemData>();
-            foreach (var bi in GestorDeBatalla.instance.inventarioCompleto)
+            catalogoTienda = new List<TiendaItemData>
             {
-                if (bi == null)
-                    continue;
-
-                TiendaItemData data = new TiendaItemData();
-                data.type = bi.type;
-                data.nombre = bi.nombre;
-                data.descripcion = bi.descripcion;
-                data.stock = Mathf.Max(1, bi.cantidad);
-                data.precio = GetPrecioPorDefecto(bi.type);
-                catalogoBase.Add(data);
-            }
-        }
-
-        // Si aun así el catálogo base está vacío pero el usuario configuró itemsTienda manualmente
-        // la primera vez, los usamos como catálogo base.
-        if ((catalogoBase == null || catalogoBase.Count == 0) && itemsTienda != null && itemsTienda.Count > 0 && ultimoDiaGenerado == -1 && cacheItemsDia.Count == 0)
-        {
-            catalogoBase = new List<TiendaItemData>();
-            foreach (var it in itemsTienda)
-            {
-                if (it != null)
-                    catalogoBase.Add(CopiarItem(it));
-            }
+                new TiendaItemData { type = BattleItemType.Pocion, nombre = "Poción", descripcion = "Restaura 20 PS", stock = 99, precio = 200 },
+                new TiendaItemData { type = BattleItemType.Superpocion, nombre = "Superpoción", descripcion = "Restaura 50 PS", stock = 99, precio = 400 },
+                new TiendaItemData { type = BattleItemType.Hiperpocion, nombre = "Hiperpoción", descripcion = "Restaura 120 PS", stock = 99, precio = 600 },
+                new TiendaItemData { type = BattleItemType.Pocionmaxima, nombre = "Poción Máxima", descripcion = "Restaura todos los PS", stock = 99, precio = 800 },
+                new TiendaItemData { type = BattleItemType.Revivir, nombre = "Revivir", descripcion = "Revive un Pokémon con 30% de PS", stock = 99, precio = 1000 },
+                new TiendaItemData { type = BattleItemType.RevivirMax, nombre = "Revivir Máx", descripcion = "Revive un Pokémon con todos sus PS", stock = 99, precio = 1500 },
+                new TiendaItemData { type = BattleItemType.Porkebola, nombre = "Pokéball", descripcion = "Atrapa Pokémon salvajes más fácilmente", stock = 99, precio = 150 },
+                new TiendaItemData { type = BattleItemType.Superbola, nombre = "Superball", descripcion = "Más efectiva que una Pokéball normal", stock = 99, precio = 300 },
+                new TiendaItemData { type = BattleItemType.Ultrabola, nombre = "Ultraball", descripcion = "Muy efectiva para Pokémon difíciles de atrapar", stock = 99, precio = 600 },
+                new TiendaItemData { type = BattleItemType.Masterbola, nombre = "Masterball", descripcion = "Atrapa cualquier Pokémon sin fallar", stock = 99, precio = 2000 },
+                new TiendaItemData { type = BattleItemType.AtaqueX, nombre = "Ataque X", descripcion = "Aumenta el ataque en 1 nivel", stock = 99, precio = 500 },
+                new TiendaItemData { type = BattleItemType.DefensaX, nombre = "Defensa X", descripcion = "Aumenta la defensa en 1 nivel", stock = 99, precio = 500 },
+                new TiendaItemData { type = BattleItemType.AtaqueEspecialX, nombre = "Ataque Especial X", descripcion = "Aumenta el ataque especial en 1 nivel", stock = 99, precio = 500 },
+                new TiendaItemData { type = BattleItemType.DefensaEspecialX, nombre = "Defensa Especial X", descripcion = "Aumenta la defensa especial en 1 nivel", stock = 99, precio = 500 },
+                new TiendaItemData { type = BattleItemType.VelocidadX, nombre = "Velocidad X", descripcion = "Aumenta la velocidad en 1 nivel", stock = 99, precio = 500 },
+                new TiendaItemData { type = BattleItemType.PrecisionX, nombre = "Precisión X", descripcion = "Aumenta la precisión en 1 nivel", stock = 99, precio = 500 },
+                new TiendaItemData { type = BattleItemType.CriticoX, nombre = "Crítico X", descripcion = "Aumenta la probabilidad de golpe crítico", stock = 99, precio = 500 },
+                new TiendaItemData { type = BattleItemType.ProteccionX, nombre = "Protección X", descripcion = "Aumenta la evasión durante 5 turnos", stock = 99, precio = 500 }
+            };
         }
 
         int currentDay = 0;
@@ -99,13 +90,10 @@ public class ControladorTienda : MonoBehaviour
         cacheItemsDia.Clear();
         indicesSeleccionados.Clear();
 
-        if (catalogoBase == null || catalogoBase.Count == 0)
-            return;
-
-        int numItemsDia = Mathf.Min(6, catalogoBase.Count);
+        int numItemsDia = Mathf.Min(6, catalogoTienda.Count);
 
         List<int> indicesDisponibles = new List<int>();
-        for (int i = 0; i < catalogoBase.Count; i++)
+        for (int i = 0; i < catalogoTienda.Count; i++)
         {
             indicesDisponibles.Add(i);
         }
@@ -119,7 +107,7 @@ public class ControladorTienda : MonoBehaviour
             int idxCatalogo = indicesDisponibles[idxLista];
             indicesDisponibles.RemoveAt(idxLista);
 
-            TiendaItemData baseItem = catalogoBase[idxCatalogo];
+            TiendaItemData baseItem = catalogoTienda[idxCatalogo];
             if (baseItem == null)
                 continue;
 

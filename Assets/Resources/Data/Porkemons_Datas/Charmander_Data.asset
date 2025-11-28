@@ -23,7 +23,7 @@ MonoBehaviour:
   ataque: 20
   defensa: 20
   espiritu: 100000
-  velocidad: 20
+  velocidad: 2147483647
   ataquesQuePuedeAprender:
   - {fileID: 11400000, guid: fc645ae56d94fcb42be00560cba1dc4f, type: 2}
   - {fileID: 11400000, guid: 6e90b7d7c51dd1843b22d2730ca20f87, type: 2}

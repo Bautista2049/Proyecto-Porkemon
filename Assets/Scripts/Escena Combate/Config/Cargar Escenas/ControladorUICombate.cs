@@ -12,11 +12,13 @@ public class ControladorUICombate : MonoBehaviour
     public GameObject panelDeAccionesDelJugador;
     public GameObject panelMovs;
     public Button botonMochila;
+    private Porkemon currentPokemon;
 
     void Start()
     {
         transition = GetComponentInChildren<Animator>();
         AsignarAtaquesABotones();
+        currentPokemon = GestorDeBatalla.instance?.porkemonJugador;
 
         if (panelMovs != null)
         {
@@ -26,6 +28,15 @@ public class ControladorUICombate : MonoBehaviour
         if (botonMochila != null)
         {
             botonMochila.onClick.AddListener(AbrirMochila);
+        }
+    }
+
+    void Update()
+    {
+        if (GestorDeBatalla.instance != null && GestorDeBatalla.instance.porkemonJugador != currentPokemon)
+        {
+            AsignarAtaquesABotones();
+            currentPokemon = GestorDeBatalla.instance.porkemonJugador;
         }
     }
 
