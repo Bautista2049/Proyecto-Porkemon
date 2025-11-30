@@ -525,7 +525,7 @@ RectTransform:
   m_GameObject: {fileID: 603165533}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.1298699, y: 0.72634494, z: 1.6141}
+  m_LocalScale: {x: 0.70613486, y: 0.41760477, z: 1.6141}
   m_Children:
   - {fileID: 1585555912}
   m_Father: {fileID: 149746651}
@@ -1310,14 +1310,14 @@ RectTransform:
   m_GameObject: {fileID: 1585555911}
   m_LocalRotation: {x: -0, y: -0, z: 0.0013810878, w: 0.99999905}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.4285715, y: 2.2222223, z: 1}
+  m_LocalScale: {x: 2.2858293, y: 3.865141, z: 1}
   m_Children: []
   m_Father: {fileID: 603165534}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0.158}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 79.99997}
+  m_AnchoredPosition: {x: 40, y: 75}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1585555913
@@ -1340,8 +1340,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: Quieres usar la Tienda (E)?
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 800fc409a997ee94abad002670298077, type: 2}
+  m_sharedMaterial: {fileID: 21805934246870502, guid: 800fc409a997ee94abad002670298077,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1366,8 +1367,8 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 26.2
+  m_fontSizeBase: 26.2
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1412,7 +1413,7 @@ MonoBehaviour:
     spaceCount: 4
     wordCount: 5
     linkCount: 0
-    lineCount: 3
+    lineCount: 4
     pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
