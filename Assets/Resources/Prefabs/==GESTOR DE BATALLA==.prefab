@@ -59,12 +59,14 @@ MonoBehaviour:
   dataEquipoJugador:
   - {fileID: 11400000, guid: 6c9eb4021237ff14a82c44f71a59ea8a, type: 2}
   dataInicialBot: {fileID: 11400000, guid: 448fd5351b275e94b8999870f99c542d, type: 2}
-  puntoSpawnBot: {fileID: 0}
+  puntoSpawnBot: {fileID: 7770892176627228657, guid: 6c7aedda5584a9743b0fe844ce9d53b7,
+    type: 3}
   escalaModeloBot: {x: 2, y: 2, z: 2}
   inventarioCompleto: []
   inventarioBattleItems: []
   combateIniciado: 0
-  posicionJugador: {fileID: 0}
+  posicionJugador: {fileID: 6853477059602714830, guid: d3332389637bee4469f8620fe36dc2d8,
+    type: 3}
   cameraCombate: {fileID: 0}
   psImpactoFuego: {fileID: 2031779268522411164, guid: 6217ecd352a86b04c80d3ba813cfc835,
     type: 3}
@@ -83,4 +85,6 @@ MonoBehaviour:
   psImpactoTierra: {fileID: 1139705686843132568, guid: 93541158508e58d479e38aa57ff179eb,
     type: 3}
   psImpactoGenerico: {fileID: 5443067328485613451, guid: ab4cd19b4d69658449e0d3f34b148c1b,
+    type: 3}
+  psBuffJugador: {fileID: 7585669420758129859, guid: b59e030c5761a8e47a3f3acc998a6985,
     type: 3}
