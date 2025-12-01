@@ -1,0 +1,1329 @@
+fileFormatVersion: 2
+guid: cb03635fb8071ef459d504ce34a6453c
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: Armature.193
+    100002: CamPos
+    100004: CamPos_end
+    100006: ch0222_00_kagari
+    100008: ClothesC
+    100010: ClothesC_end
+    100012: ClothesC_end_end
+    100014: Courtney
+    100016: //RootNode
+    100018: G_body
+    100020: G_body_end
+    100022: G_body_ura
+    100024: G_body_ura_end
+    100026: G_hair
+    100028: G_hair_end
+    100030: G_head
+    100032: G_head_end
+    100034: G_hood
+    100036: G_hood_end
+    100038: G_mouth
+    100040: G_mouth_end
+    100042: G_tooth
+    100044: G_tooth_end
+    100046: Hair
+    100048: Hair_end
+    100050: Hair_end_end
+    100052: Head
+    100054: Hips
+    100056: HoodC
+    100058: HoodC_end
+    100060: HoodC_end_end
+    100062: LArm
+    100064: LBand
+    100066: LBand_end
+    100068: LClothesA
+    100070: LClothesA_end
+    100072: LClothesA_end_end
+    100074: LClothesB
+    100076: LClothesB_end
+    100078: LClothesB_end_end
+    100080: LCollar
+    100082: LCollar_end
+    100084: LCollar_end_end
+    100086: LEffBall
+    100088: LEffBall_end
+    100090: LFingerA0
+    100092: LFingerA1
+    100094: LFingerA2
+    100096: LFingerA2_end
+    100098: LFingerB0
+    100100: LFingerB1
+    100102: LFingerB2
+    100104: LFingerB2_end
+    100106: LFingerC0
+    100108: LFingerC1
+    100110: LFingerC2
+    100112: LFingerC2_end
+    100114: LFingerD0
+    100116: LFingerD1
+    100118: LFingerD2
+    100120: LFingerD2_end
+    100122: LFingerE0
+    100124: LFingerE1
+    100126: LFingerE2
+    100128: LFingerE2_end
+    100130: LFoot
+    100132: LForeArm
+    100134: LHand
+    100136: LHoodA
+    100138: LHoodA_end
+    100140: LHoodA_end_end
+    100142: LHoodB
+    100144: LHoodB_end
+    100146: LHoodB_end_end
+    100148: LLeg
+    100150: LLowerLipA
+    100152: LLowerLipA_end
+    100154: LowerJaw
+    100156: LowerLip
+    100158: LowerLip_end
+    100160: LowerTeeth
+    100162: LowerTeeth_end
+    100164: LShoulder
+    100166: LSideLip
+    100168: LSideLip_end
+    100170: LThigh
+    100172: LToe
+    100174: LToe_end
+    100176: LUpperLipA
+    100178: LUpperLipA_end
+    100180: Neck
+    100182: Origin
+    100184: RArm
+    100186: RBand
+    100188: RBand_end
+    100190: RClothesA
+    100192: RClothesA_end
+    100194: RClothesA_end_end
+    100196: RClothesB
+    100198: RClothesB_end
+    100200: RClothesB_end_end
+    100202: RCollar
+    100204: RCollar_end
+    100206: RCollar_end_end
+    100208: REffBall
+    100210: REffBall_end
+    100212: RFingerA0
+    100214: RFingerA1
+    100216: RFingerA2
+    100218: RFingerA2_end
+    100220: RFingerB0
+    100222: RFingerB1
+    100224: RFingerB2
+    100226: RFingerB2_end
+    100228: RFingerC0
+    100230: RFingerC1
+    100232: RFingerC2
+    100234: RFingerC2_end
+    100236: RFingerD0
+    100238: RFingerD1
+    100240: RFingerD2
+    100242: RFingerD2_end
+    100244: RFingerE0
+    100246: RFingerE1
+    100248: RFingerE2
+    100250: RFingerE2_end
+    100252: RFoot
+    100254: RForeArm
+    100256: RHand
+    100258: RHoodA
+    100260: RHoodA_end
+    100262: RHoodA_end_end
+    100264: RHoodB
+    100266: RHoodB_end
+    100268: RHoodB_end_end
+    100270: RLeg
+    100272: RLowerLipA
+    100274: RLowerLipA_end
+    100276: RShoulder
+    100278: RSideLip
+    100280: RSideLip_end
+    100282: RThigh
+    100284: RToe
+    100286: RToe_end
+    100288: RUpperLipA
+    100290: RUpperLipA_end
+    100292: Spine0
+    100294: Spine1
+    100296: UpperJaw
+    100298: UpperLip
+    100300: UpperLip_end
+    100302: UpperTeeth
+    100304: UpperTeeth_end
+    400000: Armature.193
+    400002: CamPos
+    400004: CamPos_end
+    400006: ch0222_00_kagari
+    400008: ClothesC
+    400010: ClothesC_end
+    400012: ClothesC_end_end
+    400014: Courtney
+    400016: //RootNode
+    400018: G_body
+    400020: G_body_end
+    400022: G_body_ura
+    400024: G_body_ura_end
+    400026: G_hair
+    400028: G_hair_end
+    400030: G_head
+    400032: G_head_end
+    400034: G_hood
+    400036: G_hood_end
+    400038: G_mouth
+    400040: G_mouth_end
+    400042: G_tooth
+    400044: G_tooth_end
+    400046: Hair
+    400048: Hair_end
+    400050: Hair_end_end
+    400052: Head
+    400054: Hips
+    400056: HoodC
+    400058: HoodC_end
+    400060: HoodC_end_end
+    400062: LArm
+    400064: LBand
+    400066: LBand_end
+    400068: LClothesA
+    400070: LClothesA_end
+    400072: LClothesA_end_end
+    400074: LClothesB
+    400076: LClothesB_end
+    400078: LClothesB_end_end
+    400080: LCollar
+    400082: LCollar_end
+    400084: LCollar_end_end
+    400086: LEffBall
+    400088: LEffBall_end
+    400090: LFingerA0
+    400092: LFingerA1
+    400094: LFingerA2
+    400096: LFingerA2_end
+    400098: LFingerB0
+    400100: LFingerB1
+    400102: LFingerB2
+    400104: LFingerB2_end
+    400106: LFingerC0
+    400108: LFingerC1
+    400110: LFingerC2
+    400112: LFingerC2_end
+    400114: LFingerD0
+    400116: LFingerD1
+    400118: LFingerD2
+    400120: LFingerD2_end
+    400122: LFingerE0
+    400124: LFingerE1
+    400126: LFingerE2
+    400128: LFingerE2_end
+    400130: LFoot
+    400132: LForeArm
+    400134: LHand
+    400136: LHoodA
+    400138: LHoodA_end
+    400140: LHoodA_end_end
+    400142: LHoodB
+    400144: LHoodB_end
+    400146: LHoodB_end_end
+    400148: LLeg
+    400150: LLowerLipA
+    400152: LLowerLipA_end
+    400154: LowerJaw
+    400156: LowerLip
+    400158: LowerLip_end
+    400160: LowerTeeth
+    400162: LowerTeeth_end
+    400164: LShoulder
+    400166: LSideLip
+    400168: LSideLip_end
+    400170: LThigh
+    400172: LToe
+    400174: LToe_end
+    400176: LUpperLipA
+    400178: LUpperLipA_end
+    400180: Neck
+    400182: Origin
+    400184: RArm
+    400186: RBand
+    400188: RBand_end
+    400190: RClothesA
+    400192: RClothesA_end
+    400194: RClothesA_end_end
+    400196: RClothesB
+    400198: RClothesB_end
+    400200: RClothesB_end_end
+    400202: RCollar
+    400204: RCollar_end
+    400206: RCollar_end_end
+    400208: REffBall
+    400210: REffBall_end
+    400212: RFingerA0
+    400214: RFingerA1
+    400216: RFingerA2
+    400218: RFingerA2_end
+    400220: RFingerB0
+    400222: RFingerB1
+    400224: RFingerB2
+    400226: RFingerB2_end
+    400228: RFingerC0
+    400230: RFingerC1
+    400232: RFingerC2
+    400234: RFingerC2_end
+    400236: RFingerD0
+    400238: RFingerD1
+    400240: RFingerD2
+    400242: RFingerD2_end
+    400244: RFingerE0
+    400246: RFingerE1
+    400248: RFingerE2
+    400250: RFingerE2_end
+    400252: RFoot
+    400254: RForeArm
+    400256: RHand
+    400258: RHoodA
+    400260: RHoodA_end
+    400262: RHoodA_end_end
+    400264: RHoodB
+    400266: RHoodB_end
+    400268: RHoodB_end_end
+    400270: RLeg
+    400272: RLowerLipA
+    400274: RLowerLipA_end
+    400276: RShoulder
+    400278: RSideLip
+    400280: RSideLip_end
+    400282: RThigh
+    400284: RToe
+    400286: RToe_end
+    400288: RUpperLipA
+    400290: RUpperLipA_end
+    400292: Spine0
+    400294: Spine1
+    400296: UpperJaw
+    400298: UpperLip
+    400300: UpperLip_end
+    400302: UpperTeeth
+    400304: UpperTeeth_end
+    2100000: M_ch0222_00_kagari_skin
+    2100002: M_ch0222_00_kagari_body
+    2100004: M_ch0222_00_kagari_face
+    2100006: M_ch0222_00_kagari_mouth
+    2100008: M_ch0222_00_kagari_hair
+    4300000: Courtney
+    7400000: Armature.193|[kagari_00] appearance_1
+    7400002: Armature.193|[kagari_00] appearance_2
+    7400004: Armature.193|[kagari_00] cutin_trainer
+    7400006: Armature.193|[kagari_00] direct
+    7400008: Armature.193|[kagari_00] greeting_1
+    7400010: Armature.193|[kagari_00] idle
+    7400012: Armature.193|[kagari_00] join
+    7400014: Armature.193|[kagari_00] land_1
+    7400016: Armature.193|[kagari_00] mouth_01
+    7400018: Armature.193|[kagari_00] mouth_02
+    7400020: Armature.193|[kagari_00] mouth_03
+    7400022: Armature.193|[kagari_00] mouth_04
+    7400024: Armature.193|[kagari_00] mouth_05
+    7400026: Armature.193|[kagari_00] mouth_06
+    7400028: Armature.193|[kagari_00] mouth_07
+    7400030: Armature.193|[kagari_00] pose_01
+    7400032: Armature.193|[kagari_00] pose_02
+    7400034: Armature.193|[kagari_00] pose_03
+    7400036: Armature.193|[kagari_00] pose_03_battlefin
+    7400038: Armature.193|[kagari_00] pose_04
+    7400040: Armature.193|[kagari_00] pose_05
+    7400042: Armature.193|[kagari_00] pose_06
+    7400044: Armature.193|[kagari_00] pose_07
+    7400046: Armature.193|[kagari_00] pose_base
+    7400048: Armature.193|[kagari_00] speak_1
+    7400050: Armature.193|[kagari_00] start_battle
+    7400052: Armature.193|[kagari_00] switch_out
+    7400054: Armature.193|[kagari_00] sync_move_player
+    7400056: Armature.193|[kagari_00] turn
+    7400058: Armature.193|[kagari_00] walk_1
+    7400060: Armature.193|Armature.193Action
+    9500000: //RootNode
+    13700000: Courtney
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_ch0222_00_kagari_body
+    second: {fileID: 2100000, guid: 87f922b12971fff4c89801cf17fbd939, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_ch0222_00_kagari_face
+    second: {fileID: 2100000, guid: bcc59bda257bee94da8002fdb26242a7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_ch0222_00_kagari_hair
+    second: {fileID: 2100000, guid: bd52a560004f501439bf36cf9ee8fde4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_ch0222_00_kagari_mouth
+    second: {fileID: 2100002, guid: 4e820347524ecb8439bb0cded51a8d35, type: 3}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_ch0222_00_kagari_skin
+    second: {fileID: 2100000, guid: 87f922b12971fff4c89801cf17fbd939, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Armature.193|[kagari_00] appearance_1
+      takeName: Armature.193|[kagari_00] appearance_1
+      firstFrame: 0
+      lastFrame: 90
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature.193|[kagari_00] appearance_2
+      takeName: Armature.193|[kagari_00] appearance_2
+      firstFrame: 0
+      lastFrame: 120
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature.193|[kagari_00] cutin_trainer
+      takeName: Armature.193|[kagari_00] cutin_trainer
+      firstFrame: 0
+      lastFrame: 85
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature.193|[kagari_00] direct
+      takeName: Armature.193|[kagari_00] direct
+      firstFrame: 0
+      lastFrame: 140
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature.193|[kagari_00] greeting_1
+      takeName: Armature.193|[kagari_00] greeting_1
+      firstFrame: 0
+      lastFrame: 170
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature.193|[kagari_00] idle
+      takeName: Armature.193|[kagari_00] idle
+      firstFrame: 0
+      lastFrame: 120
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature.193|[kagari_00] join
+      takeName: Armature.193|[kagari_00] join
+      firstFrame: 0
+      lastFrame: 68
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature.193|[kagari_00] land_1
+      takeName: Armature.193|[kagari_00] land_1
+      firstFrame: 0
+      lastFrame: 120
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature.193|[kagari_00] mouth_01
+      takeName: Armature.193|[kagari_00] mouth_01
+      firstFrame: 0
+      lastFrame: 43
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature.193|[kagari_00] mouth_02
+      takeName: Armature.193|[kagari_00] mouth_02
+      firstFrame: 0
+      lastFrame: 43
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature.193|[kagari_00] mouth_03
+      takeName: Armature.193|[kagari_00] mouth_03
+      firstFrame: 0
+      lastFrame: 43
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature.193|[kagari_00] mouth_04
+      takeName: Armature.193|[kagari_00] mouth_04
+      firstFrame: 0
+      lastFrame: 43
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature.193|[kagari_00] mouth_05
+      takeName: Armature.193|[kagari_00] mouth_05
+      firstFrame: 0
+      lastFrame: 43
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature.193|[kagari_00] mouth_06
+      takeName: Armature.193|[kagari_00] mouth_06
+      firstFrame: 0
+      lastFrame: 43
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature.193|[kagari_00] mouth_07
+      takeName: Armature.193|[kagari_00] mouth_07
+      firstFrame: 0
+      lastFrame: 43
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature.193|[kagari_00] pose_01
+      takeName: Armature.193|[kagari_00] pose_01
+      firstFrame: 0
+      lastFrame: 70
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature.193|[kagari_00] pose_02
+      takeName: Armature.193|[kagari_00] pose_02
+      firstFrame: 0
+      lastFrame: 115
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature.193|[kagari_00] pose_03
+      takeName: Armature.193|[kagari_00] pose_03
+      firstFrame: 0
+      lastFrame: 110
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature.193|[kagari_00] pose_03_battlefin
+      takeName: Armature.193|[kagari_00] pose_03_battlefin
+      firstFrame: 0
+      lastFrame: 110
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature.193|[kagari_00] pose_04
+      takeName: Armature.193|[kagari_00] pose_04
+      firstFrame: 0
+      lastFrame: 105
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature.193|[kagari_00] pose_05
+      takeName: Armature.193|[kagari_00] pose_05
+      firstFrame: 0
+      lastFrame: 105
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature.193|[kagari_00] pose_06
+      takeName: Armature.193|[kagari_00] pose_06
+      firstFrame: 0
+      lastFrame: 105
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature.193|[kagari_00] pose_07
+      takeName: Armature.193|[kagari_00] pose_07
+      firstFrame: 0
+      lastFrame: 80
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature.193|[kagari_00] pose_base
+      takeName: Armature.193|[kagari_00] pose_base
+      firstFrame: 0
+      lastFrame: 200
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature.193|[kagari_00] speak_1
+      takeName: Armature.193|[kagari_00] speak_1
+      firstFrame: 0
+      lastFrame: 220
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature.193|[kagari_00] start_battle
+      takeName: Armature.193|[kagari_00] start_battle
+      firstFrame: 0
+      lastFrame: 140
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature.193|[kagari_00] switch_out
+      takeName: Armature.193|[kagari_00] switch_out
+      firstFrame: 0
+      lastFrame: 120
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature.193|[kagari_00] sync_move_player
+      takeName: Armature.193|[kagari_00] sync_move_player
+      firstFrame: 0
+      lastFrame: 150
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature.193|[kagari_00] turn
+      takeName: Armature.193|[kagari_00] turn
+      firstFrame: 0
+      lastFrame: 120
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature.193|[kagari_00] walk_1
+      takeName: Armature.193|[kagari_00] walk_1
+      firstFrame: 0
+      lastFrame: 66
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature.193|Armature.193Action
+      takeName: Armature.193|Armature.193Action
+      firstFrame: 0
+      lastFrame: 105
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 0.01
+    hasPreviousCalculatedGlobalScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

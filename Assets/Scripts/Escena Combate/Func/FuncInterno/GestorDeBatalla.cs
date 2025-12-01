@@ -371,6 +371,19 @@ public class GestorDeBatalla : MonoBehaviour
         GameState.porkemonDelJugador = nuevo;
     }
 
+    // Método para configurar el equipo del NPC dinámicamente
+    public void ConfigurarEquipoNPC(List<Porkemon> equipoNPC)
+    {
+        equipoBot.Clear();
+        equipoBot.AddRange(equipoNPC);
+
+        if (equipoBot.Count > 0)
+        {
+            porkemonBot = equipoBot[0];
+            GameState.porkemonDelBot = porkemonBot;
+        }
+    }
+
     public Porkemon porkemonJugador
     {
         get { return GameState.porkemonDelJugador; }

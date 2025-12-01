@@ -1,0 +1,482 @@
+fileFormatVersion: 2
+guid: a1b65e82b5317ba469872aaeed0b86fb
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: Armature.338
+    100002: BCollar
+    100004: BCollar_end
+    100006: BCollar_end_end
+    100008: BSkirt0
+    100010: BSkirt1
+    100012: BSkirt1_end
+    100014: BSkirt1_end_end
+    100016: CamPos
+    100018: CamPos_end
+    100020: ch0136_00_platane
+    100022: FHair
+    100024: FHair_end
+    100026: FHair_end_end
+    100028: G_body
+    100030: G_body.220
+    100032: G_body.221
+    100034: G_body_end
+    100036: G_hair
+    100038: G_hair.138
+    100040: G_hair_end
+    100042: G_head
+    100044: G_head.240
+    100046: G_head.241
+    100048: G_head_end
+    100050: G_mouth
+    100052: G_mouth.141
+    100054: G_mouth_end
+    100056: G_tooth
+    100058: G_tooth.134
+    100060: G_tooth_end
+    100062: G_watch
+    100064: G_watch.001
+    100066: G_watch_end
+    100068: Hair
+    100070: Hair_end
+    100072: Hair_end_end
+    100074: Head
+    100076: Hips
+    100078: LArm
+    100080: LCollar
+    100082: LCollar_end
+    100084: LCollar_end_end
+    100086: LDownCollar
+    100088: LDownCollar_end
+    100090: LDownCollar_end_end
+    100092: LEffBall
+    100094: LEffBall_end
+    100096: LFingerA0
+    100098: LFingerA1
+    100100: LFingerA2
+    100102: LFingerA2_end
+    100104: LFingerB0
+    100106: LFingerB1
+    100108: LFingerB2
+    100110: LFingerB2_end
+    100112: LFingerC0
+    100114: LFingerC1
+    100116: LFingerC2
+    100118: LFingerC2_end
+    100120: LFingerD0
+    100122: LFingerD1
+    100124: LFingerD2
+    100126: LFingerD2_end
+    100128: LFingerE0
+    100130: LFingerE1
+    100132: LFingerE2
+    100134: LFingerE2_end
+    100136: LFoot
+    100138: LForeArm
+    100140: LHand
+    100142: LLeg
+    100144: LLowerLipA
+    100146: LLowerLipA_end
+    100148: LMayu0
+    100150: LMayu0_end
+    100152: LMayu1
+    100154: LMayu1_end
+    100156: LMayu2
+    100158: LMayu2_end
+    100160: LowerJaw
+    100162: LowerLip
+    100164: LowerLip_end
+    100166: LowerTeeth
+    100168: LowerTeeth_end
+    100170: LPocket
+    100172: LPocket_end
+    100174: LShoulder
+    100176: LSideLip
+    100178: LSideLip_end
+    100180: LSkirt0
+    100182: LSkirt1
+    100184: LSkirt1_end
+    100186: LSkirt1_end_end
+    100188: LThigh
+    100190: LToe
+    100192: LToe_end
+    100194: LUpperLipA
+    100196: LUpperLipA_end
+    100198: Neck
+    100200: Origin
+    100202: RArm
+    100204: RCollar
+    100206: RCollar_end
+    100208: RCollar_end_end
+    100210: RDownCollar
+    100212: RDownCollar_end
+    100214: RDownCollar_end_end
+    100216: REffBall
+    100218: REffBall_end
+    100220: RFingerA0
+    100222: RFingerA1
+    100224: RFingerA2
+    100226: RFingerA2_end
+    100228: RFingerB0
+    100230: RFingerB1
+    100232: RFingerB2
+    100234: RFingerB2_end
+    100236: RFingerC0
+    100238: RFingerC1
+    100240: RFingerC2
+    100242: RFingerC2_end
+    100244: RFingerD0
+    100246: RFingerD1
+    100248: RFingerD2
+    100250: RFingerD2_end
+    100252: RFingerE0
+    100254: RFingerE1
+    100256: RFingerE2
+    100258: RFingerE2_end
+    100260: RFoot
+    100262: RForeArm
+    100264: RHand
+    100266: RLeg
+    100268: RLowerLipA
+    100270: RLowerLipA_end
+    100272: RMayu0
+    100274: RMayu0_end
+    100276: RMayu1
+    100278: RMayu1_end
+    100280: RMayu2
+    100282: RMayu2_end
+    100284: RPocket
+    100286: RPocket_end
+    100288: RShoulder
+    100290: RSideLip
+    100292: RSideLip_end
+    100294: RSkirt0
+    100296: RSkirt1
+    100298: RSkirt1_end
+    100300: RSkirt1_end_end
+    100302: RThigh
+    100304: RToe
+    100306: RToe_end
+    100308: RUpperLipA
+    100310: RUpperLipA_end
+    100312: Spine0
+    100314: Spine1
+    100316: //RootNode
+    100318: UpperJaw
+    100320: UpperLip
+    100322: UpperLip_end
+    100324: UpperTeeth
+    100326: UpperTeeth_end
+    100328: Watch
+    100330: Watch_end
+    400000: Armature.338
+    400002: BCollar
+    400004: BCollar_end
+    400006: BCollar_end_end
+    400008: BSkirt0
+    400010: BSkirt1
+    400012: BSkirt1_end
+    400014: BSkirt1_end_end
+    400016: CamPos
+    400018: CamPos_end
+    400020: ch0136_00_platane
+    400022: FHair
+    400024: FHair_end
+    400026: FHair_end_end
+    400028: G_body
+    400030: G_body.220
+    400032: G_body.221
+    400034: G_body_end
+    400036: G_hair
+    400038: G_hair.138
+    400040: G_hair_end
+    400042: G_head
+    400044: G_head.240
+    400046: G_head.241
+    400048: G_head_end
+    400050: G_mouth
+    400052: G_mouth.141
+    400054: G_mouth_end
+    400056: G_tooth
+    400058: G_tooth.134
+    400060: G_tooth_end
+    400062: G_watch
+    400064: G_watch.001
+    400066: G_watch_end
+    400068: Hair
+    400070: Hair_end
+    400072: Hair_end_end
+    400074: Head
+    400076: Hips
+    400078: LArm
+    400080: LCollar
+    400082: LCollar_end
+    400084: LCollar_end_end
+    400086: LDownCollar
+    400088: LDownCollar_end
+    400090: LDownCollar_end_end
+    400092: LEffBall
+    400094: LEffBall_end
+    400096: LFingerA0
+    400098: LFingerA1
+    400100: LFingerA2
+    400102: LFingerA2_end
+    400104: LFingerB0
+    400106: LFingerB1
+    400108: LFingerB2
+    400110: LFingerB2_end
+    400112: LFingerC0
+    400114: LFingerC1
+    400116: LFingerC2
+    400118: LFingerC2_end
+    400120: LFingerD0
+    400122: LFingerD1
+    400124: LFingerD2
+    400126: LFingerD2_end
+    400128: LFingerE0
+    400130: LFingerE1
+    400132: LFingerE2
+    400134: LFingerE2_end
+    400136: LFoot
+    400138: LForeArm
+    400140: LHand
+    400142: LLeg
+    400144: LLowerLipA
+    400146: LLowerLipA_end
+    400148: LMayu0
+    400150: LMayu0_end
+    400152: LMayu1
+    400154: LMayu1_end
+    400156: LMayu2
+    400158: LMayu2_end
+    400160: LowerJaw
+    400162: LowerLip
+    400164: LowerLip_end
+    400166: LowerTeeth
+    400168: LowerTeeth_end
+    400170: LPocket
+    400172: LPocket_end
+    400174: LShoulder
+    400176: LSideLip
+    400178: LSideLip_end
+    400180: LSkirt0
+    400182: LSkirt1
+    400184: LSkirt1_end
+    400186: LSkirt1_end_end
+    400188: LThigh
+    400190: LToe
+    400192: LToe_end
+    400194: LUpperLipA
+    400196: LUpperLipA_end
+    400198: Neck
+    400200: Origin
+    400202: RArm
+    400204: RCollar
+    400206: RCollar_end
+    400208: RCollar_end_end
+    400210: RDownCollar
+    400212: RDownCollar_end
+    400214: RDownCollar_end_end
+    400216: REffBall
+    400218: REffBall_end
+    400220: RFingerA0
+    400222: RFingerA1
+    400224: RFingerA2
+    400226: RFingerA2_end
+    400228: RFingerB0
+    400230: RFingerB1
+    400232: RFingerB2
+    400234: RFingerB2_end
+    400236: RFingerC0
+    400238: RFingerC1
+    400240: RFingerC2
+    400242: RFingerC2_end
+    400244: RFingerD0
+    400246: RFingerD1
+    400248: RFingerD2
+    400250: RFingerD2_end
+    400252: RFingerE0
+    400254: RFingerE1
+    400256: RFingerE2
+    400258: RFingerE2_end
+    400260: RFoot
+    400262: RForeArm
+    400264: RHand
+    400266: RLeg
+    400268: RLowerLipA
+    400270: RLowerLipA_end
+    400272: RMayu0
+    400274: RMayu0_end
+    400276: RMayu1
+    400278: RMayu1_end
+    400280: RMayu2
+    400282: RMayu2_end
+    400284: RPocket
+    400286: RPocket_end
+    400288: RShoulder
+    400290: RSideLip
+    400292: RSideLip_end
+    400294: RSkirt0
+    400296: RSkirt1
+    400298: RSkirt1_end
+    400300: RSkirt1_end_end
+    400302: RThigh
+    400304: RToe
+    400306: RToe_end
+    400308: RUpperLipA
+    400310: RUpperLipA_end
+    400312: Spine0
+    400314: Spine1
+    400316: //RootNode
+    400318: UpperJaw
+    400320: UpperLip
+    400322: UpperLip_end
+    400324: UpperTeeth
+    400326: UpperTeeth_end
+    400328: Watch
+    400330: Watch_end
+    2100000: M_ch0136_00_platane_hair
+    2100002: M_ch0136_00_platane_mouth
+    2100004: M_ch0136_00_platane_body
+    2100006: M_ch0136_00_platane_face
+    2100008: M_ch0136_00_platane_skin
+    4300000: G_hair.138
+    4300002: G_mouth.141
+    4300004: G_tooth.134
+    4300006: G_watch.001
+    4300008: G_head.240
+    4300010: G_head.241
+    4300012: G_body.220
+    4300014: G_body.221
+    7400000: Armature.338|[platane_00] appearance_1
+    7400002: Armature.338|[platane_00] appearance_2
+    7400004: Armature.338|[platane_00] cutin_trainer
+    7400006: Armature.338|[platane_00] direct
+    7400008: Armature.338|[platane_00] gift_1
+    7400010: Armature.338|[platane_00] gift_2
+    7400012: Armature.338|[platane_00] greeting_1
+    7400014: Armature.338|[platane_00] idle
+    7400016: Armature.338|[platane_00] join
+    7400018: Armature.338|[platane_00] land_1
+    7400020: Armature.338|[platane_00] land_2
+    7400022: Armature.338|[platane_00] mouth_01
+    7400024: Armature.338|[platane_00] mouth_02
+    7400026: Armature.338|[platane_00] mouth_03
+    7400028: Armature.338|[platane_00] mouth_04
+    7400030: Armature.338|[platane_00] mouth_05
+    7400032: Armature.338|[platane_00] mouth_06
+    7400034: Armature.338|[platane_00] mouth_07
+    7400036: Armature.338|[platane_00] pose_01
+    7400038: Armature.338|[platane_00] pose_02
+    7400040: Armature.338|[platane_00] pose_03
+    7400042: Armature.338|[platane_00] pose_03_battlefin
+    7400044: Armature.338|[platane_00] pose_04
+    7400046: Armature.338|[platane_00] pose_05
+    7400048: Armature.338|[platane_00] pose_06
+    7400050: Armature.338|[platane_00] pose_07
+    7400052: Armature.338|[platane_00] pose_base
+    7400054: Armature.338|[platane_00] search_1
+    7400056: Armature.338|[platane_00] speak_1
+    7400058: Armature.338|[platane_00] start_battle
+    7400060: Armature.338|[platane_00] switch_out
+    7400062: Armature.338|[platane_00] sync_move_player
+    7400064: Armature.338|[platane_00] turn_l
+    7400066: Armature.338|[platane_00] turn_r
+    7400068: Armature.338|[platane_00] unique_poke_1
+    7400070: Armature.338|[platane_00] walk_1
+    7400072: Armature.338|[platane_00] wave_1
+    9500000: //RootNode
+    13700000: G_body.220
+    13700002: G_body.221
+    13700004: G_hair.138
+    13700006: G_head.240
+    13700008: G_head.241
+    13700010: G_mouth.141
+    13700012: G_tooth.134
+    13700014: G_watch.001
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 0.01
+    hasPreviousCalculatedGlobalScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

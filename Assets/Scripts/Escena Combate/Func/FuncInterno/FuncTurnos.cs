@@ -1,4 +1,4 @@
-using System.Collections;
+plusing System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
@@ -189,6 +189,33 @@ public class FuncTurnos : MonoBehaviour
         }
         else if (jugador2.porkemon.VidaActual <= 0)
         {
+            // Verificar si hay más Pokémon en el equipo del NPC (entrenador)
+            if (GameState.esCombateBoss && GestorDeBatalla.instance.equipoBot.Count > 1)
+            {
+                var equipoBot = GestorDeBatalla.instance.equipoBot;
+                var siguientePokemon = equipoBot.Find(p => p != jugador2.porkemon && p.VidaActual > 0);
+
+                if (siguientePokemon != null)
+                {
+                    yield return StartCoroutine(ConsolaEnJuego.instance.MostrarMensaje($"¡El {jugador2.porkemon.BaseData.nombre} enemigo se ha debilitado!"));
+
+                    jugador2.porkemon = siguientePokemon;
+                    GameState.porkemonDelBot = siguientePokemon;
+
+                    jugador2.Setup(siguientePokemon);
+                    if (botModelManager != null)
+                    {
+                        botModelManager.UpdateModel(siguientePokemon.BaseData.nombre);
+                    }
+
+                    yield return StartCoroutine(ConsolaEnJuego.instance.MostrarMensaje($"¡El entrenador envía a {siguientePokemon.BaseData.nombre}!"));
+
+                    CambiarTurno();
+                    yield break;
+                }
+            }
+
+            // Victoria del jugador
             GameState.nombreGanador = jugador1.porkemon.BaseData.nombre;
 
             int expBase = GestorDeBatalla.instance.equipoJugador.CalcularExperienciaGanada(new List<Porkemon> { jugador2.porkemon });
