@@ -62,16 +62,23 @@ public class ControladorNPCEntrenador : MonoBehaviour
             jugadorDetectado = true;
             Debug.Log("Jugador detectado por NPC Entrenador");
 
-            // Detener patrulla/animación actual y congelar al NPC
-            if (animator != null)
+            if (esJefe)
             {
-                animator.SetBool("Walking", false);
-                // Aquí puedes agregar más lógica para detener animaciones específicas
+                // Si es Jefe, congelar y esperar colisión
+                if (animator != null)
+                {
+                    animator.SetBool("Walking", false);
+                    // Aquí puedes agregar más lógica para detener animaciones específicas
+                }
+                enMovimiento = false;
+                Debug.Log("NPC Jefe congelado esperando colisión con el jugador");
             }
-
-            // Congelar el movimiento del NPC (esperar colisión)
-            enMovimiento = false;
-            Debug.Log("NPC congelado esperando colisión con el jugador");
+            else
+            {
+                // Si es Entrenador normal, acercarse al jugador
+                StartCoroutine(AproximarseAlJugador());
+                Debug.Log("NPC Entrenador comenzando a acercarse al jugador");
+            }
         }
     }
 
@@ -80,10 +87,18 @@ public class ControladorNPCEntrenador : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             // Si el jugador sale del rango, resetear estado
-            if (jugadorDetectado && !enMovimiento)
+            if (jugadorDetectado)
             {
                 jugadorDetectado = false;
                 jugador = null;
+                enMovimiento = false;
+
+                // Detener animación de caminar
+                if (animator != null)
+                {
+                    animator.SetBool("Walking", false);
+                }
+
                 Debug.Log("Jugador salió del rango de detección");
             }
         }
