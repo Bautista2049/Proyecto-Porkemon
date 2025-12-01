@@ -18,15 +18,17 @@ MonoBehaviour:
   tipo1: 3
   tipo2: 17
   baseRate: 120
-  nivel: 10
+  nivel: 1
   vidaMaxima: 1000
-  ataque: 30
+  ataque: 100
   defensa: 5
   espiritu: 5
   velocidad: 2147483647
   ataquesQuePuedeAprender:
-  - {fileID: 11400000, guid: b7f748cd018c3f04fa06c21f226040b7, type: 2}
+  - {fileID: 11400000, guid: b188d3e88e443934f911d4b611efc374, type: 2}
   - {fileID: 11400000, guid: 8d9ae9c7ded39044381e9da05ced7775, type: 2}
+  - {fileID: 11400000, guid: b7f748cd018c3f04fa06c21f226040b7, type: 2}
+  - {fileID: 11400000, guid: fc645ae56d94fcb42be00560cba1dc4f, type: 2}
   evolucionSiguiente: {fileID: 0}
   nivelDeEvolucion: 0
   naturaleza: 2
