@@ -8,16 +8,7 @@ public class NpcMovement : MonoBehaviour
     private Rigidbody rb;
     private Animator animator;
 
-    private void Awake()
-    {
-        // Al cargar una escena, si hay una posición guardada, mueve al jugador allí.
-        // Esto es clave para volver al punto exacto después de un combate.
-        if (GameState.posicionJugadorGuardadaDisponible)
-        {
-            transform.position = GameState.posicionJugadorGuardada;
-            GameState.posicionJugadorGuardadaDisponible = false; // Se usa la posición solo una vez.
-        }
-    }
+    
 
     void Start()
     {

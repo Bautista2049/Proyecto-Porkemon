@@ -10,7 +10,11 @@ public class Movimiento : MonoBehaviour
 
     private void Start()
     {
-        if (GameState.posicionJugadorGuardadaDisponible && SceneManager.GetActiveScene().name == "Escena Principal")
+        if (GameState.posicionJugadorGuardadaDisponible && SceneManager.GetActiveScene().name == "Escena Principal" && SceneManager.GetActiveScene().name == "Escena Gimnasio")
+        {
+            transform.position = GameState.posicionJugadorGuardada;
+        }
+        else if (GameState.posicionJugadorGuardadaDisponible && SceneManager.GetActiveScene().name == "Escena Combate")
         {
             transform.position = GameState.posicionJugadorGuardada;
         }

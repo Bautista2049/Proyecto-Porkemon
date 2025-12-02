@@ -139,7 +139,7 @@ RectTransform:
   m_GameObject: {fileID: 107704438}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5646, y: 0.5646, z: 0.5646}
+  m_LocalScale: {x: 0.5646, y: 0.20826964, z: 0.5646}
   m_Children:
   - {fileID: 2039428089}
   m_Father: {fileID: 145920088}
@@ -147,7 +147,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -306}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &107704440
@@ -372,7 +372,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 623561365}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.09730041, y: 0.07398931, z: 0.048501212}
@@ -385,7 +385,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 623561365}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.267, y: 0.008964595, z: 0.17377819}
@@ -398,7 +398,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 623561365}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.022949934, y: 0.07398931, z: 0.17377819}
@@ -411,7 +411,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 623561365}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.267, y: 0.07398931, z: 0.01759714}
@@ -424,30 +424,11 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 623561365}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.023024749, y: 0.07398931, z: 0.17377819}
   m_Center: {x: 0.12293434, y: 0, z: 0}
---- !u!114 &623561371
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 623561365}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c312b4f2b2005c4ba09cf58b09b72fa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  modo: 2
-  nombreEscenaCuracion: Escena Curacion
-  nombreEscenaAnterior: Escena Principal
-  panelDialogo: {fileID: 0}
-  textoDialogo: {fileID: 0}
-  panelInteraccionPrompt: {fileID: 0}
-  teclaInteraccion: 101
 --- !u!1 &1032150595
 GameObject:
   m_ObjectHideFlags: 0
@@ -719,7 +700,7 @@ PrefabInstance:
     - target: {fileID: 7660228976455918808, guid: 46f965d1a6fa1f54fa35ba6f29827e21,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.1
+      value: -3.7
       objectReference: {fileID: 0}
     - target: {fileID: 7660228976455918808, guid: 46f965d1a6fa1f54fa35ba6f29827e21,
         type: 3}
@@ -729,7 +710,7 @@ PrefabInstance:
     - target: {fileID: 7660228976455918808, guid: 46f965d1a6fa1f54fa35ba6f29827e21,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 21.4
+      value: 24.6
       objectReference: {fileID: 0}
     - target: {fileID: 7660228976455918808, guid: 46f965d1a6fa1f54fa35ba6f29827e21,
         type: 3}
@@ -786,6 +767,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1695419416819097028, guid: 995311f0af1c3d1479d02bf119b67c30,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4167824776544048500, guid: 995311f0af1c3d1479d02bf119b67c30,
         type: 3}
       propertyPath: m_LocalPosition.y
@@ -825,6 +811,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.y
       value: -0.046986442
+      objectReference: {fileID: 0}
+    - target: {fileID: 8450489178233175049, guid: 995311f0af1c3d1479d02bf119b67c30,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8710787591285947022, guid: 995311f0af1c3d1479d02bf119b67c30,
         type: 3}
@@ -1199,6 +1190,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5090179195071123133, guid: c10628d43ccf2a74daff36c86dd85205,
+        type: 3}
+      propertyPath: cameraCombate
+      value: 
+      objectReference: {fileID: 1824474861}
     - target: {fileID: 5090179195071123134, guid: c10628d43ccf2a74daff36c86dd85205,
         type: 3}
       propertyPath: m_Name
@@ -1300,16 +1296,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2039428088}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3.0836, y: 3.0836, z: 3.0836}
+  m_LocalScale: {x: 3.0835998, y: 8.359358, z: 3.0835998}
   m_Children: []
   m_Father: {fileID: 107704439}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 38.411774}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2039428090
@@ -1330,7 +1326,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Curando tus pokemones...
+  m_text: Curando tus pokemones..
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 800fc409a997ee94abad002670298077, type: 2}
   m_sharedMaterial: {fileID: 21805934246870502, guid: 800fc409a997ee94abad002670298077,
@@ -1359,7 +1355,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 18
+  m_fontSize: 18.15
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1376,7 +1372,7 @@ MonoBehaviour:
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: 23
+  m_firstOverflowCharacterIndex: -1
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_isTextTruncated: 0
@@ -1400,12 +1396,12 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 2039428090}
-    characterCount: 24
+    characterCount: 23
     spriteCount: 0
     spaceCount: 2
     wordCount: 3
     linkCount: 0
-    lineCount: 3
+    lineCount: 2
     pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0

@@ -67,7 +67,8 @@ MonoBehaviour:
   combateIniciado: 0
   posicionJugador: {fileID: 6853477059602714830, guid: d3332389637bee4469f8620fe36dc2d8,
     type: 3}
-  cameraCombate: {fileID: 0}
+  cameraCombate: {fileID: 703208278868586919, guid: 6befdd1e5d63d2f4a87c0c15d58dcfca,
+    type: 3}
   psImpactoFuego: {fileID: 2031779268522411164, guid: 6217ecd352a86b04c80d3ba813cfc835,
     type: 3}
   psImpactoAgua: {fileID: 1554522841033017094, guid: 4d0b24fee214fdb41a8d2129d149e52a,
