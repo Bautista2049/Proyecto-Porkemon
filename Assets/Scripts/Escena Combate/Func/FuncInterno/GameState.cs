@@ -1,8 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
 
 public static class GameState
 {
@@ -21,10 +19,15 @@ public static class GameState
     public static bool modoTienda = false;
     public static bool modoRevivir = false;
     public static bool esCombateBoss = false;
+
+    // --- Sistema de Posición y Entrenadores Vencidos ---
     public static bool posicionJugadorGuardadaDisponible;
     public static Vector3 posicionJugadorGuardada;
     public static string escenaPosicionGuardada;
+    public static string ultimoEntrenadorCombatidoID; // ID del último NPC con el que se luchó.
+    public static List<string> entrenadoresVencidosIDs = new List<string>(); // Lista de IDs de NPCs ya vencidos.
 
+    // --- Multiplicadores de Juego ---
     public static float multiplicadorDinero = 1f;
     public static float multiplicadorExp = 1.5f; // Experiencia aumentada un 50%
     public static float multiplicadorCaptura = 1f;
@@ -36,12 +39,15 @@ public static class GameState
         posicionJugadorGuardadaDisponible = true;
         escenaPosicionGuardada = escena;
     }
-}
 
-[System.Serializable]
-class SaveData
-{
-    public bool player1Turn;
-    public PorkemonSaveData porkemonDelJugador;
-    public PorkemonSaveData porkemonDelBot;
+    /// <summary>
+    /// Añade el ID del último entrenador combatido a la lista de vencidos.
+    /// </summary>
+    public static void MarcarUltimoEntrenadorComoVencido()
+    {
+        if (!string.IsNullOrEmpty(ultimoEntrenadorCombatidoID) && !entrenadoresVencidosIDs.Contains(ultimoEntrenadorCombatidoID))
+        {
+            entrenadoresVencidosIDs.Add(ultimoEntrenadorCombatidoID);
+        }
+    }
 }
