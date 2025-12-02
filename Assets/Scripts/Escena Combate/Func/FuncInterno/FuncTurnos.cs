@@ -29,7 +29,7 @@ public class FuncTurnos : MonoBehaviour
     private void Start()
     {
         GameState.multiplicadorDinero = 1f;
-        GameState.multiplicadorExp = 1f;
+        GameState.multiplicadorExp = 1.5f;
         GameState.multiplicadorCaptura = 1f;
 
         if (GestorDeBatalla.instance != null)
@@ -37,7 +37,6 @@ public class FuncTurnos : MonoBehaviour
 
         if (ConsolaEnJuego.instance != null)
         {
-            ConsolaEnJuego.instance.MostrarConsola(true);
             ConsolaEnJuego.instance.ResetConsole();
         }
 
@@ -165,19 +164,20 @@ public class FuncTurnos : MonoBehaviour
 
             if (siguientePokemon != null)
             {
-                yield return StartCoroutine(ConsolaEnJuego.instance.MostrarMensaje($"¡{jugador1.porkemon.BaseData.nombre} se ha debilitado!"));
+                Debug.Log($"¡{jugador1.porkemon.BaseData.nombre} se ha debilitado!");
+                yield return new WaitUntil(() => !ConsolaEnJuego.instance.isTyping);
 
                 jugador1.porkemon = siguientePokemon;
                 GameState.porkemonDelJugador = siguientePokemon;
 
-                jugador1.Setup(siguientePokemon);
                 jugador1.Setup(siguientePokemon);
                 if (playerModelManager != null)
                 {
                     playerModelManager.UpdateModel(siguientePokemon.BaseData.nombre);
                 }
 
-                yield return StartCoroutine(ConsolaEnJuego.instance.MostrarMensaje($"¡Adelante {siguientePokemon.BaseData.nombre}!"));
+                Debug.Log($"¡Adelante {siguientePokemon.BaseData.nombre}!");
+                yield return new WaitUntil(() => !ConsolaEnJuego.instance.isTyping);
 
                 CambiarTurno();
             }
@@ -197,7 +197,8 @@ public class FuncTurnos : MonoBehaviour
 
                 if (siguientePokemon != null)
                 {
-                    yield return StartCoroutine(ConsolaEnJuego.instance.MostrarMensaje($"¡El {jugador2.porkemon.BaseData.nombre} enemigo se ha debilitado!"));
+                    Debug.Log($"¡El {jugador2.porkemon.BaseData.nombre} enemigo se ha debilitado!");
+                    yield return new WaitUntil(() => !ConsolaEnJuego.instance.isTyping);
 
                     jugador2.porkemon = siguientePokemon;
                     GameState.porkemonDelBot = siguientePokemon;
@@ -208,7 +209,8 @@ public class FuncTurnos : MonoBehaviour
                         botModelManager.UpdateModel(siguientePokemon.BaseData.nombre);
                     }
 
-                    yield return StartCoroutine(ConsolaEnJuego.instance.MostrarMensaje($"¡El entrenador envía a {siguientePokemon.BaseData.nombre}!"));
+                    Debug.Log($"¡El entrenador envía a {siguientePokemon.BaseData.nombre}!");
+                    yield return new WaitUntil(() => !ConsolaEnJuego.instance.isTyping);
 
                     CambiarTurno();
                     yield break;
@@ -228,7 +230,7 @@ public class FuncTurnos : MonoBehaviour
             GameState.dineroJugador += GameState.dineroGanado;
 
             GameState.multiplicadorDinero = 1f;
-            GameState.multiplicadorExp = 1f;
+            GameState.multiplicadorExp = 1.5f;
             GameState.multiplicadorCaptura = 1f;
 
             GameState.esCombateBoss = false;
@@ -270,14 +272,8 @@ public class FuncTurnos : MonoBehaviour
         {
             if (GameState.esCombateBoss)
             {
-                if (ConsolaEnJuego.instance != null)
-                {
-                    yield return StartCoroutine(ConsolaEnJuego.instance.MostrarMensaje("No puedes capturar el Porkemon de un entrenador."));
-                }
-                else
-                {
-                    Debug.Log("No puedes capturar el Porkemon de un entrenador.");
-                }
+                Debug.Log("No puedes capturar el Porkemon de un entrenador.");
+                yield return new WaitUntil(() => !ConsolaEnJuego.instance.isTyping);
 
                 enCombate = true;
                 corutinaEnEjecucion = false;
@@ -294,7 +290,8 @@ public class FuncTurnos : MonoBehaviour
 
             if (itemUsado.cantidad <= 0)
                 GestorDeBatalla.instance.inventarioBattleItems.Remove(itemUsado);
-
+            
+            yield return new WaitUntil(() => !ConsolaEnJuego.instance.isTyping);
             yield return new WaitForSeconds(1f);
             CambiarTurno();
         }

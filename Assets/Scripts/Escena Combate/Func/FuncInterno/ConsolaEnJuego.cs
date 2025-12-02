@@ -10,18 +10,19 @@ public class ConsolaEnJuego : MonoBehaviour
 {
     public static ConsolaEnJuego instance;
 
+    [Header("Referencias UI (Opcional, se buscan automáticamente)")]
     public Text uiText;
     public TextMeshProUGUI tmpText;
+    
+    [Header("Configuración de Comportamiento")]
     public float typingSpeed = 0.03f;
-    public string consolaCanvasTag = "ConsolaCanvas";
-    public bool mostrarSoloEnCombate = false;
+    public string nombreEscenaCombate = "Escena de Combate";
 
     public bool isTyping { get; private set; } = false;
 
-    private List<string> filteredLogs = new List<string>();
+    private List<string> messageHistory = new List<string>();
     private const int maxLogLines = 3;
     private Coroutine typingCoroutine;
-    
     private Queue<string> messageQueue = new Queue<string>();
     private bool isProcessingQueue = false;
     private Canvas consolaCanvas;
@@ -31,24 +32,9 @@ public class ConsolaEnJuego : MonoBehaviour
         if (instance == null)
         {
             instance = this;
-            if (transform.parent != null)
-            {
-                transform.SetParent(null);
-            }
+            if (transform.parent != null) transform.SetParent(null);
             DontDestroyOnLoad(gameObject);
-            
-            // Forzar que por defecto la consola sólo se muestre en la escena de combate
-            mostrarSoloEnCombate = true;
-            
-            consolaCanvas = GetComponentInChildren<Canvas>(true);
-            if (consolaCanvas == null)
-            {
-                consolaCanvas = GetComponent<Canvas>();
-            }
-            
             SceneManager.sceneLoaded += OnSceneLoaded;
-            
-            ResetConsole(); 
         }
         else
         {
@@ -56,224 +42,63 @@ public class ConsolaEnJuego : MonoBehaviour
         }
     }
 
-    void OnEnable()
+    private void Start()
     {
-        Application.logMessageReceived += HandleLog;
-        BuscarReferenciasUI();
-        ResetConsole(); 
+        // Asegurarse de que la consola está correctamente configurada en la escena inicial.
+        OnSceneLoaded(SceneManager.GetActiveScene(), LoadSceneMode.Single);
     }
 
-    void OnDisable()
-    {
-        Application.logMessageReceived -= HandleLog;
-    }
-    
     private void OnDestroy()
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;
+        Application.logMessageReceived -= HandleLog;
     }
-    
+
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        if (gameObject.activeInHierarchy)
-        {
-            StartCoroutine(ConfigurarConsolaEnNuevaEscena(scene.name));
-        }
-        else
-        {
-            ConfigurarConsolaInmediato(scene.name);
-        }
+        // Espera un frame para que la nueva escena se cargue completamente antes de buscar la UI.
+        StartCoroutine(SetupConsoleForScene(scene));
     }
-    
-    private void ConfigurarConsolaInmediato(string sceneName)
+
+    private IEnumerator SetupConsoleForScene(Scene scene)
     {
-        BuscarReferenciasUI();
-        
-        if (mostrarSoloEnCombate)
+        yield return null; // Espera un frame.
+
+        BuscarYConfigurarUI();
+
+        bool esEscenaDeCombate = scene.name == nombreEscenaCombate;
+
+        if (consolaCanvas != null)
         {
-            bool esCombate = sceneName == "Escena de Combate" || sceneName == "EscenaCombateBoss";
-            MostrarConsola(esCombate);
+            consolaCanvas.gameObject.SetActive(esEscenaDeCombate);
         }
-        else
+
+        // Limpia logs anteriores al cambiar de escena.
+        Application.logMessageReceived -= HandleLog;
+
+        if (esEscenaDeCombate)
         {
-            MostrarConsola(true);
-        }
-        
-        if (sceneName == "Escena de Combate" || sceneName == "EscenaCombateBoss")
-        {
+            // Si estamos en la escena de combate, nos suscribimos para recibir logs.
+            Application.logMessageReceived += HandleLog;
             ResetConsole();
         }
     }
     
-    private IEnumerator ConfigurarConsolaEnNuevaEscena(string sceneName)
-    {
-        yield return null;
-        ConfigurarConsolaInmediato(sceneName);
-    }
-    
-    private void BuscarReferenciasUI()
-    {
-        if (tmpText != null && tmpText.gameObject != null && tmpText.gameObject.name == "Consola")
-        {
-            tmpText = null;
-        }
-        if (uiText != null && uiText.gameObject != null && uiText.gameObject.name == "Consola")
-        {
-            uiText = null;
-        }
-
-        if ((tmpText != null || uiText != null) && 
-            ((tmpText != null && tmpText.gameObject.scene.IsValid()) || 
-             (uiText != null && uiText.gameObject.scene.IsValid())))
-        {
-            return;
-        }
-        
-        if (tmpText == null)
-        {
-            tmpText = GetComponentInChildren<TextMeshProUGUI>(true);
-        }
-        
-        if (uiText == null && tmpText == null)
-        {
-            uiText = GetComponentInChildren<Text>(true);
-        }
-        
-        if ((tmpText == null && uiText == null) && consolaCanvas != null)
-        {
-            tmpText = consolaCanvas.GetComponentInChildren<TextMeshProUGUI>(true);
-            if (tmpText == null)
-            {
-                uiText = consolaCanvas.GetComponentInChildren<Text>(true);
-            }
-        }
-        
-        if (tmpText == null && uiText == null)
-        {
-            GameObject consolaCanvasObj = GameObject.FindGameObjectWithTag(consolaCanvasTag);
-            if (consolaCanvasObj != null)
-            {
-                consolaCanvas = consolaCanvasObj.GetComponent<Canvas>();
-                tmpText = consolaCanvasObj.GetComponentInChildren<TextMeshProUGUI>(true);
-                if (tmpText == null)
-                {
-                    uiText = consolaCanvasObj.GetComponentInChildren<Text>(true);
-                }
-            }
-        }
-
-        if (tmpText == null && uiText == null)
-        {
-            GameObject canvasObj = new GameObject("ConsolaCanvasAuto");
-            canvasObj.transform.SetParent(transform, false);
-
-            int uiLayer = LayerMask.NameToLayer("UI");
-            if (uiLayer >= 0)
-            {
-                canvasObj.layer = uiLayer;
-            }
-
-            try
-            {
-                canvasObj.tag = consolaCanvasTag;
-            }
-            catch { }
-
-            consolaCanvas = canvasObj.AddComponent<Canvas>();
-            consolaCanvas.renderMode = RenderMode.ScreenSpaceOverlay;
-
-            var scaler = canvasObj.AddComponent<CanvasScaler>();
-            scaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
-            scaler.referenceResolution = new Vector2(1920, 1080);
-
-            canvasObj.AddComponent<GraphicRaycaster>();
-
-            GameObject textObj = new GameObject("ConsolaTextoTMP");
-            textObj.transform.SetParent(canvasObj.transform, false);
-
-            tmpText = textObj.AddComponent<TextMeshProUGUI>();
-            tmpText.text = "";
-            tmpText.enableAutoSizing = true;
-            tmpText.fontSizeMin = 18f;
-            tmpText.fontSizeMax = 66f;
-            tmpText.enableWordWrapping = true;
-            tmpText.alignment = TextAlignmentOptions.BottomLeft;
-
-            RectTransform rt = tmpText.rectTransform;
-            rt.anchorMin = new Vector2(0f, 0f);
-            rt.anchorMax = new Vector2(1f, 0f);
-            rt.pivot = new Vector2(0f, 0f);
-            rt.sizeDelta = new Vector2(0f, 150f);
-            rt.anchoredPosition = new Vector2(0f, 0f);
-        }
-    }
-    
-    public void MostrarConsola(bool mostrar)
-    {
-        if (consolaCanvas != null)
-        {
-            consolaCanvas.gameObject.SetActive(mostrar);
-        }
-        else
-        {
-            gameObject.SetActive(mostrar);
-        }
-    }
-
-    public void ResetConsole()
-    {
-        if (typingCoroutine != null)
-        {
-            StopCoroutine(typingCoroutine);
-            typingCoroutine = null;
-        }
-        isTyping = false;
-        isProcessingQueue = false;
-        
-        filteredLogs.Clear();
-        messageQueue.Clear();
-        
-        ActualizarTextoConsola(true);
-        
-        Debug.Log("ConsolaEnJuego Reiniciada.");
-    }
-
+    /// <summary>
+    /// Captura todos los mensajes de log de Unity mientras esté suscrito.
+    /// </summary>
     private void HandleLog(string logString, string stackTrace, LogType type)
     {
-        string lowerLogString = logString.ToLower();
-        if (lowerLogString.Contains("ataque") ||
-            lowerLogString.Contains("daño") ||
-            lowerLogString.Contains("quema") ||
-            lowerLogString.Contains("paraliza") ||
-            lowerLogString.Contains("confundi") ||
-            lowerLogString.Contains("defensa") ||
-            lowerLogString.Contains("velocidad") ||
-            lowerLogString.Contains("confundido") ||
-            lowerLogString.Contains("precisión") ||
-            lowerLogString.Contains("envenenado") ||
-            lowerLogString.Contains("efi") ||
-            lowerLogString.Contains("retrocedido") ||
-            lowerLogString.Contains("efect") ||
-            lowerLogString.Contains("critico") ||
-            lowerLogString.Contains("inmune") ||
-            lowerLogString.Contains("usó") ||
-            lowerLogString.Contains("aumentado") ||
-            lowerLogString.Contains("recuperó") ||
-            lowerLogString.Contains("recupero") ||
-            lowerLogString.Contains("ps!") ||
-            lowerLogString.Contains("lanzaste") ||
-            lowerLogString.Contains("...") ||
-            lowerLogString.Contains("gotcha") ||
-            lowerLogString.Contains("escapado"))
-        {
-            EnqueueLogMessage(logString);
-        }
+        // Filtro para evitar que la consola se loguee a sí misma.
+        if (logString.StartsWith("ConsolaEnJuego:")) return;
+        
+        // Añade cualquier otro log a la cola para ser mostrado.
+        EnqueueLogMessage(logString);
     }
 
     private void EnqueueLogMessage(string message)
     {
         messageQueue.Enqueue(message);
-
         if (!isProcessingQueue)
         {
             typingCoroutine = StartCoroutine(ProcessMessageQueue());
@@ -283,78 +108,71 @@ public class ConsolaEnJuego : MonoBehaviour
     private IEnumerator ProcessMessageQueue()
     {
         isProcessingQueue = true;
-        
         while (messageQueue.Count > 0)
         {
             string message = messageQueue.Dequeue();
+            if (messageHistory.Count >= maxLogLines) messageHistory.RemoveAt(0);
+            messageHistory.Add(message);
             
-            if (filteredLogs.Count >= maxLogLines)
-            {
-                filteredLogs.RemoveAt(0);
-            }
-            filteredLogs.Add(message);
+            yield return StartCoroutine(AnimateMessage(message));
             
-            yield return StartCoroutine(MostrarMensaje(message));
-            
-            if (messageQueue.Count > 0)
-            {
-                yield return new WaitForSeconds(0.5f);
-            }
+            if (messageQueue.Count > 0) yield return new WaitForSeconds(0.5f);
         }
-        
         isProcessingQueue = false;
         typingCoroutine = null;
     }
 
-    public IEnumerator MostrarMensaje(string messageToWrite)
+    private IEnumerator AnimateMessage(string messageToWrite)
     {
         isTyping = true;
-        string currentText = "";
-
-        string previousText = string.Join("\n", filteredLogs.Take(filteredLogs.Count - 1));
-        if (!string.IsNullOrEmpty(previousText))
-        {
-            previousText += "\n";
-        }
+        string currentFrameText = "";
+        string previousLines = string.Join("\n", messageHistory.Take(messageHistory.Count - 1));
+        if (!string.IsNullOrEmpty(previousLines)) previousLines += "\n";
 
         foreach (char letter in messageToWrite.ToCharArray())
         {
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.Space)) // Permite saltar la animación.
             {
-                currentText = messageToWrite;
-                string displayText = previousText + currentText; 
-
-                if (tmpText != null) tmpText.text = displayText;
-                else if (uiText != null) uiText.text = displayText;
-                
+                currentFrameText = messageToWrite;
+                SetText(previousLines + currentFrameText);
                 break;
             }
-
-            currentText += letter;
-            string currentDisplayText = previousText + currentText; 
-
-            if (tmpText != null) tmpText.text = currentDisplayText;
-            else if (uiText != null) uiText.text = currentDisplayText;
-            
+            currentFrameText += letter;
+            SetText(previousLines + currentFrameText);
             yield return new WaitForSeconds(typingSpeed);
         }
-
         isTyping = false;
     }
 
-    private void ActualizarTextoConsola(bool forceClear = false)
+    private void SetText(string text)
     {
-        if (forceClear)
-        {
-            if (tmpText != null) tmpText.text = "";
-            else if (uiText != null) uiText.text = "";
-        }
-        else if (typingCoroutine == null && filteredLogs.Count > 0)
-        {
-            string consoleText = string.Join("\n", filteredLogs);
+        if (tmpText != null) tmpText.text = text;
+        else if (uiText != null) uiText.text = text;
+    }
 
-            if (tmpText != null) tmpText.text = consoleText;
-            else if (uiText != null) uiText.text = consoleText;
+    public void ResetConsole()
+    {
+        if (typingCoroutine != null) StopCoroutine(typingCoroutine);
+        isTyping = false;
+        isProcessingQueue = false;
+        messageHistory.Clear();
+        messageQueue.Clear();
+        SetText("");
+    }
+
+    private void BuscarYConfigurarUI()
+    {
+        if (consolaCanvas == null) consolaCanvas = GetComponentInChildren<Canvas>(true);
+        if (tmpText == null) tmpText = GetComponentInChildren<TextMeshProUGUI>(true);
+        if (uiText == null && tmpText == null) uiText = GetComponentInChildren<Text>(true);
+
+        if (consolaCanvas == null)
+        {
+            Debug.LogWarning("ConsolaEnJuego: No se encontró un Canvas hijo. La visibilidad no puede ser gestionada.");
+        }
+        if (tmpText == null && uiText == null)
+        {
+            Debug.LogWarning("ConsolaEnJuego: No se encontró un componente Text o TextMeshProUGUI.");
         }
     }
 }

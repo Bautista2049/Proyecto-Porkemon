@@ -118,9 +118,7 @@ public class GestorDeBatalla : MonoBehaviour
         {
             inventarioCompleto = new List<BattleItem>
             {
-                new BattleItem(BattleItemType.Pocion, "Poción", "Restaura 20 PS", 1),
-                new BattleItem(BattleItemType.Porkebola, "Pokéball", "Atrapa Pokémon salvajes más fácilmente", 5),
-
+                new BattleItem(BattleItemType.Pocion, "Poción", "Restaura 20 PS", 0),
                 new BattleItem(BattleItemType.Superpocion, "Superpoción", "Restaura 50 PS", 0),
                 new BattleItem(BattleItemType.Hiperpocion, "Hiperpoción", "Restaura 120 PS", 0),
                 new BattleItem(BattleItemType.Pocionmaxima, "Poción Máxima", "Restaura todos los PS", 0),
@@ -136,10 +134,27 @@ public class GestorDeBatalla : MonoBehaviour
                 new BattleItem(BattleItemType.CriticoX, "Crítico X", "Aumenta la probabilidad de golpe crítico", 0),
                 new BattleItem(BattleItemType.ProteccionX, "Protección X", "Aumenta la evasión durante 5 turnos", 0),
 
+                // Las Pokéballs mantienen su stock fijo y no se randomizan.
+                new BattleItem(BattleItemType.Porkebola, "Pokéball", "Atrapa Pokémon salvajes más fácilmente", 5),
                 new BattleItem(BattleItemType.Superbola, "Superball", "Más efectiva que una Pokéball normal", 0),
                 new BattleItem(BattleItemType.Ultrabola, "Ultraball", "Muy efectiva para Pokémon difíciles de atrapar", 0),
                 new BattleItem(BattleItemType.Masterbola, "Masterball", "Atrapa cualquier Pokémon sin fallar", 0)
             };
+
+            // Randomiza el stock de los objetos de la tienda
+            foreach (var item in inventarioCompleto)
+            {
+                bool esPokeball = item.type == BattleItemType.Porkebola || 
+                                  item.type == BattleItemType.Superbola ||
+                                  item.type == BattleItemType.Ultrabola ||
+                                  item.type == BattleItemType.Masterbola;
+
+                // Si el objeto tiene descripción y NO es una pokeball, randomiza su stock.
+                if (!string.IsNullOrEmpty(item.descripcion) && !esPokeball)
+                {
+                    item.cantidad = Random.Range(1, 6); // Stock aleatorio entre 1 y 5
+                }
+            }
         }
 
         inventarioBattleItems.Clear();

@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 820638e9bbbd70a41a8c16bdd3f08c84, type: 3}
+  m_Name: Chispazo Veloz
+  m_EditorClassIdentifier: 
+  nombreAtaque: Chispazo Veloz
+  descripcion: "Una versi\xF3n mejorada de Ataque R\xE1pido que deja al oponente electrizado."
+  tipo: 4
+  categoria: 2
+  poder: 120
+  precision: 75
+  pp: 100
+  chanceCritico: 6.25
+  esMimetizacion: 0
+  estadoQueAplica: 2
+  probabilidadEstado: 100
+  modificadoresDeStats: []
+  probabilidadModificacionStats: 0

@@ -18,7 +18,7 @@ MonoBehaviour:
   tipo1: 7
   tipo2: 13
   baseRate: 1000
-  nivel: 20
+  nivel: 1
   vidaMaxima: 1000
   ataque: 100
   defensa: 20

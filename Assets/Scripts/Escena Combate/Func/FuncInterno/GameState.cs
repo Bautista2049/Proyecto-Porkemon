@@ -26,9 +26,9 @@ public static class GameState
     public static string escenaPosicionGuardada;
 
     public static float multiplicadorDinero = 1f;
-    public static float multiplicadorExp = 1f;
+    public static float multiplicadorExp = 1.5f; // Experiencia aumentada un 50%
     public static float multiplicadorCaptura = 1f;
-    public static float multiplicadorPreciosTienda = 1f;
+    public static float multiplicadorPreciosTienda = 0.75f; // Precios de la tienda reducidos un 25%
 
     public static void GuardarPosicionJugador(Vector3 posicion, string escena)
     {

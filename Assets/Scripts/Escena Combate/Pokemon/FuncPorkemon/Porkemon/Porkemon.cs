@@ -42,6 +42,10 @@ public class Porkemon
     public int EvVelocidad { get; private set; }
 
     public EstadoAlterado Estado { get; set; } = EstadoAlterado.Ninguno;
+    
+    // --- Campo para Mimetización ---
+    public AtaqueData UltimoAtaqueExitoso { get; set; }
+
     public void ReducirDefensa(int cantidad)
     {
         Defensa = Mathf.Max(1, Defensa - cantidad);

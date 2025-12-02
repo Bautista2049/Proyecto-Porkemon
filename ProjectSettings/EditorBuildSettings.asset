@@ -41,4 +41,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Escena Curacion.unity
     guid: 3b517d141db155e47840718175242b1c
+  - enabled: 1
+    path: Assets/Scenes/Escena Gimnasio.unity
+    guid: 306edc265d17379448f9fba6c548300a
   m_configObjects: {}

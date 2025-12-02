@@ -15,8 +15,18 @@ MonoBehaviour:
   nombreAtaque: Adrenaline
   descripcion: Una fuerte descarga de adrenalina
   tipo: 17
-  categoria: 0
+  categoria: 2
   poder: 80
   precision: 100
   pp: 15
   chanceCritico: 27.7
+  estadoQueAplica: 0
+  probabilidadEstado: 0
+  modificadoresDeStats:
+  - estadistica: 6
+    etapas: 2
+    esParaOponente: 0
+  - estadistica: 5
+    etapas: 1
+    esParaOponente: 0
+  probabilidadModificacionStats: 100

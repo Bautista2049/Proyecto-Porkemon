@@ -18,7 +18,7 @@ MonoBehaviour:
   tipo1: 0
   tipo2: 0
   baseRate: 120
-  nivel: 5
+  nivel: 1
   vidaMaxima: 200
   ataque: 100
   defensa: 67
@@ -28,8 +28,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: fe222671ac2fb3f42be863e4695b3b67, type: 2}
   - {fileID: 11400000, guid: 1ccdab0e51dbb2441be91180543b04a2, type: 2}
   - {fileID: 11400000, guid: 8d9ae9c7ded39044381e9da05ced7775, type: 2}
-  evolucionSiguiente: {fileID: 0}
-  nivelDeEvolucion: 0
+  evolucionSiguiente: {fileID: 11400000, guid: 8950073b2ae78f04bb196ff5ec6f5a5f, type: 2}
+  nivelDeEvolucion: 10
   naturaleza: 2
   tasaCrecimiento: 1
   experienciaBase: 50

@@ -71,6 +71,36 @@ public enum TasaCrecimiento
     Fluctuante
 }
 
+// --- NUEVAS ESTRUCTURAS PARA EFECTOS SECUNDARIOS ---
+
+/// <summary>
+/// Define las estadísticas que un ataque puede modificar.
+/// </summary>
+public enum Estadistica
+{
+    Ninguna,
+    Ataque,
+    Defensa,
+    Espiritu, // Usado para Ataque Especial y Defensa Especial
+    Velocidad,
+    Precision,
+    Evasion
+}
+
+/// <summary>
+/// Clase para definir una modificación de estadística.
+/// </summary>
+[System.Serializable]
+public class ModificadorEstadistica
+{
+    public Estadistica estadistica;
+    [Tooltip("Número de niveles que sube o baja la estadística (ej: 1 para +1, -1 para -1).")]
+    public int etapas;
+    [Tooltip("Marcar si el efecto es para el oponente. Desmarcar si es para el usuario del ataque.")]
+    public bool esParaOponente = true;
+}
+
+
 [CreateAssetMenu(fileName = "Nuevo Ataque", menuName = "Porkemon/Ataque")]
 public class AtaqueData : ScriptableObject
 {
@@ -87,4 +117,24 @@ public class AtaqueData : ScriptableObject
     public int pp;
     [Range(0, 100)]
     public float chanceCritico = 6.25f;
+
+    [Header("Mecánicas Especiales")]
+    [Tooltip("Si se marca, este ataque copiará el último movimiento usado por el oponente.")]
+    public bool esMimetizacion = false;
+
+    [Header("Efectos Secundarios")]
+    [Tooltip("El estado alterado que este ataque puede infligir.")]
+    public EstadoAlterado estadoQueAplica = EstadoAlterado.Ninguno;
+
+    [Tooltip("La probabilidad (en %) de que el estado alterado se aplique (0 si nunca ocurre).")]
+    [Range(0, 100)]
+    public int probabilidadEstado = 0;
+
+    [Space(10)]
+    [Tooltip("Lista de modificaciones de estadísticas que puede causar el ataque.")]
+    public List<ModificadorEstadistica> modificadoresDeStats;
+
+    [Tooltip("La probabilidad (en %) de que se apliquen las modificaciones de estadísticas (0 si nunca ocurre).")]
+    [Range(0, 100)]
+    public int probabilidadModificacionStats = 0;
 }

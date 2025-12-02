@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cfe5e20a480e9148859b0f488dadf57, type: 3}
+  m_Name: Ariados
+  m_EditorClassIdentifier: 
+  nombre: Ariados
+  modeloPrefab: {fileID: 9214917558586710183, guid: dc9a4b1062da0f646816129bcd1b9459,
+    type: 3}
+  tipo1: 6
+  tipo2: 2
+  baseRate: 120
+  nivel: 1
+  vidaMaxima: 300
+  ataque: 467
+  defensa: 647
+  espiritu: 761
+  velocidad: 147
+  ataquesQuePuedeAprender:
+  - {fileID: 11400000, guid: 70a50fbe8087f134a849fe2a20cbf1f8, type: 2}
+  - {fileID: 11400000, guid: d102d67626cc32340944ec944c0add9c, type: 2}
+  - {fileID: 11400000, guid: e5427a582346aa44cb562caa7ed0754d, type: 2}
+  - {fileID: 11400000, guid: 88d3c799c54d4a341a27a24b89420077, type: 2}
+  evolucionSiguiente: {fileID: 0}
+  nivelDeEvolucion: 0
+  naturaleza: 2
+  tasaCrecimiento: 1
+  experienciaBase: 50

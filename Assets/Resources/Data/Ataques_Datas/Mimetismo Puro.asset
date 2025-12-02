@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 820638e9bbbd70a41a8c16bdd3f08c84, type: 3}
+  m_Name: Mimetismo Puro
+  m_EditorClassIdentifier: 
+  nombreAtaque: Mimetismo Puro
+  descripcion: El movimiento de estado que garantiza una copia perfecta del oponente
+    sin margen de error.
+  tipo: 0
+  categoria: 1
+  poder: 200
+  precision: 50
+  pp: 100
+  chanceCritico: 100
+  esMimetizacion: 1
+  estadoQueAplica: 6
+  probabilidadEstado: 20
+  modificadoresDeStats:
+  - estadistica: 1
+    etapas: 2
+    esParaOponente: 0
+  - estadistica: 5
+    etapas: 1
+    esParaOponente: 1
+  probabilidadModificacionStats: 25

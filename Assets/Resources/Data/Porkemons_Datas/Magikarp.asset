@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cfe5e20a480e9148859b0f488dadf57, type: 3}
+  m_Name: Magikarp
+  m_EditorClassIdentifier: 
+  nombre: Magikarp
+  modeloPrefab: {fileID: 8775879548643524526, guid: 7857f87003b4020448b95e5cd9cdb3d8,
+    type: 3}
+  tipo1: 2
+  tipo2: 2
+  baseRate: 67
+  nivel: 1
+  vidaMaxima: 67
+  ataque: 67
+  defensa: 67
+  espiritu: 67
+  velocidad: 7
+  ataquesQuePuedeAprender:
+  - {fileID: 11400000, guid: 9e424d604cce5e040b6e61ccc5b1c29d, type: 2}
+  - {fileID: 11400000, guid: 79f9007bc6296cf4d9f50eb78257e367, type: 2}
+  - {fileID: 11400000, guid: 9498840ba3f1c474ebdfc878f69c88b8, type: 2}
+  - {fileID: 11400000, guid: a11d0c71e12c8b94baa3f7476644d840, type: 2}
+  evolucionSiguiente: {fileID: 0}
+  nivelDeEvolucion: 0
+  naturaleza: 2
+  tasaCrecimiento: 1
+  experienciaBase: 50

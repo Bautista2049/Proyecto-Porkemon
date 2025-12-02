@@ -1,30 +1,34 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.SceneManagement;
 
+[RequireComponent(typeof(NavMeshAgent))] // Asegura que el NPC tenga un NavMeshAgent
 public class ControladorNPCEntrenador : MonoBehaviour
 {
     [Header("Configuración del Entrenador")]
-    [SerializeField] private bool esEntrenador = true; // Checkbox "Es NPC Entrenador"
-    [SerializeField] private bool esJefe = false; // Checkbox "Es Jefe" (tiene más de 1 Pokémon)
-    [SerializeField] private float rangoDeteccion = 5f; // Rango de visión
-    [SerializeField] private float velocidadMovimiento = 2f;
+    [SerializeField] private bool esEntrenador = true;
+    [SerializeField] private bool esJefe = false;
+    [SerializeField] private float rangoDeteccion = 8f;
     [SerializeField] private string nombreEscenaCombate = "Escena de Combate";
 
+    [Header("Configuración de Patrulla")]
+    [SerializeField] private Transform[] puntosPatrulla; // Puntos entre los que el NPC patrullará
+    private int indicePuntoActual = 0;
+
     [Header("Equipo del NPC")]
-    [SerializeField] private List<PorkemonData> equipoBase = new List<PorkemonData>(); // Lista de Pokémon posibles (hasta 6)
-    [SerializeField] private int tamanoEquipoAleatorio = 3; // Número de Pokémon a seleccionar aleatoriamente (solo si es Jefe)
+    [SerializeField] private List<PorkemonData> equipoBase = new List<PorkemonData>();
+    [SerializeField] private int tamanoEquipoAleatorio = 3;
 
     [Header("Referencias")]
     [SerializeField] private SphereCollider triggerDeteccion;
-    [SerializeField] private Collider colliderCombate; // Collider para detectar colisión física con el jugador
     [SerializeField] private Animator animator;
-    [SerializeField] private Transform puntoMirada;
 
-    private bool jugadorDetectado = false;
+    private NavMeshAgent agent;
     private Transform jugador;
-    private bool enMovimiento = false;
+    private bool jugadorDetectado = false;
+    private bool enPatrulla = false;
     private List<Porkemon> equipoSeleccionado = new List<Porkemon>();
 
     private void Start()
@@ -35,156 +39,137 @@ public class ControladorNPCEntrenador : MonoBehaviour
             return;
         }
 
+        agent = GetComponent<NavMeshAgent>();
+
         // Configurar el trigger de detección
         if (triggerDeteccion == null)
         {
             triggerDeteccion = gameObject.AddComponent<SphereCollider>();
             triggerDeteccion.isTrigger = true;
-            triggerDeteccion.radius = rangoDeteccion;
         }
-        else
+        triggerDeteccion.radius = rangoDeteccion;
+
+        // Inicia la patrulla si hay puntos definidos
+        if (puntosPatrulla.Length > 0)
         {
-            triggerDeteccion.radius = rangoDeteccion;
-            triggerDeteccion.isTrigger = true;
+            IniciarPatrulla();
+        }
+    }
+
+    private void Update()
+    {
+        // Si está patrullando y ha llegado a su destino, va al siguiente punto
+        if (enPatrulla && !agent.pathPending && agent.remainingDistance < 0.5f)
+        {
+            IrAlSiguientePunto();
         }
 
-        // Desactivar el trigger inicialmente si es necesario
-        triggerDeteccion.enabled = true;
+        // Actualiza la animación de caminar basándose en la velocidad del NavMeshAgent
+        if (animator != null)
+        {
+            animator.SetBool("Walking", agent.velocity.magnitude > 0.1f);
+        }
+    }
+
+    private void IniciarPatrulla()
+    {
+        if (puntosPatrulla.Length == 0) return;
+        enPatrulla = true;
+        agent.isStopped = false;
+        IrAlSiguientePunto();
+    }
+
+    private void DetenerPatrulla()
+    {
+        enPatrulla = false;
+        agent.isStopped = true;
+    }
+
+    private void IrAlSiguientePunto()
+    {
+        if (puntosPatrulla.Length == 0) return;
+        agent.destination = puntosPatrulla[indicePuntoActual].position;
+        indicePuntoActual = (indicePuntoActual + 1) % puntosPatrulla.Length;
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!esEntrenador || jugadorDetectado) return;
+        if (!esEntrenador || jugadorDetectado || !other.CompareTag("Player")) return;
 
-        if (other.CompareTag("Player"))
+        jugador = other.transform;
+        jugadorDetectado = true;
+        DetenerPatrulla();
+
+        Debug.Log("Jugador detectado por NPC Entrenador");
+
+        if (esJefe)
         {
-            jugador = other.transform;
-            jugadorDetectado = true;
-            Debug.Log("Jugador detectado por NPC Entrenador");
-
-            if (esJefe)
-            {
-                // Si es Jefe, congelar y esperar colisión
-                if (animator != null)
-                {
-                    animator.SetBool("Walking", false);
-                    // Aquí puedes agregar más lógica para detener animaciones específicas
-                }
-                enMovimiento = false;
-                Debug.Log("NPC Jefe congelado esperando colisión con el jugador");
-            }
-            else
-            {
-                // Si es Entrenador normal, acercarse al jugador
-                StartCoroutine(AproximarseAlJugador());
-                Debug.Log("NPC Entrenador comenzando a acercarse al jugador");
-            }
+            // Si es Jefe, se detiene, mira al jugador y espera la colisión
+            Vector3 direction = (jugador.position - transform.position).normalized;
+            direction.y = 0;
+            transform.rotation = Quaternion.LookRotation(direction);
+            Debug.Log("NPC Jefe esperando colisión con el jugador");
         }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            // Si el jugador sale del rango, resetear estado
-            if (jugadorDetectado)
-            {
-                jugadorDetectado = false;
-                jugador = null;
-                enMovimiento = false;
-
-                // Detener animación de caminar
-                if (animator != null)
-                {
-                    animator.SetBool("Walking", false);
-                }
-
-                Debug.Log("Jugador salió del rango de detección");
-            }
+        else
+        {            
+            // Si es un entrenador normal, se acerca al jugador usando el NavMeshAgent
+            StartCoroutine(AproximarseAlJugador());
+            Debug.Log("NPC Entrenador comenzando a acercarse al jugador");
         }
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (!esEntrenador || !jugadorDetectado) return;
-
-        if (collision.gameObject.CompareTag("Player"))
+        // El combate se inicia por colisión solo si es un Jefe que ya ha detectado al jugador
+        if (esJefe && jugadorDetectado && collision.gameObject.CompareTag("Player"))
         {
-            Debug.Log("Colisión detectada con el jugador - Iniciando combate");
+            Debug.Log("Colisión detectada con el jugador - Iniciando combate con Jefe");
             IniciarCombate();
         }
     }
 
     private IEnumerator AproximarseAlJugador()
     {
-        enMovimiento = true;
+        agent.isStopped = false;
 
         while (jugadorDetectado && jugador != null)
         {
-            // Calcular distancia al jugador
-            float distancia = Vector3.Distance(transform.position, jugador.position);
+            agent.destination = jugador.position;
 
-            // Si estamos lo suficientemente cerca, iniciar combate
-            if (distancia <= 2f) // Distancia adecuada para combate
+            // Si el NPC llega lo suficientemente cerca del jugador, inicia el combate (y no es jefe)
+            if (!esJefe && agent.remainingDistance < 2.0f && agent.remainingDistance != 0)
             {
                 IniciarCombate();
                 yield break;
             }
-
-            // Moverse hacia el jugador
-            Vector3 direccion = (jugador.position - transform.position).normalized;
-            direccion.y = 0; // Mantener en plano horizontal
-
-            transform.position += direccion * velocidadMovimiento * Time.deltaTime;
-
-            // Rotar hacia el jugador
-            if (direccion != Vector3.zero)
-            {
-                Quaternion rotacionObjetivo = Quaternion.LookRotation(direccion);
-                transform.rotation = Quaternion.Slerp(transform.rotation, rotacionObjetivo, Time.deltaTime * 5f);
-            }
-
-            // Actualizar animación
-            if (animator != null)
-            {
-                animator.SetBool("Walking", true);
-            }
-
+            
             yield return null;
         }
 
-        enMovimiento = false;
-
-        // Resetear animación si ya no nos movemos
-        if (animator != null)
+        // Si el jugador sale del rango, el NPC detiene su movimiento
+        if(!jugadorDetectado)
         {
-            animator.SetBool("Walking", false);
+             agent.isStopped = true;
+             IniciarPatrulla();
         }
     }
 
     private void IniciarCombate()
     {
+        if (!jugador) return;
+        
+        DetenerPatrulla(); // Nos aseguramos de que esté detenido
         Debug.Log("Iniciando combate con NPC Entrenador");
 
-        // Seleccionar equipo aleatorio
         SeleccionarEquipoAleatorio();
 
-        // Configurar el combate
         if (GestorDeBatalla.instance != null)
         {
             GestorDeBatalla.instance.ConfigurarEquipoNPC(equipoSeleccionado);
-            GameState.esCombateBoss = true; // Marcar como combate contra entrenador
+            GameState.esCombateBoss = true;
         }
 
-        // Guardar posición del jugador
         GameState.GuardarPosicionJugador(jugador.position, SceneManager.GetActiveScene().name);
-
-        // Cargar escena de combate
-        Camera mainCamera = Camera.main;
-        if (mainCamera != null)
-        {
-            DontDestroyOnLoad(mainCamera.gameObject);
-        }
 
         SceneManager.LoadScene(nombreEscenaCombate);
         Cursor.lockState = CursorLockMode.None;
@@ -194,59 +179,25 @@ public class ControladorNPCEntrenador : MonoBehaviour
     private void SeleccionarEquipoAleatorio()
     {
         equipoSeleccionado.Clear();
-
         if (equipoBase.Count == 0) return;
 
-        // Crear una lista temporal con los Pokémon disponibles
         List<PorkemonData> disponibles = new List<PorkemonData>(equipoBase);
-
-        // Determinar cuántos Pokémon seleccionar basado en si es Jefe o no
-        int cantidadSeleccionar;
-        if (esJefe)
-        {
-            // Si es Jefe, seleccionar aleatoriamente entre 2 y el máximo disponible
-            cantidadSeleccionar = Mathf.Min(tamanoEquipoAleatorio, disponibles.Count);
-            cantidadSeleccionar = Mathf.Max(2, cantidadSeleccionar); // Mínimo 2 para jefes
-        }
-        else
-        {
-            // Si es Entrenador normal (no Jefe), solo 1 Pokémon
-            cantidadSeleccionar = 1;
-        }
+        int cantidadSeleccionar = esJefe ? Mathf.Min(tamanoEquipoAleatorio, disponibles.Count) : 1;
+        if(esJefe) cantidadSeleccionar = Mathf.Max(2, cantidadSeleccionar); 
 
         for (int i = 0; i < cantidadSeleccionar; i++)
         {
             if (disponibles.Count == 0) break;
-
-            // Seleccionar aleatoriamente
             int indiceAleatorio = Random.Range(0, disponibles.Count);
             PorkemonData seleccionado = disponibles[indiceAleatorio];
-
-            // Crear instancia del Pokémon
-            Porkemon nuevoPokemon = new Porkemon(seleccionado, seleccionado.nivel);
-            equipoSeleccionado.Add(nuevoPokemon);
-
-            // Remover de la lista de disponibles para no repetir
+            equipoSeleccionado.Add(new Porkemon(seleccionado, seleccionado.nivel));
             disponibles.RemoveAt(indiceAleatorio);
         }
 
         string tipoNPC = esJefe ? "Jefe" : "Entrenador";
         Debug.Log($"Equipo seleccionado para NPC {tipoNPC}: {equipoSeleccionado.Count} Pokémon");
-        foreach (var pokemon in equipoSeleccionado)
-        {
-            Debug.Log($"- {pokemon.BaseData.nombre} (Nivel {pokemon.Nivel})");
-        }
     }
 
-    // Método público para configurar el equipo desde el editor
-    public void SetEquipoBase(List<PorkemonData> nuevoEquipo)
-    {
-        equipoBase = new List<PorkemonData>(nuevoEquipo);
-    }
-
-    // Método para verificar si el NPC está activo como entrenador
-    public bool EsEntrenadorActivo()
-    {
-        return esEntrenador;
-    }
+    public void SetEquipoBase(List<PorkemonData> nuevoEquipo) => equipoBase = new List<PorkemonData>(nuevoEquipo);
+    public bool EsEntrenadorActivo() => esEntrenador;
 }

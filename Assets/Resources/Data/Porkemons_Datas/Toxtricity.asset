@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cfe5e20a480e9148859b0f488dadf57, type: 3}
+  m_Name: Toxtricity
+  m_EditorClassIdentifier: 
+  nombre: Toxtricity
+  modeloPrefab: {fileID: 1885538366228665539, guid: 013ab6c40e4e9ee4e8a9cf73f0c4d6ff,
+    type: 3}
+  tipo1: 4
+  tipo2: 6
+  baseRate: 100
+  nivel: 1
+  vidaMaxima: 2000
+  ataque: 100
+  defensa: 300
+  espiritu: 10000
+  velocidad: 140
+  ataquesQuePuedeAprender:
+  - {fileID: 11400000, guid: 8a9d69730f23b6f4b846157dc40374e1, type: 2}
+  - {fileID: 11400000, guid: b188d3e88e443934f911d4b611efc374, type: 2}
+  - {fileID: 11400000, guid: 20f65e7e3e59ccd45a4aea878989bbe6, type: 2}
+  - {fileID: 11400000, guid: c43d820965b8a8647be6da2ec929360a, type: 2}
+  evolucionSiguiente: {fileID: 0}
+  nivelDeEvolucion: 0
+  naturaleza: 2
+  tasaCrecimiento: 1
+  experienciaBase: 50

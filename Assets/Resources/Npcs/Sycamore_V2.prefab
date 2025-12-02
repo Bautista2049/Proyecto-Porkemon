@@ -3985,7 +3985,7 @@ Transform:
   m_GameObject: {fileID: 5286564823175122255}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 39.14, y: 34.754528, z: 132.74}
-  m_LocalScale: {x: 2.2215, y: 2.2215, z: 2.2215}
+  m_LocalScale: {x: 5.513805, y: 5.513805, z: 5.513805}
   m_Children:
   - {fileID: 5286564823174893587}
   - {fileID: 5286564823174893581}
@@ -4037,7 +4037,7 @@ MonoBehaviour:
   nombreEscenaCombate: Escena de Combate
   equipoBase: []
   tamanoEquipoAleatorio: 3
-  triggerDeteccion: {fileID: 0}
+  triggerDeteccion: {fileID: 135837072021399224}
   colliderCombate: {fileID: 0}
   animator: {fileID: 0}
   puntoMirada: {fileID: 0}
@@ -4052,8 +4052,8 @@ Rigidbody:
   m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
+  m_UseGravity: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0

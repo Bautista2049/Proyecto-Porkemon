@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cfe5e20a480e9148859b0f488dadf57, type: 3}
+  m_Name: Pikachu
+  m_EditorClassIdentifier: 
+  nombre: Pikachu
+  modeloPrefab: {fileID: 8305607052426245072, guid: ff0d5141cf9ea3f41ae4d4d96ae32bd3,
+    type: 3}
+  tipo1: 4
+  tipo2: 4
+  baseRate: 100
+  nivel: 1
+  vidaMaxima: 300
+  ataque: 500
+  defensa: 20
+  espiritu: 10000
+  velocidad: 10000
+  ataquesQuePuedeAprender:
+  - {fileID: 11400000, guid: 366fa74366a2ee24f9e00ce3aca27715, type: 2}
+  - {fileID: 11400000, guid: c79b9868d54864f4e8ef65b63fa20cb4, type: 2}
+  - {fileID: 11400000, guid: e3ee79cad0ae1904dafcf8faca95ab5a, type: 2}
+  evolucionSiguiente: {fileID: 0}
+  nivelDeEvolucion: 0
+  naturaleza: 2
+  tasaCrecimiento: 1
+  experienciaBase: 50
