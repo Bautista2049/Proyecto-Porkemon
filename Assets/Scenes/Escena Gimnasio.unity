@@ -810,7 +810,7 @@ MonoBehaviour:
   - {fileID: 78797366}
   - {fileID: 1117880636}
   equipoBase:
-  - {fileID: 11400000, guid: 126bb1aa6023277499d7d0b77e67f2fd, type: 2}
+  - {fileID: 11400000, guid: fed55cdd37d594c448e6659999d60cdb, type: 2}
   tamanoEquipoAleatorio: 3
   triggerDeteccion: {fileID: 1090147199}
   animator: {fileID: 1090147200}
@@ -1242,8 +1242,8 @@ MonoBehaviour:
   puntosPatrulla: []
   equipoBase:
   - {fileID: 11400000, guid: 2b9230f0e8c159b4a866358f080eaa5a, type: 2}
-  - {fileID: 11400000, guid: 6c9eb4021237ff14a82c44f71a59ea8a, type: 2}
-  - {fileID: 11400000, guid: 126bb1aa6023277499d7d0b77e67f2fd, type: 2}
+  - {fileID: 11400000, guid: fed55cdd37d594c448e6659999d60cdb, type: 2}
+  - {fileID: 11400000, guid: 8950073b2ae78f04bb196ff5ec6f5a5f, type: 2}
   tamanoEquipoAleatorio: 3
   triggerDeteccion: {fileID: 1778215582}
   animator: {fileID: 1778215584}

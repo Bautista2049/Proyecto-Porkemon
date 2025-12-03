@@ -2273,7 +2273,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   modelParentContainer: {fileID: 1433957337944174730}
   isPlayerModel: 1
-  posicionOponente: {fileID: 0}
+  posicionOponente: {fileID: 7770892176627228657, guid: 6c7aedda5584a9743b0fe844ce9d53b7,
+    type: 3}
 --- !u!114 &114486824200864566
 MonoBehaviour:
   m_ObjectHideFlags: 0

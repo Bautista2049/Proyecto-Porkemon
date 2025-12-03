@@ -3467,21 +3467,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4715058446491029743, guid: 9277b7c9e2dd4564a8297073d31dd2b1,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4715058446491029743, guid: 9277b7c9e2dd4564a8297073d31dd2b1,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4715058446491029743, guid: 9277b7c9e2dd4564a8297073d31dd2b1,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 3
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9277b7c9e2dd4564a8297073d31dd2b1, type: 3}
 --- !u!114 &604914215 stripped
@@ -14158,6 +14143,33 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 7585669420758129859, guid: b59e030c5761a8e47a3f3acc998a6985,
         type: 3}
+    - target: {fileID: 5090179195071123133, guid: c10628d43ccf2a74daff36c86dd85205,
+        type: 3}
+      propertyPath: dataInicialBot
+      value: 
+      objectReference: {fileID: 11400000, guid: 6c9eb4021237ff14a82c44f71a59ea8a,
+        type: 2}
+    - target: {fileID: 5090179195071123133, guid: c10628d43ccf2a74daff36c86dd85205,
+        type: 3}
+      propertyPath: dataEquipoJugador.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: fed55cdd37d594c448e6659999d60cdb,
+        type: 2}
+    - target: {fileID: 5090179195071123133, guid: c10628d43ccf2a74daff36c86dd85205,
+        type: 3}
+      propertyPath: escalaModeloBot.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5090179195071123133, guid: c10628d43ccf2a74daff36c86dd85205,
+        type: 3}
+      propertyPath: escalaModeloBot.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5090179195071123133, guid: c10628d43ccf2a74daff36c86dd85205,
+        type: 3}
+      propertyPath: escalaModeloBot.z
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5090179195071123134, guid: c10628d43ccf2a74daff36c86dd85205,
         type: 3}
       propertyPath: m_Name
@@ -16133,7 +16145,7 @@ PrefabInstance:
     - target: {fileID: 7770892176627228657, guid: 6c7aedda5584a9743b0fe844ce9d53b7,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.12
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7770892176627228657, guid: 6c7aedda5584a9743b0fe844ce9d53b7,
         type: 3}
@@ -16143,22 +16155,22 @@ PrefabInstance:
     - target: {fileID: 7770892176627228657, guid: 6c7aedda5584a9743b0fe844ce9d53b7,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: 0.57555854
       objectReference: {fileID: 0}
     - target: {fileID: 7770892176627228657, guid: 6c7aedda5584a9743b0fe844ce9d53b7,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 7770892176627228657, guid: 6c7aedda5584a9743b0fe844ce9d53b7,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 7770892176627228657, guid: 6c7aedda5584a9743b0fe844ce9d53b7,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.8177606
       objectReference: {fileID: 0}
     - target: {fileID: 7770892176627228657, guid: 6c7aedda5584a9743b0fe844ce9d53b7,
         type: 3}
@@ -16168,7 +16180,7 @@ PrefabInstance:
     - target: {fileID: 7770892176627228657, guid: 6c7aedda5584a9743b0fe844ce9d53b7,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
+      value: 70.278
       objectReference: {fileID: 0}
     - target: {fileID: 7770892176627228657, guid: 6c7aedda5584a9743b0fe844ce9d53b7,
         type: 3}

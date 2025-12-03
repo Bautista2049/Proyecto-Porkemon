@@ -8718,10 +8718,10 @@ MonoBehaviour:
   tiempoEntreSpawn: 4
   porkemons:
   - {fileID: 5628966268581028415, guid: 3cda29b0f927fa94a936c6d6d75d09fa, type: 3}
-  - {fileID: 9028659022299789166, guid: 45e7dc4e28c781d42a84ecf68fbe44f2, type: 3}
+  - {fileID: 8305607052426245072, guid: ff0d5141cf9ea3f41ae4d4d96ae32bd3, type: 3}
   porkemonDatas:
   - {fileID: 11400000, guid: ffe23ad346c18a146807d3a9f28a1b7a, type: 2}
-  - {fileID: 11400000, guid: 0a20be05971a3ac4491dcdcebc40e8e9, type: 2}
+  - {fileID: 11400000, guid: 8950073b2ae78f04bb196ff5ec6f5a5f, type: 2}
   quantities: 0800000004000000
 --- !u!23 &487130014
 MeshRenderer:
@@ -31129,10 +31129,10 @@ MonoBehaviour:
   tiempoEntreSpawn: 4
   porkemons:
   - {fileID: 5628966268581028415, guid: 3cda29b0f927fa94a936c6d6d75d09fa, type: 3}
-  - {fileID: 9083633850193479348, guid: 288c70cf39701df47be456867a4d7a69, type: 3}
+  - {fileID: 9214917558586710183, guid: dc9a4b1062da0f646816129bcd1b9459, type: 3}
   porkemonDatas:
   - {fileID: 11400000, guid: ffe23ad346c18a146807d3a9f28a1b7a, type: 2}
-  - {fileID: 11400000, guid: da1bda2e2dda52840ae5cab8e8ed5739, type: 2}
+  - {fileID: 11400000, guid: 2b9230f0e8c159b4a866358f080eaa5a, type: 2}
   quantities: 0800000004000000
 --- !u!23 &1675637661
 MeshRenderer:
@@ -39076,10 +39076,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tiempoEntreSpawn: 4
   porkemons:
-  - {fileID: 9083633850193479348, guid: 288c70cf39701df47be456867a4d7a69, type: 3}
+  - {fileID: 9214917558586710183, guid: dc9a4b1062da0f646816129bcd1b9459, type: 3}
   - {fileID: 4715058446490799311, guid: 9277b7c9e2dd4564a8297073d31dd2b1, type: 3}
   porkemonDatas:
-  - {fileID: 11400000, guid: da1bda2e2dda52840ae5cab8e8ed5739, type: 2}
+  - {fileID: 11400000, guid: 2b9230f0e8c159b4a866358f080eaa5a, type: 2}
   - {fileID: 11400000, guid: 448fd5351b275e94b8999870f99c542d, type: 2}
   quantities: 0800000004000000
 --- !u!23 &2102997253

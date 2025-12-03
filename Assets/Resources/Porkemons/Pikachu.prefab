@@ -1619,8 +1619,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8305607052426245072}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 43.72827, y: 34.986797, z: 143.59152}
-  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.27, y: 0.27, z: 0.27}
   m_Children:
   - {fileID: 8305607052426735220}
   - {fileID: 8305607052426735218}
@@ -1672,9 +1672,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e022259df580ad44cac4aa166e7dfe42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  modelParentContainer: {fileID: 0}
+  modelParentContainer: {fileID: 8305607052426245072}
   isPlayerModel: 0
-  posicionOponente: {fileID: 0}
+  posicionOponente: {fileID: 7770892176627228657, guid: 6c7aedda5584a9743b0fe844ce9d53b7,
+    type: 3}
 --- !u!54 &54577277276706516
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1689,7 +1690,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 126
   m_CollisionDetection: 0
 --- !u!114 &114459996130081188
 MonoBehaviour:

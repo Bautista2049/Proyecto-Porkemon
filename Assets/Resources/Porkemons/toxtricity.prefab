@@ -3654,9 +3654,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1885538366228665539}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 43.536167, y: 35.95, z: 138.92}
-  m_LocalScale: {x: 6, y: 6, z: 6}
+  m_LocalRotation: {x: 0, y: 0.80901694, z: 0, w: 0.5877853}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 4, y: 4, z: 4}
   m_Children:
   - {fileID: 1885538366228367783}
   - {fileID: 1885538366228367473}
@@ -3665,7 +3665,7 @@ Transform:
   - {fileID: 1885538366228367483}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 108, z: 0}
 --- !u!95 &1885538366238189127
 Animator:
   serializedVersion: 3
@@ -3711,9 +3711,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e022259df580ad44cac4aa166e7dfe42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  modelParentContainer: {fileID: 0}
+  modelParentContainer: {fileID: 1885538366228665539}
   isPlayerModel: 0
-  posicionOponente: {fileID: 0}
+  posicionOponente: {fileID: 7770892176627228657, guid: 6c7aedda5584a9743b0fe844ce9d53b7,
+    type: 3}
 --- !u!54 &54577469242252464
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3728,7 +3729,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 126
   m_CollisionDetection: 0
 --- !u!114 &114489599100383368
 MonoBehaviour:

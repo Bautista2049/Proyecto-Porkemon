@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: bce1a65fc5fd80f41bcbe2f2c581e7df
+guid: 01b5f8c6804a69744906118ed268c477
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
@@ -18,11 +18,27 @@ ModelImporter:
     3300002: //RootNode
     4300000: Magikarp
     4300002: Eye
-  externalObjects: {}
+    9500000: //RootNode
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: eyeBlack
+    second: {fileID: 2100000, guid: 7d3da715851183f4e8bec2a7ff974128, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: eyeWhite
+    second: {fileID: 2100000, guid: 73c43f5f02cf23041934301cf480c76e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: magicarpBody
+    second: {fileID: 2100000, guid: 503bc846094b2644db625f1e3fd3e87b, type: 2}
   materials:
     importMaterials: 1
-    materialName: 0
-    materialSearch: 1
+    materialName: 2
+    materialSearch: 0
     materialLocation: 1
   animations:
     legacyGenerateAnimations: 4
@@ -52,7 +68,7 @@ ModelImporter:
     globalScale: 1
     meshCompression: 0
     addColliders: 0
-    useSRGBMaterialColor: 1
+    useSRGBMaterialColor: 0
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 1
@@ -70,10 +86,10 @@ ModelImporter:
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
     useFileScale: 1
-    previousCalculatedGlobalScale: 1
-    hasPreviousCalculatedGlobalScale: 0
+    previousCalculatedGlobalScale: 0.01
+    hasPreviousCalculatedGlobalScale: 1
   tangentSpace:
-    normalSmoothAngle: 60
+    normalSmoothAngle: 151
     normalImportMode: 0
     tangentImportMode: 3
     normalCalculationMode: 4
@@ -98,7 +114,7 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 0
+  animationType: 2
   humanoidOversampling: 1
   additionalBone: 0
   userData: 
