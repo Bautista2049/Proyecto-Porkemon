@@ -15450,6 +15450,12 @@ PrefabInstance:
       propertyPath: consolaCanvasTag
       value: ConsolaCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 8881211152802729362, guid: 51bacc702329b7c41a7663c89004074d,
+        type: 3}
+      propertyPath: tmpText
+      value: 
+      objectReference: {fileID: 7513884397169334596, guid: c1ab64dbce15f8243ae38ccbce17ffb0,
+        type: 3}
     - target: {fileID: 8881211152802729363, guid: 51bacc702329b7c41a7663c89004074d,
         type: 3}
       propertyPath: m_LocalPosition.x
