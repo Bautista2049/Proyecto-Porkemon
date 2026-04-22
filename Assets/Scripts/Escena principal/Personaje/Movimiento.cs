@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -10,13 +10,13 @@ public class Movimiento : MonoBehaviour
 
     private void Start()
     {
-        if (GameState.posicionJugadorGuardadaDisponible && SceneManager.GetActiveScene().name == "Escena Principal" && SceneManager.GetActiveScene().name == "Escena Gimnasio")
+        if (GameState.posicionJugadorGuardadaDisponible)
         {
-            transform.position = GameState.posicionJugadorGuardada;
-        }
-        else if (GameState.posicionJugadorGuardadaDisponible && SceneManager.GetActiveScene().name == "Escena Combate")
-        {
-            transform.position = GameState.posicionJugadorGuardada;
+            string escenaActual = SceneManager.GetActiveScene().name;
+            if (escenaActual == "Escena Principal" || escenaActual == "Escena Gimnasio" || escenaActual == "Escena Combate")
+            {
+                transform.position = GameState.posicionJugadorGuardada;
+            }
         }
     }
 

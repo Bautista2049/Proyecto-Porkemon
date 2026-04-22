@@ -1,5 +1,10 @@
-﻿using UnityEngine;
+using UnityEngine;
 
+/// <summary>
+/// OBSOLETO: Este script es idéntico a PlayerMovement.cs.
+/// Para migrar: reemplaza este componente por PlayerMovement en cualquier GameObject que lo use.
+/// </summary>
+[System.Obsolete("Usar PlayerMovement.cs en su lugar (código idéntico)")]
 public class NpcMovement : MonoBehaviour
 {
     public float runSpeed = 5.0f;

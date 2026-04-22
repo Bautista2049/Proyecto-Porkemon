@@ -35,34 +35,11 @@ public class Transicion_Combate : MonoBehaviour
                 return;
             }
 
-            Vector3 posicionGuardada = collision.transform.position;
-            if (collision.contactCount > 0)
-            {
-                Vector3 normal = collision.GetContact(0).normal;
-                normal.y = 0f;
-                if (normal.sqrMagnitude > 0.0001f)
-                {
-                    normal.Normalize();
-                    posicionGuardada += normal * 0.75f;
-                }
-            }
-
+            Vector3 posicionGuardada = CombatTransitionHelper.CalcularPosicionRetorno(collision);
             GameState.GuardarPosicionJugador(posicionGuardada, SceneManager.GetActiveScene().name);
             GameState.porkemonDelBot = new Porkemon(botPorkemonData, nivelSpawn);
-            if (GestorDeBatalla.instance != null)
-            {
-                GestorDeBatalla.instance.combateIniciado = false;
-            }
 
-            Camera mainCamera = Camera.main;
-            if (mainCamera != null)
-            {
-                DontDestroyOnLoad(mainCamera.gameObject);
-            }
-
-            SceneManager.LoadScene(nombreEscena);
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
+            CombatTransitionHelper.IniciarTransicionCombate(nombreEscena);
         }
     }
 

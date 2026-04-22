@@ -1,20 +1,24 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 /// <summary>
-/// OBSOLETO: Reemplazado por NavegadorEscenas.cs que unifica este script con CargarEscena.
-/// Para migrar: reemplaza este componente por NavegadorEscenas en el Inspector.
+/// Script unificado de navegación entre escenas.
+/// Fusiona CargarEscena.cs y CargarEscPrincipal.cs que tenían métodos duplicados.
 /// </summary>
-[System.Obsolete("Usar NavegadorEscenas.cs en su lugar")]
-public class CargarEscPrincipal : MonoBehaviour
+public class NavegadorEscenas : MonoBehaviour
 {
     public void CargarPrincipal()
     {
         SceneTransitionManager.GetInstance().LoadScene("Escena Principal");
     }
-    
+
+    public void CargarMenu()
+    {
+        SceneTransitionManager.Instance.LoadScene("Interfaz de Menu");
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+    }
+
     public void CargaCambio()
     {
         SceneTransitionManager.Instance.LoadScene("Escena CambioPorkemon");
@@ -38,7 +42,6 @@ public class CargarEscPrincipal : MonoBehaviour
 
     public void CargarUltimaVersion()
     {
-
         string escenaGuardada = PlayerPrefs.GetString("EscenaGuardada", "");
 
         if (string.IsNullOrEmpty(escenaGuardada))

@@ -229,6 +229,11 @@ public class FuncTurnos : MonoBehaviour
             GameState.dineroGanado = Mathf.RoundToInt(dineroBase * Mathf.Max(0.1f, GameState.multiplicadorDinero));
             GameState.dineroJugador += GameState.dineroGanado;
 
+            if (GestorDeBatalla.instance != null)
+            {
+                GestorDeBatalla.instance.IntentarDropearItemAleatorio();
+            }
+
             GameState.multiplicadorDinero = 1f;
             GameState.multiplicadorExp = 1.5f;
             GameState.multiplicadorCaptura = 1f;
@@ -302,90 +307,7 @@ public class FuncTurnos : MonoBehaviour
 
     private void AplicarEfectoItem(BattleItem item, Porkemon porkemon)
     {
-        switch (item.type)
-        {
-            case BattleItemType.Pocion:
-                int curacion20 = Mathf.Min(20, porkemon.VidaMaxima - porkemon.VidaActual);
-                porkemon.VidaActual += curacion20;
-                Debug.Log($"{porkemon.BaseData.nombre} usó {item.nombre}. Recuperó {curacion20} PS!");
-                break;
-            case BattleItemType.Superpocion:
-                int curacion50 = Mathf.Min(50, porkemon.VidaMaxima - porkemon.VidaActual);
-                porkemon.VidaActual += curacion50;
-                Debug.Log($"{porkemon.BaseData.nombre} usó {item.nombre}. Recuperó {curacion50} PS!");
-                break;
-            case BattleItemType.Hiperpocion:
-                int curacion200 = Mathf.Min(200, porkemon.VidaMaxima - porkemon.VidaActual);
-                porkemon.VidaActual += curacion200;
-                Debug.Log($"{porkemon.BaseData.nombre} usó {item.nombre}. Recuperó {curacion200} PS!");
-                break;
-            case BattleItemType.Pocionmaxima:
-                int curacionMax = porkemon.VidaMaxima - porkemon.VidaActual;
-                porkemon.VidaActual = porkemon.VidaMaxima;
-                Debug.Log($"{porkemon.BaseData.nombre} usó {item.nombre}. Recuperó {curacionMax} PS!");
-                break;
-            case BattleItemType.AtaqueX:
-                porkemon.AumentarAtaque(2);
-                Debug.Log($"{porkemon.BaseData.nombre} usó {item.nombre}. Ataque aumentado!");
-                if (GestorDeBatalla.instance != null)
-                    GestorDeBatalla.instance.ActivarBuffVisualJugador(-1f);
-                break;
-            case BattleItemType.DefensaX:
-                porkemon.AumentarDefensa(2);
-                Debug.Log($"{porkemon.BaseData.nombre} usó {item.nombre}. Defensa aumentada!");
-                if (GestorDeBatalla.instance != null)
-                    GestorDeBatalla.instance.ActivarBuffVisualJugador(-1f);
-                break;
-            case BattleItemType.AtaqueEspecialX:
-                porkemon.AumentarEspiritu(2);
-                Debug.Log($"{porkemon.BaseData.nombre} usó {item.nombre}. Ataque Especial aumentado!");
-                if (GestorDeBatalla.instance != null)
-                    GestorDeBatalla.instance.ActivarBuffVisualJugador(-1f);
-                break;
-            case BattleItemType.DefensaEspecialX:
-                porkemon.AumentarEspiritu(2);
-                Debug.Log($"{porkemon.BaseData.nombre} usó {item.nombre}. Defensa Especial aumentada!");
-                if (GestorDeBatalla.instance != null)
-                    GestorDeBatalla.instance.ActivarBuffVisualJugador(-1f);
-                break;
-            case BattleItemType.VelocidadX:
-                porkemon.AumentarVelocidad(2);
-                Debug.Log($"{porkemon.BaseData.nombre} usó {item.nombre}. Velocidad aumentada!");
-                if (GestorDeBatalla.instance != null)
-                    GestorDeBatalla.instance.ActivarBuffVisualJugador(-1f);
-                break;
-            case BattleItemType.PrecisionX:
-                Debug.Log($"{porkemon.BaseData.nombre} usó {item.nombre}. Precisión aumentada!");
-                break;
-            case BattleItemType.CriticoX:
-                Debug.Log($"{porkemon.BaseData.nombre} usó {item.nombre}. Índice crítico aumentado!");
-                break;
-            case BattleItemType.RotoPremio:
-                GameState.multiplicadorDinero = 3f;
-                Debug.Log($"{porkemon.BaseData.nombre} usó {item.nombre}. ¡Las recompensas de dinero aumentarán esta batalla!");
-                break;
-            case BattleItemType.RotoExp:
-                GameState.multiplicadorExp = 1.5f;
-                Debug.Log($"{porkemon.BaseData.nombre} usó {item.nombre}. ¡La experiencia ganada aumentará esta batalla!");
-                break;
-            case BattleItemType.RotoBoost:
-                porkemon.AumentarAtaque(2);
-                porkemon.AumentarDefensa(2);
-                porkemon.AumentarEspiritu(2);
-                porkemon.AumentarVelocidad(2);
-                Debug.Log($"{porkemon.BaseData.nombre} usó {item.nombre}. ¡Todas sus estadísticas han aumentado!");
-                if (GestorDeBatalla.instance != null)
-                    GestorDeBatalla.instance.ActivarBuffVisualJugador(-1f);
-                break;
-            case BattleItemType.RotoCatch:
-                GameState.multiplicadorCaptura = 2f;
-                Debug.Log($"{porkemon.BaseData.nombre} usó {item.nombre}. ¡La probabilidad de captura ha aumentado esta batalla!");
-                break;
-            case BattleItemType.RotoOferta:
-                GameState.multiplicadorPreciosTienda = 0.5f;
-                Debug.Log($"{porkemon.BaseData.nombre} usó {item.nombre}. ¡Los precios de la tienda se han reducido temporalmente!");
-                break;
-        }
+        ItemEffectSystem.AplicarEfecto(item, porkemon);
     }
 
     private IEnumerator RutinaLanzarPorkebola(BattleItem bolaUsada)

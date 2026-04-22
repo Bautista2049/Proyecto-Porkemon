@@ -50,39 +50,14 @@ public class TriggerBossGiratina : MonoBehaviour
             return;
         }
 
-        // Guardar posición del jugador como hace Transicion_Combate
-        Vector3 posicionGuardada = collision.transform.position;
-        if (collision.contactCount > 0)
-        {
-            Vector3 normal = collision.GetContact(0).normal;
-            normal.y = 0f;
-            if (normal.sqrMagnitude > 0.0001f)
-            {
-                normal.Normalize();
-                posicionGuardada += normal * 0.75f;
-            }
-        }
-
+        // Guardar posición del jugador
+        Vector3 posicionGuardada = CombatTransitionHelper.CalcularPosicionRetorno(collision);
         GameState.GuardarPosicionJugador(posicionGuardada, SceneManager.GetActiveScene().name);
 
         // Configurar combate de boss
         GameState.esCombateBoss = true;
         GameState.porkemonDelBot = new Porkemon(giratinaData, nivelGiratina);
 
-        if (GestorDeBatalla.instance != null)
-        {
-            GestorDeBatalla.instance.combateIniciado = false;
-        }
-
-        // Mantener la cámara principal entre escenas, igual que Transicion_Combate
-        Camera mainCamera = Camera.main;
-        if (mainCamera != null)
-        {
-            Object.DontDestroyOnLoad(mainCamera.gameObject);
-        }
-
-        SceneManager.LoadScene(nombreEscenaBoss);
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
+        CombatTransitionHelper.IniciarTransicionCombate(nombreEscenaBoss);
     }
 }

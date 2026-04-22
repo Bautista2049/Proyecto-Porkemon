@@ -7,6 +7,10 @@ public class DynamicBotModel : MonoBehaviour
     public GameObject modelParentContainer;
     [SerializeField] public bool isPlayerModel = false;
     public Transform posicionOponente;
+    [Header("Configuración de Escala")]
+    [Tooltip("La escala que se le aplicará al modelo instanciado. Aumentá esto si se ve muy chico.")]
+    public Vector3 escalaPersonalizada = Vector3.one;
+
     private GameObject currentModelInstance;
     private PokemonAttackByName currentAttackByName;
 
@@ -22,6 +26,9 @@ public class DynamicBotModel : MonoBehaviour
         Transform modelTransform = Instantiate(modelPrefab, modelParent).transform;
         modelTransform.localPosition = Vector3.zero;
         modelTransform.localRotation = Quaternion.identity;
+        
+        // ¡ACÁ ESTÁ LA SOLUCIÓN! Forzamos la escala local del modelo instanciado.
+        modelTransform.localScale = escalaPersonalizada;
 
         currentModelInstance = modelTransform.gameObject;
         currentAttackByName = currentModelInstance.GetComponentInChildren<PokemonAttackByName>();

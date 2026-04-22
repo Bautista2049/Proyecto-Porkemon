@@ -323,33 +323,6 @@ public class ControladorTienda : MonoBehaviour
         return copy;
     }
 
-    private static int GetPrecioPorDefecto(BattleItemType type)
-    {
-        switch (type)
-        {
-            case BattleItemType.Pocion: return 200;
-            case BattleItemType.Superpocion: return 400;
-            case BattleItemType.Hiperpocion: return 600;
-            case BattleItemType.Pocionmaxima: return 800;
-            case BattleItemType.Revivir: return 1000;
-            case BattleItemType.RevivirMax: return 1500;
-            case BattleItemType.Porkebola: return 150;
-            case BattleItemType.Superbola: return 300;
-            case BattleItemType.Ultrabola: return 600;
-            case BattleItemType.Masterbola: return 2000;
-            case BattleItemType.AtaqueX:
-            case BattleItemType.DefensaX:
-            case BattleItemType.AtaqueEspecialX:
-            case BattleItemType.DefensaEspecialX:
-            case BattleItemType.VelocidadX:
-            case BattleItemType.PrecisionX:
-            case BattleItemType.CriticoX:
-            case BattleItemType.ProteccionX:
-                return 500;
-            default:
-                return 200;
-        }
-    }
 }
 
 [System.Serializable]

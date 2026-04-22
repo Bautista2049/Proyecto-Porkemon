@@ -118,7 +118,7 @@ public class GestorDeBatalla : MonoBehaviour
         {
             inventarioCompleto = new List<BattleItem>
             {
-                new BattleItem(BattleItemType.Pocion, "Poción", "Restaura 20 PS", 0),
+                new BattleItem(BattleItemType.Pocion, "Poción", "Restaura 20 PS", 1),
                 new BattleItem(BattleItemType.Superpocion, "Superpoción", "Restaura 50 PS", 0),
                 new BattleItem(BattleItemType.Hiperpocion, "Hiperpoción", "Restaura 120 PS", 0),
                 new BattleItem(BattleItemType.Pocionmaxima, "Poción Máxima", "Restaura todos los PS", 0),
@@ -141,20 +141,7 @@ public class GestorDeBatalla : MonoBehaviour
                 new BattleItem(BattleItemType.Masterbola, "Masterball", "Atrapa cualquier Pokémon sin fallar", 0)
             };
 
-            // Randomiza el stock de los objetos de la tienda
-            foreach (var item in inventarioCompleto)
-            {
-                bool esPokeball = item.type == BattleItemType.Porkebola || 
-                                  item.type == BattleItemType.Superbola ||
-                                  item.type == BattleItemType.Ultrabola ||
-                                  item.type == BattleItemType.Masterbola;
-
-                // Si el objeto tiene descripción y NO es una pokeball, randomiza su stock.
-                if (!string.IsNullOrEmpty(item.descripcion) && !esPokeball)
-                {
-                    item.cantidad = Random.Range(1, 6); // Stock aleatorio entre 1 y 5
-                }
-            }
+            // Se quitó la asignación aleatoria de stock inicial.
         }
 
         inventarioBattleItems.Clear();
@@ -179,9 +166,17 @@ public class GestorDeBatalla : MonoBehaviour
             porkemonBot = GameState.porkemonDelBot;
         }
 
-        if (inventarioBattleItems.Count == 0)
+        if (inventarioBattleItems.Count == 0 && inventarioCompleto.Count > 0)
         {
-            InicializarInventarioBattleItems();
+            // Solo usamos el inventario completo, ya no agregamos harcodeados extra.
+            foreach (var item in inventarioCompleto)
+            {
+                if (item.cantidad > 0)
+                {
+                    if (!inventarioBattleItems.Contains(item))
+                        inventarioBattleItems.Add(item);
+                }
+            }
         }
 
         combateIniciado = false;
@@ -358,20 +353,7 @@ public class GestorDeBatalla : MonoBehaviour
 
     private void InicializarInventarioBattleItems()
     {
-        inventarioBattleItems.Add(new BattleItem(BattleItemType.Pocion, "Poción", "Restaura 20 PS de un Porkemon", 5));
-        inventarioBattleItems.Add(new BattleItem(BattleItemType.Superpocion, "Superpoción", "Restaura 50 PS de un Porkemon", 3));
-        inventarioBattleItems.Add(new BattleItem(BattleItemType.Hiperpocion, "Hiperpoción", "Restaura 200 PS de un Porkemon", 2));
-        inventarioBattleItems.Add(new BattleItem(BattleItemType.Pocionmaxima, "Poción Máxima", "Restaura todos los PS de un Porkemon", 1));
-        inventarioBattleItems.Add(new BattleItem(BattleItemType.AtaqueX, "Ataque X", "Aumenta el Ataque en 2 niveles", 1));
-        inventarioBattleItems.Add(new BattleItem(BattleItemType.DefensaX, "Defensa X", "Aumenta la Defensa en 2 niveles", 1));
-        inventarioBattleItems.Add(new BattleItem(BattleItemType.AtaqueEspecialX, "Ataque Especial X", "Aumenta el Ataque Especial en 2 niveles", 1));
-        inventarioBattleItems.Add(new BattleItem(BattleItemType.DefensaEspecialX, "Defensa Especial X", "Aumenta la Defensa Especial en 2 niveles", 1));
-        inventarioBattleItems.Add(new BattleItem(BattleItemType.VelocidadX, "Velocidad X", "Aumenta la Velocidad en 2 niveles", 1));
-        inventarioBattleItems.Add(new BattleItem(BattleItemType.PrecisionX, "Precisión X", "Aumenta la Precisión en 2 niveles", 1));
-        inventarioBattleItems.Add(new BattleItem(BattleItemType.CriticoX, "Crítico X", "Aumenta el índice de golpe crítico en 2 niveles", 1));
-        inventarioBattleItems.Add(new BattleItem(BattleItemType.ProteccionX, "Protección X", "Evita que las estadísticas bajen durante 5 turnos", 1));
-        inventarioBattleItems.Add(new BattleItem(BattleItemType.Porkebola, "Porkebola", "Un objeto para capturar Porkemon salvajes.", 10));
-        inventarioBattleItems.Add(new BattleItem(BattleItemType.Superbola, "Superbola", "Una Porkebola con mejor ratio de captura.", 5));
+        // Obsoleto, la lógica de inicialización ahora solo depende de inventarioCompleto
     }
 
     public Porkemon GetPorkemonActivoJugador()
@@ -437,7 +419,28 @@ public class GestorDeBatalla : MonoBehaviour
             GameState.dineroGanado = Mathf.Max(1, GameState.experienciaGanada / 2);
             GameState.dineroJugador += GameState.dineroGanado;
 
+            IntentarDropearItemAleatorio();
+
             StartCoroutine(FinalizarCombate(true));
+        }
+    }
+
+    public void IntentarDropearItemAleatorio()
+    {
+        // 50% de probabilidad de dropear un item al ganar/capturar
+        if (Random.value <= 0.5f && inventarioCompleto.Count > 0)
+        {
+            int rndIndex = Random.Range(0, inventarioCompleto.Count);
+            BattleItem itemDropeado = inventarioCompleto[rndIndex];
+            
+            itemDropeado.cantidad++;
+            Debug.Log($"¡El Pokémon rival soltó un objeto! Has encontrado: {itemDropeado.nombre}");
+            
+            // Sincronizar en la mochila
+            if (!inventarioBattleItems.Contains(itemDropeado))
+            {
+                inventarioBattleItems.Add(itemDropeado);
+            }
         }
     }
     
