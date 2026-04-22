@@ -183,6 +183,7 @@ public class FuncTurnos : MonoBehaviour
             }
             else
             {
+                ResetearEstadosTodos();
                 GameState.esCombateBoss = false;
                 SceneTransitionManager.Instance.LoadScene("Escena de muerte");
             }
@@ -230,9 +231,9 @@ public class FuncTurnos : MonoBehaviour
             GameState.dineroJugador += GameState.dineroGanado;
 
             if (GestorDeBatalla.instance != null)
-            {
                 GestorDeBatalla.instance.IntentarDropearItemAleatorio();
-            }
+
+            ResetearEstadosTodos();
 
             GameState.multiplicadorDinero = 1f;
             GameState.multiplicadorExp = 1.5f;
@@ -246,6 +247,16 @@ public class FuncTurnos : MonoBehaviour
     public bool PuedeCombatir()
     {
         return jugador1.porkemon.VidaActual > 0 && jugador2.porkemon.VidaActual > 0;
+    }
+
+    private void ResetearEstadosTodos()
+    {
+        foreach (var p in GestorDeBatalla.instance.equipoJugador)
+            p.ResetearEstado();
+        foreach (var p in GestorDeBatalla.instance.equipoBot)
+            p.ResetearEstado();
+        if (GestorDeBatalla.instance.porkemonBot != null)
+            GestorDeBatalla.instance.porkemonBot.ResetearEstado();
     }
 
     private float GetBallMultiplier(BattleItemType type)

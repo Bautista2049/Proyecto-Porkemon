@@ -51,7 +51,6 @@ public class ConsolaEnJuego : MonoBehaviour
     private void OnDestroy()
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;
-        Application.logMessageReceived -= HandleLog;
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -62,38 +61,29 @@ public class ConsolaEnJuego : MonoBehaviour
 
     private IEnumerator SetupConsoleForScene(Scene scene)
     {
-        yield return null; // Espera un frame.
+        yield return null;
 
         BuscarYConfigurarUI();
 
         bool esEscenaDeCombate = scene.name == nombreEscenaCombate;
 
         if (consolaCanvas != null)
-        {
             consolaCanvas.gameObject.SetActive(esEscenaDeCombate);
-        }
 
-        // Limpia logs anteriores al cambiar de escena.
-        Application.logMessageReceived -= HandleLog;
-
-        if (esEscenaDeCombate)
-        {
-            // Si estamos en la escena de combate, nos suscribimos para recibir logs.
-            Application.logMessageReceived += HandleLog;
-            ResetConsole();
-        }
+        // Limpiar mensajes al cambiar de escena
+        ResetConsole();
     }
     
     /// <summary>
-    /// Captura todos los mensajes de log de Unity mientras esté suscrito.
+    /// Muestra un mensaje en la consola de combate.
+    /// Usá este método en lugar de Debug.Log para mensajes que el jugador debe ver.
     /// </summary>
-    private void HandleLog(string logString, string stackTrace, LogType type)
+    public void Log(string mensaje)
     {
-        // Filtro para evitar que la consola se loguee a sí misma.
-        if (logString.StartsWith("ConsolaEnJuego:")) return;
-        
-        // Añade cualquier otro log a la cola para ser mostrado.
-        EnqueueLogMessage(logString);
+        if (consolaCanvas != null && !consolaCanvas.gameObject.activeSelf)
+            return; // No encolar mensajes si la consola no está activa
+
+        EnqueueLogMessage(mensaje);
     }
 
     private void EnqueueLogMessage(string message)

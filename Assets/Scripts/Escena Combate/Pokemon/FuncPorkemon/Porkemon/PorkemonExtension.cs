@@ -9,21 +9,19 @@ public static class PorkemonExtension
     {
         int danio = CalculadorDanioElemental.CalcularDanio(atacante, defensor, ataque);
 
-        Debug.Log($"{atacante.BaseData.nombre} inflige {danio} de daño a {defensor.BaseData.nombre}.");
-
         defensor.VidaActual = Mathf.Max(0, defensor.VidaActual - danio);
-
         ataque.pp--;
 
         float efectividad = CalculadorDanioElemental.tablaEfectividad[(int)ataque.tipo, (int)defensor.BaseData.tipo1];
         if (defensor.BaseData.tipo2 != TipoElemental.Normal)
-        {
             efectividad *= CalculadorDanioElemental.tablaEfectividad[(int)ataque.tipo, (int)defensor.BaseData.tipo2];
-        }
 
-        string mensaje = CalculadorDanioElemental.GetMensajeEfectividad(efectividad);
-        if (!string.IsNullOrEmpty(mensaje))
-            Debug.Log(mensaje);
+        string mensajeAtaque = $"{atacante.BaseData.nombre} usó {ataque.nombreAtaque} e inflige {danio} de daño.";
+        ConsolaEnJuego.instance?.Log(mensajeAtaque);
+
+        string mensajeEfectividad = CalculadorDanioElemental.GetMensajeEfectividad(efectividad);
+        if (!string.IsNullOrEmpty(mensajeEfectividad))
+            ConsolaEnJuego.instance?.Log(mensajeEfectividad);
 
         if (GestorDeBatalla.instance != null)
             GestorDeBatalla.instance.ReproducirEfectosAtaque(ataque, atacante, defensor);
@@ -42,29 +40,34 @@ public static class PorkemonExtension
     public static void AplicarEfectoSecundario(this AtaqueData ataque, Porkemon defensor)
     {
         if (defensor.VidaActual <= 0) return;
+        if (defensor.Estado != EstadoAlterado.Ninguno) return; // No apilar estados
 
+        // Probabilidad del 30% de aplicar estado
+        if (Random.value > 0.30f) return;
+
+        string mensajeEstado = null;
         switch (ataque.tipo)
         {
             case TipoElemental.Fuego:
                 defensor.Estado = EstadoAlterado.Quemado;
-                Debug.Log("El rival está quemado.");
+                mensajeEstado = $"¡{defensor.BaseData.nombre} quedó quemado!";
                 break;
             case TipoElemental.Electrico:
                 defensor.Estado = EstadoAlterado.Paralizado;
-                Debug.Log("El rival está paralizado.");
+                mensajeEstado = $"¡{defensor.BaseData.nombre} quedó paralizado!";
                 break;
             case TipoElemental.Hielo:
                 defensor.Estado = EstadoAlterado.Congelado;
-                Debug.Log("El rival está congelado.");
+                mensajeEstado = $"¡{defensor.BaseData.nombre} quedó congelado!";
                 break;
             case TipoElemental.Veneno:
                 defensor.Estado = EstadoAlterado.Envenenado;
-                Debug.Log("El rival está envenenado.");
-                break;
-            case TipoElemental.Volador:
-                Debug.Log("El rival ha retrocedido.");
+                mensajeEstado = $"¡{defensor.BaseData.nombre} quedó envenenado!";
                 break;
         }
+
+        if (mensajeEstado != null)
+            ConsolaEnJuego.instance?.Log(mensajeEstado);
     }
 
     public static int CalcularExperienciaGanada(this Porkemon ganador, Porkemon perdedor, bool esEntrenador = false)

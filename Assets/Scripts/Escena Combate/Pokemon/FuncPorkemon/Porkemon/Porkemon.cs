@@ -238,7 +238,7 @@ public class Porkemon
             Espiritu = CalcularEspiritu();
             Velocidad = CalcularVelocidad();
             VidaActual = VidaMaxima;
-            Debug.Log($"{BaseData.nombre} subió al nivel {Nivel}!");
+            ConsolaEnJuego.instance?.Log($"¡{BaseData.nombre} subió al nivel {Nivel}!");
         }
     }
     public void AplicarDanioPorEstado()
@@ -247,8 +247,17 @@ public class Porkemon
         {
             int danio = Mathf.Max(1, VidaMaxima / 16);
             VidaActual = Mathf.Max(0, VidaActual - danio);
-            Debug.Log($"{BaseData.nombre} sufre {danio} de daño por {Estado}.");
+            string nombreEstado = Estado == EstadoAlterado.Quemado ? "quemadura" : "veneno";
+            ConsolaEnJuego.instance?.Log($"{BaseData.nombre} sufre {danio} de daño por {nombreEstado}.");
         }
+    }
+
+    /// <summary>
+    /// Limpia todos los estados alterados. Llamar al finalizar el combate.
+    /// </summary>
+    public void ResetearEstado()
+    {
+        Estado = EstadoAlterado.Ninguno;
     }
 
     public PorkemonSaveData GetDataForSave()
