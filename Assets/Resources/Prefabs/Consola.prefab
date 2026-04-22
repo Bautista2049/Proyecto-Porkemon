@@ -63,8 +63,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Bellsprout sufre 1 de da\xF1o por veneno.\nBellsprout us\xF3 Placaje e
-    inflige 1 de da\xF1o.\nBellsprout sufre 1 de da\xF1o por veneno."
+  m_text: "Bellsprout us\xF3 Manchar e inflige 2 de da\xF1o.\nDraguscular us\xF3 Golpe
+    Terraqueo e inflige 6 de da\xF1o.\n\xA1Es s\xFAper efectivo!"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -74,7 +74,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
